@@ -1,0 +1,31 @@
+{
+  "name": "Alexa.NET",
+  "title": "Alexa.NET",
+  "version": "1.0.3-beta",
+  "authors": [ "Tim Heuer" ],
+  "description": "A simple .NET Core library for handling Alexa Skill request/responses.",
+
+  "dependencies": {
+    "NETStandard.Library": "1.6.0",
+    "Newtonsoft.Json": "9.0.1"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  },
+
+  "packOptions": {
+    "summary": "A simple .NET Core library for handling Alexa Skill request/responses.",
+    "licenseUrl": "https://github.com/timheuer/alexa-skills-dotnet/blob/master/LICENSE",
+    "projectUrl": "https://github.com/timheuer/alexa-skills-dotnet",
+
+    "owners": [
+      "Tim Heuer"
+    ],
+    "repository": { "url": "https://github.com/timheuer/alexa-skills-dotnet" },
+    "requireLicenseAcceptance": false,
+    "tags": [ "amazon", "alexa", "echo", "dot", "echo dot", "skills" ]
+  }
+}
