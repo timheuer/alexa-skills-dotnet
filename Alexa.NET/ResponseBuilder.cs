@@ -76,7 +76,7 @@ namespace Alexa.NET
             if (reprompt != null) body.Reprompt = reprompt;
             if (card != null) body.Card = card;
 
-            response.Response = body;
+            response.Response = body; //var test
 
             return response;
         }
