@@ -1,7 +1,7 @@
 {
   "name": "Alexa.NET",
   "title": "Alexa.NET",
-  "version": "1.0.3-beta",
+  "version": "1.0.3-beta-1",
   "authors": [ "Tim Heuer" ],
   "description": "A simple .NET Core library for handling Alexa Skill request/responses.",
 
