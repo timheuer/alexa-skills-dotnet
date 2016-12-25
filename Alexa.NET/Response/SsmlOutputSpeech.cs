@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace Alexa.NET.Response
 {
-    class SsmlOutputSpeech : IOutputSpeech
+    public class SsmlOutputSpeech : IOutputSpeech
     {
         [JsonRequired]
         [JsonProperty("type")]
