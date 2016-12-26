@@ -53,6 +53,7 @@ namespace Alexa.NET
         }
         #endregion
 
+        #region Ask Responses
         public static SkillResponse Ask(IOutputSpeech speechResponse, Reprompt reprompt)
         {
             return BuildResponse(speechResponse, false, null, reprompt, null);
@@ -62,7 +63,9 @@ namespace Alexa.NET
         {
             return BuildResponse(speechResponse, false, sessionAttributes, reprompt, null);
         }
+        #endregion
 
+        #region Main Response Builder
         private static SkillResponse BuildResponse(IOutputSpeech outputSpeech, bool shouldEndSession, Session sessionAttributes, Reprompt reprompt, ICard card)
         {
             SkillResponse response = new Response.SkillResponse();
@@ -76,9 +79,10 @@ namespace Alexa.NET
             if (reprompt != null) body.Reprompt = reprompt;
             if (card != null) body.Card = card;
 
-            response.Response = body; //var test
+            response.Response = body;
 
             return response;
         }
+        #endregion
     }
 }
