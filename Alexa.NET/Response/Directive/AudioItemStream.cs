@@ -11,8 +11,7 @@ namespace Alexa.NET.Response.Directive
         [JsonRequired]
         [JsonProperty("token")]
         public string Token { get; set; }
-
-        [JsonRequired]
+        
         [JsonProperty("expectedPreviousToken")]
         public string ExpectedPreviousToken { get; set; }
 
