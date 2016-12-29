@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Alexa.NET.Response.Directive
 {
-    public class AudioPlayerDirective : IDirective
+    public class AudioPlayerPlayDirective : IDirective
     {
         [JsonProperty("playBehavior")]
         [JsonRequired]
@@ -12,7 +12,7 @@ namespace Alexa.NET.Response.Directive
 
         [JsonProperty("audioItem")]
         [JsonRequired]
-        public AudioItem AudioPlayerAudioItem { get; set; }
+        public AudioItem AudioItem { get; set; }
 
         [JsonProperty("type")]
         public string Type => "AudioPlayer.Play";
