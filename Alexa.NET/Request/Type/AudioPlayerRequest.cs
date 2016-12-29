@@ -9,18 +9,18 @@ namespace Alexa.NET.Request.Type
     public class AudioPlayerRequest: Request
     {
         [JsonProperty("token")]
-        string Token { get; set; }
+        public string Token { get; set; }
 
         [JsonProperty("locale")]
-        string Locale { get; set; }
+        public string Locale { get; set; }
 
         [JsonProperty("offsetInMilliseconds")]
-        string OffsetInMilliseconds { get; set; }
+        public string OffsetInMilliseconds { get; set; }
 
         [JsonProperty("error")]
-        Error Error { get; set; }
+        public Error Error { get; set; }
 
         [JsonProperty("currentPlaybackState")]
-        PlaybackState CurrentPlaybackState { get; set; }
+        public PlaybackState CurrentPlaybackState { get; set; }
     }
 }

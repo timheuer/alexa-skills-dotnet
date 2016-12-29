@@ -2,6 +2,6 @@ namespace Alexa.NET.Request.Type
 {
     public class IntentRequest : Request
     {
-        Intent Intent { get; set; }
+        public Intent Intent { get; set; }
     }
 }

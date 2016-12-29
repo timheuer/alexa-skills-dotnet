@@ -9,12 +9,12 @@ namespace Alexa.NET.Request.Type
     public class PlaybackState
     {
         [JsonProperty("token")]
-        string Token { get; set; }
+        public string Token { get; set; }
 
         [JsonProperty("offsetInMilliseconds")]
-        string OffsetInMilliseconds { get; set; }
+        public string OffsetInMilliseconds { get; set; }
 
         [JsonProperty("playerActivity")]
-        string PlayerActivity { get; set; }
+        public string PlayerActivity { get; set; }
     }
 }

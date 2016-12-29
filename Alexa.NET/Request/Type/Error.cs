@@ -9,9 +9,9 @@ namespace Alexa.NET.Request.Type
     public class Error
     {
         [JsonProperty("type")]
-        string Type { get; set; }
+        public string Type { get; set; }
 
         [JsonProperty("message")]
-        string Message { get; set; }
+        public string Message { get; set; }
     }
 }
