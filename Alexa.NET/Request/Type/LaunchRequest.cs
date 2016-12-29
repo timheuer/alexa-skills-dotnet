@@ -1,6 +1,6 @@
 ﻿namespace Alexa.NET.Request.Type
 {
-    public interface ILaunchRequest : IRequest
+    public class LaunchRequest : Request
     {
     }
 }

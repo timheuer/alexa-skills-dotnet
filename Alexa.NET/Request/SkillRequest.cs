@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Alexa.NET.Request.Type;
+using Newtonsoft.Json;
 
 namespace Alexa.NET.Request
 {
@@ -11,11 +12,12 @@ namespace Alexa.NET.Request
         public Session Session { get; set; }
 
         [JsonProperty("request")]
-        public RequestBundle Request { get; set; }
+        [JsonConverter(typeof(RequestConverter))]
+        public Type.Request Request { get; set; }
 
         public System.Type GetRequestType()
         {
-            return Request?.GetRequestType();
+            return Request?.GetType();
         }
     }
 }

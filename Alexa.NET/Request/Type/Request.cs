@@ -3,7 +3,7 @@ using System;
 
 namespace Alexa.NET.Request.Type
 {
-    public interface IRequest
+    public abstract class Request
     {
         [JsonProperty("type")]
         string Type { get; set; }
