@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>alexa-skills-dotnet</id>
+    <version>$version$</version>
+    <title>Alexa Skills SDK for .NET</title>
+    <authors>Tim Heuer</authors>
+    <owners>Tim Heuer</owners>
+    <licenseUrl>https://github.com/timheuer/alexa-skills-dotnet/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/timheuer/alexa-skills-dotnet</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+		A simple library of .NET helpers and object model for the Alexa Skills SDK.
+	</description>
+    <releaseNotes>Initial release</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>Alexa Amazon Echo Dot dotnet skills assistant</tags>
+  </metadata>
+</package>
