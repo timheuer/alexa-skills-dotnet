@@ -3,15 +3,15 @@ using System;
 
 namespace Alexa.NET.Request.Type
 {
-    public interface IRequest
+    public abstract class Request
     {
         [JsonProperty("type")]
-        string Type { get; set; }
+        public string Type { get; set; }
 
         [JsonProperty("requestId")]
-        string RequestId { get; set; }
+        public string RequestId { get; set; }
 
         [JsonProperty("timestamp")]
-        DateTime Timestamp { get; set; }
+        public DateTime Timestamp { get; set; }
     }
 }
