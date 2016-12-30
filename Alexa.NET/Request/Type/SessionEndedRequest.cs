@@ -2,9 +2,9 @@ using Newtonsoft.Json;
 
 namespace Alexa.NET.Request.Type
 {
-    public interface ISessionEndedRequest : IRequest
+    public class SessionEndedRequest : Request
     {
         [JsonProperty("reason")]
-        string Reason { get; set; }
+        public string Reason { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Alexa.NET.Response
 {
@@ -16,5 +17,8 @@ namespace Alexa.NET.Response
         [JsonProperty("shouldEndSession")]
         [JsonRequired]
         public bool ShouldEndSession { get; set; }
+
+        [JsonProperty("directives", NullValueHandling = NullValueHandling.Ignore)]
+        public IList<IDirective> Directives { get; set; } = new List<IDirective>();
     }
 }

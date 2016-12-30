@@ -1,5 +1,6 @@
 ﻿using Alexa.NET.Request;
 using Alexa.NET.Response;
+using Alexa.NET.Response.Directive;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,7 +66,41 @@ namespace Alexa.NET
         }
         #endregion
 
+<<<<<<< HEAD
         #region Main Response Builder
+=======
+        public static SkillResponse AudioPlayerPlay(PlayBehavior playBehavior, string url, string token)
+        {
+            return AudioPlayerPlay(playBehavior, url, token, 0);
+        }
+
+        public static SkillResponse AudioPlayerPlay(PlayBehavior playBehavior, string url, string token, int offsetInMilliseconds)
+        {
+            return AudioPlayerPlay(playBehavior, url, token, null, offsetInMilliseconds);
+        }
+
+        public static SkillResponse AudioPlayerPlay(PlayBehavior playBehavior, string url, string token, string expectedPreviousToken, int offsetInMilliseconds)
+        {
+            var response = BuildResponse(null, true, null, null, null);
+            response.Response.Directives.Add(new AudioPlayerPlayDirective()
+            {
+                PlayBehavior = playBehavior,
+                AudioItem = new AudioItem()
+                {
+                    Stream = new AudioItemStream()
+                    {
+                        Url = url,
+                        Token = token,
+                        ExpectedPreviousToken = expectedPreviousToken,
+                        OffsetInMilliseconds = offsetInMilliseconds
+                    }
+                }
+            });
+
+            return response;
+        }
+
+>>>>>>> ae95467958bfda07a461a775c761d832bf5b2d44
         private static SkillResponse BuildResponse(IOutputSpeech outputSpeech, bool shouldEndSession, Session sessionAttributes, Reprompt reprompt, ICard card)
         {
             SkillResponse response = new Response.SkillResponse();
