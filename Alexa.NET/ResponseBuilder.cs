@@ -66,9 +66,7 @@ namespace Alexa.NET
         }
         #endregion
 
-<<<<<<< HEAD
-        #region Main Response Builder
-=======
+        #region AudioPlayer Response
         public static SkillResponse AudioPlayerPlay(PlayBehavior playBehavior, string url, string token)
         {
             return AudioPlayerPlay(playBehavior, url, token, 0);
@@ -99,8 +97,9 @@ namespace Alexa.NET
 
             return response;
         }
-
->>>>>>> ae95467958bfda07a461a775c761d832bf5b2d44
+        #endregion
+        
+        #region Main Response Builder
         private static SkillResponse BuildResponse(IOutputSpeech outputSpeech, bool shouldEndSession, Session sessionAttributes, Reprompt reprompt, ICard card)
         {
             SkillResponse response = new Response.SkillResponse();
