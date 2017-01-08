@@ -67,7 +67,7 @@
     <Compile Include="Response\LinkAccountCard.cs" />
     <Compile Include="Response\PlainTextOutputSpeech.cs" />
     <Compile Include="Response\Reprompt.cs" />
-    <Compile Include="Response\Response.cs" />
+    <Compile Include="Response\ResponseBody.cs" />
     <Compile Include="Response\SimpleCard.cs" />
     <Compile Include="Response\SkillResponse.cs" />
     <Compile Include="Response\SsmlOutputSpeech.cs" />
