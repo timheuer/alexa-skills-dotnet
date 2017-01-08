@@ -6,11 +6,11 @@
     "Newtonsoft.Json": "9.0.1"
   },
   "frameworks": {
-    "netstandard1.4": {}
+    "netstandard1.2": {}
   },
 
   "description": "A simple .NET library for handling Alexa Skill request/responses.",
-  "authors": [ "Tim Heuer" ],
+  "authors": ["Tim Heuer"],
   "version": "0.0.0.1", // Handled by CI,
 
   "packOptions": {
@@ -21,6 +21,6 @@
     "owners": [
       "Tim Heuer"
     ],
-    "tags": [ "amazon", "alexa", "echo", "dot", "echo dot" ]
+    "tags": ["amazon", "alexa", "echo", "dot", "echo dot"]
   }
 }
