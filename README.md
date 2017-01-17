@@ -42,14 +42,27 @@ if (intentRequest.Intent.Name.Equals("MyIntentName"))
 }
 ```
 
-## Build the responses
+## Build a simple voice response
 There are various types of responses you can build and this library provides a helper function to build them up.  A simple one of having Alexa tell the user something using SSML may look like this:
 ```csharp
-// build the speech response firstValue
+// build the speech response 
 var speech = new Alexa.NET.Response.SsmlOutputSpeech();
 speech.Ssml = "Today is <say-as interpret-as=\"date\">????0922</say-as>.<break strength=\"x-strong\"/>I hope you have a good day.";
 
 // create the response using the ResponseBuilder
 var finalResponse = ResponseBuilder.Tell(speech);
 return finalResponse;
+```
+
+## Build a simple response with a Card
+In your response you can also have a 'Card' response, which presents UI to the Alexa companion app for the registered user.  Cards presently are simple and contain basically titles and plain text (no HTML :-().  To create a response with cards, you can use the ResponseBuilder:
+```csharp
+// create the speech response - cards still need a voice response
+var speech = new Alexa.NET.Response.SsmlOutputSpeech();
+speech.Ssml = "Today is <say-as interpret-as=\"date\">????0922</say-as>.";
+
+// create the card response
+var finalResponse = ResponseBuilder.TellWithCard(speech, "Your Card Title", "Your card content text goes here, no HTML formatting honored");
+return finalResponse;
+
 ```
