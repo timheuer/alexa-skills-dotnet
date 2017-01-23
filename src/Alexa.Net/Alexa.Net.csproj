@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E3089A27-CA66-438C-8652-044CA68F6F6B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Alexa.Net</RootNamespace>
+    <AssemblyName>Alexa.Net</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="project.json" />
+    <!-- A reference to the entire .NET Framework is automatically included -->
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request\Application.cs" />
+    <Compile Include="Request\Intent.cs" />
+    <Compile Include="Request\Session.cs" />
+    <Compile Include="Request\SkillRequest.cs" />
+    <Compile Include="Request\Slot.cs" />
+    <Compile Include="Request\Type\AudioPlayerRequest.cs" />
+    <Compile Include="Request\Type\Error.cs" />
+    <Compile Include="Request\Type\IntentRequest.cs" />
+    <Compile Include="Request\Type\LaunchRequest.cs" />
+    <Compile Include="Request\Type\PlaybackState.cs" />
+    <Compile Include="Request\Type\Request.cs" />
+    <Compile Include="Request\Type\RequestConverter.cs" />
+    <Compile Include="Request\Type\SessionEndedRequest.cs" />
+    <Compile Include="Request\User.cs" />
+    <Compile Include="ResponseBuilder.cs" />
+    <Compile Include="Response\CardImage.cs" />
+    <Compile Include="Response\Directive\AudioItem.cs" />
+    <Compile Include="Response\Directive\AudioItemStream.cs" />
+    <Compile Include="Response\Directive\AudioPlayerPlayDirective.cs" />
+    <Compile Include="Response\Directive\PlayBehavior.cs" />
+    <Compile Include="Response\ICard.cs" />
+    <Compile Include="Response\IDirective.cs" />
+    <Compile Include="Response\IOutputSpeech.cs" />
+    <Compile Include="Response\IResponse.cs" />
+    <Compile Include="Response\LinkAccountCard.cs" />
+    <Compile Include="Response\PlainTextOutputSpeech.cs" />
+    <Compile Include="Response\Reprompt.cs" />
+    <Compile Include="Response\ResponseBody.cs" />
+    <Compile Include="Response\SimpleCard.cs" />
+    <Compile Include="Response\SkillResponse.cs" />
+    <Compile Include="Response\SsmlOutputSpeech.cs" />
+    <Compile Include="Response\StandardCard.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
