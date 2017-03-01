@@ -1,7 +1,7 @@
 {
   "name": "Alexa.NET",
   "title": "Alexa.NET",
-  "version": "1.0.0-beta-1",
+  "version": "1.0.0-beta-2",
   "authors": [ "Tim Heuer" ],
   "description": "A simple .NET Core library for handling Alexa Skill request/responses.",
 
@@ -26,6 +26,7 @@
     ],
     "repository": { "url": "https://github.com/timheuer/alexa-skills-dotnet" },
     "requireLicenseAcceptance": false,
-    "tags": [ "amazon", "alexa", "echo", "dot", "echo dot", "skills" ]
+    "tags": [ "amazon", "alexa", "echo", "dot", "echo dot", "skills" ],
+    "releaseNotes": "Updated to include Locale"
   }
 }
