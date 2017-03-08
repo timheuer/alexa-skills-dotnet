@@ -66,3 +66,71 @@ var finalResponse = ResponseBuilder.TellWithCard(speech, "Your Card Title", "You
 return finalResponse;
 
 ```
+
+## Build a simple response with a reprompt
+If you want to reprompt the user, use the Ask helpers
+```csharp
+// create the speech response
+var speech = new Alexa.NET.Response.SsmlOutputSpeech();
+speech.Ssml = "Today is <say-as interpret-as=\"date\">????0922</say-as>.";
+
+// create the speech reprompt
+var repromptMessage = new Alexa.NET.Response.PlainTextOutputSpeech();
+repromptMessage.Text = "Would you like to know what tomorrow is?";
+
+// create the reprompt
+var repromptBody = new Alexa.NET.Response.Reprompt();
+repromptBody.OutputSpeech = repromptMessage;
+
+// create the response
+var finalResponse = ResponseBuilder.Ask(speech, repromptBody);
+return finalResponse;
+```
+
+## Build a response without using helpers
+If you do not want to use the helper Tell/Ask functions for the simple structure you 
+can build up the response manually using the ```Response``` and some ```IOutputSpeech``` objects.
+```csharp
+// create the speech response - you most likely will still have this
+var speech = new Alexa.NET.Response.SsmlOutputSpeech();
+speech.Ssml = "Today is <say-as interpret-as=\"date\">????0922</say-as>.";
+
+// create the response
+var responseBody = new Alexa.NET.Response.ResponseBody();
+responseBody.OutputSpeech = speech;
+responseBody.ShouldEndSession = true;
+
+var skillResponse = new Alexa.NET.Response.SkillResponse();
+skillResponse.Response = responseBody;
+skillResponse.Version = "1.0";
+
+return skillResponse;
+```
+
+## Build a reprompt without using helpers
+To add reprompt to the response you just need to include that as well.
+```csharp
+// create the speech response - you most likely will still have this
+var speech = new Alexa.NET.Response.SsmlOutputSpeech();
+speech.Ssml = "Today is <say-as interpret-as=\"date\">????0922</say-as>.";
+
+// create the reprompt speech
+var repromptMessage = new Alexa.NET.Response.PlainTextOutputSpeech();
+repromptMessage.Text = "Would you like to know what tomorrow is?";
+
+// create the reprompt object
+var repromptBody = new Alexa.NET.Response.Reprompt();
+repromptBody.OutputSpeech = repromptMessage;
+
+// create the response
+var responseBody = new Alexa.NET.Response.ResponseBody();
+responseBody.OutputSpeech = speech;
+responseBody.ShouldEndSession = false; // this triggers the reprompt
+responseBody.Reprompt = repromptBody;
+
+var skillResponse = new Alexa.NET.Response.SkillResponse();
+skillResponse.Response = responseBody;
+skillResponse.Version = "1.0";
+
+return skillResponse;
+```
