@@ -15,12 +15,22 @@ namespace Alexa.NET
         {
             return BuildResponse(speechResponse, true, null, null, null);
         }
+        public static SkillResponse TellWithReprompt(IOutputSpeech speechResponse, Reprompt reprompt)
+        {
+            return BuildResponse(speechResponse, true, null, reprompt, null);
+        }
+  
 
         public static SkillResponse Tell(IOutputSpeech speechResponse, Session sessionAttributes)
         {
             return BuildResponse(speechResponse, true, sessionAttributes, null, null);
-        } 
-        
+        }
+
+        public static SkillResponse TellWithReprompt(IOutputSpeech speechResponse, Reprompt reprompt, Session sessionAttributes)
+        {
+            return BuildResponse(speechResponse, true, sessionAttributes, reprompt, null);
+        }
+
         public static SkillResponse TellWithCard(IOutputSpeech speechResponse, string title, string content)
         {
             SimpleCard card = new SimpleCard();
