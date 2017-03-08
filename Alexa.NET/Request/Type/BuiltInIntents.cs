@@ -5,10 +5,6 @@ using System.Threading.Tasks;
 
 namespace Alexa.NET.Request.Type
 {
-    /// <summary>
-    /// Standard Built-In Intents detailed here:
-    /// https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/built-in-intent-ref/standard-intents
-    /// </summary>
 
     public class BuiltInIntent
     {

@@ -34,9 +34,6 @@ namespace Alexa.NET.Request.Type
 
         public Request Create(string requestType)
         {
-            //Note: could add a System.ExceptionEncountered request type
-            // Also might be valuable to add built-in requests (which start with "AMAZON.")
-
             //AudioPlayer requests are very similar, map to single type
             if (requestType.StartsWith("AudioPlayer"))
                 requestType = "AudioPlayer";

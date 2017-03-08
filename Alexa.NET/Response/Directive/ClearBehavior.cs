@@ -11,6 +11,6 @@ namespace Alexa.NET.Response.Directive
         [EnumMember(Value = "CLEAR_ENQUEUED")]
         ClearEnqueued,
         [EnumMember(Value = "CLEAR_ALL")]
-        ClearAll,
+        ClearAll
     }
 }
