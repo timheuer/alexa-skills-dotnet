@@ -19,5 +19,41 @@ namespace Alexa.NET.Request.Type
 
         [JsonProperty("currentPlaybackState")]
         public PlaybackState CurrentPlaybackState { get; set; }
+
+        [JsonProperty("enqueuedToken")]
+        public string EnqueuedToken { get; set; }
+        
+        public bool HasEnqueuedItem
+        {
+            get
+            {
+                if (EnqueuedToken != null && EnqueuedToken != "")
+                    return true;
+                else
+                    return false;
+            }
+        }
+
+        public AudioRequestType AudioRequestType
+        {
+            get
+            {
+                switch (this.Type.Split('.')[1])
+                {
+                    case "PlaybackStarted":
+                        return AudioRequestType.PlaybackStarted;
+                    case "PlaybackFinished":
+                        return AudioRequestType.PlaybackStarted;
+                    case "PlaybackStopped":
+                        return AudioRequestType.PlaybackStopped;
+                    case "PlaybackNearlyFinished":
+                        return AudioRequestType.PlaybackNearlyFinished;
+                    case "PlaybackFailed":
+                        return AudioRequestType.PlaybackFailed;
+                    default:
+                        return AudioRequestType.Unknown;
+                }
+            }
+        }
     }
 }
