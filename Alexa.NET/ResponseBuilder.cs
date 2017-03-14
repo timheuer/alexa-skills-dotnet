@@ -107,8 +107,25 @@ namespace Alexa.NET
 
             return response;
         }
+
+        public static SkillResponse AudioPlayerStop()
+        {
+            var response = BuildResponse(null, true, null, null, null);
+            response.Response.Directives.Add(new StopDirective());
+            return response;
+        }
+
+        public static SkillResponse AudioPlayerClearQueue(ClearBehavior clearBehavior)
+        {
+            var response = BuildResponse(null, true, null, null, null);
+            response.Response.Directives.Add(new ClearQueueDirective()
+            {
+                ClearBehavior = clearBehavior
+            });
+            return response;
+        }
         #endregion
-        
+
         #region Main Response Builder
         private static SkillResponse BuildResponse(IOutputSpeech outputSpeech, bool shouldEndSession, Session sessionAttributes, Reprompt reprompt, ICard card)
         {
