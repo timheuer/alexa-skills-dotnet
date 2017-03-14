@@ -1,6 +1,7 @@
 # Alexa Skills SDK for .NET
 
 [![Build status](https://ci.appveyor.com/api/projects/status/9r6nb0nlbykw5fh7?svg=true)](https://ci.appveyor.com/project/TimHeuer/alexa-skills-dotnet)
+[![NuGet](https://img.shields.io/nuget/v/Nuget.Core.svg)](https://www.nuget.org/packages/Alexa.NET)
 
 Alexa.NET is a helper library for working with Alexa skill requests/responses in C#.  Whether you are using the AWS Lambda service or hosting your own service on your server, this library aims just to make working with the Alexa API more natural for a C# developer using a strongly-typed object model.
 
