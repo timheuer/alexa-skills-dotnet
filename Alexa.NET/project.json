@@ -27,6 +27,6 @@
     "repository": { "url": "https://github.com/timheuer/alexa-skills-dotnet" },
     "requireLicenseAcceptance": false,
     "tags": [ "amazon", "alexa", "echo", "dot", "echo dot", "skills" ],
-    "releaseNotes": "Updated to include Locale and Audio/PlayerController request support."
+    "releaseNotes": "Updated to include Locale,  Audio request, and PlayerController request support."
   }
 }
