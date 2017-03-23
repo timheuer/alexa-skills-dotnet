@@ -110,7 +110,7 @@ return finalResponse;
 
 ## Play an audio file
 
-If your skill is registered as an audio player, you can send directives (instructions to play, enqueue, or stop and audio stream). 
+If your skill is registered as an audio player, you can send directives (instructions to play, enqueue, or stop an audio stream). 
 
 ```csharp
 // create the speech response - you most likely will still have this
