@@ -12,7 +12,7 @@ public SkillResponse FunctionHandler(SkillRequest input, ILambdaContext context)
     // your function logic goes here
 }
 ```
-## Get the request type (Launch, Intent, etc)
+## Get the request type (Launch, Intent, Audio, etc)
 You most likely are going to want to get the type of request to know if it was the default launch, an intent, or maybe an audio request.
 ```csharp
 // check what type of a request it is like an IntentRequest or a LaunchRequest
@@ -25,6 +25,10 @@ if (requestType == typeof(IntentRequest))
 else if (requestType == typeof(Alexa.NET.Request.Type.LaunchRequest))
 {
     // default launch path executed
+}
+else if (requestType == typeof(AudioPlayerRequest))
+{
+    // do some audio response stuff
 }
 ```
 
@@ -42,7 +46,24 @@ if (intentRequest.Intent.Name.Equals("MyIntentName"))
 }
 ```
 
+## Get an audio request and determine the action
+
+Once you know it is an AudioPlayerRequest, you have to determine which one (playback started, finished, stopped, failed) and respond accordingly.
+
+```csharp
+// do some audio response stuff
+var audioRequest = input.Request as AudioPlayerRequest;
+
+// these are events sent when the audio state has changed on the device
+// determine what exactly happened
+if (audioRequest.AudioRequestType == AudioRequestType.PlaybackNearlyFinished)
+{
+    // queue up another audio file
+}
+```
+
 ## Build a simple voice response
+
 There are various types of responses you can build and this library provides a helper function to build them up.  A simple one of having Alexa tell the user something using SSML may look like this:
 ```csharp
 // build the speech response 
@@ -87,7 +108,22 @@ var finalResponse = ResponseBuilder.Ask(speech, repromptBody);
 return finalResponse;
 ```
 
+## Play an audio file
+
+If your skill is registered as an audio player, you can send directives (instructions to play, enqueue, or stop an audio stream). 
+
+```csharp
+// create the speech response - you most likely will still have this
+string audioUrl = "http://mydomain.com/myaudiofile.mp3";
+string audioToken = "a token to describe the audio file"; 
+
+var audioResponse = ResponseBuilder.AudioPlayerPlay(PlayBehavior.ReplaceAll, audioUrl, audioToken);
+
+return audioResponse
+```
+
 ## Build a response without using helpers
+
 If you do not want to use the helper Tell/Ask functions for the simple structure you 
 can build up the response manually using the ```Response``` and some ```IOutputSpeech``` objects.
 ```csharp
