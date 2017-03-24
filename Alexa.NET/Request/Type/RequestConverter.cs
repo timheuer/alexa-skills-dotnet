@@ -34,9 +34,12 @@ namespace Alexa.NET.Request.Type
 
         public Request Create(string requestType)
         {
-            //AudioPlayer requests are very similar, map to single type
+            //AudioPlayer and PlaybackController requests are very similar,
+            //  map them to respective types
             if (requestType.StartsWith("AudioPlayer"))
                 requestType = "AudioPlayer";
+            else if (requestType.StartsWith("PlaybackController"))
+                requestType = "PlaybackController";
 
             switch (requestType)
             {
@@ -48,6 +51,10 @@ namespace Alexa.NET.Request.Type
                     return new SessionEndedRequest();
                 case "AudioPlayer":
                     return new AudioPlayerRequest();
+                case "PlaybackController":
+                    return new PlaybackControllerRequest();
+                case "System.ExceptionEncountered":
+                    return new SystemExceptionRequest();
                 default:
                     throw new ArgumentOutOfRangeException(nameof(Type), $"Unknown request type: {requestType}.");
             }
