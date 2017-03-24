@@ -27,10 +27,12 @@ namespace Alexa.NET.Request.Type
         {
             get
             {
-                if (EnqueuedToken != null && EnqueuedToken != "")
+                /*if (EnqueuedToken != null && EnqueuedToken != "")
                     return true;
                 else
                     return false;
+                    */
+                return !String.IsNullOrEmpty(EnqueuedToken);
             }
         }
 
