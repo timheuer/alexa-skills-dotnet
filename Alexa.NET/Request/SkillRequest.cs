@@ -11,6 +11,9 @@ namespace Alexa.NET.Request
         [JsonProperty("session")]
         public Session Session { get; set; }
 
+        [JsonProperty("context")]
+        public Context Context { get; set; }
+
         [JsonProperty("request")]
         [JsonConverter(typeof(RequestConverter))]
         public Type.Request Request { get; set; }
