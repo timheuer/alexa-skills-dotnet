@@ -19,7 +19,6 @@ namespace Alexa.NET
         {
             return BuildResponse(speechResponse, true, null, reprompt, null);
         }
-  
 
         public static SkillResponse Tell(IOutputSpeech speechResponse, Session sessionAttributes)
         {
@@ -73,6 +72,20 @@ namespace Alexa.NET
         public static SkillResponse Ask(IOutputSpeech speechResponse, Reprompt reprompt, Session sessionAttributes)
         {
             return BuildResponse(speechResponse, false, sessionAttributes, reprompt, null);
+        }
+
+        public static SkillResponse AskWithCard(IOutputSpeech speechResponse, string title, string content, Reprompt reprompt)
+        {
+            return AskWithCard(speechResponse, title, content, reprompt, null);
+        }
+
+        public static SkillResponse AskWithCard(IOutputSpeech speechResponse, string title, string content, Reprompt reprompt, Session sessionAttributes)
+        {
+            SimpleCard card = new SimpleCard();
+            card.Content = content;
+            card.Title = title;
+
+            return BuildResponse(speechResponse, false, sessionAttributes, reprompt, card);
         }
         #endregion
 
