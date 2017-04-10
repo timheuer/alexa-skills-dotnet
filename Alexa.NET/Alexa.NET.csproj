@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Description>A simple .NET Core library for handling Alexa Skill request/responses.</Description>
     <AssemblyTitle>Alexa.NET</AssemblyTitle>
-    <VersionPrefix>1.0.0-beta-6</VersionPrefix>
+    <VersionPrefix>1.0.0-beta-7</VersionPrefix>
     <Authors>Tim Heuer</Authors>
     <TargetFramework>netstandard1.6</TargetFramework>
     <AssemblyName>Alexa.NET</AssemblyName>
