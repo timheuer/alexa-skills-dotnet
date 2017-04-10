@@ -9,5 +9,8 @@ namespace Alexa.NET.Request
 
         [JsonProperty("accessToken")]
         public string AccessToken { get; set; }
+
+        [JsonProperty("permissions")]
+        public Permissions Permissions { get; set; }
     }
 }

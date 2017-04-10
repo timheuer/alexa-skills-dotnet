@@ -8,6 +8,9 @@ namespace Alexa.NET.Request
 {
     public class AlexaSystem
     {
+        [JsonProperty("apiEndpoint")]
+        public string ApiEndpoint { get; set; }
+
         [JsonProperty("application")]
         public Application Application { get; set; }
 
