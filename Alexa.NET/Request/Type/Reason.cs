@@ -8,7 +8,7 @@ namespace Alexa.NET.Request.Type
 {
     public enum Reason
     {
-        [EnumMember(Value = "USER_INITATED")]
+        [EnumMember(Value = "USER_INITIATED")]
         UserInitiated,
         [EnumMember(Value = "ERROR")]
         Error,
