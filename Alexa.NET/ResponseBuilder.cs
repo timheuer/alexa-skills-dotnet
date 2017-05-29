@@ -139,6 +139,11 @@ namespace Alexa.NET
         }
         #endregion
 
+        public static SkillResponse Empty()
+        {
+            return BuildResponse(null, true, null, null, null);
+        }
+
         #region Main Response Builder
         private static SkillResponse BuildResponse(IOutputSpeech outputSpeech, bool shouldEndSession, Session sessionAttributes, Reprompt reprompt, ICard card)
         {
