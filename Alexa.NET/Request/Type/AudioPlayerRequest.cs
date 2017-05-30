@@ -12,7 +12,7 @@ namespace Alexa.NET.Request.Type
         public string Token { get; set; }
 
         [JsonProperty("offsetInMilliseconds")]
-        public string OffsetInMilliseconds { get; set; }
+        public long OffsetInMilliseconds { get; set; }
 
         [JsonProperty("error")]
         public Error Error { get; set; }
