@@ -3,13 +3,13 @@
   <PropertyGroup>
     <Description>A simple .NET Core library for handling Alexa Skill request/responses.</Description>
     <AssemblyTitle>Alexa.NET</AssemblyTitle>
-    <VersionPrefix>1.0.0-beta-9</VersionPrefix>
+    <VersionPrefix>1.0.0-beta-8</VersionPrefix>
     <Authors>Tim Heuer</Authors>
     <TargetFramework>netstandard1.6</TargetFramework>
     <AssemblyName>Alexa.NET</AssemblyName>
     <PackageId>Alexa.NET</PackageId>
     <PackageTags>amazon;alexa;echo;dot;echo dot;skills</PackageTags>
-    <PackageReleaseNotes>Added response builder for null response for audio; BREAKING CHANGE: Fixed correct type for AudioPlayerRequest.OffsetInMilliseconds per Alexa documentation. Thanks Adrian!</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixed typo on USER_INITIATED Reason; Added DeviceId properties; Added AskWithCard options</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/timheuer/alexa-skills-dotnet</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/timheuer/alexa-skills-dotnet/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/timheuer/alexa-skills-dotnet</RepositoryUrl>
