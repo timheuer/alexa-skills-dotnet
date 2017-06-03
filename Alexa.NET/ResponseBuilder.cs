@@ -48,14 +48,14 @@ namespace Alexa.NET
             return BuildResponse(speechResponse, true, sessionAttributes, null, card);
         }
 
-        public static SkillResponse TellWithLinkAccountCard(IOutputSpeech speechResponse)
+        public static SkillResponse TellWithLinkAccountCard(IOutputSpeech speechResponse, string title, string content)
         {
             LinkAccountCard card = new LinkAccountCard();
 
             return BuildResponse(speechResponse, true, null, null, card);
         }
 
-        public static SkillResponse TellWithLinkAccountCard(IOutputSpeech speechResponse, Session sessionAttributes)
+        public static SkillResponse TellWithLinkAccountCard(IOutputSpeech speechResponse, string title, string content, Session sessionAttributes)
         {
             LinkAccountCard card = new LinkAccountCard();
 
