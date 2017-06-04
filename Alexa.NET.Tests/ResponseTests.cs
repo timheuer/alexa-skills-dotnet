@@ -4,11 +4,9 @@ using System.Text.RegularExpressions;
 using Alexa.NET.Response;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-
-
 using Xunit;
 
-namespace Slight.Alexa.Framework.Tests.ModelTests
+namespace Alexa.NET.Tests
 {
     public class ResponseTests
     {

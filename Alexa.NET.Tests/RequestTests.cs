@@ -4,7 +4,7 @@ using Alexa.NET.Request.Type;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace Slight.Alexa.Framework.Tests.ModelTests
+namespace Alexa.NET.Tests
 {
     public class RequestTests
     {
