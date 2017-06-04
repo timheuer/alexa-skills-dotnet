@@ -1,0 +1,29 @@
+﻿{
+  "session": {
+    "sessionId": "SessionId.<snip>",
+    "application": {
+      "applicationId": "amzn1.ask.skill.<snip>"
+    },
+    "attributes": {},
+    "user": {
+      "userId": "amzn1.ask.account.<snip>"
+    },
+    "new": true
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "EdwRequestId.<snip>",
+    "locale": "en-US",
+    "timestamp": "2016-12-06T16:39:11Z",
+    "intent": {
+      "name": "GetUtterance",
+      "slots": {
+        "Utterance": {
+          "name": "Utterance",
+          "value": "how are you"
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
