@@ -20,5 +20,10 @@ namespace Alexa.NET.Response
 
         [JsonProperty("directives", NullValueHandling = NullValueHandling.Ignore)]
         public IList<IDirective> Directives { get; set; } = new List<IDirective>();
+
+        public bool ShouldSerializeDirectives()
+        {
+            return Directives.Count > 0;
+        }
     }
 }
