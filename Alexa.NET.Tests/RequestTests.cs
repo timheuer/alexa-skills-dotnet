@@ -8,14 +8,12 @@ namespace Alexa.NET.Tests
 {
     public class RequestTests
     {
-        private string ExamplesPath = "Examples";
+        private const string ExamplesPath = "Examples";
 
         [Fact]
         public void Can_read_IntentRequest_example()
         {
-            const string example = "IntentRequest.json";
-            var json = File.ReadAllText(Path.Combine(ExamplesPath, example));
-            var convertedObj = JsonConvert.DeserializeObject<SkillRequest>(json);
+            var convertedObj = GetObjectFromExample<SkillRequest>("IntentRequest.json");
 
             Assert.NotNull(convertedObj);
             Assert.Equal(typeof(IntentRequest), convertedObj.GetRequestType());
@@ -24,9 +22,7 @@ namespace Alexa.NET.Tests
         [Fact]
         public void Can_read_LaunchRequest_example()
         {
-            const string example = "LaunchRequest.json";
-            var json = File.ReadAllText(Path.Combine(ExamplesPath, example));
-            var convertedObj = JsonConvert.DeserializeObject<SkillRequest>(json);
+            var convertedObj = GetObjectFromExample<SkillRequest>("LaunchRequest.json");
 
             Assert.NotNull(convertedObj);
             Assert.Equal(typeof(LaunchRequest), convertedObj.GetRequestType());
@@ -35,9 +31,7 @@ namespace Alexa.NET.Tests
         [Fact]
         public void Can_read_SessionEndedRequest_example()
         {
-            const string example = "SessionEndedRequest.json";
-            var json = File.ReadAllText(Path.Combine(ExamplesPath, example));
-            var convertedObj = JsonConvert.DeserializeObject<SkillRequest>(json);
+            var convertedObj = GetObjectFromExample<SkillRequest>("SessionEndedRequest.json");
 
             Assert.NotNull(convertedObj);
             Assert.Equal(typeof(SessionEndedRequest), convertedObj.GetRequestType());
@@ -46,9 +40,7 @@ namespace Alexa.NET.Tests
         [Fact]
         public void Can_read_slot_example()
         {
-            const string example = "GetUtterance.json";
-            var json = File.ReadAllText(Path.Combine(ExamplesPath, example));
-            var convertedObj = JsonConvert.DeserializeObject<SkillRequest>(json);
+            var convertedObj = GetObjectFromExample<SkillRequest>("GetUtterance.json");
 
             var request = Assert.IsAssignableFrom<IntentRequest>(convertedObj.Request);
             var slot = request.Intent.Slots["Utterance"];
@@ -58,12 +50,16 @@ namespace Alexa.NET.Tests
         [Fact]
         public void Can_accept_new_versions()
         {
-            const string example = "SessionEndedRequest.json";
-            var json = File.ReadAllText(Path.Combine(ExamplesPath, example));
-            var convertedObj = JsonConvert.DeserializeObject<SkillRequest>(json);
+            var convertedObj = GetObjectFromExample<SkillRequest>("SessionEndedRequest.json");
 
             Assert.NotNull(convertedObj);
             Assert.Equal(typeof(SessionEndedRequest), convertedObj.GetRequestType());
+        }
+
+        private T GetObjectFromExample<T>(string filename)
+        {
+            var json = File.ReadAllText(Path.Combine(ExamplesPath, filename));
+            return JsonConvert.DeserializeObject<T>(json);
         }
     }
 }
