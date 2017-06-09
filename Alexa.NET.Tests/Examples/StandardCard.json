@@ -1,7 +1,7 @@
 ﻿{
   "type": "Standard",
   "title": "Example Title",
-  "content": "Example Body Text",
+  "text": "Example Body Text",
   "image": {
     "smallImageUrl": "https://example.com/smallImage.png",
     "largeImageUrl": "https://example.com/largeImage.png"
