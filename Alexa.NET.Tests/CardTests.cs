@@ -14,7 +14,7 @@ namespace Alexa.NET.Tests
         [Fact]
         public void Creates_Valid_SimpleCard()
         {
-            var actual = new SimpleCard { Title = "Example Title", Content = "Example Content" };
+            var actual = new SimpleCard { Title = ExampleTitle, Content = ExampleBodyText };
 
             Assert.True(CompareJson(actual, "SimpleCard.json"));
         }
@@ -22,13 +22,25 @@ namespace Alexa.NET.Tests
         [Fact]
         public void Creates_Valid_StandardCard()
         {
-            var actual = new StandardCard{Title="Example Title",}
+            var cardImages = new CardImage { SmallImageUrl = "https://example.com/smallImage.png", LargeImageUrl = "https://example.com/largeImage.png" };
+            var actual = new StandardCard{ Title = ExampleTitle, Content = ExampleBodyText,Image=cardImages };
+
+            Assert.True(CompareJson(actual, "StandardCard.json"));
+        }
+
+        [Fact]
+        public void Creates_Valid_AskForPermissionConsent()
+        {
+            var actual = new AskForPermissionsConsentCard();
+            actual.Permissions.Add(RequestedPermission.ReadHouseholdList);
+
+            Assert.True(CompareJson(actual, "AskForPermissionsConsent.json"));
         }
 
         private bool CompareJson(object actual, string expectedFile)
         {
+            
             var actualJObject = JObject.FromObject(actual);
-
             var expected = File.ReadAllText(Path.Combine(ExamplesPath, expectedFile));
             var expectedJObject = JObject.Parse(expected);
 
