@@ -61,6 +61,21 @@ namespace Alexa.NET
 
             return BuildResponse(speechResponse, true, sessionAttributes, null, card);
         }
+
+        public static SkillResponse TellWithAskForPermissionsConsentCard(IOutputSpeech speechResponse,IEnumerable<string> permissions)
+        {
+            AskForPermissionsConsentCard card = new AskForPermissionsConsentCard();
+            card.Permissions = permissions.ToList();
+            return BuildResponse(speechResponse, true, null, null, card);
+        }
+
+        public static SkillResponse TellWithAskForPermissionsConsentCard(IOutputSpeech speechResponse, IEnumerable<string> permissions, Session sessionAttributes)
+        {
+			AskForPermissionsConsentCard card = new AskForPermissionsConsentCard();
+			card.Permissions = permissions.ToList();
+            return BuildResponse(speechResponse, true, sessionAttributes, null, card);
+        }
+
         #endregion
 
         #region Ask Responses
