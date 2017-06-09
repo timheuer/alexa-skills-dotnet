@@ -8,6 +8,8 @@ namespace Alexa.NET.Tests
     public class CardTests
     {
         private const string ExamplesPath = "Examples";
+        private const string ExampleTitle = "Example Title";
+        private const string ExampleBodyText = "Example Body Text";
 
         [Fact]
         public void Creates_Valid_SimpleCard()
@@ -15,6 +17,12 @@ namespace Alexa.NET.Tests
             var actual = new SimpleCard { Title = "Example Title", Content = "Example Content" };
 
             Assert.True(CompareJson(actual, "SimpleCard.json"));
+        }
+
+        [Fact]
+        public void Creates_Valid_StandardCard()
+        {
+            var actual = new StandardCard{Title="Example Title",}
         }
 
         private bool CompareJson(object actual, string expectedFile)
