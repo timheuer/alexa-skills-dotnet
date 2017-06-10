@@ -118,9 +118,20 @@ namespace Alexa.NET.Tests
             CompareXml(expected, actual);
         }
 
+        [Fact]
+        public void Ssml_Voice_Generates_voice()
+        {
+            const string expected = @"<voice><p>hello</p></voice>";
+
+            var actual = new Voice();
+            actual.Elements.Add(new PlainText("world"));
+
+            CompareXml(expected, actual);
+        }
+
         private void CompareXml(string expected, ISsml ssml)
         {
-            var actual = ssml.ToXml().ToString();
+            var actual = ssml.ToXml().ToString(SaveOptions.DisableFormatting);
             Assert.Equal(expected,actual);
         }
     }
