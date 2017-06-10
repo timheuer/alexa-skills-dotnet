@@ -145,6 +145,17 @@ namespace Alexa.NET.Tests
             CompareXml(expected, actual);
         }
 
+        [Fact]
+        public void Ssml_Emphasis_generates_emphasis()
+        {
+            const string expected = @"<emphasis level=""strong"">Hello World</emphasis>";
+
+            var actual = new Emphasis("Hello World");
+            actual.Level = EmphasisLevel.Strong;
+
+            CompareXml(expected, actual);
+        }
+
       
         private void CompareXml(string expected, ISsml ssml)
         {
