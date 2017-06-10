@@ -14,6 +14,9 @@
     <ProjectReference Include="..\Alexa.NET\Alexa.NET.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Examples\AskForPermissionConsent.json" />
+  </ItemGroup>
+  <ItemGroup>
     <None Update="Examples\IntentRequest.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -30,6 +33,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Examples\SessionEndedRequest.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Examples\SimpleCard.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Examples\StandardCard.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Examples\AskForPermissionsConsent.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
