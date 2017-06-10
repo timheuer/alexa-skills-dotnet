@@ -118,6 +118,16 @@ namespace Alexa.NET.Tests
             CompareXml(expected, actual);
         }
 
+        [Fact]
+        public void Ssml_Sub_generates_sub()
+        {
+            const string expected = @"<sub alias=""magnesium"">Mg</sub>";
+
+            var actual = new Sub("Mg", "magnesium");
+
+            CompareXml(expected, actual);
+        }
+
       
         private void CompareXml(string expected, ISsml ssml)
         {
