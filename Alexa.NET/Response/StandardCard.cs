@@ -16,7 +16,7 @@ namespace Alexa.NET.Response
         public string Title { get; set; }
 
         [JsonRequired]
-        [JsonProperty("content")]
+        [JsonProperty("text")]
         public string Content { get; set; }
 
         [JsonProperty("image", NullValueHandling = NullValueHandling.Ignore)]
