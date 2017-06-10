@@ -4,7 +4,7 @@ using System.Xml.Linq;
 
 namespace Alexa.NET.Response.Ssml
 {
-    public class Voice:ISsml,IParagraphSsml,ISentenceSsml
+    public class Voice:ICommonSsml
     {
 		public List<ISsml> Elements { get; set; } = new List<ISsml>();
 

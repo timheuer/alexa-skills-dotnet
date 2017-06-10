@@ -4,7 +4,7 @@ using System.Xml.Linq;
 
 namespace Alexa.NET.Response.Ssml
 {
-    public class Word:IParagraphSsml,ISentenceSsml,ISsml
+    public class Word:ICommonSsml
     {
         public string Text { get; set; }
         public string Role { get; set; }

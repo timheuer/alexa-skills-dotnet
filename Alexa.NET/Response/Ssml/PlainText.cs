@@ -3,7 +3,7 @@ using System.Xml.Linq;
 
 namespace Alexa.NET.Response.Ssml
 {
-    public class PlainText:IParagraphSsml,ISentenceSsml
+    public class PlainText:ICommonSsml
     {
         public PlainText(string text)
         {
