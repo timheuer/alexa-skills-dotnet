@@ -5,11 +5,6 @@ namespace Alexa.NET.Response.Ssml
 {
     public class PlainText:IParagraphSsml,ISentenceSsml
     {
-        public PlainText()
-        {
-            
-        }
-
         public PlainText(string text)
         {
             Text = text;

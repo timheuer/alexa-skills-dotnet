@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using Xunit;
 using Alexa.NET.Response.Ssml;
 using System.Xml.Linq;
@@ -87,6 +87,26 @@ namespace Alexa.NET.Tests
             var actual = new Break {Strength = BreakStrength.ExtraWeak}.ToXml();
 
             Assert.Equal(expected,actual.ToString());
+        }
+
+        [Fact]
+        public void Ssml_Sayas_Generates_Sayas()
+        {
+            const string expected = @"<say-as interpret-as=""spell-out"">Hello World</say-as>";
+
+            var actual = new SayAs("Hello World",InterpretAs.SpellOut).ToXml();
+
+            Assert.Equal(expected, actual.ToString());
+        }
+
+        [Fact]
+        public void Ssml_Sayas_Generates_Format()
+        {
+			const string expected = @"<say-as interpret-as=""spell-out"" format=""ymd"">Hello World</say-as>";
+
+            var actual = new SayAs("Hello World", InterpretAs.SpellOut){Format="ymd"}.ToXml();
+
+			Assert.Equal(expected, actual.ToString());
         }
     }
 }
