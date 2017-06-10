@@ -156,6 +156,16 @@ namespace Alexa.NET.Tests
             CompareXml(expected, actual);
         }
 
+        [Fact]
+        public void Ssml_Phoneme_generates_phoneme()
+        {
+            const string expected = @"<phoneme alphabet=""ipa"" ph=""pɪˈkɑːn"">pecan</phoneme>";
+
+            var actual = new Phoneme("pecan", PhonemeAlphabet.International, "pɪˈkɑːn");
+
+            CompareXml(expected, actual);
+        }
+
       
         private void CompareXml(string expected, ISsml ssml)
         {
