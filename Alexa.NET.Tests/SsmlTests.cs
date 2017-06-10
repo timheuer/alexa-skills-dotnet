@@ -166,6 +166,17 @@ namespace Alexa.NET.Tests
             CompareXml(expected, actual);
         }
 
+        [Fact]
+        public void Ssml_Audio_generate_audio()
+        {
+            const string expected = @"<audio src=""http://example.com/example.mp3"">Hello World</audio>";
+
+            var actual = new Audio("http://example.com/example.mp3");
+            actual.Elements.Add(new PlainText("Hello World"));
+
+            CompareXml(expected, actual);
+        }
+
       
         private void CompareXml(string expected, ISsml ssml)
         {
