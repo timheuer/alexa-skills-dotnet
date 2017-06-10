@@ -4,7 +4,7 @@ using System.Xml.Linq;
 
 namespace Alexa.NET.Response.Ssml
 {
-    public class Break : IParagraphSsml, ISentenceSsml
+    public class Break : ICommonSsml
     {
         public string Time { get; set; }
         public string Strength { get; set; }
