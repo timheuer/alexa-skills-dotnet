@@ -68,5 +68,25 @@ namespace Alexa.NET.Tests
 
             Assert.Equal(expected, actual.ToString());
         }
+
+        [Fact]
+        public void Ssml_Break_Generates_Time_Attribute()
+        {
+            const string expected = @"<break time=""3s"" />";
+
+            var actual = new Break{Time="3s"}.ToXml();
+
+            Assert.Equal(expected,actual.ToString());
+        }
+
+        [Fact]
+        public void Ssml_Break_Generates_Strength()
+        {
+            const string expected = @"<break strength=""x-weak"" />";
+
+            var actual = new Break {Strength = BreakStrength.ExtraWeak}.ToXml();
+
+            Assert.Equal(expected,actual.ToString());
+        }
     }
 }
