@@ -32,9 +32,9 @@ namespace Alexa.NET.Tests
         {
             const string expected = "Hello World";
 
-            var actual = new PlainText(expected).ToXml();
+            var actual = new PlainText(expected);
 
-            Assert.Equal(expected, actual.ToString());
+            CompareXml(expected, actual);
         }
 
         [Fact]
@@ -42,9 +42,9 @@ namespace Alexa.NET.Tests
         {
             const string expected = "<s>Hello World</s>";
 
-            var actual = new Sentence("Hello World").ToXml();
+            var actual = new Sentence("Hello World");
 
-            Assert.Equal(expected, actual.ToString());
+            CompareXml(expected, actual);
         }
 
         [Fact]
@@ -52,11 +52,10 @@ namespace Alexa.NET.Tests
         {
             const string expected = "<p>Hello World</p>";
 
-            var paragraph = new Paragraph();
-            paragraph.Elements.Add(new PlainText("Hello World"));
-            var actual = paragraph.ToXml();
+            var actual = new Paragraph();
+            actual.Elements.Add(new PlainText("Hello World"));
 
-            Assert.Equal(expected, actual.ToString());
+            CompareXml(expected, actual);
         }
 
         [Fact]
@@ -64,9 +63,9 @@ namespace Alexa.NET.Tests
         {
             const string expected = "<break />";
 
-            var actual = new Break().ToXml();
+            var actual = new Break();
 
-            Assert.Equal(expected, actual.ToString());
+            CompareXml(expected, actual);
         }
 
         [Fact]
@@ -74,9 +73,9 @@ namespace Alexa.NET.Tests
         {
             const string expected = @"<break time=""3s"" />";
 
-            var actual = new Break{Time="3s"}.ToXml();
+            var actual = new Break{Time="3s"};
 
-            Assert.Equal(expected,actual.ToString());
+            CompareXml(expected,actual);
         }
 
         [Fact]
@@ -84,9 +83,9 @@ namespace Alexa.NET.Tests
         {
             const string expected = @"<break strength=""x-weak"" />";
 
-            var actual = new Break {Strength = BreakStrength.ExtraWeak}.ToXml();
+            var actual = new Break {Strength = BreakStrength.ExtraWeak};
 
-            Assert.Equal(expected,actual.ToString());
+            CompareXml(expected,actual);
         }
 
         [Fact]
@@ -94,9 +93,9 @@ namespace Alexa.NET.Tests
         {
             const string expected = @"<say-as interpret-as=""spell-out"">Hello World</say-as>";
 
-            var actual = new SayAs("Hello World",InterpretAs.SpellOut).ToXml();
+            var actual = new SayAs("Hello World",InterpretAs.SpellOut);
 
-            Assert.Equal(expected, actual.ToString());
+            CompareXml(expected, actual);
         }
 
         [Fact]
@@ -104,9 +103,25 @@ namespace Alexa.NET.Tests
         {
 			const string expected = @"<say-as interpret-as=""spell-out"" format=""ymd"">Hello World</say-as>";
 
-            var actual = new SayAs("Hello World", InterpretAs.SpellOut){Format="ymd"}.ToXml();
+            var actual = new SayAs("Hello World", InterpretAs.SpellOut){Format="ymd"};
 
-			Assert.Equal(expected, actual.ToString());
+            CompareXml(expected, actual);
+        }
+
+        [Fact]
+        public void Ssml_Word_Generates_w()
+        {
+            const string expected = @"<w role=""amazon:VB"">world</w>";
+
+            var actual = new Word("world", WordRole.Verb);
+
+            CompareXml(expected, actual);
+        }
+
+        private void CompareXml(string expected, ISsml ssml)
+        {
+            var actual = ssml.ToXml().ToString();
+            Assert.Equal(expected,actual);
         }
     }
 }

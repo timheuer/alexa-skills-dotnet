@@ -28,17 +28,17 @@ namespace Alexa.NET.Response.Ssml
 
         public XNode ToXml()
         {
-            List<XObject> attributes = new List<XObject>();
+            List<XObject> objects = new List<XObject>();
 
-            attributes.Add(new XText(Text));
-            attributes.Add(new XAttribute("interpret-as", InterpretAs));
+            objects.Add(new XText(Text));
+            objects.Add(new XAttribute("interpret-as", InterpretAs));
 
             if(!string.IsNullOrWhiteSpace(Format))
             {
-                attributes.Add(new XAttribute("format", Format));
+                objects.Add(new XAttribute("format", Format));
             }
 
-            return new XElement("say-as", attributes);
+            return new XElement("say-as", objects);
         }
     }
 }
