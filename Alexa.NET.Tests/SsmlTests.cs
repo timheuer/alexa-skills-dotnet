@@ -128,6 +128,23 @@ namespace Alexa.NET.Tests
             CompareXml(expected, actual);
         }
 
+        [Fact]
+        public void Ssml_Prosody_generates_prosody()
+        {
+            const string expected = @"<prosody rate=""150%"" pitch=""x-low"" volume=""-5dB"">Hello World</prosody>";
+
+            var actual = new Prosody
+            {
+                Rate = ProsodyRate.Percent(150),
+                Pitch = ProsodyPitch.ExtraLow,
+                Volume = ProsodyVolume.Decibel(-5)
+            };
+
+            actual.Elements.Add(new PlainText("Hello World"));
+
+            CompareXml(expected, actual);
+        }
+
       
         private void CompareXml(string expected, ISsml ssml)
         {
