@@ -5,22 +5,31 @@ using System.Xml.Linq;
 
 namespace Alexa.NET.Response.Ssml
 {
-    public class Speech
-    {
+	public class Speech
+	{
 
-        public List<ISsml> Elements { get; set; } = new List<ISsml>();
+		public List<ISsml> Elements { get; set; } = new List<ISsml>();
 
 
-        public string ToXml()
-        {
-            if (Elements.Count == 0)
-            {
-                throw new InvalidOperationException("No text available");
-            }
+		public string ToXml()
+		{
+			if (Elements.Count == 0)
+			{
+				throw new InvalidOperationException("No text available");
+			}
 
-            XElement root = new XElement("speak", Elements.Select(e => e.ToXml()));
-            string wellFormedXml = root.ToString(SaveOptions.DisableFormatting);
-            return wellFormedXml.Replace(" xmlns:amazon=\"http://alexa.amazon.com\"", string.Empty);
-        }
-    }
+            XElement root = new XElement("speak", new XAttribute(XNamespace.Xmlns + "amazon", Namespaces.TempAmazon));
+            root.Add(Elements.Select(e => e.ToXml()));
+
+			string xmlString = root.ToString(SaveOptions.DisableFormatting);
+
+			if (xmlString.StartsWith("<speak>", StringComparison.Ordinal))
+			{
+				return xmlString;
+			}
+
+			var endOfSpeakTag = xmlString.IndexOf('>');
+			return "<speak>" + xmlString.Substring(endOfSpeakTag + 1);
+		}
+	}
 }

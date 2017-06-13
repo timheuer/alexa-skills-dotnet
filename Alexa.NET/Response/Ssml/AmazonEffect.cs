@@ -19,8 +19,7 @@ namespace Alexa.NET.Response.Ssml
 
 		public XNode ToXml()
 		{
-			XNamespace ns = "http://alexa.amazon.com";
-			return new XElement(ns + "effect", new XAttribute(XNamespace.Xmlns + "amazon", ns), new XAttribute("name", "whispered"),new XText(Text));
+            return new XElement(Namespaces.TempAmazon + "effect", new XAttribute("name", "whispered"),new XText(Text));
 		}
 	}
 }
