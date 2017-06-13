@@ -13,12 +13,14 @@ namespace Alexa.NET.Response.Ssml
 
         public string ToXml()
         {
-            if(Elements.Count == 0)
+            if (Elements.Count == 0)
             {
                 throw new InvalidOperationException("No text available");
             }
 
-            return new XElement("speak", Elements.Select(e => e.ToXml())).ToString();
+            XElement root = new XElement("speak", Elements.Select(e => e.ToXml()));
+            string wellFormedXml = root.ToString(SaveOptions.DisableFormatting);
+            return wellFormedXml.Replace(" xmlns:amazon=\"http://alexa.amazon.com\"", string.Empty);
         }
     }
 }

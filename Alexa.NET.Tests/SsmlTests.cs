@@ -177,6 +177,20 @@ namespace Alexa.NET.Tests
             CompareXml(expected, actual);
         }
 
+        [Fact]
+        public void Ssml_Amazon_Effect_generate_amazon_effect()
+        {
+            const string expected = @"<speak><amazon:effect name=""whispered"">Hello World</amazon:effect></speak>";
+
+            var effect = new AmazonEffect("Hello World");
+
+            //Can't use Comparexml because this tag has meant a change to the speech element ToXml method
+            var xmlHost = new Speech();
+            xmlHost.Elements.Add(effect);
+            var actual = xmlHost.ToXml();
+
+            Assert.Equal(expected, actual);
+        }
       
         private void CompareXml(string expected, ISsml ssml)
         {
