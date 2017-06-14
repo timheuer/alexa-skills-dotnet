@@ -13,7 +13,7 @@ namespace Alexa.NET.Tests
         public void Intent_action_set_string()
         {
             var expected = "CancelIntent";
-            IntentName name = expected;
+            IntentSignature name = expected;
 
             Assert.Equal(expected,name.Action);
         }
@@ -21,7 +21,7 @@ namespace Alexa.NET.Tests
         [Fact]
         public void Namespace_and_action_set_string()
         {
-            IntentName name = "AMAZON.CancelIntent";
+            IntentSignature name = "AMAZON.CancelIntent";
 
             Assert.Equal("AMAZON", name.Namespace);
             Assert.Equal("CancelIntent", name.Action);
@@ -31,7 +31,7 @@ namespace Alexa.NET.Tests
         public void Complex_intent_single_property()
         {
             const string complexIntentSingleProperty = "AMAZON.SearchAction<object@WeatherForecast>";
-            IntentName name = complexIntentSingleProperty;
+            IntentSignature name = complexIntentSingleProperty;
 
 			Assert.Equal("AMAZON", name.Namespace);
 			Assert.Equal("SearchAction", name.Action);
@@ -46,7 +46,7 @@ namespace Alexa.NET.Tests
         {
             const string complexIntentTwoProperties = "AMAZON.AddAction<object@Book,targetCollection@ReadingList>";
 
-			IntentName name = complexIntentTwoProperties;
+			IntentSignature name = complexIntentTwoProperties;
 
 			Assert.Equal("AMAZON", name.Namespace);
 			Assert.Equal("AddAction", name.Action);
@@ -64,7 +64,7 @@ namespace Alexa.NET.Tests
         {
             const string complexIntentWithEntityProperty = "AMAZON.SearchAction<object@WeatherForecast[weatherCondition]>";
 
-			IntentName name = complexIntentWithEntityProperty;
+			IntentSignature name = complexIntentWithEntityProperty;
 
 			Assert.Equal("AMAZON", name.Namespace);
 			Assert.Equal("SearchAction", name.Action);

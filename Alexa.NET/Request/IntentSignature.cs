@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace Alexa.NET.Request
 {
-    public sealed class IntentName
+    public sealed class IntentSignature
     {
         public string FullName { get; private set; }
         public string Namespace { get; private set; }
@@ -13,12 +13,12 @@ namespace Alexa.NET.Request
 
 		private static Regex PropertyFinder = new Regex(@"(\w+?)@(\w+?)\b(\[(\w+)\])*", RegexOptions.Compiled);
 
-        private IntentName(string fullName)
+        private IntentSignature(string fullName)
         {
             FullName = fullName;
         }
 
-        public static implicit operator IntentName(string action)
+        public static implicit operator IntentSignature(string action)
         {
             return Parse(action);
         }
@@ -35,22 +35,22 @@ namespace Alexa.NET.Request
                 return FullName.Equals(obj);
             }
 
-            if(obj is IntentName)
+            if(obj is IntentSignature)
             {
-                return FullName.Equals(((IntentName)obj).FullName);
+                return FullName.Equals(((IntentSignature)obj).FullName);
             }
 
             return base.Equals(obj);
         }
 
-        public static IntentName Parse(string action)
+        public static IntentSignature Parse(string action)
         {
-            var intentName = new IntentName(action);
+            var intentName = new IntentSignature(action);
             Parse(action.Trim(), intentName);
             return intentName;
         }
 
-        private static void Parse(string action, IntentName name)
+        private static void Parse(string action, IntentSignature name)
         {
             if (action.Contains("<") && action.EndsWith(">", StringComparison.Ordinal))
             {
@@ -62,7 +62,7 @@ namespace Alexa.NET.Request
             }
         }
 
-        private static void ParseSimple(string action, IntentName name)
+        private static void ParseSimple(string action, IntentSignature name)
         {
 			int namespacePoint = action.LastIndexOf('.');
 
@@ -76,7 +76,7 @@ namespace Alexa.NET.Request
 			name.Action = action.Substring(namespacePoint + 1);
         }
 
-        private static void ParseComplex(string action, IntentName name)
+        private static void ParseComplex(string action, IntentSignature name)
         {
             int propertyPoint = action.IndexOf('<');
             ParseSimple(action.Substring(0, propertyPoint),name);

@@ -21,26 +21,28 @@ namespace Alexa.NET.Tests
         }
 
         [Fact]
-        public void IntentRequest_Generates_Correct_IntentName()
+        public void IntentRequest_Generates_Correct_Name_and_Signature()
         {
             var convertedObj = GetObjectFromExample<SkillRequest>("IntentRequest.json");
-            var intentName = ((IntentRequest)convertedObj.Request).Intent.Name;
-            Assert.Equal("GetZodiacHoroscopeIntent", intentName);
+            var intent = ((IntentRequest)convertedObj.Request).Intent;
+            Assert.Equal("GetZodiacHoroscopeIntent", intent.Name);
+            Assert.Equal("GetZodiacHoroscopeIntent", intent.Signature);
+            Assert.Equal("GetZodiacHoroscopeIntent", intent.Signature.Action);
         }
 
         [Fact]
-        public void BuiltInRequest_Generates_Correct_IntentName()
+        public void BuiltInRequest_Generates_Correct_Signature()
         {
-            //Multiple asserts as the IntentName state is a single output that should be treated as an immutable object - either all right or wrong.
+            //Multiple asserts as the IntentSignature state is a single output that should be treated as an immutable object - either all right or wrong.
 			//AMAZON.AddAction<object@Book,targetCollection@ReadingList>
 			var convertedObj = GetObjectFromExample<SkillRequest>("BuiltInIntentRequest.json");
-			var intentName = ((IntentRequest)convertedObj.Request).Intent.Name;
-			Assert.Equal("AddAction", intentName.Action);
-            Assert.Equal("AMAZON", intentName.Namespace);
-            Assert.Equal(2, intentName.Properties.Count);
+			var signature = ((IntentRequest)convertedObj.Request).Intent.Signature;
+			Assert.Equal("AddAction", signature.Action);
+            Assert.Equal("AMAZON", signature.Namespace);
+            Assert.Equal(2, signature.Properties.Count);
 
-            var first = intentName.Properties.First();
-            var second = intentName.Properties.Skip(1).First();
+            var first = signature.Properties.First();
+            var second = signature.Properties.Skip(1).First();
 
             Assert.Equal("object", first.Key);
             Assert.Equal("Book", first.Value.Entity);
