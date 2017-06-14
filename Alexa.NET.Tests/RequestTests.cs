@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 using Alexa.NET.Request;
 using Alexa.NET.Request.Type;
 using Newtonsoft.Json;
@@ -17,6 +18,37 @@ namespace Alexa.NET.Tests
 
             Assert.NotNull(convertedObj);
             Assert.Equal(typeof(IntentRequest), convertedObj.GetRequestType());
+        }
+
+        [Fact]
+        public void IntentRequest_Generates_Correct_IntentName()
+        {
+            var convertedObj = GetObjectFromExample<SkillRequest>("IntentRequest.json");
+            var intentName = ((IntentRequest)convertedObj.Request).Intent.Name;
+            Assert.Equal("GetZodiacHoroscopeIntent", intentName);
+        }
+
+        [Fact]
+        public void BuiltInRequest_Generates_Correct_IntentName()
+        {
+            //Multiple asserts as the IntentName state is a single output that should be treated as an immutable object - either all right or wrong.
+			//AMAZON.AddAction<object@Book,targetCollection@ReadingList>
+			var convertedObj = GetObjectFromExample<SkillRequest>("BuiltInIntentRequest.json");
+			var intentName = ((IntentRequest)convertedObj.Request).Intent.Name;
+			Assert.Equal("AddAction", intentName.Action);
+            Assert.Equal("AMAZON", intentName.Namespace);
+            Assert.Equal(2, intentName.Properties.Count);
+
+            var first = intentName.Properties.First();
+            var second = intentName.Properties.Skip(1).First();
+
+            Assert.Equal("object", first.Key);
+            Assert.Equal("Book", first.Value.Entity);
+            Assert.True(string.IsNullOrWhiteSpace(first.Value.Property));
+
+            Assert.Equal("targetCollection", second.Key);
+            Assert.Equal("ReadingList", second.Value.Entity);
+            Assert.True(string.IsNullOrWhiteSpace(first.Value.Property));
         }
 
         [Fact]

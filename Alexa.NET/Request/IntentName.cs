@@ -4,24 +4,50 @@ using System.Text.RegularExpressions;
 
 namespace Alexa.NET.Request
 {
-    public class IntentName
+    public sealed class IntentName
     {
-        public string Namespace { get; set; }
-        public string Action { get; set; }
-        public System.Collections.ObjectModel.ReadOnlyDictionary<string, IntentProperty> Properties { get; set; }
+        public string FullName { get; private set; }
+        public string Namespace { get; private set; }
+        public string Action { get; private set; }
+        public System.Collections.ObjectModel.ReadOnlyDictionary<string, IntentProperty> Properties { get; private set; }
 
 		private static Regex PropertyFinder = new Regex(@"(\w+?)@(\w+?)\b(\[(\w+)\])*", RegexOptions.Compiled);
 
-        public static implicit operator IntentName(string action)
+        private IntentName(string fullName)
         {
-            IntentName name = new IntentName();
-            Parse(action.Trim(), name);
-            return name;
+            FullName = fullName;
         }
 
-        public void Parse(string action)
+        public static implicit operator IntentName(string action)
         {
-            Parse(action, this);
+            return Parse(action);
+        }
+
+        public override int GetHashCode()
+        {
+            return FullName.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is string && !string.IsNullOrWhiteSpace((string)obj))
+            {
+                return FullName.Equals(obj);
+            }
+
+            if(obj is IntentName)
+            {
+                return FullName.Equals(((IntentName)obj).FullName);
+            }
+
+            return base.Equals(obj);
+        }
+
+        public static IntentName Parse(string action)
+        {
+            var intentName = new IntentName(action);
+            Parse(action.Trim(), intentName);
+            return intentName;
         }
 
         private static void Parse(string action, IntentName name)
