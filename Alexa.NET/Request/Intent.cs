@@ -17,7 +17,7 @@ namespace Alexa.NET.Request
         }
 
         [JsonIgnore]
-        public IntentSignature Signature { get; set; }
+        public IntentSignature Signature { get; private set; }
 
 
         [JsonProperty("slots")]
