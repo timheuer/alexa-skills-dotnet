@@ -1,6 +1,6 @@
 ﻿using System;
 using Xunit;
-using Alexa.NET.Response;
+using Alexa.NET.Request;
 
 namespace Alexa.NET.Tests
 {

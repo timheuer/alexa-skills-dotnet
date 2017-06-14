@@ -6,7 +6,8 @@ namespace Alexa.NET.Request
     public class Intent
     {
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public IntentName Name { get; set; }
+
 
         [JsonProperty("slots")]
         public Dictionary<string, Slot> Slots { get; set; }

@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Alexa.NET.Response
+namespace Alexa.NET.Request
 {
     public class IntentProperty
     {

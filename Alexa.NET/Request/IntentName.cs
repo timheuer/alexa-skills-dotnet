@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace Alexa.NET.Response
+namespace Alexa.NET.Request
 {
     public class IntentName
     {
         public string Namespace { get; set; }
         public string Action { get; set; }
         public System.Collections.ObjectModel.ReadOnlyDictionary<string, IntentProperty> Properties { get; set; }
+
+		private static Regex PropertyFinder = new Regex(@"(\w+?)@(\w+?)\b(\[(\w+)\])*", RegexOptions.Compiled);
 
         public static implicit operator IntentName(string action)
         {
@@ -48,8 +50,6 @@ namespace Alexa.NET.Response
 			name.Action = action.Substring(namespacePoint + 1);
         }
 
-        private static Regex PropertyFinder = new Regex(@"(\w+?)@(\w+?)\b(\[(\w+)\])?\b", RegexOptions.Compiled);
-
         private static void ParseComplex(string action, IntentName name)
         {
             int propertyPoint = action.IndexOf('<');
@@ -63,6 +63,7 @@ namespace Alexa.NET.Response
 
             foreach (Match match in PropertyFinder.Matches(propertyPiece))
             {
+                Console.WriteLine(match.Value);
                 propertyDictionary.Add(
                     match.Groups[1].Value,
                     new IntentProperty(match.Groups[2].Value,match.Groups[4].Value)
