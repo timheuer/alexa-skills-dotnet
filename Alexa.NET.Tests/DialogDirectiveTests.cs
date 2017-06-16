@@ -26,6 +26,14 @@ namespace Alexa.NET.Tests
 			Assert.True(CompareJson(actual, "DialogElicitSlot.json"));
         }
 
+		[Fact]
+		public void Create_Valid_DialogConfirmSlotDirective()
+		{
+			var actual = new DialogConfirmSlot { UpdatedIntent = GetUpdatedIntent(), SlotName = "Date" };
+
+			Assert.True(CompareJson(actual, "DialogConfirmSlot.json"));
+		}
+
         private Intent GetUpdatedIntent()
         {
 			return new Intent
