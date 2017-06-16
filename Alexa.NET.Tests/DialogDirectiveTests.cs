@@ -13,19 +13,30 @@ namespace Alexa.NET.Tests
         [Fact]
         public void Create_Valid_DialogDelegateDirective()
         {
-            var updatedIntent = new Intent
-            {
-                Name = "GetZodiacHoroscopeIntent",
-                ConfirmationStatus = ConfirmationStatus.None,
-                Slots = new System.Collections.Generic.Dictionary<string, Slot>{
-                    {"ZodiacSign",new Slot{Name="ZodiacSign",Value="virgo"}},
-                        {"Date",new Slot{Name="Date",Value="2015-11-25",ConfirmationStatus=ConfirmationStatus.Confirmed}}
-                }
-            };
-            var actual = new DialogDelegate{UpdatedIntent=updatedIntent};
-
+            var actual = new DialogDelegate{UpdatedIntent=GetUpdatedIntent()};
 
             Assert.True(CompareJson(actual, "DialogDelegate.json"));
+        }
+
+        [Fact]
+        public void Create_Valid_DialogElicitSlotDirective()
+        {
+            var actual = new DialogElicitSlot { UpdatedIntent = GetUpdatedIntent(),SlotName="ZodiacSign" };
+
+			Assert.True(CompareJson(actual, "DialogElicitSlot.json"));
+        }
+
+        private Intent GetUpdatedIntent()
+        {
+			return new Intent
+			{
+				Name = "GetZodiacHoroscopeIntent",
+				ConfirmationStatus = ConfirmationStatus.None,
+				Slots = new System.Collections.Generic.Dictionary<string, Slot>{
+					{"ZodiacSign",new Slot{Name="ZodiacSign",Value="virgo"}},
+						{"Date",new Slot{Name="Date",Value="2015-11-25",ConfirmationStatus=ConfirmationStatus.Confirmed}}
+				}
+			};
         }
 
         private bool CompareJson(object actual, string expectedFile)
