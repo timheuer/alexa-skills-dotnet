@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Alexa.NET.Request
+namespace Alexa.NET
 {
     public static class ConfirmationStatus
     {
