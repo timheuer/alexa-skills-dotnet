@@ -18,11 +18,13 @@
         }
     },
     "request": {
-        "type": "IntentRequest",
+      "type": "IntentRequest",
+      "dialogState":  "IN_PROGRESS",
         "requestId": " amzn1.echo-api.request.0000000-0000-0000-0000-00000000000",
         "timestamp": "2015-05-13T12:34:56Z",
         "intent": {
-            "name": "GetZodiacHoroscopeIntent",
+          "name": "GetZodiacHoroscopeIntent",
+          "confirmationStatus": "DENIED",
             "slots": {
                 "ZodiacSign": {
                     "name": "ZodiacSign",

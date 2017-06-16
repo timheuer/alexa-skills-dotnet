@@ -9,11 +9,12 @@ namespace Alexa.NET.Tests
     public class RequestTests
     {
         private const string ExamplesPath = "Examples";
+        private const string IntentRequestFile = "IntentRequest.json";
 
         [Fact]
         public void Can_read_IntentRequest_example()
         {
-            var convertedObj = GetObjectFromExample<SkillRequest>("IntentRequest.json");
+            var convertedObj = GetObjectFromExample<SkillRequest>(IntentRequestFile);
 
             Assert.NotNull(convertedObj);
             Assert.Equal(typeof(IntentRequest), convertedObj.GetRequestType());
@@ -55,6 +56,28 @@ namespace Alexa.NET.Tests
             Assert.NotNull(convertedObj);
             Assert.Equal(typeof(SessionEndedRequest), convertedObj.GetRequestType());
         }
+
+        [Fact]
+        public void DialogState_appears_in_IntentRequest()
+        {
+            var request = GetObjectFromExample<SkillRequest>(IntentRequestFile);
+
+            var actual = (IntentRequest)request.Request;
+
+
+            Assert.Equal(DialogState.InProgress, actual.DialogState);
+        }
+
+        [Fact]
+        public void ConfirmationState_appears_in_Intent()
+		{
+            var request = GetObjectFromExample<SkillRequest>(IntentRequestFile);
+			var intentRequest = (IntentRequest)request.Request;
+            var expected = intentRequest.Intent;
+
+
+			Assert.Equal(ConfirmationStatus.Denied, expected.ConfirmationStatus);
+		}
 
         private T GetObjectFromExample<T>(string filename)
         {
