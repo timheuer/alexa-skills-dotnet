@@ -79,6 +79,17 @@ namespace Alexa.NET.Tests
 			Assert.Equal(ConfirmationStatus.Denied, expected.ConfirmationStatus);
 		}
 
+		[Fact]
+        public void ConfirmationState_appears_in_Slot()
+		{
+			var request = GetObjectFromExample<SkillRequest>(IntentRequestFile);
+			var intentRequest = (IntentRequest)request.Request;
+			var expected = intentRequest.Intent.Slots["Date"];
+
+
+            Assert.Equal(ConfirmationStatus.Confirmed, expected.ConfirmationStatus);
+		}
+
         private T GetObjectFromExample<T>(string filename)
         {
             var json = File.ReadAllText(Path.Combine(ExamplesPath, filename));

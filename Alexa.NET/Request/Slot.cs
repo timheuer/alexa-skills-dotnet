@@ -9,5 +9,8 @@ namespace Alexa.NET.Request
 
         [JsonProperty("value")]
         public string Value { get; set; }
+
+        [JsonProperty("confirmationStatus")]
+        public string ConfirmationStatus { get; set; }
     }
 }

@@ -26,10 +26,15 @@
           "name": "GetZodiacHoroscopeIntent",
           "confirmationStatus": "DENIED",
             "slots": {
-                "ZodiacSign": {
-                    "name": "ZodiacSign",
-                    "value": "virgo"
-                }
+              "ZodiacSign": {
+                "name": "ZodiacSign",
+                "value": "virgo"
+              },
+              "Date": {
+                "name": "Date",
+                "value": "2015-11-25",
+                "confirmationStatus": "CONFIRMED"
+              }
             }
         }
     }
