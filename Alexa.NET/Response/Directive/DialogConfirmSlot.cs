@@ -5,7 +5,7 @@ namespace Alexa.NET.Response.Directive
 {
     public class DialogConfirmSlot: IDirective
     {
-		[JsonProperty("type")]
+        [JsonProperty("type")]
         public string Type => "Dialog.ConfirmSlot";
 
         [JsonProperty("slotToConfirm"),JsonRequired]
@@ -13,5 +13,10 @@ namespace Alexa.NET.Response.Directive
 
 		[JsonProperty("updatedIntent", NullValueHandling = NullValueHandling.Ignore)]
 		public Intent UpdatedIntent { get; set; }
+
+        public DialogConfirmSlot(string slotName)
+        {
+            SlotName = slotName;
+        }
     }
 }

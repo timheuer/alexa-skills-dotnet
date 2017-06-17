@@ -13,5 +13,10 @@ namespace Alexa.NET.Response.Directive
 
 		[JsonProperty("updatedIntent", NullValueHandling = NullValueHandling.Ignore)]
 		public Intent UpdatedIntent { get; set; }
+
+        public DialogElicitSlot(string slotName)
+        {
+            SlotName = slotName;
+        }
     }
 }

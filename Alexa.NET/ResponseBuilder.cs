@@ -154,6 +154,38 @@ namespace Alexa.NET
         }
         #endregion
 
+        #region Dialog Response
+
+        public static SkillResponse DialogDelegate()
+        {
+            var response = BuildResponse(null, false, null, null, null);
+            response.Response.Directives.Add(new DialogDelegate());
+            return response;
+        }
+
+        public static SkillResponse DialogElicitSlot(IOutputSpeech outputSpeech, string slotName)
+        {
+            var response = BuildResponse(outputSpeech, false, null, null, null);
+            response.Response.Directives.Add(new DialogElicitSlot(slotName));
+            return response;
+        }
+
+        public static SkillResponse DialogConfirmSlot(IOutputSpeech outputSpeech, string slotName)
+        {
+            var response = BuildResponse(outputSpeech, false, null, null, null);
+            response.Response.Directives.Add(new DialogConfirmSlot(slotName));
+            return response;
+        }
+
+        public static SkillResponse DialogConfirmIntent(IOutputSpeech outputSpeech)
+        {
+            var response = BuildResponse(outputSpeech, false, null, null, null);
+            response.Response.Directives.Add(new DialogConfirmIntent());
+            return response;
+        }
+
+        #endregion
+
         public static SkillResponse Empty()
         {
             return BuildResponse(null, true, null, null, null);
