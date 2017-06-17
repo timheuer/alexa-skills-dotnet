@@ -34,6 +34,15 @@ namespace Alexa.NET.Tests
 			Assert.True(CompareJson(actual, "DialogConfirmSlot.json"));
 		}
 
+        [Fact]
+        public void Create_Valid_DialogConfirmIntentDirective()
+        {
+            var actual = new DialogConfirmIntent { UpdatedIntent = GetUpdatedIntent() };
+            actual.UpdatedIntent.Slots["ZodiacSign"].ConfirmationStatus = ConfirmationStatus.Confirmed;
+
+            Assert.True(CompareJson(actual, "DialogConfirmIntent.json"));
+        }
+
         private Intent GetUpdatedIntent()
         {
 			return new Intent
