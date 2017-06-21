@@ -81,8 +81,7 @@ namespace Alexa.NET.Tests
         [Fact]
         public void Can_read_intent_with_entity_resolution()
         {
-            var convertedObj = GetObjectFromExample<SkillRequest>("IntentWithResolution.json");
-            var intentRequest = (IntentRequest)convertedObj.Request;
+            var intentRequest = GetObjectFromExample<IntentRequest>("IntentWithResolution.json");
             var mediaTypeSlot = intentRequest.Intent.Slots["MediaType"];
             var mediaTitleSlot = intentRequest.Intent.Slots["MediaTitle"];
 
