@@ -9,5 +9,8 @@ namespace Alexa.NET.Request
 
         [JsonProperty("value")]
         public string Value { get; set; }
+
+        [JsonProperty("resolutions")]
+        public Resolution Resolution { get; set; }
     }
 }
