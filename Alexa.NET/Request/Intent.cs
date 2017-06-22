@@ -5,8 +5,20 @@ namespace Alexa.NET.Request
 {
     public class Intent
     {
+        private string _name;
+
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string Name {
+            get { return _name; }
+            set {
+                _name = value;
+                Signature = value;
+            }
+        }
+
+        [JsonIgnore]
+        public IntentSignature Signature { get; private set; }
+
 
         [JsonProperty("slots")]
         public Dictionary<string, Slot> Slots { get; set; }
