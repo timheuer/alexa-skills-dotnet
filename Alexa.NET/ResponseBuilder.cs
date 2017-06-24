@@ -158,28 +158,49 @@ namespace Alexa.NET
 
         public static SkillResponse DialogDelegate(Intent updatedIntent = null)
         {
-            var response = BuildResponse(null, false, null, null, null);
+            return DialogDelegate(null, updatedIntent);
+        }
+
+        public static SkillResponse DialogDelegate(Session attributes, Intent updatedIntent = null)
+        {
+            var response = BuildResponse(null, false, attributes, null, null);
             response.Response.Directives.Add(new DialogDelegate { UpdatedIntent = updatedIntent });
             return response;
         }
 
         public static SkillResponse DialogElicitSlot(IOutputSpeech outputSpeech, string slotName, Intent updatedIntent = null)
         {
-            var response = BuildResponse(outputSpeech, false, null, null, null);
+            return DialogElicitSlot(outputSpeech, slotName, null, updatedIntent);
+        }
+
+        public static SkillResponse DialogElicitSlot(IOutputSpeech outputSpeech, string slotName, Session attributes, Intent updatedIntent = null)
+        {
+            var response = BuildResponse(outputSpeech, false, attributes, null, null);
             response.Response.Directives.Add(new DialogElicitSlot(slotName) { UpdatedIntent = updatedIntent });
             return response;
         }
 
-        public static SkillResponse DialogConfirmSlot(IOutputSpeech outputSpeech, string slotName, Intent updatedIntent = null)
+        public static SkillResponse DialogConfirmSlot(IOutputSpeech outputSpeech, string slotName, 
+            Intent updatedIntent = null)
         {
-            var response = BuildResponse(outputSpeech, false, null, null, null);
+            return DialogConfirmSlot(outputSpeech, slotName, null, updatedIntent);
+        }
+
+        public static SkillResponse DialogConfirmSlot(IOutputSpeech outputSpeech, string slotName, Session attributes, Intent updatedIntent = null)
+        {
+            var response = BuildResponse(outputSpeech, false, attributes, null, null);
             response.Response.Directives.Add(new DialogConfirmSlot(slotName) { UpdatedIntent = updatedIntent });
             return response;
         }
 
         public static SkillResponse DialogConfirmIntent(IOutputSpeech outputSpeech, Intent updatedIntent = null)
         {
-            var response = BuildResponse(outputSpeech, false, null, null, null);
+            return DialogConfirmIntent(outputSpeech, null, updatedIntent);
+        }
+
+        public static SkillResponse DialogConfirmIntent(IOutputSpeech outputSpeech, Session attributes, Intent updatedIntent = null)
+        {
+            var response = BuildResponse(outputSpeech, false, attributes, null, null);
             response.Response.Directives.Add(new DialogConfirmIntent { UpdatedIntent = updatedIntent });
             return response;
         }
