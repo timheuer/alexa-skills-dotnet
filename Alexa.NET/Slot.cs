@@ -12,5 +12,8 @@ namespace Alexa.NET
 
         [JsonProperty("confirmationStatus",NullValueHandling = NullValueHandling.Ignore)]
         public string ConfirmationStatus { get; set; }
+
+        [JsonProperty("resolutions")]
+        public Resolution Resolution { get; set; }
     }
 }
