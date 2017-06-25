@@ -1,0 +1,52 @@
+﻿{
+  "type": "IntentRequest",
+  "intent": {
+    "name": "GetMediaIntent",
+    "slots": {
+      "MediaType": {
+        "name": "MediaType",
+        "value": "song",
+        "resolutions": {
+          "resolutionsPerAuthority": [
+            {
+              "authority": "amzn1.er-authority.echo-sdk.<skill_id>.MEDIA_TYPE",
+              "status": {
+                "code": "ER_SUCCESS_MATCH"
+              },
+              "values": [
+                {
+                  "value": {
+                    "name": "song",
+                    "id": "SONG"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "MediaTitle": {
+        "name": "MediaTitle",
+        "value": "rolling in the deep",
+        "resolutions": {
+          "resolutionsPerAuthority": [
+            {
+              "authority": "amzn1.er-authority.echo-sdk.<skill_id>.MEDIA_TITLE",
+              "status": {
+                "code": "ER_SUCCESS_MATCH"
+              },
+              "values": [
+                {
+                  "value": {
+                    "name": "Rolling in the Deep",
+                    "id": "song_id_456"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}
