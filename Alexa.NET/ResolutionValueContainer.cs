@@ -1,7 +1,6 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace Alexa.NET.Request
+namespace Alexa.NET
 {
     public class ResolutionValueContainer
     {
