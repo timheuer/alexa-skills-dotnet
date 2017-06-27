@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Alexa.NET
+namespace Alexa.NET.Request
 {
     public class ResolutionStatus
     {

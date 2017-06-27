@@ -1,7 +1,7 @@
-using Newtonsoft.Json;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
-namespace Alexa.NET
+namespace Alexa.NET.Request
 {
     public class Intent
     {

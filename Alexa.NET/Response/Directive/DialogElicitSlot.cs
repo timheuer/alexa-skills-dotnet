@@ -1,4 +1,5 @@
 ﻿using System;
+using Alexa.NET.Request;
 using Newtonsoft.Json;
 
 namespace Alexa.NET.Response.Directive

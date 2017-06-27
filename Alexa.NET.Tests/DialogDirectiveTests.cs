@@ -1,6 +1,7 @@
 ﻿using System;
 using Xunit;
 using System.IO;
+using Alexa.NET.Request;
 using Newtonsoft.Json.Linq;
 using Alexa.NET.Response.Directive;
 
