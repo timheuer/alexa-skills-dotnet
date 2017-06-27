@@ -1,0 +1,19 @@
+﻿{
+  "type": "Dialog.ConfirmIntent",
+  "updatedIntent": {
+    "name": "GetZodiacHoroscopeIntent",
+    "confirmationStatus": "NONE",
+    "slots": {
+      "ZodiacSign": {
+        "name": "ZodiacSign",
+        "value": "virgo",
+        "confirmationStatus": "CONFIRMED"
+      },
+      "Date": {
+        "name": "Date",
+        "value": "2015-11-25",
+        "confirmationStatus": "CONFIRMED"
+      }
+    }
+  }
+}

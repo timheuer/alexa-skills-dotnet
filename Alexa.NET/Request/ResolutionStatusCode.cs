@@ -1,5 +1,4 @@
-﻿using System;
-namespace Alexa.NET.Request
+﻿namespace Alexa.NET.Request
 {
     public static class ResolutionStatusCode
     {
