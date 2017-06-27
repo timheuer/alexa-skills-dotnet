@@ -62,7 +62,7 @@ namespace Alexa.NET
             return BuildResponse(speechResponse, true, sessionAttributes, null, card);
         }
 
-        public static SkillResponse TellWithAskForPermissionsConsentCard(IOutputSpeech speechResponse,IEnumerable<string> permissions)
+        public static SkillResponse TellWithAskForPermissionsConsentCard(IOutputSpeech speechResponse, IEnumerable<string> permissions)
         {
             AskForPermissionsConsentCard card = new AskForPermissionsConsentCard();
             card.Permissions = permissions.ToList();
@@ -71,8 +71,8 @@ namespace Alexa.NET
 
         public static SkillResponse TellWithAskForPermissionsConsentCard(IOutputSpeech speechResponse, IEnumerable<string> permissions, Session sessionAttributes)
         {
-			AskForPermissionsConsentCard card = new AskForPermissionsConsentCard();
-			card.Permissions = permissions.ToList();
+            AskForPermissionsConsentCard card = new AskForPermissionsConsentCard();
+            card.Permissions = permissions.ToList();
             return BuildResponse(speechResponse, true, sessionAttributes, null, card);
         }
 
@@ -152,6 +152,59 @@ namespace Alexa.NET
             });
             return response;
         }
+        #endregion
+
+        #region Dialog Response
+
+        public static SkillResponse DialogDelegate(Intent updatedIntent = null)
+        {
+            return DialogDelegate(null, updatedIntent);
+        }
+
+        public static SkillResponse DialogDelegate(Session attributes, Intent updatedIntent = null)
+        {
+            var response = BuildResponse(null, false, attributes, null, null);
+            response.Response.Directives.Add(new DialogDelegate { UpdatedIntent = updatedIntent });
+            return response;
+        }
+
+        public static SkillResponse DialogElicitSlot(IOutputSpeech outputSpeech, string slotName, Intent updatedIntent = null)
+        {
+            return DialogElicitSlot(outputSpeech, slotName, null, updatedIntent);
+        }
+
+        public static SkillResponse DialogElicitSlot(IOutputSpeech outputSpeech, string slotName, Session attributes, Intent updatedIntent = null)
+        {
+            var response = BuildResponse(outputSpeech, false, attributes, null, null);
+            response.Response.Directives.Add(new DialogElicitSlot(slotName) { UpdatedIntent = updatedIntent });
+            return response;
+        }
+
+        public static SkillResponse DialogConfirmSlot(IOutputSpeech outputSpeech, string slotName, 
+            Intent updatedIntent = null)
+        {
+            return DialogConfirmSlot(outputSpeech, slotName, null, updatedIntent);
+        }
+
+        public static SkillResponse DialogConfirmSlot(IOutputSpeech outputSpeech, string slotName, Session attributes, Intent updatedIntent = null)
+        {
+            var response = BuildResponse(outputSpeech, false, attributes, null, null);
+            response.Response.Directives.Add(new DialogConfirmSlot(slotName) { UpdatedIntent = updatedIntent });
+            return response;
+        }
+
+        public static SkillResponse DialogConfirmIntent(IOutputSpeech outputSpeech, Intent updatedIntent = null)
+        {
+            return DialogConfirmIntent(outputSpeech, null, updatedIntent);
+        }
+
+        public static SkillResponse DialogConfirmIntent(IOutputSpeech outputSpeech, Session attributes, Intent updatedIntent = null)
+        {
+            var response = BuildResponse(outputSpeech, false, attributes, null, null);
+            response.Response.Directives.Add(new DialogConfirmIntent { UpdatedIntent = updatedIntent });
+            return response;
+        }
+
         #endregion
 
         public static SkillResponse Empty()

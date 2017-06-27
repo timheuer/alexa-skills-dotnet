@@ -10,7 +10,10 @@ namespace Alexa.NET.Request
         [JsonProperty("value")]
         public string Value { get; set; }
 
-        [JsonProperty("resolutions")]
+        [JsonProperty("confirmationStatus", NullValueHandling = NullValueHandling.Ignore)]
+        public string ConfirmationStatus { get; set; }
+
+        [JsonProperty("resolutions", NullValueHandling = NullValueHandling.Ignore)]
         public Resolution Resolution { get; set; }
     }
 }
