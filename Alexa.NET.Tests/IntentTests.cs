@@ -1,6 +1,7 @@
 ﻿using System;
 using Xunit;
 using Alexa.NET.Request;
+using Alexa.NET.Request.Type;
 
 namespace Alexa.NET.Tests
 {
@@ -21,10 +22,10 @@ namespace Alexa.NET.Tests
         [Fact]
         public void Namespace_and_action_set_string()
         {
-            IntentSignature name = "AMAZON.CancelIntent";
+            IntentSignature name = "AMAZON.SearchAction";
 
-            Assert.Equal("AMAZON", name.Namespace);
-            Assert.Equal("CancelIntent", name.Action);
+            Assert.Equal(IntentNamespace.Amazon, name.Namespace);
+            Assert.Equal(IntentAction.Search, name.Action);
         }
 
         [Fact]
@@ -33,8 +34,8 @@ namespace Alexa.NET.Tests
             const string complexIntentSingleProperty = "AMAZON.SearchAction<object@WeatherForecast>";
             IntentSignature name = complexIntentSingleProperty;
 
-			Assert.Equal("AMAZON", name.Namespace);
-			Assert.Equal("SearchAction", name.Action);
+            Assert.Equal(IntentNamespace.Amazon, name.Namespace);
+			Assert.Equal(IntentAction.Search, name.Action);
             Assert.Equal(1,name.Properties.Count);
 
             Assert.True(name.Properties.ContainsKey("object"));
@@ -48,8 +49,8 @@ namespace Alexa.NET.Tests
 
 			IntentSignature name = complexIntentTwoProperties;
 
-			Assert.Equal("AMAZON", name.Namespace);
-			Assert.Equal("AddAction", name.Action);
+            Assert.Equal(IntentNamespace.Amazon, name.Namespace);
+            Assert.Equal(IntentAction.Add, name.Action);
 			Assert.Equal(2, name.Properties.Count);
 
 			Assert.True(name.Properties.ContainsKey("object"));
@@ -66,8 +67,8 @@ namespace Alexa.NET.Tests
 
 			IntentSignature name = complexIntentWithEntityProperty;
 
-			Assert.Equal("AMAZON", name.Namespace);
-			Assert.Equal("SearchAction", name.Action);
+			Assert.Equal(IntentNamespace.Amazon, name.Namespace);
+            Assert.Equal(IntentAction.Search, name.Action);
 			Assert.Equal(1, name.Properties.Count);
 
 			Assert.True(name.Properties.ContainsKey("object"));
