@@ -98,6 +98,70 @@ namespace Alexa.NET.Tests
         }
 
         [Fact]
+        public void Create_ListTemplate1()
+        {
+            var actual = new ListTemplate1
+            {
+                Token = "list_template_one",
+                Title = "Pizzas",
+                Items = new List<ListItem>
+                {
+                    new ListItem
+                    {
+                        Token="item_1",
+                        Content = new TemplateContent
+                        {
+                            Primary = new TemplateText
+                            {
+                                Text="<font size='7'>Supreme</font> <br/> Large Pan Pizza $17.00",
+                                Type=TextType.Rich
+                            },
+                            Secondary = new TemplateText
+                            {
+                                Text="Secondary Text",
+                                Type=TextType.Plain
+                            },
+                            Tertiary=new TemplateText
+                            {
+                                Text=string.Empty,
+                                Type=TextType.Plain
+                            }
+                        },
+                        Image = new TemplateImage
+                        {
+                            Sources = new List<ImageSource>{new ImageSource
+                            {
+                                Url= "http://www.example.com/images/thumb/SupremePizza1.jpg"
+                            }},
+                            ContentDescription = "Supreme Large Pan Pizza"
+                        }
+                    },
+                    new ListItem
+                    {
+                        Token="item_2",
+                        Content = new TemplateContent
+                        {
+                            Primary = new TemplateText
+                            {
+                                Text="<font size='7'>Meat Eater</font> <br/> Large Pan Pizza $19.00",
+                                Type=TextType.Rich
+                            }
+                        },
+                        Image = new TemplateImage
+                        {
+                            Sources = new List<ImageSource>{new ImageSource
+                            {
+                                Url= "http://www.example.com/images/thumb/MeatEaterPizza1.jpg"
+                            }},
+                            ContentDescription = "Meat Eater Large Pan Pizza"
+                        }
+                    },
+                }
+            };
+            Assert.True(CompareJson(actual, "TemplateListTemplate1.json"));
+        }
+
+        [Fact]
         public void Create_Basic_Image()
         {
             var actual = new TemplateImage

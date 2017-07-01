@@ -5,13 +5,13 @@ namespace Alexa.NET.Response.Directive.Templates
 {
     public class TemplateContent
     {
-        [JsonProperty("primaryText")]
+        [JsonProperty("primaryText",Required = Required.Always)]
         public TemplateText Primary { get; set; }
 
-        [JsonProperty("secondaryText")]
+        [JsonProperty("secondaryText",NullValueHandling = NullValueHandling.Ignore)]
         public TemplateText Secondary { get; set; }
 
-        [JsonProperty("tertiaryText")]
+        [JsonProperty("tertiaryText",NullValueHandling = NullValueHandling.Ignore)]
         public TemplateText Tertiary { get; set; }
     }
 }
