@@ -1,0 +1,10 @@
+﻿{
+	"type": "VideoApp.Launch",
+	"videoItem": {
+		"source": "https://www.example.com/video/sample-video-1.mp4",
+		"metadata": {
+			"title": "Title for Sample Video",
+			"subtitle": "Secondary Title for Sample Video"
+		}
+	}
+}	

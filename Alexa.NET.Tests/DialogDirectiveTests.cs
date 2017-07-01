@@ -9,14 +9,12 @@ namespace Alexa.NET.Tests
 {
     public class DialogDirectiveTests
     {
-        private const string ExamplesPath = "Examples";
-
         [Fact]
         public void Create_Valid_DialogDelegateDirective()
         {
             var actual = new DialogDelegate{UpdatedIntent=GetUpdatedIntent()};
 
-            Assert.True(CompareJson(actual, "DialogDelegate.json"));
+            Assert.True(Utility.CompareJson(actual, "DialogDelegate.json"));
         }
 
         [Fact]
@@ -24,7 +22,7 @@ namespace Alexa.NET.Tests
         {
             var actual = new DialogElicitSlot("ZodiacSign") { UpdatedIntent = GetUpdatedIntent() };
 
-			Assert.True(CompareJson(actual, "DialogElicitSlot.json"));
+			Assert.True(Utility.CompareJson(actual, "DialogElicitSlot.json"));
         }
 
 		[Fact]
@@ -32,7 +30,7 @@ namespace Alexa.NET.Tests
 		{
 			var actual = new DialogConfirmSlot("Date") { UpdatedIntent = GetUpdatedIntent() };
 
-			Assert.True(CompareJson(actual, "DialogConfirmSlot.json"));
+			Assert.True(Utility.CompareJson(actual, "DialogConfirmSlot.json"));
 		}
 
         [Fact]
@@ -41,7 +39,7 @@ namespace Alexa.NET.Tests
             var actual = new DialogConfirmIntent { UpdatedIntent = GetUpdatedIntent() };
             actual.UpdatedIntent.Slots["ZodiacSign"].ConfirmationStatus = ConfirmationStatus.Confirmed;
 
-            Assert.True(CompareJson(actual, "DialogConfirmIntent.json"));
+            Assert.True(Utility.CompareJson(actual, "DialogConfirmIntent.json"));
         }
 
         private Intent GetUpdatedIntent()
@@ -55,16 +53,6 @@ namespace Alexa.NET.Tests
 						{"Date",new Slot{Name="Date",Value="2015-11-25",ConfirmationStatus=ConfirmationStatus.Confirmed}}
 				}
 			};
-        }
-
-        private bool CompareJson(object actual, string expectedFile)
-        {
-
-            var actualJObject = JObject.FromObject(actual);
-            var expected = File.ReadAllText(Path.Combine(ExamplesPath, expectedFile));
-            var expectedJObject = JObject.Parse(expected);
-            Console.WriteLine(actualJObject);
-            return JToken.DeepEquals(expectedJObject, actualJObject);
         }
     }
 }

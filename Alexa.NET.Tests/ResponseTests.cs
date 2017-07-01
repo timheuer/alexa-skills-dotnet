@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text.RegularExpressions;
 using Alexa.NET.Response;
+using Alexa.NET.Response.Directive;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Xunit;
@@ -58,6 +59,29 @@ namespace Alexa.NET.Tests
             json = Regex.Replace(json, @"\s", "");
 
             Assert.Equal(workingJson, json);
+        }
+
+        [Fact]
+        public void Creates_VideoAppDirective()
+        {
+            var videoItem = new VideoItem("https://www.example.com/video/sample-video-1.mp4")
+            {
+                Metadata = new VideoItemMetadata
+                {
+                    Title = "Title for Sample Video",
+                    Subtitle = "Secondary Title for Sample Video"
+                }
+            };
+            var actual = new VideoAppDirective{VideoItem=videoItem};
+
+            Assert.True(Utility.CompareJson(actual, "VideoAppDirectiveWithMetadata.json"));
+        }
+
+        [Fact]
+        public void Create_VideoAppDirective_FromSource()
+        {
+            var actual = new VideoAppDirective("https://www.example.com/video/sample-video-1.mp4");
+            Assert.True(Utility.CompareJson(actual, "VideoAppDirective.json"));
         }
     }
 }

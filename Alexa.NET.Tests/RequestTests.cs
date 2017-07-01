@@ -156,12 +156,12 @@ namespace Alexa.NET.Tests
 
 
 
-            Assert.True(CompareJson(mediaTypeSlot.Resolution, mediaTypeResolutionAuthority));
-            Assert.True(CompareJson(mediaTitleSlot.Resolution, mediaTitleResolutionAuthority));
+            Assert.True(CompareObjectJson(mediaTypeSlot.Resolution, mediaTypeResolutionAuthority));
+            Assert.True(CompareObjectJson(mediaTitleSlot.Resolution, mediaTitleResolutionAuthority));
         }
 
 
-        private bool CompareJson(object actual, object expected)
+        private bool CompareObjectJson(object actual, object expected)
         {
 
             var actualJObject = JObject.FromObject(actual);
