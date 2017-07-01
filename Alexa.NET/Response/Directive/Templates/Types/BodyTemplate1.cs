@@ -1,7 +1,6 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace Alexa.NET.Response.Directive.Templates
+namespace Alexa.NET.Response.Directive.Templates.Types
 {
     public class BodyTemplate1:IBodyTemplate
     {
