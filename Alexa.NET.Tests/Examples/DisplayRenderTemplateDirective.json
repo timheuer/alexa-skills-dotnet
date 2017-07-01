@@ -1,23 +1,38 @@
 ﻿{
   "type": "Display.RenderTemplate",
   "template": {
-    "type": "BodyTemplate1",
-    "token": "string",
+    "type": "BodyTemplate2",
+    "token": "A2079",
     "backButton": "VISIBLE",
-    "backgroundImage": "Image",
-    "title": "string",
-    "textContent": {
-      "primaryText": {
-        "text": "string",
-        "type": "string"
+    "backgroundImage": {
+      "contentDescription": "Textured grey background",
+      "sources": [
+        {
+          "url": "https://www.example.com/background-image1.png"
+        }
+      ],
+      "title": "My Favorite Car",
+      "image": {
+        "contentDescription": "My favorite car",
+        "sources": [
+          {
+            "url": "https://www.example.com/my-favorite-car.png"
+          }
+        ]
       },
-      "secondaryText": {
-        "text": "string",
-        "type": "string"
-      },
-      "tertiaryText": {
-        "text": "string",
-        "type": "string"
+      "textContent": {
+        "primaryText": {
+          "text": "See my favorite car",
+          "type": "PlainText"
+        },
+        "secondaryText": {
+          "text": "Custom-painted",
+          "type": "PlainText"
+        },
+        "tertiaryText": {
+          "text": "By me!",
+          "type": "PlainText"
+        }
       }
     }
   }
