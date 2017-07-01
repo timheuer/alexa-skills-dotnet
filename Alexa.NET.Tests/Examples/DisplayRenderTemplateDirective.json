@@ -1,0 +1,24 @@
+﻿{
+  "type": "Display.RenderTemplate",
+  "template": {
+    "type": "BodyTemplate1",
+    "token": "string",
+    "backButton": "VISIBLE",
+    "backgroundImage": "Image",
+    "title": "string",
+    "textContent": {
+      "primaryText": {
+        "text": "string",
+        "type": "string"
+      },
+      "secondaryText": {
+        "text": "string",
+        "type": "string"
+      },
+      "tertiaryText": {
+        "text": "string",
+        "type": "string"
+      }
+    }
+  }
+}
