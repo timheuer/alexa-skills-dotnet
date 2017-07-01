@@ -1,5 +1,6 @@
 ﻿{
   "type": "BodyTemplate1",
+  "backButton": "HIDDEN",
   "textContent": {
     "primaryText": {
       "text": "See my favorite car",
@@ -13,6 +14,5 @@
       "text": "By me!",
       "type": "PlainText"
     }
-  },
-  "backButton": "HIDDEN"
+  }
 }

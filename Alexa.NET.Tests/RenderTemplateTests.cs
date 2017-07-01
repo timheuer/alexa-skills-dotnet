@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using Alexa.NET.Response.Directive;
 using Alexa.NET.Response.Directive.Templates;
 using Newtonsoft.Json.Linq;
 using Xunit;
-using Xunit.Sdk;
 
 namespace Alexa.NET.Tests
 {
@@ -20,16 +18,44 @@ namespace Alexa.NET.Tests
         [Fact]
         public void Creates_RenderTemplateDirective()
         {
-            var actual = new DisplayRenderTemplateDirective();
+            var actual = new DisplayRenderTemplateDirective
+            {
+                Template = new BodyTemplate1
+                {
+                    Token = "A2079",
+                    BackButton = BackButtonVisibility.Visible,
+                    BackgroundImage = new TemplateImage
+                    {
+                        ContentDescription = "Textured grey background",
+                        Sources = new List<ImageSource>
+                        {
+                            new ImageSource { Url="https://www.example.com/background-image1.png"}
+                        }
+                    },
+                    Title = "My Favorite Car",
+                    Content = new TemplateContent
+                    {
+                        Primary = new TemplateText{ Text = "See my favorite car",Type=TextType.Plain },
+                        Secondary = new TemplateText { Text = "Custom-painted", Type = TextType.Plain },
+                        Tertiary = new TemplateText { Text = "By me!", Type = TextType.Plain }
+                    }
+                }
+            };
             Assert.True(CompareJson(actual,"DisplayRenderTemplateDirective.json"));
         }
 
         [Fact]
         public void Create_BodyTemplate1()
         {
-            var actual = new DisplayRenderTemplateDirective
+            var actual = new BodyTemplate1
             {
-
+                BackButton = BackButtonVisibility.Hidden,
+                Content = new TemplateContent
+                {
+                    Primary = new TemplateText {Text = "See my favorite car", Type = TextType.Plain},
+                    Secondary = new TemplateText {Text = "Custom-painted", Type = TextType.Plain},
+                    Tertiary = new TemplateText {Text = "By me!", Type = TextType.Plain}
+                }
             };
             Assert.True(CompareJson(actual, "TemplateBodyTemplate1.json"));
         }
@@ -54,8 +80,8 @@ namespace Alexa.NET.Tests
                 Sources = new List<ImageSource> { new ImageSource { 
                         Url = ImageSource,
                         Size = ImageSize.Small,
-                        Height=640,
-                        Width=480
+                        Height=480,
+                        Width=640
                     } 
                 }
             };
@@ -68,6 +94,7 @@ namespace Alexa.NET.Tests
             var actualJObject = JObject.FromObject(actual);
             var expected = File.ReadAllText(Path.Combine(ExamplesPath, expectedFile));
             var expectedJObject = JObject.Parse(expected);
+            Console.WriteLine(expected);
             Console.WriteLine(actualJObject);
             return JToken.DeepEquals(expectedJObject, actualJObject);
         }

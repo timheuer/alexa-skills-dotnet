@@ -5,19 +5,19 @@ namespace Alexa.NET.Response.Directive.Templates
 {
     public class BodyTemplate1:IBodyTemplate
     {
-        public string Type { get; set; }
+        public string Type => "BodyTemplate1";
         public string Token { get; set; }
 
-        [JsonProperty("backButton")]
+        [JsonProperty("backButton",NullValueHandling = NullValueHandling.Ignore)]
         public string BackButton { get; set; }
 
-        [JsonProperty("backgroundImage")]
+        [JsonProperty("backgroundImage",NullValueHandling = NullValueHandling.Ignore)]
         public TemplateImage BackgroundImage { get; set; }
 
-        [JsonProperty("title")]
+        [JsonProperty("title",NullValueHandling = NullValueHandling.Ignore)]
         public string Title { get; set; }
 
         [JsonProperty("textContent")]
-        public TemplateText Content { get; set; }
+        public TemplateContent Content { get; set; }
     }
 }

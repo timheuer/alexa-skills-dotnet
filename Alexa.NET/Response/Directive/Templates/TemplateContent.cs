@@ -3,15 +3,15 @@ using Newtonsoft.Json;
 
 namespace Alexa.NET.Response.Directive.Templates
 {
-    public class TextContent
+    public class TemplateContent
     {
         [JsonProperty("primaryText")]
-        public TemplateText PrimaryText { get; set; }
+        public TemplateText Primary { get; set; }
 
         [JsonProperty("secondaryText")]
-        public TemplateText SecondaryText { get; set; }
+        public TemplateText Secondary { get; set; }
 
         [JsonProperty("tertiaryText")]
-        public TemplateText TertiaryText { get; set; }
+        public TemplateText Tertiary { get; set; }
     }
 }
