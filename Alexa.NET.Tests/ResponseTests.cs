@@ -2,7 +2,10 @@
 using System.IO;
 using System.Text.RegularExpressions;
 using Alexa.NET.Response;
+using Alexa.NET.Response.Directive;
+using Alexa.NET.Response.Directive.Templates;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using Xunit;
 
@@ -58,6 +61,26 @@ namespace Alexa.NET.Tests
             json = Regex.Replace(json, @"\s", "");
 
             Assert.Equal(workingJson, json);
+        }
+
+        [Fact]
+        public void Create_HintDirective()
+        {
+            var actual = new HintDirective { Hint = new Hint { Text = "sample text", Type = TextType.Plain } };
+            var expected = JObject.Parse(@"{
+            ""type"": ""Hint"",
+            ""hint"": {
+                ""type"": ""PlainText"",
+                ""text"": ""sample text""
+            }
+        }");
+            Assert.True(CompareJson(actual,expected));
+        }
+
+        private bool CompareJson(object actual, JObject expected)
+        {
+            var actualJObject = JObject.FromObject(actual);
+            return JToken.DeepEquals(expected, actualJObject);
         }
     }
 }
