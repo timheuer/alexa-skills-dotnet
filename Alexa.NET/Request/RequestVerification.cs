@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Alexa.NET.Request
 {
-    public class RequestVerification
+    public static class RequestVerification
     {
         public static async Task<bool> Verify(string encodedSignature, Uri certificatePath, string body)
         {
