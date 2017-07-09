@@ -65,6 +65,15 @@ namespace Alexa.NET.Tests
         }
 
         [Fact]
+        public void Can_read_LaunchRequestWithEpochTimestamp_example()
+        {
+			var convertedObj = GetObjectFromExample<SkillRequest>("LaunchRequestWithEpochTimestamp.json");
+
+			Assert.NotNull(convertedObj);
+			Assert.Equal(typeof(LaunchRequest), convertedObj.GetRequestType()); 
+        }
+
+        [Fact]
         public void Can_read_SessionEndedRequest_example()
         {
             var convertedObj = GetObjectFromExample<SkillRequest>("SessionEndedRequest.json");
