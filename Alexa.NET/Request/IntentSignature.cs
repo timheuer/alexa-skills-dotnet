@@ -83,13 +83,10 @@ namespace Alexa.NET.Request
 
             string propertyPiece = action.Substring(propertyPoint+1, action.Length - (propertyPoint+2));
 
-            Console.WriteLine(propertyPiece);
-
             IDictionary<string, IntentProperty> propertyDictionary = new Dictionary<string, IntentProperty>();
 
             foreach (Match match in PropertyFinder.Matches(propertyPiece))
             {
-                Console.WriteLine(match.Value);
                 propertyDictionary.Add(
                     match.Groups[1].Value,
                     new IntentProperty(match.Groups[2].Value,match.Groups[4].Value)
