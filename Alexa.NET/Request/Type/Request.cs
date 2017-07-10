@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using System;
+using Alexa.NET.Helpers;
 
 namespace Alexa.NET.Request.Type
 {

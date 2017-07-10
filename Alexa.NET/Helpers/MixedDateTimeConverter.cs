@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 
 
-namespace Alexa.NET.Request.Type
+namespace Alexa.NET.Helpers
 {
 	public class MixedDateTimeConverter : Newtonsoft.Json.Converters.DateTimeConverterBase
     {
@@ -10,7 +10,7 @@ namespace Alexa.NET.Request.Type
 
 		public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
 		{
-			
+			// TODO: We may need to future add something here.  Right now this is only used in Request reader
 		}
 
 		public override object ReadJson(JsonReader reader, System.Type objectType, object existingValue, JsonSerializer serializer)
@@ -29,6 +29,7 @@ namespace Alexa.NET.Request.Type
 			{
                 return DateTime.Parse(reader.Value.ToString());
 			}
+
 			return UtcFromEpoch(((long)reader.Value));
 		}
 
