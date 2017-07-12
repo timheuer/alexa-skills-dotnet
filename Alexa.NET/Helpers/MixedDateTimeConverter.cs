@@ -35,7 +35,7 @@ namespace Alexa.NET.Helpers
 
 		private DateTime UtcFromEpoch(long epochTime)
 		{
-			return UnixEpoch.AddSeconds(epochTime);
+			return UnixEpoch.AddMilliseconds(epochTime);
 		}
 	}
 }
