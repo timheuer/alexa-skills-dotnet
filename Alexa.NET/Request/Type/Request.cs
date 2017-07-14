@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using System;
+using Alexa.NET.Helpers;
 
 namespace Alexa.NET.Request.Type
 {
@@ -14,7 +15,7 @@ namespace Alexa.NET.Request.Type
         [JsonProperty("locale")]
         public string Locale { get; set; }
 
-        [JsonProperty("timestamp")]
+        [JsonProperty("timestamp"),JsonConverter(typeof(MixedDateTimeConverter))]
         public DateTime Timestamp { get; set; }
     }
 }
