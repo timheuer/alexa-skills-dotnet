@@ -68,7 +68,7 @@ There are various types of responses you can build and this library provides a h
 ```csharp
 // build the speech response 
 var speech = new Alexa.NET.Response.SsmlOutputSpeech();
-speech.Ssml = "Today is <say-as interpret-as=\"date\">????0922</say-as>.<break strength=\"x-strong\"/>I hope you have a good day.";
+speech.Ssml = "<speak>Today is <say-as interpret-as=\"date\">????0922</say-as>.<break strength=\"x-strong\"/>I hope you have a good day.</speak>";
 
 // create the response using the ResponseBuilder
 var finalResponse = ResponseBuilder.Tell(speech);
@@ -80,7 +80,7 @@ In your response you can also have a 'Card' response, which presents UI to the A
 ```csharp
 // create the speech response - cards still need a voice response
 var speech = new Alexa.NET.Response.SsmlOutputSpeech();
-speech.Ssml = "Today is <say-as interpret-as=\"date\">????0922</say-as>.";
+speech.Ssml = "<speak>Today is <say-as interpret-as=\"date\">????0922</say-as>.</speak>";
 
 // create the card response
 var finalResponse = ResponseBuilder.TellWithCard(speech, "Your Card Title", "Your card content text goes here, no HTML formatting honored");
@@ -93,7 +93,7 @@ If you want to reprompt the user, use the Ask helpers
 ```csharp
 // create the speech response
 var speech = new Alexa.NET.Response.SsmlOutputSpeech();
-speech.Ssml = "Today is <say-as interpret-as=\"date\">????0922</say-as>.";
+speech.Ssml = "<speak>Today is <say-as interpret-as=\"date\">????0922</say-as>.</speak>";
 
 // create the speech reprompt
 var repromptMessage = new Alexa.NET.Response.PlainTextOutputSpeech();
@@ -129,7 +129,7 @@ can build up the response manually using the ```Response``` and some ```IOutputS
 ```csharp
 // create the speech response - you most likely will still have this
 var speech = new Alexa.NET.Response.SsmlOutputSpeech();
-speech.Ssml = "Today is <say-as interpret-as=\"date\">????0922</say-as>.";
+speech.Ssml = "<speak>Today is <say-as interpret-as=\"date\">????0922</say-as>.</speak>";
 
 // create the response
 var responseBody = new Alexa.NET.Response.ResponseBody();
@@ -148,7 +148,7 @@ To add reprompt to the response you just need to include that as well.
 ```csharp
 // create the speech response - you most likely will still have this
 var speech = new Alexa.NET.Response.SsmlOutputSpeech();
-speech.Ssml = "Today is <say-as interpret-as=\"date\">????0922</say-as>.";
+speech.Ssml = "<speak>Today is <say-as interpret-as=\"date\">????0922</say-as>.</speak>";
 
 // create the reprompt speech
 var repromptMessage = new Alexa.NET.Response.PlainTextOutputSpeech();
