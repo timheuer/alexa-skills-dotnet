@@ -64,6 +64,29 @@ namespace Alexa.NET.Tests
         }
 
         [Fact]
+        public void Creates_VideoAppDirective()
+        {
+            var videoItem = new VideoItem("https://www.example.com/video/sample-video-1.mp4")
+            {
+                Metadata = new VideoItemMetadata
+                {
+                    Title = "Title for Sample Video",
+                    Subtitle = "Secondary Title for Sample Video"
+                }
+            };
+            var actual = new VideoAppDirective{VideoItem=videoItem};
+
+            Assert.True(Utility.CompareJson(actual, "VideoAppDirectiveWithMetadata.json"));
+        }
+
+        [Fact]
+        public void Create_VideoAppDirective_FromSource()
+        {
+            var actual = new VideoAppDirective("https://www.example.com/video/sample-video-1.mp4");
+            Assert.True(Utility.CompareJson(actual, "VideoAppDirective.json"));
+        }
+
+        [Fact]
         public void Create_HintDirective()
         {
             var actual = new HintDirective { Hint = new Hint { Text = "sample text", Type = TextType.Plain } };

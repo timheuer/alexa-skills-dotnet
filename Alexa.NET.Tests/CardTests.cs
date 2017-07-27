@@ -7,7 +7,6 @@ namespace Alexa.NET.Tests
 {
     public class CardTests
     {
-        private const string ExamplesPath = "Examples";
         private const string ExampleTitle = "Example Title";
         private const string ExampleBodyText = "Example Body Text";
 
@@ -16,7 +15,7 @@ namespace Alexa.NET.Tests
         {
             var actual = new SimpleCard { Title = ExampleTitle, Content = ExampleBodyText };
 
-            Assert.True(CompareJson(actual, "SimpleCard.json"));
+            Assert.True(Utility.CompareJson(actual, "SimpleCard.json"));
         }
 
         [Fact]
@@ -25,7 +24,7 @@ namespace Alexa.NET.Tests
             var cardImages = new CardImage { SmallImageUrl = "https://example.com/smallImage.png", LargeImageUrl = "https://example.com/largeImage.png" };
             var actual = new StandardCard{ Title = ExampleTitle, Content = ExampleBodyText,Image=cardImages };
 
-            Assert.True(CompareJson(actual, "StandardCard.json"));
+            Assert.True(Utility.CompareJson(actual, "StandardCard.json"));
         }
 
         [Fact]
@@ -34,17 +33,7 @@ namespace Alexa.NET.Tests
             var actual = new AskForPermissionsConsentCard();
             actual.Permissions.Add(RequestedPermission.ReadHouseholdList);
 
-            Assert.True(CompareJson(actual, "AskForPermissionsConsent.json"));
-        }
-
-        private bool CompareJson(object actual, string expectedFile)
-        {
-            
-            var actualJObject = JObject.FromObject(actual);
-            var expected = File.ReadAllText(Path.Combine(ExamplesPath, expectedFile));
-            var expectedJObject = JObject.Parse(expected);
-
-            return JToken.DeepEquals(expectedJObject, actualJObject);
+            Assert.True(Utility.CompareJson(actual, "AskForPermissionsConsent.json"));
         }
     }
 }

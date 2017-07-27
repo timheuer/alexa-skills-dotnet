@@ -65,6 +65,15 @@ namespace Alexa.NET.Tests
         }
 
         [Fact]
+        public void Can_read_LaunchRequestWithEpochTimestamp_example()
+        {
+			var convertedObj = GetObjectFromExample<SkillRequest>("LaunchRequestWithEpochTimestamp.json");
+
+			Assert.NotNull(convertedObj);
+			Assert.Equal(typeof(LaunchRequest), convertedObj.GetRequestType()); 
+        }
+
+        [Fact]
         public void Can_read_SessionEndedRequest_example()
         {
             var convertedObj = GetObjectFromExample<SkillRequest>("SessionEndedRequest.json");
@@ -156,12 +165,12 @@ namespace Alexa.NET.Tests
 
 
 
-            Assert.True(CompareJson(mediaTypeSlot.Resolution, mediaTypeResolutionAuthority));
-            Assert.True(CompareJson(mediaTitleSlot.Resolution, mediaTitleResolutionAuthority));
+            Assert.True(CompareObjectJson(mediaTypeSlot.Resolution, mediaTypeResolutionAuthority));
+            Assert.True(CompareObjectJson(mediaTitleSlot.Resolution, mediaTitleResolutionAuthority));
         }
 
 
-        private bool CompareJson(object actual, object expected)
+        private bool CompareObjectJson(object actual, object expected)
         {
 
             var actualJObject = JObject.FromObject(actual);

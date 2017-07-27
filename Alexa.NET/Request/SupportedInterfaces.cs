@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 
 namespace Alexa.NET.Request
 {
-    public class SupportedInterfaces
+    public static class SupportedInterfaces
     {
-        
+        public const string Display = "Display";
+        public const string AudioPlayer = "AudioPlayer";
+        public const string VideoApp = "VideoApp";
     }
 }

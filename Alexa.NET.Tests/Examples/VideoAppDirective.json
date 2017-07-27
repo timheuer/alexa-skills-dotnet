@@ -1,0 +1,6 @@
+﻿{
+  "type": "VideoApp.Launch",
+  "videoItem": {
+    "source": "https://www.example.com/video/sample-video-1.mp4"
+  }
+}	
