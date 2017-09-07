@@ -1,0 +1,18 @@
+﻿{
+  "type": "BodyTemplate1",
+  "backButton": "HIDDEN",
+  "textContent": {
+    "primaryText": {
+      "text": "See my favorite car",
+      "type": "PlainText"
+    },
+    "secondaryText": {
+      "text": "Custom-painted",
+      "type": "PlainText"
+    },
+    "tertiaryText": {
+      "text": "By me!",
+      "type": "PlainText"
+    }
+  }
+}
