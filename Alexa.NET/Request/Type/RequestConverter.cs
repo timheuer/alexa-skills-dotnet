@@ -55,6 +55,8 @@ namespace Alexa.NET.Request.Type
                     return new PlaybackControllerRequest();
                 case "System.ExceptionEncountered":
                     return new SystemExceptionRequest();
+                case "Display.ElementSelected":
+                    return new DisplayElementSelectedRequest();
                 default:
                     throw new ArgumentOutOfRangeException(nameof(Type), $"Unknown request type: {requestType}.");
             }
