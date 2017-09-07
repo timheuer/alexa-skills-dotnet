@@ -40,6 +40,13 @@ namespace Alexa.NET.Request.Type
                 requestType = "AudioPlayer";
             else if (requestType.StartsWith("PlaybackController"))
                 requestType = "PlaybackController";
+            else if (requestType == "AlexaSkillEvent.SkillPermissionAccepted" ||
+                     requestType == "AlexaSkillEvent.SkillPermissionChanged")
+                requestType = "PermissionSkillEvent";
+            else if (requestType == "AlexaSkillEvent.SkillAccountLinked")
+                requestType = "AccountLinkSkillEvent";
+            else if (requestType.StartsWith("AlexaSkillEvent"))
+                requestType = "AlexaSkillEvent";
 
             switch (requestType)
             {
@@ -57,6 +64,12 @@ namespace Alexa.NET.Request.Type
                     return new SystemExceptionRequest();
                 case "Display.ElementSelected":
                     return new DisplayElementSelectedRequest();
+                case "AccountLinkSkillEvent":
+                    return new AccountLinkSkillEventRequest();
+                case "PermissionSkillEvent":
+                    return new PermissionSkillEventRequest();
+                case "AlexaSkillEvent":
+                    return new SkillEventRequest();
                 default:
                     throw new ArgumentOutOfRangeException(nameof(Type), $"Unknown request type: {requestType}.");
             }
