@@ -45,7 +45,7 @@ namespace Alexa.NET.Request.Type
                     case "PlaybackStarted":
                         return AudioRequestType.PlaybackStarted;
                     case "PlaybackFinished":
-                        return AudioRequestType.PlaybackStarted;
+                        return AudioRequestType.PlaybackFinished;
                     case "PlaybackStopped":
                         return AudioRequestType.PlaybackStopped;
                     case "PlaybackNearlyFinished":
