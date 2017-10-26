@@ -169,6 +169,28 @@ namespace Alexa.NET.Tests
             Assert.True(CompareObjectJson(mediaTitleSlot.Resolution, mediaTitleResolutionAuthority));
         }
 
+        [Fact]
+        public void Can_Read_SkillEventAccountLink()
+        {
+            var convertedObj = GetObjectFromExample<SkillRequest>("SkillEventAccountLink.json");
+            var request = Assert.IsAssignableFrom<AccountLinkSkillEventRequest>(convertedObj.Request);
+            Assert.Equal(request.Body.AccessToken,"testToken");
+        }
+
+        [Fact]
+        public void Can_Read_SkillEventPermissionChange()
+        {
+            var convertedObj = GetObjectFromExample<SkillRequest>("SkillEventPermissionChange.json");
+            var request = Assert.IsAssignableFrom<PermissionSkillEventRequest>(convertedObj.Request);
+            Assert.Equal(request.Body.AcceptedPermissions.First().Scope, "testScope");
+        }
+
+        [Fact]
+        public void Can_Read_NonSpecialisedSkillEvent()
+        {
+            var convertedObj = GetObjectFromExample<SkillRequest>("SkillEventEnabled.json");
+            var request = Assert.IsAssignableFrom<SkillEventRequest>(convertedObj.Request);
+        }
 
         private bool CompareObjectJson(object actual, object expected)
         {

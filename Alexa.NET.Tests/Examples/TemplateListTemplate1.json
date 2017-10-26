@@ -1,0 +1,49 @@
+﻿{
+  "type": "ListTemplate1",
+  "token": "list_template_one",
+  "title": "Pizzas",
+  "listItems": [
+    {
+      "token": "item_1",
+      "image": {
+        "sources": [
+          {
+            "url": "http://www.example.com/images/thumb/SupremePizza1.jpg"
+          }
+        ],
+        "contentDescription": "Supreme Large Pan Pizza"
+      },
+      "textContent": {
+        "primaryText": {
+          "type": "RichText",
+          "text": "<font size='7'>Supreme</font> <br/> Large Pan Pizza $17.00"
+        },
+        "secondaryText": {
+          "type": "PlainText",
+          "text": "Secondary Text"
+        },
+        "tertiaryText": {
+          "type": "PlainText",
+          "text": ""
+        }
+      }
+    },
+    {
+      "token": "item_2",
+      "image": {
+        "sources": [
+          {
+            "url": "http://www.example.com/images/thumb/MeatEaterPizza1.jpg"
+          }
+        ],
+        "contentDescription": "Meat Eater Large Pan Pizza"
+      },
+      "textContent": {
+        "primaryText": {
+          "type": "RichText",
+          "text": "<font size='7'>Meat Eater</font> <br/> Large Pan Pizza $19.00"
+        }
+      }
+    }
+  ]
+}
