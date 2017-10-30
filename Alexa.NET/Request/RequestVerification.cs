@@ -52,7 +52,7 @@ namespace Alexa.NET.Request
             //https://stackoverflow.com/questions/24618798/automated-downloading-of-x509-certificatePath-chain-from-remote-host
 
             X509Chain certificateChain = new X509Chain();
-            //If you do not provide revokation information, use the following line.
+            //If you do not provide revocation information, use the following line.
             certificateChain.ChainPolicy.RevocationMode = X509RevocationMode.NoCheck;
             return certificateChain.Build(certificate);
         }
