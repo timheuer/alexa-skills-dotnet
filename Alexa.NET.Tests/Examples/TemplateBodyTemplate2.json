@@ -1,0 +1,36 @@
+﻿{
+	"type": "BodyTemplate2",
+	"token": "A2079",
+	"backButton": "VISIBLE",
+	"backgroundImage": {
+		"contentDescription": "Textured grey background",
+		"sources": [
+			{
+				"url": "https://www.example.com/background-image1.png"
+			}
+		]
+	},
+	"title": "My Favorite Car",
+	"image": {
+		"contentDescription": "My favorite car",
+		"sources": [
+			{
+				"url": "https://www.example.com/my-favorite-car.png"
+			}
+		]
+	},
+	"textContent": {
+		"primaryText": {
+			"text": "See my favorite car",
+			"type": "PlainText"
+		},
+		"secondaryText": {
+			"text": "Custom-painted",
+			"type": "PlainText"
+		},
+		"tertiaryText": {
+			"text": "By me!",
+			"type": "PlainText"
+		}
+	}
+}
