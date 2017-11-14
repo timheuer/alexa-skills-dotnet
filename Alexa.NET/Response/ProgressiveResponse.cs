@@ -16,6 +16,13 @@ namespace Alexa.NET.Response
         private HttpClient Client { get; }
         private ProgressiveResponseHeader Header { get; }
 
+        public static bool IsSupported(SkillRequest request)
+        {
+            return !string.IsNullOrWhiteSpace(request?.Request?.RequestId) &&
+                   !string.IsNullOrWhiteSpace(request.Context?.System?.ApiAccessToken) &&
+                   !string.IsNullOrWhiteSpace(request.Context?.System?.ApiEndpoint);
+        }
+
 
         public ProgressiveResponse(SkillRequest request) : this(request, new HttpClient())
         {
