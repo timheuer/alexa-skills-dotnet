@@ -7,6 +7,11 @@ namespace Alexa.NET.Response.Directive
 {
     public class VoicePlayerSpeakDirective:IProgressiveResponseDirective
     {
+        public VoicePlayerSpeakDirective(Ssml.Speech speech):this(speech.ToXml())
+        {
+
+        }
+
         public VoicePlayerSpeakDirective(string speech)
         {
             Speech = speech;

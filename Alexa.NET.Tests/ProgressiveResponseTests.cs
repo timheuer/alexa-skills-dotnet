@@ -28,6 +28,46 @@ namespace Alexa.NET.Tests
         }
 
         [Fact]
+        public async Task ResponseWithNoDetailReturnsNull()
+        {
+            var request = new ProgressiveResponse();
+            var result = await request.Send(null);
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void ResponseWithNoDetailReturnsCanSendFalse()
+        {
+            var request = new ProgressiveResponse();
+            var result = request.CanSend();
+            Assert.False(result);
+        }
+
+        [Fact]
+        public async Task ResponseWithNoHeaderReturnsNull()
+        {
+            var request = new ProgressiveResponse {Client = new HttpClient()};
+            var result = await request.Send(new VoicePlayerSpeakDirective("test"));
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public async Task ResponseWithNoClientReturnsNull()
+        {
+            var request = new ProgressiveResponse { Header = new ProgressiveResponseHeader("test") };
+            var result = await request.Send(new VoicePlayerSpeakDirective("test"));
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public async Task ResponseWithNullDirectiveReturnsNull()
+        {
+            var request = new ProgressiveResponse { Header = new ProgressiveResponseHeader("test"),Client = new HttpClient() };
+            var result = await request.Send(null);
+            Assert.Null(result);
+        }
+
+        [Fact]
         public async Task ProgressiveResponseCallsBaseUrl()
         {
             var passed = false;
@@ -38,9 +78,10 @@ namespace Alexa.NET.Tests
                 return new HttpResponseMessage(HttpStatusCode.NoContent);
             });
 
-            await response.SendSpeech("hello");
+            var result = await response.SendSpeech("hello");
 
             Assert.True(passed);
+            Assert.NotNull(result);
         }
 
         [Fact]
