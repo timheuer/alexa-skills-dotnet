@@ -8,6 +8,9 @@ namespace Alexa.NET.Request
 {
     public class AlexaSystem
     {
+        [JsonProperty("apiAccessToken")]
+        public string ApiAccessToken { get; set; }
+
         [JsonProperty("apiEndpoint")]
         public string ApiEndpoint { get; set; }
 
