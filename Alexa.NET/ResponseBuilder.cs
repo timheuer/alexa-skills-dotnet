@@ -3,6 +3,7 @@ using Alexa.NET.Response;
 using Alexa.NET.Response.Directive;
 using System.Collections.Generic;
 using System.Linq;
+using Alexa.NET.Response.Ssml;
 
 namespace Alexa.NET
 {
@@ -19,7 +20,7 @@ namespace Alexa.NET
             return Tell(new PlainTextOutputSpeech { Text = speechResponse });
         }
 
-        public static SkillResponse Tell(Response.Ssml.Speech speechResponse)
+        public static SkillResponse Tell(Speech speechResponse)
         {
             return Tell(new SsmlOutputSpeech { Ssml = speechResponse.ToXml() });
         }
@@ -34,7 +35,7 @@ namespace Alexa.NET
             return TellWithReprompt(new PlainTextOutputSpeech { Text = speechResponse }, reprompt);
         }
 
-        public static SkillResponse TellWithReprompt(Response.Ssml.Speech speechResponse, Reprompt reprompt)
+        public static SkillResponse TellWithReprompt(Speech speechResponse, Reprompt reprompt)
         {
             return TellWithReprompt(new SsmlOutputSpeech { Ssml = speechResponse.ToXml() }, reprompt);
         }
@@ -49,7 +50,7 @@ namespace Alexa.NET
             return Tell(new PlainTextOutputSpeech { Text = speechResponse }, sessionAttributes);
         }
 
-        public static SkillResponse Tell(Response.Ssml.Speech speechResponse, Session sessionAttributes)
+        public static SkillResponse Tell(Speech speechResponse, Session sessionAttributes)
         {
             return Tell(new SsmlOutputSpeech { Ssml = speechResponse.ToXml() }, sessionAttributes);
         }
@@ -61,12 +62,12 @@ namespace Alexa.NET
 
         public static SkillResponse TellWithReprompt(string speechResponse, Reprompt reprompt, Session sessionAttributes)
         {
-            return TellWithReprompt(new PlainTextOutputSpeech { Text = speechResponse }, reprompt,sessionAttributes);
+            return TellWithReprompt(new PlainTextOutputSpeech { Text = speechResponse }, reprompt, sessionAttributes);
         }
 
-        public static SkillResponse TellWithReprompt(Response.Ssml.Speech speechResponse, Reprompt reprompt, Session sessionAttributes)
+        public static SkillResponse TellWithReprompt(Speech speechResponse, Reprompt reprompt, Session sessionAttributes)
         {
-            return TellWithReprompt(new SsmlOutputSpeech { Ssml = speechResponse.ToXml() }, reprompt,sessionAttributes);
+            return TellWithReprompt(new SsmlOutputSpeech { Ssml = speechResponse.ToXml() }, reprompt, sessionAttributes);
         }
 
         public static SkillResponse TellWithCard(IOutputSpeech speechResponse, string title, string content)
@@ -83,7 +84,7 @@ namespace Alexa.NET
             return TellWithCard(new PlainTextOutputSpeech { Text = speechResponse }, title, content);
         }
 
-        public static SkillResponse TellWithCard(Response.Ssml.Speech speechResponse, string title, string content)
+        public static SkillResponse TellWithCard(Speech speechResponse, string title, string content)
         {
             return TellWithCard(new SsmlOutputSpeech { Ssml = speechResponse.ToXml() }, title, content);
         }
@@ -101,12 +102,12 @@ namespace Alexa.NET
 
         public static SkillResponse TellWithCard(string speechResponse, string title, string content, Session sessionAttributes)
         {
-            return TellWithCard(new PlainTextOutputSpeech { Text = speechResponse }, title, content,sessionAttributes);
+            return TellWithCard(new PlainTextOutputSpeech { Text = speechResponse }, title, content, sessionAttributes);
         }
 
-        public static SkillResponse TellWithCard(Response.Ssml.Speech speechResponse, string title, string content, Session sessionAttributes)
+        public static SkillResponse TellWithCard(Speech speechResponse, string title, string content, Session sessionAttributes)
         {
-            return TellWithCard(new SsmlOutputSpeech { Ssml = speechResponse.ToXml() }, title, content,sessionAttributes);
+            return TellWithCard(new SsmlOutputSpeech { Ssml = speechResponse.ToXml() }, title, content, sessionAttributes);
         }
 
         public static SkillResponse TellWithLinkAccountCard(IOutputSpeech speechResponse)
@@ -121,7 +122,7 @@ namespace Alexa.NET
             return TellWithLinkAccountCard(new PlainTextOutputSpeech { Text = speechResponse });
         }
 
-        public static SkillResponse TellWithLinkAccountCard(Response.Ssml.Speech speechResponse)
+        public static SkillResponse TellWithLinkAccountCard(Speech speechResponse)
         {
             return TellWithLinkAccountCard(new SsmlOutputSpeech { Ssml = speechResponse.ToXml() });
         }
@@ -135,33 +136,33 @@ namespace Alexa.NET
 
         public static SkillResponse TellWithLinkAccountCard(string speechResponse, Session sessionAttributes)
         {
-            return TellWithLinkAccountCard(new PlainTextOutputSpeech { Text = speechResponse },sessionAttributes);
+            return TellWithLinkAccountCard(new PlainTextOutputSpeech { Text = speechResponse }, sessionAttributes);
         }
 
-        public static SkillResponse TellWithLinkAccountCard(Response.Ssml.Speech speechResponse, Session sessionAttributes)
+        public static SkillResponse TellWithLinkAccountCard(Speech speechResponse, Session sessionAttributes)
         {
-            return TellWithLinkAccountCard(new SsmlOutputSpeech { Ssml = speechResponse.ToXml() },sessionAttributes);
+            return TellWithLinkAccountCard(new SsmlOutputSpeech { Ssml = speechResponse.ToXml() }, sessionAttributes);
         }
 
         public static SkillResponse TellWithAskForPermissionsConsentCard(IOutputSpeech speechResponse, IEnumerable<string> permissions)
         {
-            AskForPermissionsConsentCard card = new AskForPermissionsConsentCard {Permissions = permissions.ToList()};
+            AskForPermissionsConsentCard card = new AskForPermissionsConsentCard { Permissions = permissions.ToList() };
             return BuildResponse(speechResponse, true, null, null, card);
         }
 
         public static SkillResponse TellWithAskForPermissionConsentCard(string speechResponse, IEnumerable<string> permissions)
         {
-            return TellWithAskForPermissionsConsentCard(new PlainTextOutputSpeech { Text = speechResponse },permissions);
+            return TellWithAskForPermissionsConsentCard(new PlainTextOutputSpeech { Text = speechResponse }, permissions);
         }
 
-        public static SkillResponse TellWithAskForPermissionConsentCard(Response.Ssml.Speech speechResponse, IEnumerable<string> permissions)
+        public static SkillResponse TellWithAskForPermissionConsentCard(Speech speechResponse, IEnumerable<string> permissions)
         {
-            return TellWithAskForPermissionsConsentCard(new SsmlOutputSpeech { Ssml = speechResponse.ToXml() },permissions);
+            return TellWithAskForPermissionsConsentCard(new SsmlOutputSpeech { Ssml = speechResponse.ToXml() }, permissions);
         }
 
         public static SkillResponse TellWithAskForPermissionsConsentCard(IOutputSpeech speechResponse, IEnumerable<string> permissions, Session sessionAttributes)
         {
-            AskForPermissionsConsentCard card = new AskForPermissionsConsentCard {Permissions = permissions.ToList()};
+            AskForPermissionsConsentCard card = new AskForPermissionsConsentCard { Permissions = permissions.ToList() };
             return BuildResponse(speechResponse, true, sessionAttributes, null, card);
         }
 
@@ -170,9 +171,9 @@ namespace Alexa.NET
             return TellWithAskForPermissionsConsentCard(new PlainTextOutputSpeech { Text = speechResponse }, permissions, sessionAttributes);
         }
 
-        public static SkillResponse TellWithAskForPermissionConsentCard(Response.Ssml.Speech speechResponse, IEnumerable<string> permissions,Session sessionAttributes)
+        public static SkillResponse TellWithAskForPermissionConsentCard(Speech speechResponse, IEnumerable<string> permissions, Session sessionAttributes)
         {
-            return TellWithAskForPermissionsConsentCard(new SsmlOutputSpeech { Ssml = speechResponse.ToXml() }, permissions,sessionAttributes);
+            return TellWithAskForPermissionsConsentCard(new SsmlOutputSpeech { Ssml = speechResponse.ToXml() }, permissions, sessionAttributes);
         }
 
         #endregion
@@ -185,12 +186,12 @@ namespace Alexa.NET
 
         public static SkillResponse Ask(string speechResponse, Reprompt reprompt)
         {
-            return Ask(new PlainTextOutputSpeech {Text = speechResponse}, reprompt);
+            return Ask(new PlainTextOutputSpeech { Text = speechResponse }, reprompt);
         }
 
-        public static SkillResponse Ask(Response.Ssml.Speech speechResponse, Reprompt reprompt)
+        public static SkillResponse Ask(Speech speechResponse, Reprompt reprompt)
         {
-            return Ask(new SsmlOutputSpeech {Ssml = speechResponse.ToXml()}, reprompt);
+            return Ask(new SsmlOutputSpeech { Ssml = speechResponse.ToXml() }, reprompt);
         }
 
         public static SkillResponse Ask(IOutputSpeech speechResponse, Reprompt reprompt, Session sessionAttributes)
@@ -203,7 +204,7 @@ namespace Alexa.NET
             return Ask(new PlainTextOutputSpeech { Text = speechResponse }, reprompt, sessionAttributes);
         }
 
-        public static SkillResponse Ask(Response.Ssml.Speech speechResponse, Reprompt reprompt, Session sessionAttributes)
+        public static SkillResponse Ask(Speech speechResponse, Reprompt reprompt, Session sessionAttributes)
         {
             return Ask(new SsmlOutputSpeech { Ssml = speechResponse.ToXml() }, reprompt, sessionAttributes);
         }
@@ -218,7 +219,7 @@ namespace Alexa.NET
             return AskWithCard(new PlainTextOutputSpeech { Text = speechResponse }, title, content, reprompt);
         }
 
-        public static SkillResponse AskWithCard(Response.Ssml.Speech speechResponse, string title, string content, Reprompt reprompt)
+        public static SkillResponse AskWithCard(Speech speechResponse, string title, string content, Reprompt reprompt)
         {
             return AskWithCard(new SsmlOutputSpeech { Ssml = speechResponse.ToXml() }, title, content, reprompt);
         }
@@ -239,7 +240,7 @@ namespace Alexa.NET
             return AskWithCard(new PlainTextOutputSpeech { Text = speechResponse }, title, content, reprompt, sessionAttributes);
         }
 
-        public static SkillResponse AskWithCard(Response.Ssml.Speech speechResponse, string title, string content, Reprompt reprompt, Session sessionAttributes)
+        public static SkillResponse AskWithCard(Speech speechResponse, string title, string content, Reprompt reprompt, Session sessionAttributes)
         {
             return AskWithCard(new SsmlOutputSpeech { Ssml = speechResponse.ToXml() }, title, content, reprompt, sessionAttributes);
         }
@@ -310,9 +311,29 @@ namespace Alexa.NET
             return response;
         }
 
+        public static SkillResponse DialogElicitSlot(string outputSpeech, string slotName, Intent updatedIntent = null)
+        {
+            return DialogElicitSlot(new PlainTextOutputSpeech { Text = outputSpeech }, slotName, null, updatedIntent);
+        }
+
+        public static SkillResponse DialogElicitSlot(Speech outputSpeech, string slotName, Intent updatedIntent = null)
+        {
+            return DialogElicitSlot(new SsmlOutputSpeech { Ssml = outputSpeech.ToXml() }, slotName, null, updatedIntent);
+        }
+
         public static SkillResponse DialogElicitSlot(IOutputSpeech outputSpeech, string slotName, Intent updatedIntent = null)
         {
             return DialogElicitSlot(outputSpeech, slotName, null, updatedIntent);
+        }
+
+        public static SkillResponse DialogElicitSlot(string outputSpeech, string slotName, Session attributes, Intent updatedIntent = null)
+        {
+            return DialogElicitSlot(new PlainTextOutputSpeech { Text = outputSpeech }, slotName, attributes, updatedIntent);
+        }
+
+        public static SkillResponse DialogElicitSlot(Speech outputSpeech, string slotName, Session attributes, Intent updatedIntent = null)
+        {
+            return DialogElicitSlot(new SsmlOutputSpeech { Ssml = outputSpeech.ToXml() }, slotName, attributes, updatedIntent);
         }
 
         public static SkillResponse DialogElicitSlot(IOutputSpeech outputSpeech, string slotName, Session attributes, Intent updatedIntent = null)
@@ -322,10 +343,20 @@ namespace Alexa.NET
             return response;
         }
 
-        public static SkillResponse DialogConfirmSlot(IOutputSpeech outputSpeech, string slotName, 
+        public static SkillResponse DialogConfirmSlot(IOutputSpeech outputSpeech, string slotName,
             Intent updatedIntent = null)
         {
             return DialogConfirmSlot(outputSpeech, slotName, null, updatedIntent);
+        }
+
+        public static SkillResponse DialogConfirmSlot(string outputSpeech, string slotName, Intent updatedIntent = null)
+        {
+            return DialogConfirmSlot(new PlainTextOutputSpeech { Text = outputSpeech }, slotName, updatedIntent);
+        }
+
+        public static SkillResponse DialogConfirmSlot(Speech outputSpeech, string slotName, Intent updatedIntent = null)
+        {
+            return DialogConfirmSlot(new SsmlOutputSpeech { Ssml = outputSpeech.ToString() }, slotName, updatedIntent);
         }
 
         public static SkillResponse DialogConfirmSlot(IOutputSpeech outputSpeech, string slotName, Session attributes, Intent updatedIntent = null)
@@ -335,9 +366,30 @@ namespace Alexa.NET
             return response;
         }
 
+        public static SkillResponse DialogConfirmSlot(string outputSpeech, string slotName, Session attributes,
+            Intent updatedIntent = null)
+        {
+            return DialogConfirmSlot(new PlainTextOutputSpeech { Text = outputSpeech }, slotName, attributes, updatedIntent);
+        }
+
+        public static SkillResponse DialogConfirmSlot(Speech outputSpeech, string slotName, Session attributes, Intent updatedIntent = null)
+        {
+            return DialogConfirmSlot(new SsmlOutputSpeech { Ssml = outputSpeech.ToString() }, slotName, attributes, updatedIntent);
+        }
+
         public static SkillResponse DialogConfirmIntent(IOutputSpeech outputSpeech, Intent updatedIntent = null)
         {
             return DialogConfirmIntent(outputSpeech, null, updatedIntent);
+        }
+
+        public static SkillResponse DialogConfirmIntent(string outputSpeech, Intent updatedIntent = null)
+        {
+            return DialogConfirmIntent(new PlainTextOutputSpeech{Text=outputSpeech}, null, updatedIntent);
+        }
+
+        public static SkillResponse DialogConfirmIntent(Speech outputSpeech, Intent updatedIntent = null)
+        {
+            return DialogConfirmIntent(new SsmlOutputSpeech{Ssml=outputSpeech.ToXml()}, null, updatedIntent);
         }
 
         public static SkillResponse DialogConfirmIntent(IOutputSpeech outputSpeech, Session attributes, Intent updatedIntent = null)
@@ -345,6 +397,16 @@ namespace Alexa.NET
             var response = BuildResponse(outputSpeech, false, attributes, null, null);
             response.Response.Directives.Add(new DialogConfirmIntent { UpdatedIntent = updatedIntent });
             return response;
+        }
+
+        public static SkillResponse DialogConfirmIntent(string outputSpeech, Session attributes, Intent updatedIntent = null)
+        {
+            return DialogConfirmIntent(new PlainTextOutputSpeech { Text = outputSpeech }, attributes, updatedIntent);
+        }
+
+        public static SkillResponse DialogConfirmIntent(Speech outputSpeech, Session attributes, Intent updatedIntent = null)
+        {
+            return DialogConfirmIntent(new SsmlOutputSpeech { Ssml = outputSpeech.ToXml() }, attributes, updatedIntent);
         }
 
         #endregion
@@ -357,7 +419,7 @@ namespace Alexa.NET
         #region Main Response Builder
         private static SkillResponse BuildResponse(IOutputSpeech outputSpeech, bool shouldEndSession, Session sessionAttributes, Reprompt reprompt, ICard card)
         {
-            SkillResponse response = new SkillResponse {Version = "1.0"};
+            SkillResponse response = new SkillResponse { Version = "1.0" };
             if (sessionAttributes != null) response.SessionAttributes = sessionAttributes.Attributes;
 
             ResponseBody body = new ResponseBody
