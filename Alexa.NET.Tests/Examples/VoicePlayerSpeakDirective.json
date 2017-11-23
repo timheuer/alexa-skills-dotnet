@@ -1,0 +1,4 @@
+﻿{
+  "type": "VoicePlayer.Speak",
+  "speech": "This text is spoken while your skill processes the full response."
+}
