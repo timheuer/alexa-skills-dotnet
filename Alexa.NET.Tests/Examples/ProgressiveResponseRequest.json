@@ -1,0 +1,9 @@
+﻿{ 
+  "header":{ 
+    "requestId":"amzn1.echo-api.request.xxxxxxx"
+  },
+  "directive":{ 
+    "type":"VoicePlayer.Speak",
+    "speech":"This text is spoken while your skill processes the full response."
+  }
+}
