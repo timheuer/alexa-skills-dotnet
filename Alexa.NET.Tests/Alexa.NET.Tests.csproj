@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Alexa.NET.ListManagement\Alexa.NET.ListManagement.csproj" />
     <ProjectReference Include="..\Alexa.NET\Alexa.NET.csproj" />
   </ItemGroup>
   <ItemGroup>

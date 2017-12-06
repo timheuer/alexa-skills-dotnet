@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <RootNamespace>Alexa.NET</RootNamespace>
+    <Description>A simple .NET Core library for handling Alexa Skill request/responses.</Description>
+    <AssemblyTitle>Alexa.NET</AssemblyTitle>
+    <VersionPrefix>0.9-pre</VersionPrefix>
+    <Authors>Tim Heuer</Authors>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <AssemblyName>Alexa.NET.ListManagement</AssemblyName>
+    <PackageId>Alexa.NET.ListManagement</PackageId>
+    <PackageTags>amazon;alexa;echo;dot;echo dot;lists</PackageTags>
+    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/timheuer/alexa-skills-dotnet</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/timheuer/alexa-skills-dotnet/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/timheuer/alexa-skills-dotnet</RepositoryUrl>
+    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="ListManagement\" />
+  </ItemGroup>
+
+</Project>
