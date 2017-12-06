@@ -1,8 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+using System.IO;
 using System.Net.Http;
-using System.Text;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using Alexa.NET.ListManagement;
+using Newtonsoft.Json;
 
 namespace Alexa.NET
 {
@@ -10,18 +12,34 @@ namespace Alexa.NET
     {
         public const string ListManagementDomain = "https://api.amazonalexa.com";
         public HttpClient Client { get; }
-        public string AccessToken { get; }
 
-        public ListManagementClient(string token) : this(token,new HttpClient{BaseAddress = new Uri(ListManagementDomain,UriKind.Absolute)})
+        private const string GetListsEndpoint = "v2/householdlists/";
+
+        private static readonly JsonSerializer Serializer = JsonSerializer.CreateDefault();
+
+        public ListManagementClient(string token) : this(token,new HttpClient())
         {
         }
 
         public ListManagementClient(string token, HttpClient client)
         {
-            AccessToken = token;
+            if (client.BaseAddress == null)
+            {
+                client.BaseAddress = new Uri(ListManagementDomain, UriKind.Absolute);
+            }
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",token);
             Client = client;
         }
 
 
+        public async Task<GetListResponse> GetLists()
+        {
+            var response = await Client.GetStreamAsync(GetListsEndpoint);
+            using (var reader = new JsonTextReader(new StreamReader(response)))
+            {
+                return Serializer.Deserialize<GetListResponse>(reader);
+            }
+        }
     }
 }
