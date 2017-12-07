@@ -218,6 +218,28 @@ namespace Alexa.NET.Tests
             Assert.Equal("testitem",item.Id);
         }
 
+        [Fact]
+        public async Task UpdateItemGeneratesCorrectRequest()
+        {
+            var client = CreateListManagementClient(async req =>
+            {
+                Assert.Equal(HttpMethod.Put, req.Method);
+                Assert.Equal("/v2/householdlists/list/items/item", req.RequestUri.AbsolutePath);
+                var input = JObject.Parse(await req.Content.ReadAsStringAsync());
+
+                Assert.Equal(input.Value<string>("status"), SkillListItemStatus.Completed);
+                Assert.Equal(input.Value<string>("value"), "value");
+                Assert.Equal(input.Value<int>("version"), 7);
+
+                return new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new StringContent("{}")
+                };
+            });
+
+            await client.UpdateItem("list", "item","value", SkillListItemStatus.Completed,7);
+        }
+
 
         private ListManagementClient CreateListManagementClient(Func<HttpRequestMessage, HttpResponseMessage> handlerAction)
         {

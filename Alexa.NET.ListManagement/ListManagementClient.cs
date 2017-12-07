@@ -73,5 +73,16 @@ namespace Alexa.NET
                 return Serializer.Deserialize<SkillListItem>(reader);
             }
         }
+
+        public async Task<SkillListItem> UpdateItem(string listId, string itemId, string value, string status, int currentItemVersion)
+        {
+            var inputObject = new SkillListItemUpdateRequest { Status = status, Value = value,Version=currentItemVersion };
+            var inputContent = new StringContent(JObject.FromObject(inputObject).ToString(), Encoding.UTF8, "application/json");
+            var response = await Client.PutAsync($"{ListEndpoint}{listId}/items/{itemId}", inputContent).ConfigureAwait(false);
+            using (var reader = new JsonTextReader(new StreamReader(await response.Content.ReadAsStreamAsync().ConfigureAwait(false))))
+            {
+                return Serializer.Deserialize<SkillListItem>(reader);
+            }
+        }
     }
 }
