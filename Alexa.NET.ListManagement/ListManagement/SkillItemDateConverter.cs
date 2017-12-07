@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Globalization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Alexa.NET.ListManagement
 {
-    internal class LongDateConverter:JsonConverter
+    internal class SkillItemDateConverter:JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
@@ -13,8 +14,12 @@ namespace Alexa.NET.ListManagement
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            return DateTime.ParseExact(reader.ReadAsString().Replace("UTC", "+00:00"), "ddd MMM dd HH:mm:ss zzz yyyy",
-                CultureInfo.InvariantCulture);
+            reader.Read();
+            var dateValue = reader.ReadAsString();
+
+                return DateTime.ParseExact(dateValue.Replace("UTC", "+00:00"),
+                    "ddd MMM dd HH:mm:ss zzz yyyy",
+                    CultureInfo.InvariantCulture);
         }
 
         public override bool CanConvert(Type objectType)

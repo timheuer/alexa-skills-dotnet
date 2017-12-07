@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -119,7 +120,7 @@ namespace Alexa.NET.Tests
         }
 
         [Fact]
-        public void FullListGeneratesContent()
+        public void FullListAndItemGeneratesContent()
         {
             var list = new SkillList
             {
@@ -163,8 +164,69 @@ namespace Alexa.NET.Tests
             await client.GetItem("list", "item");
         }
 
+        [Fact]
+        public async Task GetItemHandlesCorrectResponse()
+        {
+            var client = CreateListManagementClient(req =>
+            {
+                var output = Utility.ExampleFileContent<SkillList>("ListSingleList.json").Items.First();
+                return new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new StringContent(JObject.FromObject(output).ToString())
+                };
+            });
+
+            var result = await client.GetItem("list", "item");
+            Assert.Equal("test",result.Value);
+            Assert.Equal("testitem",result.Id);
+        }
+
+        [Fact]
+        public async Task AddItemGeneratesCorrectRequest()
+        {
+            var client = CreateListManagementClient(async req =>
+            {
+                Assert.Equal(HttpMethod.Post, req.Method);
+                Assert.Equal("/v2/householdlists/list/items", req.RequestUri.AbsolutePath);
+                var input = JObject.Parse(await req.Content.ReadAsStringAsync());
+
+                Assert.Equal(input.Value<string>("status"),SkillListItemStatus.Completed);
+                Assert.Equal(input.Value<string>("value"),"value");
+
+                return new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new StringContent("{}")
+                };
+            });
+
+            await client.AddItem("list", "value",SkillListItemStatus.Completed);
+        }
+
+        [Fact]
+        public async Task AddItemHandlesCorrectResponse()
+        {
+            var client = CreateListManagementClient(req =>
+            {
+                var output = Utility.ExampleFileContent<SkillList>("ListSingleList.json").Items.First();
+                return new HttpResponseMessage(HttpStatusCode.Created)
+                {
+                    Content = new StringContent(JObject.FromObject(output).ToString())
+                };
+            });
+
+            var item = await client.AddItem("list", "value", SkillListItemStatus.Completed);
+            Assert.Equal("testitem",item.Id);
+        }
+
 
         private ListManagementClient CreateListManagementClient(Func<HttpRequestMessage, HttpResponseMessage> handlerAction)
+        {
+            var handler = new ActionMessageHandler(handlerAction);
+            var client = new HttpClient(handler);
+            return new ListManagementClient(DefaultAuthToken, client);
+        }
+
+        private ListManagementClient CreateListManagementClient(Func<HttpRequestMessage, Task<HttpResponseMessage>> handlerAction)
         {
             var handler = new ActionMessageHandler(handlerAction);
             var client = new HttpClient(handler);
