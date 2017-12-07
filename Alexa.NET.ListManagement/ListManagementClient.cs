@@ -35,7 +35,7 @@ namespace Alexa.NET
 
         public async Task<GetListResponse> GetLists()
         {
-            var response = await Client.GetStreamAsync(ListEndpoint);
+            var response = await Client.GetStreamAsync(ListEndpoint).ConfigureAwait(false);
             using (var reader = new JsonTextReader(new StreamReader(response)))
             {
                 return Serializer.Deserialize<GetListResponse>(reader);
@@ -44,10 +44,19 @@ namespace Alexa.NET
 
         public async Task<SkillList> GetList(string listId, string listItemStatus)
         {
-            var response = await Client.GetStreamAsync($"{ListEndpoint}{listId}/{listItemStatus}");
+            var response = await Client.GetStreamAsync($"{ListEndpoint}{listId}/{listItemStatus}").ConfigureAwait(false);
             using (var reader = new JsonTextReader(new StreamReader(response)))
             {
                 return Serializer.Deserialize<SkillList>(reader);
+            }
+        }
+
+        public async Task<SkillListItem> GetItem(string listId, string itemId)
+        {
+            var response = await Client.GetStreamAsync($"{ListEndpoint}{listId}/items/{itemId}").ConfigureAwait(false);
+            using (var reader = new JsonTextReader(new StreamReader(response)))
+            {
+                return Serializer.Deserialize<SkillListItem>(reader);
             }
         }
     }

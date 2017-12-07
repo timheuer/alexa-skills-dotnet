@@ -146,6 +146,23 @@ namespace Alexa.NET.Tests
             Assert.True(Utility.CompareJson(list, "ListSingleList.json"));
         }
 
+        [Fact]
+        public async Task GetItemGeneratesCorrectRequest()
+        {
+            var client = CreateListManagementClient(req =>
+            {
+                Assert.Equal(HttpMethod.Get, req.Method);
+                Assert.Equal(req.RequestUri.AbsolutePath, "/v2/householdlists/list/items/item");
+
+                return new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new StringContent("{}")
+                };
+            });
+
+            await client.GetItem("list", "item");
+        }
+
 
         private ListManagementClient CreateListManagementClient(Func<HttpRequestMessage, HttpResponseMessage> handlerAction)
         {
