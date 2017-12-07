@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace Alexa.NET.ListManagement
 {
-    public class ListMetadata
+    public class SkillListMetadata
     {
         [JsonProperty("listId")]
         public string ListId { get; set; }

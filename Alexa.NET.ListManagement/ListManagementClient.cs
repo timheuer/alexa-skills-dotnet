@@ -13,7 +13,7 @@ namespace Alexa.NET
         public const string ListManagementDomain = "https://api.amazonalexa.com";
         public HttpClient Client { get; }
 
-        private const string GetListsEndpoint = "v2/householdlists/";
+        private const string ListEndpoint = "v2/householdlists/";
 
         private static readonly JsonSerializer Serializer = JsonSerializer.CreateDefault();
 
@@ -35,10 +35,19 @@ namespace Alexa.NET
 
         public async Task<GetListResponse> GetLists()
         {
-            var response = await Client.GetStreamAsync(GetListsEndpoint);
+            var response = await Client.GetStreamAsync(ListEndpoint);
             using (var reader = new JsonTextReader(new StreamReader(response)))
             {
                 return Serializer.Deserialize<GetListResponse>(reader);
+            }
+        }
+
+        public async Task<SkillList> GetList(string listId, string listItemStatus)
+        {
+            var response = await Client.GetStreamAsync($"{ListEndpoint}{listId}/{listItemStatus}");
+            using (var reader = new JsonTextReader(new StreamReader(response)))
+            {
+                return Serializer.Deserialize<SkillList>(reader);
             }
         }
     }

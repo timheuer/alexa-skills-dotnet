@@ -1,0 +1,20 @@
+﻿{
+  "listId":"test",
+  "name":"name",
+  "state":"active",
+  "version":7, 
+  "items": [
+    {
+      "id": "testitem", 
+      "version": 3,
+      "value": "test", 
+      "status": "completed", 
+      "createdTime": "Wed Jul 19 23:24:10 UTC 2017", 
+      "updatedTime": "Wed Jul 19 23:24:10 UTC 2017", 
+      "href":"url"
+    }
+  ],
+  "links": {
+    "next": "v2/householdlists/{listId}/{status}?nextToken={nextToken}"
+  }
+}

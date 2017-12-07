@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Alexa.NET.ListManagement
 {
-    public static class ListState
+    public static class SkillListState
     {
         public const string Active = "active";
         public const string Archived = "archived";

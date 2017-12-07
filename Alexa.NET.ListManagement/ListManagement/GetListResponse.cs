@@ -8,6 +8,6 @@ namespace Alexa.NET.ListManagement
     public class GetListResponse
     {
         [JsonProperty("Lists")]
-        public List<ListMetadata> Lists { get; set; }
+        public List<SkillListMetadata> Lists { get; set; }
     }
 }
