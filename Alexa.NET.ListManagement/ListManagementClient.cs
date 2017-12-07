@@ -84,5 +84,11 @@ namespace Alexa.NET
                 return Serializer.Deserialize<SkillListItem>(reader);
             }
         }
+
+        public async Task DeleteItem(string listId, string itemId)
+        {
+            await Client.DeleteAsync($"{ListEndpoint}{listId}/items/{itemId}").ConfigureAwait(false);
+        }
+
     }
 }

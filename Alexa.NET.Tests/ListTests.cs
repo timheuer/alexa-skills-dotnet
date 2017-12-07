@@ -240,6 +240,20 @@ namespace Alexa.NET.Tests
             await client.UpdateItem("list", "item","value", SkillListItemStatus.Completed,7);
         }
 
+        [Fact]
+        public async Task DeleteItemGeneratesCorrectRequest()
+        {
+            var client = CreateListManagementClient(req =>
+            {
+                Assert.Equal(HttpMethod.Delete, req.Method);
+                Assert.Equal("/v2/householdlists/list/items/item", req.RequestUri.AbsolutePath);
+
+                return new HttpResponseMessage(HttpStatusCode.OK);
+            });
+
+            await client.DeleteItem("list", "item");
+        }
+
 
         private ListManagementClient CreateListManagementClient(Func<HttpRequestMessage, HttpResponseMessage> handlerAction)
         {
