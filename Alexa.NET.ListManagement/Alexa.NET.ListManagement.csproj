@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
     <RootNamespace>Alexa.NET</RootNamespace>
-    <Description>A simple .NET Core library for handling Alexa Skill request/responses.</Description>
-    <AssemblyTitle>Alexa.NET</AssemblyTitle>
+    <Description>A simple .NET Core library for handling Alexa lists.</Description>
+    <AssemblyTitle>Alexa.NET List Management</AssemblyTitle>
     <VersionPrefix>0.1-pre</VersionPrefix>
     <Authors>Tim Heuer</Authors>
     <TargetFramework>netstandard1.3</TargetFramework>
