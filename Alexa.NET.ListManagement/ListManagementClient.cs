@@ -85,9 +85,9 @@ namespace Alexa.NET
             }
         }
 
-        public async Task DeleteItem(string listId, string itemId)
+        public Task DeleteItem(string listId, string itemId)
         {
-            await Client.DeleteAsync($"{ListEndpoint}{listId}/items/{itemId}").ConfigureAwait(false);
+            return Client.DeleteAsync($"{ListEndpoint}{listId}/items/{itemId}");
         }
 
         public async Task<SkillListMetadata> AddList(string name)
@@ -110,6 +110,11 @@ namespace Alexa.NET
             {
                 return Serializer.Deserialize<SkillListMetadata>(reader);
             }
+        }
+
+        public Task DeleteList(string listId)
+        {
+            return Client.DeleteAsync($"{ListEndpoint}{listId}");
         }
     }
 }

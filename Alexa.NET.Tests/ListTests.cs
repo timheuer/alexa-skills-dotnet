@@ -297,6 +297,20 @@ namespace Alexa.NET.Tests
             await client.UpdateList("list","new name",SkillListState.Archived,7);
         }
 
+        [Fact]
+        public async Task DeleteListGeneratesCorrectRequest()
+        {
+            var client = CreateListManagementClient(req =>
+            {
+                Assert.Equal(HttpMethod.Delete, req.Method);
+                Assert.Equal("/v2/householdlists/list", req.RequestUri.AbsolutePath);
+
+                return new HttpResponseMessage(HttpStatusCode.OK);
+            });
+
+            await client.DeleteList("list");
+        }
+
 
         private ListManagementClient CreateListManagementClient(Func<HttpRequestMessage, HttpResponseMessage> handlerAction)
         {
