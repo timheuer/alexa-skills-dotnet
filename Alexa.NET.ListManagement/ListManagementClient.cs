@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Alexa.NET.ListManagement;
+using Alexa.NET.ListManagement.Requests;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -34,13 +36,12 @@ namespace Alexa.NET
             Client = client;
         }
 
-
-        public async Task<GetListResponse> GetLists()
+        public async Task<List<SkillListMetadata>> GetListsMetadata()
         {
             var response = await Client.GetStreamAsync(ListEndpoint).ConfigureAwait(false);
             using (var reader = new JsonTextReader(new StreamReader(response)))
             {
-                return Serializer.Deserialize<GetListResponse>(reader);
+                return Serializer.Deserialize<GetListResponse>(reader)?.Lists ?? new List<SkillListMetadata>();
             }
         }
 
@@ -61,7 +62,6 @@ namespace Alexa.NET
                 return Serializer.Deserialize<SkillListItem>(reader);
             }
         }
-
 
         public async Task<SkillListItem> AddItem(string listId, string value, string status)
         {
@@ -90,5 +90,26 @@ namespace Alexa.NET
             await Client.DeleteAsync($"{ListEndpoint}{listId}/items/{itemId}").ConfigureAwait(false);
         }
 
+        public async Task<SkillListMetadata> AddList(string name)
+        {
+            var inputObject = new SkillListCreateRequest { Name = name, State = SkillListState.Active };
+            var inputContent = new StringContent(JObject.FromObject(inputObject).ToString(), Encoding.UTF8, "application/json");
+            var response = await Client.PostAsync($"{ListEndpoint}", inputContent).ConfigureAwait(false);
+            using (var reader = new JsonTextReader(new StreamReader(await response.Content.ReadAsStreamAsync().ConfigureAwait(false))))
+            {
+                return Serializer.Deserialize<SkillListMetadata>(reader);
+            }
+        }
+
+        public async Task<SkillListMetadata> UpdateList(string listId, string name, string state, int currentListVersion)
+        {
+            var inputObject = new SkillListUpdateRequest { Name = name, State = state,Version=currentListVersion };
+            var inputContent = new StringContent(JObject.FromObject(inputObject).ToString(), Encoding.UTF8, "application/json");
+            var response = await Client.PutAsync($"{ListEndpoint}{listId}", inputContent).ConfigureAwait(false);
+            using (var reader = new JsonTextReader(new StreamReader(await response.Content.ReadAsStreamAsync().ConfigureAwait(false))))
+            {
+                return Serializer.Deserialize<SkillListMetadata>(reader);
+            }
+        }
     }
 }

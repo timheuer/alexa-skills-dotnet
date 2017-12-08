@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace Alexa.NET.ListManagement
+namespace Alexa.NET.ListManagement.Requests
 {
     internal class JsonStatusMapConverter:JsonConverter
     {

@@ -3,7 +3,7 @@ using System.Globalization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Alexa.NET.ListManagement
+namespace Alexa.NET.ListManagement.Requests
 {
     internal class SkillItemDateConverter:JsonConverter
     {

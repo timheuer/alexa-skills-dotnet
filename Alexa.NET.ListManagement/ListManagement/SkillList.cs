@@ -23,6 +23,6 @@ namespace Alexa.NET.ListManagement
         public Dictionary<string, string> Links { get; set; }
 
         [JsonProperty("items")]
-        public List<SkillListItem> Items { get; set; }
+        public List<SkillListItem> Items { get; set; } = new List<SkillListItem>();
     }
 }

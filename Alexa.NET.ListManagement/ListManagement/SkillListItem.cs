@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Alexa.NET.ListManagement.Requests;
 using Newtonsoft.Json;
 
 namespace Alexa.NET.ListManagement

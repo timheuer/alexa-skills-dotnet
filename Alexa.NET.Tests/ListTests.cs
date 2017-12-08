@@ -32,7 +32,7 @@ namespace Alexa.NET.Tests
                 return new HttpResponseMessage(HttpStatusCode.OK);
             });
 
-            await client.GetLists();
+            await client.GetListsMetadata();
         }
 
         [Fact]
@@ -49,7 +49,7 @@ namespace Alexa.NET.Tests
                 };
             });
 
-            await client.GetLists();
+            await client.GetListsMetadata();
         }
 
         [Fact]
@@ -252,6 +252,49 @@ namespace Alexa.NET.Tests
             });
 
             await client.DeleteItem("list", "item");
+        }
+
+        [Fact]
+        public async Task AddListGeneratesCorrectRequest()
+        {
+            var client = CreateListManagementClient(async req =>
+            {
+                Assert.Equal(HttpMethod.Post, req.Method);
+                Assert.Equal("/v2/householdlists/", req.RequestUri.AbsolutePath);
+                var input = JObject.Parse(await req.Content.ReadAsStringAsync());
+
+                Assert.Equal(input.Value<string>("state"), SkillListState.Active);
+                Assert.Equal(input.Value<string>("name"), "new list");
+
+                return new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new StringContent("{}")
+                };
+            });
+
+            await client.AddList("new list");
+        }
+
+        [Fact]
+        public async Task UpdateListGeneratesCorrectRequest()
+        {
+            var client = CreateListManagementClient(async req =>
+            {
+                Assert.Equal(HttpMethod.Put, req.Method);
+                Assert.Equal("/v2/householdlists/list", req.RequestUri.AbsolutePath);
+                var input = JObject.Parse(await req.Content.ReadAsStringAsync());
+
+                Assert.Equal(input.Value<string>("state"), SkillListState.Archived);
+                Assert.Equal(input.Value<string>("name"), "new name");
+                Assert.Equal(input.Value<int>("version"), 7);
+
+                return new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new StringContent("{}")
+                };
+            });
+
+            await client.UpdateList("list","new name",SkillListState.Archived,7);
         }
 
 
