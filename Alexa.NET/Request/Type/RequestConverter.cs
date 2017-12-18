@@ -45,7 +45,6 @@ namespace Alexa.NET.Request.Type
 
         public Request Create(string requestType)
         {
-
             var converter = RequestConverters.FirstOrDefault(c => c.CanConvert(requestType));
             return converter?.Convert(requestType) ?? throw new ArgumentOutOfRangeException(nameof(Type), $"Unknown request type: {requestType}.");
         }

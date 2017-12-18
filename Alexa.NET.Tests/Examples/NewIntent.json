@@ -1,0 +1,24 @@
+﻿{
+  "version": "string",
+  "context": {
+    "System": {
+      "application": {
+        "applicationId": "string"
+      },
+      "user": {
+        "userId": "string",
+        "accessToken": "string",
+        "permissions": {
+          "consentToken": "string"
+        }
+      },
+      "apiEndpoint": "https://api.amazonalexa.com"
+    }
+  },
+  "request": {
+    "type": "AlexaNet.CustomIntent",
+    "requestId": "amzn1.echo-api.request.0000000-0000-0000-0000-00000000000",
+    "timestamp": "2015-05-13T12:34:56Z",
+    "testProperty": true
+  }
+}
