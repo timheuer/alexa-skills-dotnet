@@ -1,0 +1,55 @@
+﻿{
+  "lists": [
+    // Default Shopping List details
+    {
+      "listId": "shopping_list_list_id",
+      "name": "Alexa shopping list",
+      "state": "active",
+      "version": 1,
+      "statusMap": [
+        {
+          "href": "url", // URL to get active list items in the list.
+          "status": "active"
+        },
+        {
+          "href": "url", // URL to get completed list items in list.
+          "status": "completed"
+        }
+      ]
+    },
+    // Default ToDo List details
+    {
+      "listId": "todo_list_list_id",
+      "name": "Alexa to-do list",
+      "state": "active",
+      "version": 1,
+      "statusMap": [
+        {
+          "href": "url",
+          "status": "active"
+        },
+        {
+          "href": "url",
+          "status": "completed"
+        }
+      ]
+    },
+    // Custom List Details.
+    {
+      "listId": "ff097d45-c098-44af-a2e9-7dae032b270b", // List id, String
+      "name": "test-list-name-veba", // List name, String
+      "state": "active", // List state, Enum
+      "version": 7,
+      "statusMap": [
+        {
+          "href": "url", // URL to get active list items in the list.
+          "status": "active"
+        },
+        {
+          "href": "url", // URL to get completed list items in list.
+          "status": "completed"
+        }
+      ]
+    }
+  ]
+}

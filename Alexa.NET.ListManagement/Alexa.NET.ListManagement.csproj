@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <RootNamespace>Alexa.NET</RootNamespace>
+    <Description>A simple .NET Core library for handling lists within Alexa skills</Description>
+    <AssemblyTitle>Alexa.NET List Management</AssemblyTitle>
+    <VersionPrefix>0.1-pre</VersionPrefix>
+    <Authors>Steven Pears</Authors>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <AssemblyName>Alexa.NET.ListManagement</AssemblyName>
+    <PackageId>Alexa.NET.ListManagement</PackageId>
+    <PackageTags>amazon;alexa;echo;dot;echo dot;lists</PackageTags>
+    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/stoiveyp/alexa-skills-listmanagement</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/stoiveyp/alexa-skills-listmanagement/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/stoiveyp/alexa-skills-listmanagement</RepositoryUrl>
+    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>9.0.1</Version>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

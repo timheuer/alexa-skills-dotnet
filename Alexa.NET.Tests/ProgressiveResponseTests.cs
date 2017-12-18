@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
 using Alexa.NET.Response;
 using Alexa.NET.Response.Directive;
@@ -122,21 +121,6 @@ namespace Alexa.NET.Tests
             var handler = new ActionMessageHandler(handlerAction);
             var client =  new HttpClient(handler);
             return new ProgressiveResponse("xxx", "authToken", "http://localhost", client);
-        }
-    }
-
-    public class ActionMessageHandler:HttpMessageHandler
-    {
-        private Func<HttpRequestMessage,HttpResponseMessage> Action { get; }
-
-        public ActionMessageHandler(Func<HttpRequestMessage,HttpResponseMessage> action)
-        {
-            Action = action;
-        }
-
-        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
-        {
-            return Task.FromResult(Action(request));
         }
     }
 }
