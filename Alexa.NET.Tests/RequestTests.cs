@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using Alexa.NET.Request;
 using Alexa.NET.Request.Type;
@@ -255,6 +256,26 @@ namespace Alexa.NET.Tests
             var request = GetObjectFromExample<SkillRequest>("NewIntent.json");
             Assert.IsType<NewIntentRequest>(request.Request);
             Assert.True(((NewIntentRequest) request.Request).TestProperty);
+        }
+
+        [Fact]
+        public void New_Request_Timestamp_validated_By_RequestVerification()
+        {
+            var request = new SkillRequest
+            {
+                Request = new LaunchRequest { Timestamp = DateTime.Now.AddMinutes(1) }
+            };
+            Assert.True(RequestVerification.RequestTimestampWithinTolerance(request));
+        }
+
+        [Fact]
+        public void Replay_Attack_Timestamp_Invalidated_By_RequestVerification()
+        {
+            var request = new SkillRequest
+            {
+                Request = new LaunchRequest { Timestamp = DateTime.Now.AddMinutes(3)}
+            };
+            Assert.False(RequestVerification.RequestTimestampWithinTolerance(request));
         }
 
         private T GetObjectFromExample<T>(string filename)
