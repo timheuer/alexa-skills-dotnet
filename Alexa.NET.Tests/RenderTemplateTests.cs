@@ -98,6 +98,66 @@ namespace Alexa.NET.Tests
         }
 
         [Fact]
+        public void Create_BodyTemplate6()
+        {
+            var actual = new BodyTemplate6
+            {
+                Token = "SampleTemplate_3476",
+                BackButton = BackButtonVisibility.Visible,
+                Image = new TemplateImage
+                {
+                    ContentDescription = ImageDescription,
+                    Sources = new List<ImageSource> { new ImageSource { Url = ImageSource } }
+                },
+                BackgroundImage = new TemplateImage
+                {
+                    ContentDescription = "Textured grey background",
+                    Sources = new List<ImageSource>
+                    {
+                        new ImageSource { Url="https://www.example.com/background-image1.png"}
+                    }
+                },
+
+
+                Title = "Sample BodyTemplate6",
+                Content = new TemplateContent
+                {
+                    Primary = new TemplateText { Text = "See my favorite car", Type = TextType.Plain },
+                    Secondary = new TemplateText { Text = "Custom-painted", Type = TextType.Plain },
+                    Tertiary = new TemplateText { Text = "By me!", Type = TextType.Plain }
+                }
+            };
+            Assert.True(CompareJson(actual, "TemplateBodyTemplate6.json"));
+        }
+
+        [Fact]
+        public void Create_BodyTemplate7()
+        {
+            var actual = new BodyTemplate7
+            {
+                Token = "SampleTemplate_3476",
+                BackButton = BackButtonVisibility.Visible,
+                Image = new TemplateImage
+                {
+                    ContentDescription = ImageDescription,
+                    Sources = new List<ImageSource> { new ImageSource { Url = ImageSource } }
+                },
+                BackgroundImage = new TemplateImage
+                {
+                    ContentDescription = "Textured grey background",
+                    Sources = new List<ImageSource>
+                    {
+                        new ImageSource { Url="https://www.example.com/background-image1.png"}
+                    }
+                },
+
+
+                Title = "Sample BodyTemplate7"
+            };
+            Assert.True(CompareJson(actual, "TemplateBodyTemplate7.json"));
+        }
+
+        [Fact]
         public void Create_ListTemplate1()
         {
             var actual = new ListTemplate1
@@ -159,6 +219,59 @@ namespace Alexa.NET.Tests
                 }
             };
             Assert.True(CompareJson(actual, "TemplateListTemplate1.json"));
+        }
+
+        [Fact]
+        public void Create_ListTemplate2()
+        {
+            var actual = new ListTemplate2
+            {
+                Token = "A2079",
+                Title = "My Favourite Pizzas",
+                BackButton = BackButtonVisibility.Visible,
+                BackgroundImage = new TemplateImage
+                {
+                    ContentDescription = "Textured grey background",
+                    Sources = new List<ImageSource>
+                    {
+                        new ImageSource { Url="https://www.example.com/background-image1.png"}
+                    }
+                },
+                Items = new List<ListItem>
+                {
+                    new ListItem
+                    {
+                        Token="item_1",
+                        Content = new TemplateContent
+                        {
+                            Primary = new TemplateText
+                            {
+                                Text="<font size='7'>Supreme</font> <br/> Large Pan Pizza $17.00",
+                                Type=TextType.Rich
+                            },
+                            Secondary = new TemplateText
+                            {
+                                Text="Secondary Text",
+                                Type=TextType.Plain
+                            },
+                            Tertiary=new TemplateText
+                            {
+                                Text=string.Empty,
+                                Type=TextType.Plain
+                            }
+                        },
+                        Image = new TemplateImage
+                        {
+                            Sources = new List<ImageSource>{new ImageSource
+                            {
+                                Url= "http://www.example.com/images/thumb/SupremePizza1.jpg"
+                            }},
+                            ContentDescription = "Supreme Large Pan Pizza"
+                        }
+                    }
+                }
+            };
+            Assert.True(CompareJson(actual, "TemplateListTemplate2.json"));
         }
 
         [Fact]
