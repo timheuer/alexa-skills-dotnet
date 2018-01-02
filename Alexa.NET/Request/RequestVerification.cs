@@ -11,6 +11,18 @@ namespace Alexa.NET.Request
 {
     public static class RequestVerification
     {
+        private const int AllowedTimestampToleranceInSeconds = 150;
+
+        public static bool RequestTimestampWithinTolerance(SkillRequest request)
+        {
+            return RequestTimestampWithinTolerance(request.Request.Timestamp);
+        }
+
+        public static bool RequestTimestampWithinTolerance(DateTime timestamp)
+        {
+            return Math.Abs(DateTime.Now.Subtract(timestamp).TotalSeconds) <= AllowedTimestampToleranceInSeconds;
+        }
+
         public static async Task<bool> Verify(string encodedSignature, Uri certificatePath, string body)
         {
             if (!VerifyCertificateUrl(certificatePath))
