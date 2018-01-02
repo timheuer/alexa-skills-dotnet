@@ -1,0 +1,41 @@
+﻿{
+  "type": "ListTemplate2",
+  "token": "A2079",
+  "backButton": "VISIBLE",
+  "backgroundImage": {
+    "contentDescription": "Textured grey background",
+    "sources": [
+      {
+        "url": "https://www.example.com/background-image1.png"
+      }
+    ]
+  },
+  "title": "My Favourite Pizzas",
+  "listItems": [
+    {
+      "token": "item_1",
+      "image": {
+        "sources": [
+          {
+            "url": "http://www.example.com/images/thumb/SupremePizza1.jpg"
+          }
+        ],
+        "contentDescription": "Supreme Large Pan Pizza"
+      },
+      "textContent": {
+        "primaryText": {
+          "type": "RichText",
+          "text": "<font size='7'>Supreme</font> <br/> Large Pan Pizza $17.00"
+        },
+        "secondaryText": {
+          "type": "PlainText",
+          "text": "Secondary Text"
+        },
+        "tertiaryText": {
+          "type": "PlainText",
+          "text": ""
+        }
+      }
+    }
+  ]
+}

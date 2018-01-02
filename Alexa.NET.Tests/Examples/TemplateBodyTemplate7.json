@@ -1,0 +1,22 @@
+﻿{
+  "type": "BodyTemplate7",
+  "token": "SampleTemplate_3476",
+  "backButton": "VISIBLE",
+  "title": "Sample BodyTemplate7",
+  "backgroundImage": {
+    "contentDescription": "Textured grey background",
+    "sources": [
+      {
+        "url": "https://www.example.com/background-image1.png"
+      }
+    ]
+  },
+  "image": {
+    "contentDescription": "Mount St. Helens landscape",
+    "sources": [
+      {
+        "url": "https://example.com/resources/card-images/mount-saint-helen-small.png"
+      }
+    ]
+  }
+}

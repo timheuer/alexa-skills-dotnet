@@ -1,0 +1,36 @@
+﻿{
+  "type": "BodyTemplate6",
+  "token": "SampleTemplate_3476",
+  "backButton": "VISIBLE",
+  "title": "Sample BodyTemplate6",
+  "backgroundImage": {
+    "contentDescription": "Textured grey background",
+    "sources": [
+      {
+        "url": "https://www.example.com/background-image1.png"
+      }
+    ]
+  },
+  "image": {
+    "contentDescription": "Mount St. Helens landscape",
+    "sources": [
+      {
+        "url": "https://example.com/resources/card-images/mount-saint-helen-small.png"
+      }
+    ]
+  },
+  "textContent": {
+    "primaryText": {
+      "text": "See my favorite car",
+      "type": "PlainText"
+    },
+    "secondaryText": {
+      "text": "Custom-painted",
+      "type": "PlainText"
+    },
+    "tertiaryText": {
+      "text": "By me!",
+      "type": "PlainText"
+    }
+  }
+}
