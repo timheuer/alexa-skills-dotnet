@@ -175,7 +175,7 @@ namespace Alexa.NET.Tests
         {
             var convertedObj = GetObjectFromExample<SkillRequest>("SkillEventAccountLink.json");
             var request = Assert.IsAssignableFrom<AccountLinkSkillEventRequest>(convertedObj.Request);
-            Assert.Equal(request.Body.AccessToken,"testToken");
+            Assert.Equal("testToken", request.Body.AccessToken);
         }
 
         [Fact]
@@ -183,14 +183,14 @@ namespace Alexa.NET.Tests
         {
             var convertedObj = GetObjectFromExample<SkillRequest>("SkillEventPermissionChange.json");
             var request = Assert.IsAssignableFrom<PermissionSkillEventRequest>(convertedObj.Request);
-            Assert.Equal(request.Body.AcceptedPermissions.First().Scope, "testScope");
+            Assert.Equal("testScope", request.Body.AcceptedPermissions.First().Scope);
         }
 
         [Fact]
         public void Can_Read_NonSpecialisedSkillEvent()
         {
             var convertedObj = GetObjectFromExample<SkillRequest>("SkillEventEnabled.json");
-            var request = Assert.IsAssignableFrom<SkillEventRequest>(convertedObj.Request);
+            Assert.IsAssignableFrom<SkillEventRequest>(convertedObj.Request);
         }
 
         private bool CompareObjectJson(object actual, object expected)
@@ -202,7 +202,7 @@ namespace Alexa.NET.Tests
             return JToken.DeepEquals(expectedJObject, actualJObject);
         }
 
-        private bool CompareJson(object actual, string expectedFile)
+        private static bool CompareJson(object actual, string expectedFile)
         {
 
             var actualJObject = JObject.FromObject(actual);
@@ -278,7 +278,7 @@ namespace Alexa.NET.Tests
             Assert.False(RequestVerification.RequestTimestampWithinTolerance(request));
         }
 
-        private T GetObjectFromExample<T>(string filename)
+        private static T GetObjectFromExample<T>(string filename)
         {
             var json = File.ReadAllText(Path.Combine(ExamplesPath, filename));
             return JsonConvert.DeserializeObject<T>(json);
