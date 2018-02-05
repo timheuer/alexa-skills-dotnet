@@ -244,6 +244,19 @@ namespace Alexa.NET.Tests
             Assert.Equal(ConfirmationStatus.Confirmed, expected.ConfirmationStatus);
 		}
 
+        [Fact]
+        public void Can_Handle_New_Intent()
+        {
+            if (!RequestConverter.RequestConverters.Any(c => c is NewIntentRequestTypeConverter))
+            {
+                RequestConverter.RequestConverters.Add(new NewIntentRequestTypeConverter());
+            }
+
+            var request = GetObjectFromExample<SkillRequest>("NewIntent.json");
+            Assert.IsType<NewIntentRequest>(request.Request);
+            Assert.True(((NewIntentRequest) request.Request).TestProperty);
+        }
+
         private T GetObjectFromExample<T>(string filename)
         {
             var json = File.ReadAllText(Path.Combine(ExamplesPath, filename));
