@@ -10,6 +10,13 @@ namespace Alexa.NET.Response.Ssml
         public string Pitch { get; set; }
         public string Volume { get; set; }
 
+        public Prosody() { }
+
+        public Prosody(params ISsml[] elements)
+        {
+            Elements = elements.ToList();
+        }
+
         public List<ISsml> Elements { get; set; } = new List<ISsml>();
 
         public XNode ToXml()
