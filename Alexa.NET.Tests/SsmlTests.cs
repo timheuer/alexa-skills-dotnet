@@ -1,5 +1,6 @@
 ﻿﻿using System;
-using Xunit;
+ using System.Collections.Generic;
+ using Xunit;
 using Alexa.NET.Response.Ssml;
 using System.Xml.Linq;
 
@@ -191,7 +192,44 @@ namespace Alexa.NET.Tests
 
             Assert.Equal(expected, actual);
         }
-      
+
+        [Fact]
+        public void TerseSsml_Produces_Identical_Xml()
+        {
+            const string speech1 = "Welcome to";
+            const string speech2 = "the most awesome game ever";
+            const string speech3 = "what do you want to do?";
+
+            var expected = new Speech
+            {
+                Elements = new List<ISsml>
+                {
+                    new Paragraph
+                    {
+                        Elements = new List<IParagraphSsml>
+                        {
+                            new PlainText(speech1),
+                            new Prosody
+                            {
+                                Rate = ProsodyRate.Fast,
+                                Elements = new List<ISsml> {new Sentence(speech2)}
+                            },
+                            new Sentence(speech3)
+                        }
+                    }
+                }
+            };
+
+            var actual = new Speech(
+                new Paragraph(
+                    new PlainText(speech1),
+                    new Prosody(new Sentence(speech2)){Rate=ProsodyRate.Fast},
+                    new Sentence(speech3)
+            ));
+
+            Assert.Equal(expected.ToXml(),actual.ToXml());
+        }
+
         private void CompareXml(string expected, ISsml ssml)
         {
             var actual = ssml.ToXml().ToString(SaveOptions.DisableFormatting);
