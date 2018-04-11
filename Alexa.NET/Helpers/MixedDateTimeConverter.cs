@@ -10,7 +10,7 @@ namespace Alexa.NET.Helpers
 
 		public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
 		{
-			// TODO: We may need to future add something here.  Right now this is only used in Request reader
+		    writer.WriteValue(value);
 		}
 
 		public override object ReadJson(JsonReader reader, System.Type objectType, object existingValue, JsonSerializer serializer)
