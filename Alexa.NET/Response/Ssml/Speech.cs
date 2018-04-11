@@ -8,7 +8,16 @@ namespace Alexa.NET.Response.Ssml
 	public class Speech
 	{
 
-		public List<ISsml> Elements { get; set; } = new List<ISsml>();
+	    public Speech()
+	    {
+	    }
+
+	    public Speech(params ISsml[] elements)
+	    {
+	        Elements = elements.ToList();
+	    }
+
+	    public List<ISsml> Elements { get; set; } = new List<ISsml>();
 
 
 		public string ToXml()

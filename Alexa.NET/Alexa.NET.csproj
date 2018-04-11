@@ -3,13 +3,13 @@
   <PropertyGroup>
     <Description>A simple .NET Core library for handling Alexa Skill request/responses.</Description>
     <AssemblyTitle>Alexa.NET</AssemblyTitle>
-    <VersionPrefix>1.4.2</VersionPrefix>
-    <Authors>Tim Heuer</Authors>
+    <VersionPrefix>1.5.0</VersionPrefix>
+    <Authors>Tim Heuer, Steven Pears</Authors>
     <TargetFramework>netstandard1.6</TargetFramework>
     <AssemblyName>Alexa.NET</AssemblyName>
     <PackageId>Alexa.NET</PackageId>
     <PackageTags>amazon;alexa;echo;dot;echo dot;skills</PackageTags>
-    <PackageReleaseNotes>Added new BodyTemplate7 (thanks Stuart!); deprecated ConsentToken; added address permissions. (thanks as always Steven!!!)</PackageReleaseNotes>
+    <PackageReleaseNotes>Added new methods for tidier SSML input (thanks Steven)</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/timheuer/alexa-skills-dotnet</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/timheuer/alexa-skills-dotnet/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/timheuer/alexa-skills-dotnet</RepositoryUrl>
