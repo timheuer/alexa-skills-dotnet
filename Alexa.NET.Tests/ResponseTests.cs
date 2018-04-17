@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Alexa.NET.Response;
 using Alexa.NET.Response.Directive;
@@ -99,6 +100,26 @@ namespace Alexa.NET.Tests
         }");
             Assert.True(CompareJson(actual,expected));
         }
+
+        [Fact]
+        public void AudioPlayerWithMetadataSerializesCorrectly()
+		{
+			var audioPlayer = Utility.ExampleFileContent<AudioPlayerPlayDirective>("AudioPlayerWithMetadata.json");
+			Assert.Equal("title of the track to display", audioPlayer.AudioItem.Metadata.Title);
+			Assert.Equal("subtitle of the track to display", audioPlayer.AudioItem.Metadata.Subtitle);
+			Assert.Single(audioPlayer.AudioItem.Metadata.Art.Sources);
+			Assert.Single(audioPlayer.AudioItem.Metadata.BackgroundImage.Sources);
+			Assert.Equal("https://url-of-the-album-art-image.png", audioPlayer.AudioItem.Metadata.Art.Sources.First().Url);
+			Assert.Equal("https://url-of-the-background-image.png", audioPlayer.AudioItem.Metadata.BackgroundImage.Sources.First().Url);
+		}
+
+        [Fact]
+        public void AudioPlayerIgnoresMetadataWhenNull()
+		{
+			var audioPlayer = Utility.ExampleFileContent<AudioPlayerPlayDirective>("AudioPlayerWithoutMetadata.json");
+			Assert.Null(audioPlayer.AudioItem.Metadata);
+			Assert.Equal("https://url-of-the-stream-to-play", audioPlayer.AudioItem.Stream.Url);
+		}
 
         private bool CompareJson(object actual, JObject expected)
         {
