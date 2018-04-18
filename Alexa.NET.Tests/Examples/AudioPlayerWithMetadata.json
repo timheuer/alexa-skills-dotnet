@@ -1,0 +1,30 @@
+﻿{
+  "type": "AudioPlayer.Play",
+  "playBehavior": "ENQUEUE",
+  "audioItem": {
+    "stream": {
+      "url": "https://url-of-the-stream-to-play",
+      "token": "opaque token representing this stream",
+      "expectedPreviousToken": "opaque token representing the previous stream",
+      "offsetInMilliseconds": 0
+    },
+    "metadata": {
+      "title": "title of the track to display",
+      "subtitle": "subtitle of the track to display",
+      "art": {
+        "sources": [
+          {
+            "url": "https://url-of-the-album-art-image.png"
+          }
+        ]
+      },
+      "backgroundImage": {
+        "sources": [
+          {
+            "url": "https://url-of-the-background-image.png"
+          }
+        ]
+      }
+    }
+  }
+}
