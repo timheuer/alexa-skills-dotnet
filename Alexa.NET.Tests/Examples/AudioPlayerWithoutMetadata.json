@@ -1,0 +1,12 @@
+﻿{
+  "type": "AudioPlayer.Play",
+  "playBehavior": "ENQUEUE",
+  "audioItem": {
+    "stream": {
+      "url": "https://url-of-the-stream-to-play",
+      "token": "opaque token representing this stream",
+      "expectedPreviousToken": "opaque token representing the previous stream",
+      "offsetInMilliseconds": 0
+    }
+  }
+}
