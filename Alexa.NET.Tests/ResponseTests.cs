@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using Alexa.NET.Response;
 using Alexa.NET.Response.Directive;
@@ -74,7 +76,7 @@ namespace Alexa.NET.Tests
                     Subtitle = "Secondary Title for Sample Video"
                 }
             };
-            var actual = new VideoAppDirective{VideoItem=videoItem};
+            var actual = new VideoAppDirective { VideoItem = videoItem };
 
             Assert.True(Utility.CompareJson(actual, "VideoAppDirectiveWithMetadata.json"));
         }
@@ -97,7 +99,75 @@ namespace Alexa.NET.Tests
                 ""text"": ""sample text""
             }
         }");
-            Assert.True(CompareJson(actual,expected));
+            Assert.True(CompareJson(actual, expected));
+        }
+
+        [Fact]
+        public void AudioPlayerGeneratesCorrectJson()
+        {
+            var directive = new AudioPlayerPlayDirective
+            {
+                PlayBehavior = PlayBehavior.Enqueue,
+                AudioItem = new AudioItem
+                {
+                    Stream = new AudioItemStream
+                    {
+                        Url = "https://url-of-the-stream-to-play",
+                        Token = "opaque token representing this stream",
+                        ExpectedPreviousToken = "opaque token representing the previous stream"
+                    }
+                }
+            };
+            Assert.True(Utility.CompareJson(directive, "AudioPlayerWithoutMetadata.json"));
+        }
+
+        [Fact]
+        public void AudioPlayerWithMetadataGeneratesCorrectJson()
+        {
+            var directive = new AudioPlayerPlayDirective
+            {
+                PlayBehavior = PlayBehavior.Enqueue,
+                AudioItem = new AudioItem
+                {
+                    Stream = new AudioItemStream
+                    {
+                        Url = "https://url-of-the-stream-to-play",
+                        Token = "opaque token representing this stream",
+                        ExpectedPreviousToken = "opaque token representing the previous stream"
+                    },
+                    Metadata = new AudioItemMetadata
+                    {
+                        Title = "title of the track to display",
+                        Subtitle = "subtitle of the track to display",
+                        Art = new AudioItemSources
+                        {
+                            Sources = new[] { new AudioItemSource("https://url-of-the-album-art-image.png") }.ToList()
+                        },
+                        BackgroundImage = new AudioItemSources { Sources = new[] { new AudioItemSource("https://url-of-the-background-image.png") }.ToList() }
+                    }
+                }
+            };
+            Assert.True(Utility.CompareJson(directive, "AudioPlayerWithMetadata.json"));
+        }
+
+        [Fact]
+        public void AudioPlayerWithMetadataDeserializesCorrectly()
+        {
+            var audioPlayer = Utility.ExampleFileContent<AudioPlayerPlayDirective>("AudioPlayerWithMetadata.json");
+            Assert.Equal("title of the track to display", audioPlayer.AudioItem.Metadata.Title);
+            Assert.Equal("subtitle of the track to display", audioPlayer.AudioItem.Metadata.Subtitle);
+            Assert.Single(audioPlayer.AudioItem.Metadata.Art.Sources);
+            Assert.Single(audioPlayer.AudioItem.Metadata.BackgroundImage.Sources);
+            Assert.Equal("https://url-of-the-album-art-image.png", audioPlayer.AudioItem.Metadata.Art.Sources.First().Url);
+            Assert.Equal("https://url-of-the-background-image.png", audioPlayer.AudioItem.Metadata.BackgroundImage.Sources.First().Url);
+        }
+
+        [Fact]
+        public void AudioPlayerIgnoresMetadataWhenNull()
+        {
+            var audioPlayer = Utility.ExampleFileContent<AudioPlayerPlayDirective>("AudioPlayerWithoutMetadata.json");
+            Assert.Null(audioPlayer.AudioItem.Metadata);
+            Assert.Equal("https://url-of-the-stream-to-play", audioPlayer.AudioItem.Stream.Url);
         }
 
         private bool CompareJson(object actual, JObject expected)
