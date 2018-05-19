@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using Alexa.NET.Response;
 using Alexa.NET.Response.Directive;
 using Alexa.NET.Response.Directive.Templates;
+using Alexa.NET.Response.Ssml;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
@@ -168,6 +169,25 @@ namespace Alexa.NET.Tests
             var audioPlayer = Utility.ExampleFileContent<AudioPlayerPlayDirective>("AudioPlayerWithoutMetadata.json");
             Assert.Null(audioPlayer.AudioItem.Metadata);
             Assert.Equal("https://url-of-the-stream-to-play", audioPlayer.AudioItem.Stream.Url);
+        }
+
+        [Fact]
+        public void RepromptStringGeneratesPlainTextOutput()
+        {
+            var result = new Reprompt("text");
+            Assert.IsType<PlainTextOutputSpeech>(result.OutputSpeech);
+            var plainText = (PlainTextOutputSpeech) result.OutputSpeech;
+            Assert.Equal("text",plainText.Text);
+        }
+
+        [Fact]
+        public void RepromptSsmlGeneratesPlainTextOutput()
+        {
+            var speech = new Speech(new PlainText("text"));
+            var result = new Reprompt(speech);
+            Assert.IsType<SsmlOutputSpeech>(result.OutputSpeech);
+            var ssmlText = (SsmlOutputSpeech)result.OutputSpeech;
+            Assert.Equal(speech.ToXml(), ssmlText.Ssml);
         }
 
         private bool CompareJson(object actual, JObject expected)
