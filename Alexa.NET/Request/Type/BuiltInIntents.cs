@@ -128,6 +128,11 @@ namespace Alexa.NET.Request.Type
         /// </summary>
         public const string StartOver = "AMAZON.StartOverIntent";
 
+        /// <summary>
+		/// Purpose
+		/// - Triggered when the user's spoken input does not match any of the other intents in the skill
+        /// </summary>
+		public const string Fallback = "AMAZON.FallbackIntent";
     }
 
 }
