@@ -13,6 +13,7 @@ namespace Alexa.NET.Tests
     {
         private const string ExamplesPath = "Examples";
         private const string IntentRequestFile = "IntentRequest.json";
+        private const string CanFulfillIntentRequestFile = "CanFulfillIntentRequest.json";
 
         [Fact]
         public void Can_read_IntentRequest_example()
@@ -21,6 +22,15 @@ namespace Alexa.NET.Tests
 
             Assert.NotNull(convertedObj);
             Assert.Equal(typeof(IntentRequest), convertedObj.GetRequestType());
+        }
+
+        [Fact]
+        public void Can_read_CanFulfillIntentRequest_example()
+        {
+            var convertedObj = GetObjectFromExample<SkillRequest>(CanFulfillIntentRequestFile);
+
+            Assert.NotNull(convertedObj);
+            Assert.Equal(typeof(CanFulfillIntentRequest), convertedObj.GetRequestType());
         }
 
         [Fact]

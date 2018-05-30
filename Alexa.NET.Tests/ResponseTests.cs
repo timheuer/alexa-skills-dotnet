@@ -190,6 +190,18 @@ namespace Alexa.NET.Tests
             Assert.Equal(speech.ToXml(), ssmlText.Ssml);
         }
 
+        [Fact]
+        public void CanFulfillResponse()
+        {
+            var fulfillment = new CanFulfillIntent {CanFulfill = CanFulfill.YES};
+            fulfillment.Slots.Add("slotName", new CanfulfillSlot
+            {
+                CanUnderstand = CanUnderstand.YES,
+                CanFulfill = SlotCanFulfill.NO
+            });
+            Assert.True(Utility.CompareJson(fulfillment, "CanFulfillResponse.json"));
+        }
+
         private bool CompareJson(object actual, JObject expected)
         {
             var actualJObject = JObject.FromObject(actual);
