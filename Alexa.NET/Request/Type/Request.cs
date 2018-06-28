@@ -4,7 +4,7 @@ using Alexa.NET.Helpers;
 
 namespace Alexa.NET.Request.Type
 {
-    public abstract class Request
+    public class Request
     {
         [JsonProperty("type")]
         public string Type { get; set; }
@@ -15,7 +15,7 @@ namespace Alexa.NET.Request.Type
         [JsonProperty("locale")]
         public string Locale { get; set; }
 
-        [JsonProperty("timestamp"),JsonConverter(typeof(MixedDateTimeConverter))]
+        [JsonProperty("timestamp"), JsonConverter(typeof(MixedDateTimeConverter))]
         public DateTime Timestamp { get; set; }
     }
 }
