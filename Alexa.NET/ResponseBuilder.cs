@@ -349,6 +349,31 @@ namespace Alexa.NET
 
         #endregion
 
+        #region CanFulfill Response
+
+        public static SkillResponse CanFulfill(Response.CanFulfill canFulfill, Dictionary<string, CanfulfillSlot> slots)
+        {
+            SkillResponse response = BuildEmptyResponse();
+
+            ResponseBody body = new ResponseBody();
+            body.CanFulfillIntent = new CanFulfillIntent()
+            {
+                CanFulfill = canFulfill,
+                Slots = slots
+            };
+
+            response.Response = body;
+
+            return response;
+        }
+
+        public static SkillResponse CanFulfill(Response.CanFulfill canFulfill, string slotName, CanfulfillSlot canFulfillSlot)
+        {
+            return CanFulfill(canFulfill, new Dictionary<string, CanfulfillSlot>() { { slotName, canFulfillSlot } });
+        }
+
+        #endregion
+
         public static SkillResponse Empty()
         {
             return BuildResponse(null, true, null, null, null);
@@ -357,7 +382,7 @@ namespace Alexa.NET
         #region Main Response Builder
         private static SkillResponse BuildResponse(IOutputSpeech outputSpeech, bool shouldEndSession, Session sessionAttributes, Reprompt reprompt, ICard card)
         {
-            SkillResponse response = new SkillResponse {Version = "1.0"};
+            SkillResponse response = BuildEmptyResponse();
             if (sessionAttributes != null) response.SessionAttributes = sessionAttributes.Attributes;
 
             ResponseBody body = new ResponseBody
@@ -372,6 +397,11 @@ namespace Alexa.NET
             response.Response = body;
 
             return response;
+        }
+
+        private static SkillResponse BuildEmptyResponse()
+        {
+            return new SkillResponse { Version = "1.0" };
         }
         #endregion
     }
