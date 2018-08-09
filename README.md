@@ -10,6 +10,8 @@ Alexa.NET also serves as a base foundation for a set of extensions from [Steven 
 * [Notifications](https://github.com/stoiveyp/Alexa.NET.Notifications)
 * [In-skill Pricing](https://github.com/stoiveyp/Alexa.NET.InSkillPricing)
 * [Messaging](https://github.com/stoiveyp/Alexa.NET.SkillMessaging)
+* [Gadgets](https://github.com/stoiveyp/Alexa.NET.Gadgets)
+* [Customer Profile](https://github.com/stoiveyp/Alexa.NET.CustomerProfile)
 
 # Some Quick Samples
 Here are some *simple* examples of how to use this library assuming the default signature of the AWS Lambda C# function:
