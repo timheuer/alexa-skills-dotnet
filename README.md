@@ -4,7 +4,7 @@
 
 Alexa.NET is a helper library for working with Alexa skill requests/responses in C#.  Whether you are using the AWS Lambda service or hosting your own service on your server, this library aims just to make working with the Alexa API more natural for a C# developer using a strongly-typed object model.
 
-Alexa.NET also serves as a base foundation for a set of extensions from [Steven Pears](https://github.com/stoiveyp):
+Alexa.NET also serves as a base foundation for a set of further Alexa skill development extensions from [Steven Pears](https://github.com/stoiveyp):
 
 * [Management](https://github.com/stoiveyp/Alexa.NET.Management)
 * [Notifications](https://github.com/stoiveyp/Alexa.NET.Notifications)
