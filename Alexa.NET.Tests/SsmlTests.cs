@@ -1,6 +1,6 @@
-﻿﻿using System;
- using System.Collections.Generic;
- using Xunit;
+﻿using System;
+using System.Collections.Generic;
+using Xunit;
 using Alexa.NET.Response.Ssml;
 using System.Xml.Linq;
 
@@ -74,9 +74,9 @@ namespace Alexa.NET.Tests
         {
             const string expected = @"<break time=""3s"" />";
 
-            var actual = new Break{Time="3s"};
+            var actual = new Break { Time = "3s" };
 
-            CompareXml(expected,actual);
+            CompareXml(expected, actual);
         }
 
         [Fact]
@@ -84,9 +84,9 @@ namespace Alexa.NET.Tests
         {
             const string expected = @"<break strength=""x-weak"" />";
 
-            var actual = new Break {Strength = BreakStrength.ExtraWeak};
+            var actual = new Break { Strength = BreakStrength.ExtraWeak };
 
-            CompareXml(expected,actual);
+            CompareXml(expected, actual);
         }
 
         [Fact]
@@ -94,7 +94,7 @@ namespace Alexa.NET.Tests
         {
             const string expected = @"<say-as interpret-as=""spell-out"">Hello World</say-as>";
 
-            var actual = new SayAs("Hello World",InterpretAs.SpellOut);
+            var actual = new SayAs("Hello World", InterpretAs.SpellOut);
 
             CompareXml(expected, actual);
         }
@@ -102,9 +102,9 @@ namespace Alexa.NET.Tests
         [Fact]
         public void Ssml_Sayas_Generates_Format()
         {
-			const string expected = @"<say-as interpret-as=""spell-out"" format=""ymd"">Hello World</say-as>";
+            const string expected = @"<say-as interpret-as=""spell-out"" format=""ymd"">Hello World</say-as>";
 
-            var actual = new SayAs("Hello World", InterpretAs.SpellOut){Format="ymd"};
+            var actual = new SayAs("Hello World", InterpretAs.SpellOut) { Format = "ymd" };
 
             CompareXml(expected, actual);
         }
@@ -223,17 +223,28 @@ namespace Alexa.NET.Tests
             var actual = new Speech(
                 new Paragraph(
                     new PlainText(speech1),
-                    new Prosody(new Sentence(speech2)){Rate=ProsodyRate.Fast},
+                    new Prosody(new Sentence(speech2)) { Rate = ProsodyRate.Fast },
                     new Sentence(speech3)
             ));
 
-            Assert.Equal(expected.ToXml(),actual.ToXml());
+            Assert.Equal(expected.ToXml(), actual.ToXml());
+        }
+
+        [Fact]
+        public void Ssml_VoiceAndLang_GenerateCorrectly()
+        {
+            var expected = "<voice name=\"Celine\"><lang xml:lang=\"fr-FR\">Je ne parle pas francais</lang></voice>";
+            var speech =
+                new Voice("Celine",
+                        new Lang("fr-FR", new PlainText("Je ne parle pas francais"))
+            );
+            CompareXml(expected, speech);
         }
 
         private void CompareXml(string expected, ISsml ssml)
         {
             var actual = ssml.ToXml().ToString(SaveOptions.DisableFormatting);
-            Assert.Equal(expected,actual);
+            Assert.Equal(expected, actual);
         }
     }
 }
