@@ -26,17 +26,15 @@ public SkillResponse FunctionHandler(SkillRequest input, ILambdaContext context)
 You most likely are going to want to get the type of request to know if it was the default launch, an intent, or maybe an audio request.
 ```csharp
 // check what type of a request it is like an IntentRequest or a LaunchRequest
-var requestType = input.GetRequestType();
-
-if (requestType == typeof(IntentRequest))
+if (input.Request is IntentRequest)
 {
     // do some intent-based stuff
 }
-else if (requestType == typeof(Alexa.NET.Request.Type.LaunchRequest))
+else if (input.Request is LaunchRequest)
 {
     // default launch path executed
 }
-else if (requestType == typeof(AudioPlayerRequest))
+else if (input.Request is AudioPlayerRequest)
 {
     // do some audio response stuff
 }
