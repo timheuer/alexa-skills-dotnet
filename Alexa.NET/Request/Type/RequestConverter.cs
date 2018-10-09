@@ -34,8 +34,15 @@ namespace Alexa.NET.Request.Type
             // Load JObject from stream
             var jObject = JObject.Load(reader);
 
+            // Request could be empty
+            var type = jObject["type"];
+            if (type == null)
+            {
+                return null;
+            }
+
             // Create target request object based on "type" property
-            var target = Create(jObject["type"].Value<string>());
+            var target = Create(type.Value<string>());
 
             // Populate the object properties
             serializer.Populate(jObject.CreateReader(), target);
