@@ -6,13 +6,15 @@ Alexa.NET is a helper library for working with Alexa skill requests/responses in
 
 Alexa.NET also serves as a base foundation for a set of further Alexa skill development extensions from [Steven Pears](https://github.com/stoiveyp):
 
-* [Management](https://github.com/stoiveyp/Alexa.NET.Management)
-* [Notifications](https://github.com/stoiveyp/Alexa.NET.Notifications)
-* [In-skill Pricing](https://github.com/stoiveyp/Alexa.NET.InSkillPricing)
-* [Messaging](https://github.com/stoiveyp/Alexa.NET.SkillMessaging)
-* [Gadgets](https://github.com/stoiveyp/Alexa.NET.Gadgets)
-* [Customer Profile API](https://github.com/stoiveyp/Alexa.NET.CustomerProfile)
-* [Settings API](https://github.com/stoiveyp/Alexa.NET.Settings)
+* Management [GitHub](https://github.com/stoiveyp/Alexa.NET.Management) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Management)
+* Notifications [GitHub](https://github.com/stoiveyp/Alexa.NET.Notifications) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Notifications)
+* In-skill Pricing [GitHub](https://github.com/stoiveyp/Alexa.NET.InSkillPricing) / [NuGet](https://www.nuget.org/packages/Alexa.NET.InSkillPricing)
+* Messaging [GitHub](https://github.com/stoiveyp/Alexa.NET.SkillMessaging) / [NuGet](https://www.nuget.org/packages/Alexa.NET.SkillMessaging)
+* Gadgets [GitHub](https://github.com/stoiveyp/Alexa.NET.Gadgets) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Gadgets)
+* Customer Profile API [GitHub](https://github.com/stoiveyp/Alexa.NET.CustomerProfile) / [NuGet](https://www.nuget.org/packages/Alexa.NET.CustomerProfile)
+* Settings API [GitHub](https://github.com/stoiveyp/Alexa.NET.Settings) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Settings)
+* APL Support [GitHub](https://github.com/stoiveyp/Alexa.NET.APL) / [NuGet](https://www.nuget.org/packages/Alexa.NET.APL)
+* Reminders API [GitHub](https://github.com/stoiveyp/Alexa.NET.Reminders) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Reminders)
 
 # Some Quick Samples
 Here are some *simple* examples of how to use this library assuming the default signature of the AWS Lambda C# function:
