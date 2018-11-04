@@ -16,6 +16,9 @@ Alexa.NET also serves as a base foundation for a set of further Alexa skill deve
 * APL Support [GitHub](https://github.com/stoiveyp/Alexa.NET.APL) / [NuGet](https://www.nuget.org/packages/Alexa.NET.APL)
 * Reminders API [GitHub](https://github.com/stoiveyp/Alexa.NET.Reminders) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Reminders)
 
+# What about some documentation?
+The below samples are the best documentation we have right now on how to use this library.  Of course, help is always appreciated if anyone desires to submit a pull request with more proper/readable documentation.  
+
 # Some Quick Samples
 Here are some *simple* examples of how to use this library assuming the default signature of the AWS Lambda C# function:
 ```csharp
