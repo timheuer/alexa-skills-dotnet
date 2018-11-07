@@ -121,6 +121,26 @@ var finalResponse = ResponseBuilder.Ask(speech, repromptBody);
 return finalResponse;
 ```
 
+## Build a simple response with a session variable
+```csharp
+string speech = "The time is twelve twenty three.";
+Session session = input.Session;
+
+if(session.Attributes == null)
+    session.Attributes = new Dictionary<string, object>();
+session.Attributes["real_time"] = DateTime.Now;
+
+return ResponseBuilder.Tell(speech, session);
+```
+
+## Retrieving session variable from request
+```csharp
+Session session = input.Session;
+DateTime lastTime = session.Attributes["real_time"] as DateTime;
+
+return ResponseBuilder.Tell("The last day you asked was at " + lastTime.DayOfWeek.ToString());
+```
+
 ## Play an audio file
 
 If your skill is registered as an audio player, you can send directives (instructions to play, enqueue, or stop an audio stream). 
