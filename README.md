@@ -45,6 +45,22 @@ else if (input.Request is AudioPlayerRequest)
 }
 ```
 
+## Get an audio request and determine the action
+
+Once you know it is an AudioPlayerRequest, you have to determine which one (playback started, finished, stopped, failed) and respond accordingly.
+
+```csharp
+// do some audio response stuff
+var audioRequest = input.Request as AudioPlayerRequest;
+
+// these are events sent when the audio state has changed on the device
+// determine what exactly happened
+if (audioRequest.AudioRequestType == AudioRequestType.PlaybackNearlyFinished)
+{
+    // queue up another audio file
+}
+```
+
 ## Get the intent and look at specifics
 Once you know it is an IntentRequest you probably want to know which one (name) and perhaps pull out parameters (slots):
 ```csharp
@@ -60,12 +76,26 @@ if (intentRequest.Intent.Name.Equals("MyIntentName"))
 ```
 
 ## Ask vs. Tell
-There are two base methods for forming a response with ResponseBuilder:
+There are two base methods for forming a speech response with ResponseBuilder:
 ```csharp
 var finalResponse = ResponseBuilder.Tell("We are done here.");
 var openEndedResponse = ResponseBuilder.Ask("Are we done here?");
 ```
 Using Tell sets ShouldEndSession to true. Using Ask sets ShouldEndSession to false. 
+
+## Play an audio file
+
+If your skill is registered as an audio player, you can send directives (instructions to play, enqueue, or stop an audio stream). 
+
+```csharp
+// create the speech response - you most likely will still have this
+string audioUrl = "http://mydomain.com/myaudiofile.mp3";
+string audioToken = "a token to describe the audio file"; 
+
+var audioResponse = ResponseBuilder.AudioPlayerPlay(PlayBehavior.ReplaceAll, audioUrl, audioToken);
+
+return audioResponse
+```
 
 ## Build a simple voice response
 
@@ -131,36 +161,6 @@ Session session = input.Session;
 DateTime lastTime = session.Attributes["real_time"] as DateTime;
 
 return ResponseBuilder.Tell("The last day you asked was at " + lastTime.DayOfWeek.ToString());
-```
-
-## Get an audio request and determine the action
-
-Once you know it is an AudioPlayerRequest, you have to determine which one (playback started, finished, stopped, failed) and respond accordingly.
-
-```csharp
-// do some audio response stuff
-var audioRequest = input.Request as AudioPlayerRequest;
-
-// these are events sent when the audio state has changed on the device
-// determine what exactly happened
-if (audioRequest.AudioRequestType == AudioRequestType.PlaybackNearlyFinished)
-{
-    // queue up another audio file
-}
-```
-
-## Play an audio file
-
-If your skill is registered as an audio player, you can send directives (instructions to play, enqueue, or stop an audio stream). 
-
-```csharp
-// create the speech response - you most likely will still have this
-string audioUrl = "http://mydomain.com/myaudiofile.mp3";
-string audioToken = "a token to describe the audio file"; 
-
-var audioResponse = ResponseBuilder.AudioPlayerPlay(PlayBehavior.ReplaceAll, audioUrl, audioToken);
-
-return audioResponse
 ```
 
 ## Build a response without using helpers
