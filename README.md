@@ -59,21 +59,13 @@ if (intentRequest.Intent.Name.Equals("MyIntentName"))
 }
 ```
 
-## Get an audio request and determine the action
-
-Once you know it is an AudioPlayerRequest, you have to determine which one (playback started, finished, stopped, failed) and respond accordingly.
-
+## Ask vs. Tell
+There are two base methods for forming a response with ResponseBuilder:
 ```csharp
-// do some audio response stuff
-var audioRequest = input.Request as AudioPlayerRequest;
-
-// these are events sent when the audio state has changed on the device
-// determine what exactly happened
-if (audioRequest.AudioRequestType == AudioRequestType.PlaybackNearlyFinished)
-{
-    // queue up another audio file
-}
+var finalResponse = ResponseBuilder.Tell("We are done here.");
+var openEndedResponse = ResponseBuilder.Ask("Are we done here?");
 ```
+Using Tell sets ShouldEndSession to true. Using Ask sets ShouldEndSession to false. 
 
 ## Build a simple voice response
 
@@ -139,6 +131,22 @@ Session session = input.Session;
 DateTime lastTime = session.Attributes["real_time"] as DateTime;
 
 return ResponseBuilder.Tell("The last day you asked was at " + lastTime.DayOfWeek.ToString());
+```
+
+## Get an audio request and determine the action
+
+Once you know it is an AudioPlayerRequest, you have to determine which one (playback started, finished, stopped, failed) and respond accordingly.
+
+```csharp
+// do some audio response stuff
+var audioRequest = input.Request as AudioPlayerRequest;
+
+// these are events sent when the audio state has changed on the device
+// determine what exactly happened
+if (audioRequest.AudioRequestType == AudioRequestType.PlaybackNearlyFinished)
+{
+    // queue up another audio file
+}
 ```
 
 ## Play an audio file
