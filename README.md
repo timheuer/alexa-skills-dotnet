@@ -38,23 +38,28 @@ public SkillResponse FunctionHandler(SkillRequest input, ILambdaContext context)
    * [Session Ended Request](#sessionendedrequest)
    * [Skill Event Request](#skilleventrequest)
    * [System Exception Request](#systemexceptionrequest)
--[Responses](#responses)
--[Reprompt](#reprompt)
+- [Responses](#responses)
+    * [Ask vs. Tell](#ask-vs-tell)
+    * [SSML Response](#ssml-response)
+    * [SSML Response With Card](#ssml-response-with-card)
+    * [SSML Response With Reprompt](#ssml-response-with-reprompt)
+- [Session Variables](#session-variables)
+- [Responses With No Helpers](#response-no-helpers)
 
 
 ### Request-Types
 Alexa will send different types of requests depending on what the user requested. Below are all of the types of requests:
 
-- AccountLinkSkillEventRequest
-- AudioPlayerRequest
-- DisplayElementSelectedRequest
-- IntentRequest
-- LaunchRequest
-- PermissionSkillEventRequest
-- PlaybackControllerRequest
-- SessionEndedRequest
-- SkillEventRequest
-- SystemExceptionRequest
+- ```AccountLinkSkillEventRequest```
+- ```AudioPlayerRequest```
+- ```DisplayElementSelectedRequest```
+- ```IntentRequest```
+- ```LaunchRequest```
+- ```PermissionSkillEventRequest```
+- ```PlaybackControllerRequest```
+- ```SessionEndedRequest```
+- ```SkillEventRequest```
+- ```SystemExceptionRequest```
 
 ```csharp
 // check what type of a request it is
@@ -93,12 +98,12 @@ if (audioRequest.AudioRequestType == AudioRequestType.PlaybackNearlyFinished)
 ```
 
 ## AudioRequestType
-Each AudioPlayerRequest will also come with a request type. The following types are available:
-- PlaybackStarted
-- PlaybackFinished
-- PlaybackStopped
-- PlaybackNearlyFinished
-- PlaybackFailed
+Each ```AudioPlayerRequest``` will also come with a request type. The following types are available:
+- ```PlaybackStarted```
+- ```PlaybackFinished```
+- ```PlaybackStopped```
+- ```PlaybackNearlyFinished```
+- ```PlaybackFailed```
 
 ### DisplayElementSelectedRequest
 Display Element Selected Requests will be sent when a skill has a GUI, and one of the buttons were selected by the user. This request comes with a token that will tell you which GUI element was selected.
@@ -108,7 +113,7 @@ var buttonID = elemSelReq.Token;
 ```
 
 ### IntentRequest
-This is the type that will likely be used most often. IntentRequest will also come with an Intent object and a DialogState of either STARTED, IN_PROGRESS or COMPLETED
+This is the type that will likely be used most often. IntentRequest will also come with an ```Intent``` object and a ```DialogState``` of either ```STARTED```, ```IN_PROGRESS``` or ```COMPLETED```
 
 ## Intent
 Each intent is defined by the name configured in the Alexa Developer Console. If you have included slots in your intent, they will be included in this object, along with confirmation status.
@@ -127,7 +132,7 @@ if (intentRequest.Intent.Name.Equals("MyIntentName"))
 ```
 
 ### LaunchRequest
-This type of request is sent when your skill is opened with no intents triggered. You should respond and expect an IntentRequest to follow.
+This type of request is sent when your skill is opened with no intents triggered. You should respond and expect an ```IntentRequest``` to follow.
 ```csharp
 if(input.Request is LaunchRequest)
 {
@@ -137,7 +142,7 @@ if(input.Request is LaunchRequest)
 ```
 
 ### PermissionSkillEventRequest
-This event is sent when a customer grants or revokes permissions. This request will include a SkillEventPermissions object with the included permission changes.
+This event is sent when a customer grants or revokes permissions. This request will include a ```SkillEventPermissions``` object with the included permission changes.
 ```csharp
 var permissionReq = input.Request as PermissionSkillEventRequest;
 var firstPermission = permissionReq.Body.AcceptedPermissions[0];
@@ -205,29 +210,15 @@ switch(sysException.Error.Type)
 
 ### Responses
 
-## Ask vs. Tell
-There are two base methods for forming a speech response with ResponseBuilder:
+## Ask-Vs-Tell
+There are two base methods for forming a speech response with ```ResponseBuilder```:
 ```csharp
 var finalResponse = ResponseBuilder.Tell("We are done here.");
 var openEndedResponse = ResponseBuilder.Ask("Are we done here?");
 ```
-Using Tell sets ShouldEndSession to true. Using Ask sets ShouldEndSession to false. 
+Using Tell sets ```ShouldEndSession``` to ```true```. Using Ask sets ```ShouldEndSession``` to ```false```. Use the appropriate function depending on whether you expect to continue dialog or not.
 
-## Play an audio file
-
-If your skill is registered as an audio player, you can send directives (instructions to play, enqueue, or stop an audio stream). 
-
-```csharp
-// create the speech response - you most likely will still have this
-string audioUrl = "http://mydomain.com/myaudiofile.mp3";
-string audioToken = "a token to describe the audio file"; 
-
-var audioResponse = ResponseBuilder.AudioPlayerPlay(PlayBehavior.ReplaceAll, audioUrl, audioToken);
-
-return audioResponse
-```
-
-## Build a simple voice response
+## SSML-Response
 
 There are various types of responses you can build and this library provides a helper function to build them up.  A simple one of having Alexa tell the user something using SSML may look like this:
 ```csharp
@@ -240,8 +231,8 @@ var finalResponse = ResponseBuilder.Tell(speech);
 return finalResponse;
 ```
 
-## Build a simple response with a Card
-In your response you can also have a 'Card' response, which presents UI to the Alexa companion app for the registered user.  Cards presently are simple and contain basically titles and plain text (no HTML :-().  To create a response with cards, you can use the ResponseBuilder:
+## SSML-Response-With-Card
+In your response you can also have a 'Card' response, which presents UI elements to Alexa. ```ResponseBuilder``` presently builds Simple cards only, which contain titles and plain text.
 ```csharp
 // create the speech response - cards still need a voice response
 var speech = new Alexa.NET.Response.SsmlOutputSpeech();
@@ -253,8 +244,8 @@ return finalResponse;
 
 ```
 
-## Build a simple response with a reprompt
-If you want to reprompt the user, use the Ask helpers
+## SSML-Response-With-Reprompt
+If you want to reprompt the user, use the Ask helpers. A reprompt can be useful if you would like to continue the conversation, or if you would like to remind the user to answer the question.
 ```csharp
 // create the speech response
 var speech = new Alexa.NET.Response.SsmlOutputSpeech();
@@ -273,7 +264,23 @@ var finalResponse = ResponseBuilder.Ask(speech, repromptBody);
 return finalResponse;
 ```
 
-## Build a simple response with a session variable
+## Play-Audio-File
+If your skill is registered as an audio player, you can send directives (instructions to play, enqueue, or stop an audio stream). 
+
+```csharp
+// create the speech response - you most likely will still have this
+string audioUrl = "http://mydomain.com/myaudiofile.mp3";
+string audioToken = "a token to describe the audio file"; 
+
+var audioResponse = ResponseBuilder.AudioPlayerPlay(PlayBehavior.ReplaceAll, audioUrl, audioToken);
+
+return audioResponse
+```
+
+### Session-Variables
+Session variables can be saved into a response, and will be sent back and forth as long as the session remains open.
+
+## Response with session variable
 ```csharp
 string speech = "The time is twelve twenty three.";
 Session session = input.Session;
@@ -293,10 +300,11 @@ DateTime lastTime = session.Attributes["real_time"] as DateTime;
 return ResponseBuilder.Tell("The last day you asked was at " + lastTime.DayOfWeek.ToString());
 ```
 
+### Response-No-Helpers
+
 ## Build a response without using helpers
 
-If you do not want to use the helper Tell/Ask functions for the simple structure you 
-can build up the response manually using the ```Response``` and some ```IOutputSpeech``` objects.
+If you do not want to use the helper Tell/Ask functions for the simple structure you can build up the response manually using the ```Response``` and some ```IOutputSpeech``` objects. If you would like to include a ```StandardCard``` or ```LinkAccountCard``` in your response, you could add it like this onto the response body.
 ```csharp
 // create the speech response - you most likely will still have this
 var speech = new Alexa.NET.Response.SsmlOutputSpeech();
@@ -306,6 +314,7 @@ speech.Ssml = "<speak>Today is <say-as interpret-as=\"date\">????0922</say-as>.<
 var responseBody = new Alexa.NET.Response.ResponseBody();
 responseBody.OutputSpeech = speech;
 responseBody.ShouldEndSession = true;
+responseBody.Card = new SimpleCard {Title = "Test", Content = "Testing Alexa"};
 
 var skillResponse = new Alexa.NET.Response.SkillResponse();
 skillResponse.Response = responseBody;
