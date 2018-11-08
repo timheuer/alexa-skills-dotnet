@@ -16,23 +16,48 @@ Alexa.NET also serves as a base foundation for a set of further Alexa skill deve
 * APL Support [GitHub](https://github.com/stoiveyp/Alexa.NET.APL) / [NuGet](https://www.nuget.org/packages/Alexa.NET.APL)
 * Reminders API [GitHub](https://github.com/stoiveyp/Alexa.NET.Reminders) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Reminders)
 
-# Table of Contents
-- [Examples](#examples)
-    * [Request Types](#request-types)
-        + [Audio Player Request](#audio-player-request)
-
-## Examples
-Here are some *simple* examples of how to use this library assuming the default signature of the AWS Lambda C# function:
+## Setup
+Regardless of your architecture, your function for Alexa will be accepting a SkillRequest and returning a SkillResponse. The deserialization of the incoming request into a SkillRequest object will depend on your framework.
 ```csharp
 public SkillResponse FunctionHandler(SkillRequest input, ILambdaContext context)
 {
     // your function logic goes here
+    return new SkillResponse("OK");
 }
 ```
+
+# Table of Contents
+- [Request Types](#request-types)    
+   * [Account Link Skill Event Request](#accountlinkskilleventrequest)
+   * [Audio Player Request](#audio-player-request)
+   * [Display Element Selected Request](#displayelementselectedrequest)
+   * [Intent Request](#intentrequest)
+   * [Launch Request](#launchrequest)
+   * [Permission Skill Event Request](#permissionskilleventrequest)
+   * [Playback Controller Request](#playbackcontrollerrequest)
+   * [Session Ended Request](#sessionendedrequest)
+   * [Skill Event Request](#skilleventrequest)
+   * [System Exception Request](#systemexceptionrequest)
+-[Responses](#responses)
+-[Reprompt](#reprompt)
+
+
 ### Request-Types
-You most likely are going to want to get the type of request to know if it was the default launch, an intent, or maybe an audio request.
+Alexa will send different types of requests depending on what the user requested. Below are all of the types of requests:
+
+- AccountLinkSkillEventRequest
+- AudioPlayerRequest
+- DisplayElementSelectedRequest
+- IntentRequest
+- LaunchRequest
+- PermissionSkillEventRequest
+- PlaybackControllerRequest
+- SessionEndedRequest
+- SkillEventRequest
+- SystemExceptionRequest
+
 ```csharp
-// check what type of a request it is like an IntentRequest or a LaunchRequest
+// check what type of a request it is
 if (input.Request is IntentRequest)
 {
     // do some intent-based stuff
@@ -47,35 +72,138 @@ else if (input.Request is AudioPlayerRequest)
 }
 ```
 
-### Audio-Player-Request
+### AccountLinkSkillEventRequest
+This request is used for linking Alexa to another account. The request will come with the access token needed to interact with the connected service.
+```csharp
+var accountLinkReq = input.Request as AccountLinkSkillEventRequest;
+var accessToken = accountLinkReq.AccessToken;
+```
 
-Once you know it is an AudioPlayerRequest, you have to determine which one (playback started, finished, stopped, failed) and respond accordingly.
+### Audio-Player-Request
+Audio Player Requests will be sent when a skill is supposed to play audio, or if an audio state change has occured on the device.
 
 ```csharp
 // do some audio response stuff
 var audioRequest = input.Request as AudioPlayerRequest;
 
-// these are events sent when the audio state has changed on the device
-// determine what exactly happened
 if (audioRequest.AudioRequestType == AudioRequestType.PlaybackNearlyFinished)
 {
     // queue up another audio file
 }
 ```
 
-## Get the intent and look at specifics
-Once you know it is an IntentRequest you probably want to know which one (name) and perhaps pull out parameters (slots):
+## AudioRequestType
+Each AudioPlayerRequest will also come with a request type. The following types are available:
+- PlaybackStarted
+- PlaybackFinished
+- PlaybackStopped
+- PlaybackNearlyFinished
+- PlaybackFailed
+
+### DisplayElementSelectedRequest
+Display Element Selected Requests will be sent when a skill has a GUI, and one of the buttons were selected by the user. This request comes with a token that will tell you which GUI element was selected.
 ```csharp
-// do some intent-based stuff
+var elemSelReq = input.Request as DisplayElementSelectedRequest;
+var buttonID = elemSelReq.Token;
+```
+
+### IntentRequest
+This is the type that will likely be used most often. IntentRequest will also come with an Intent object and a DialogState of either STARTED, IN_PROGRESS or COMPLETED
+
+## Intent
+Each intent is defined by the name configured in the Alexa Developer Console. If you have included slots in your intent, they will be included in this object, along with confirmation status.
+```csharp
 var intentRequest = input.Request as IntentRequest;
 
 // check the name to determine what you should do
 if (intentRequest.Intent.Name.Equals("MyIntentName"))
 {
-    // get the slots
-    var firstValue = intentRequest.Intent.Slots["FirstSlot"].Value;
+   if(intentRequest.DialogState.Equals("COMPLETED"))
+   {
+       // get the slots
+       var firstValue = intentRequest.Intent.Slots["FirstSlot"].Value;
+    }
 }
 ```
+
+### LaunchRequest
+This type of request is sent when your skill is opened with no intents triggered. You should respond and expect an IntentRequest to follow.
+```csharp
+if(input.Request is LaunchRequest)
+{
+   return ResponseBuilder.Ask("How can I help you today?");
+}
+
+```
+
+### PermissionSkillEventRequest
+This event is sent when a customer grants or revokes permissions. This request will include a SkillEventPermissions object with the included permission changes.
+```csharp
+var permissionReq = input.Request as PermissionSkillEventRequest;
+var firstPermission = permissionReq.Body.AcceptedPermissions[0];
+```
+### PlaybackControllerRequest
+This event is sent to control playback for an audio player skill.
+```csharp
+var playbackReq = input.Request as PlaybackControllerRequest;
+switch(playbackReq.PlaybackRequestType)
+{
+   case PlaybackControllerRequestType.Next:
+      break;
+   case PlaybackControllerRequestType.Pause:
+      break;
+   case PlaybackControllerRequestType.Play:
+      break;
+   case PlaybackControllerRequestType.Previous:
+      break;
+}
+```
+### SessionEndedRequest
+This event is sent if the user requests to exit, times out or an error has occured on the device.
+```csharp
+var sessEndReq = input.Request as SessionEndedRequest;
+switch(sessEndReq)
+{
+   case Reason.UserInitiated:
+      break;
+   case Reason.Error:
+      break;
+   case Reason.ExceededMaxReprompts:
+      break;
+}
+```
+
+### SkillEventRequest
+This event is sent if a custom event has been configured in ASK CLI.
+
+## SystemExceptionRequest
+When an error occurs, whether as the result of a malformed event or too many requests, AVS will return a message to your client that includes an exception code and a description.
+```csharp
+var sysException = input.Request as SystemExceptionRequest;
+string message = sysException.Error.Message;
+string reqID = sysException.ErrorCause.requestId;
+switch(sysException.Error.Type)
+{
+   case ErrorType.InvalidResponse:
+      break;
+   case ErrorType.DeviceCommunicationError:
+      break;
+   case ErrorType.InternalError:
+      break;
+   case ErrorType.MediaErrorUnknown:
+      break;
+   case ErrorType.InvalidMediaRequest:
+      break;
+   case ErrorType.MediaServiceUnavailable:
+      break;
+   case ErrorType.InternalServerError:
+      break;
+   case ErrorType.InternalDeviceError:
+      break;
+}
+```
+
+### Responses
 
 ## Ask vs. Tell
 There are two base methods for forming a speech response with ResponseBuilder:
