@@ -77,14 +77,14 @@ else if (input.Request is AudioPlayerRequest)
 }
 ```
 
-### AccountLinkSkillEventRequest
+## AccountLinkSkillEventRequest
 This request is used for linking Alexa to another account. The request will come with the access token needed to interact with the connected service.
 ```csharp
 var accountLinkReq = input.Request as AccountLinkSkillEventRequest;
 var accessToken = accountLinkReq.AccessToken;
 ```
 
-### Audio-Player-Request
+## Audio-Player-Request
 Audio Player Requests will be sent when a skill is supposed to play audio, or if an audio state change has occured on the device.
 
 ```csharp
@@ -97,7 +97,7 @@ if (audioRequest.AudioRequestType == AudioRequestType.PlaybackNearlyFinished)
 }
 ```
 
-## AudioRequestType
+# AudioRequestType
 Each ```AudioPlayerRequest``` will also come with a request type. The following types are available:
 - ```PlaybackStarted```
 - ```PlaybackFinished```
@@ -105,17 +105,17 @@ Each ```AudioPlayerRequest``` will also come with a request type. The following 
 - ```PlaybackNearlyFinished```
 - ```PlaybackFailed```
 
-### DisplayElementSelectedRequest
+## DisplayElementSelectedRequest
 Display Element Selected Requests will be sent when a skill has a GUI, and one of the buttons were selected by the user. This request comes with a token that will tell you which GUI element was selected.
 ```csharp
 var elemSelReq = input.Request as DisplayElementSelectedRequest;
 var buttonID = elemSelReq.Token;
 ```
 
-### IntentRequest
+## IntentRequest
 This is the type that will likely be used most often. IntentRequest will also come with an ```Intent``` object and a ```DialogState``` of either ```STARTED```, ```IN_PROGRESS``` or ```COMPLETED```
 
-## Intent
+# Intent
 Each intent is defined by the name configured in the Alexa Developer Console. If you have included slots in your intent, they will be included in this object, along with confirmation status.
 ```csharp
 var intentRequest = input.Request as IntentRequest;
@@ -131,7 +131,7 @@ if (intentRequest.Intent.Name.Equals("MyIntentName"))
 }
 ```
 
-### LaunchRequest
+## LaunchRequest
 This type of request is sent when your skill is opened with no intents triggered. You should respond and expect an ```IntentRequest``` to follow.
 ```csharp
 if(input.Request is LaunchRequest)
@@ -141,13 +141,13 @@ if(input.Request is LaunchRequest)
 
 ```
 
-### PermissionSkillEventRequest
+## PermissionSkillEventRequest
 This event is sent when a customer grants or revokes permissions. This request will include a ```SkillEventPermissions``` object with the included permission changes.
 ```csharp
 var permissionReq = input.Request as PermissionSkillEventRequest;
 var firstPermission = permissionReq.Body.AcceptedPermissions[0];
 ```
-### PlaybackControllerRequest
+## PlaybackControllerRequest
 This event is sent to control playback for an audio player skill.
 ```csharp
 var playbackReq = input.Request as PlaybackControllerRequest;
@@ -163,7 +163,7 @@ switch(playbackReq.PlaybackRequestType)
       break;
 }
 ```
-### SessionEndedRequest
+## SessionEndedRequest
 This event is sent if the user requests to exit, times out or an error has occured on the device.
 ```csharp
 var sessEndReq = input.Request as SessionEndedRequest;
@@ -178,7 +178,7 @@ switch(sessEndReq)
 }
 ```
 
-### SkillEventRequest
+## SkillEventRequest
 This event is sent if a custom event has been configured in ASK CLI.
 
 ## SystemExceptionRequest
