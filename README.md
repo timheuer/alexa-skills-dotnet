@@ -16,10 +16,12 @@ Alexa.NET also serves as a base foundation for a set of further Alexa skill deve
 * APL Support [GitHub](https://github.com/stoiveyp/Alexa.NET.APL) / [NuGet](https://www.nuget.org/packages/Alexa.NET.APL)
 * Reminders API [GitHub](https://github.com/stoiveyp/Alexa.NET.Reminders) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Reminders)
 
-# What about some documentation?
-The below samples are the best documentation we have right now on how to use this library.  Of course, help is always appreciated if anyone desires to submit a pull request with more proper/readable documentation.  
+# Table of Contents
+- [Examples](#examples)
+    * [Request Types](#requesttypes)
+        + [Audio Player Request](#audioplayerrequest)
 
-# Some Quick Samples
+## Examples
 Here are some *simple* examples of how to use this library assuming the default signature of the AWS Lambda C# function:
 ```csharp
 public SkillResponse FunctionHandler(SkillRequest input, ILambdaContext context)
@@ -27,7 +29,7 @@ public SkillResponse FunctionHandler(SkillRequest input, ILambdaContext context)
     // your function logic goes here
 }
 ```
-## Get the request type (Launch, Intent, Audio, etc)
+### Request Types
 You most likely are going to want to get the type of request to know if it was the default launch, an intent, or maybe an audio request.
 ```csharp
 // check what type of a request it is like an IntentRequest or a LaunchRequest
@@ -45,7 +47,7 @@ else if (input.Request is AudioPlayerRequest)
 }
 ```
 
-## Get an audio request and determine the action
+### Audio Player Request
 
 Once you know it is an AudioPlayerRequest, you have to determine which one (playback started, finished, stopped, failed) and respond accordingly.
 
