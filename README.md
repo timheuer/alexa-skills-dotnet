@@ -29,7 +29,7 @@ public SkillResponse FunctionHandler(SkillRequest input, ILambdaContext context)
     // your function logic goes here
 }
 ```
-### Request Types
+### Request-Types
 You most likely are going to want to get the type of request to know if it was the default launch, an intent, or maybe an audio request.
 ```csharp
 // check what type of a request it is like an IntentRequest or a LaunchRequest
@@ -47,7 +47,7 @@ else if (input.Request is AudioPlayerRequest)
 }
 ```
 
-### Audio Player Request
+### Audio-Player-Request
 
 Once you know it is an AudioPlayerRequest, you have to determine which one (playback started, finished, stopped, failed) and respond accordingly.
 
