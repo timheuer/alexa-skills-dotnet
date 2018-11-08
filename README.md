@@ -18,8 +18,8 @@ Alexa.NET also serves as a base foundation for a set of further Alexa skill deve
 
 # Table of Contents
 - [Examples](#examples)
-    * [Request Types](#requesttypes)
-        + [Audio Player Request](#audioplayerrequest)
+    * [Request Types](#request-types)
+        + [Audio Player Request](#audio-player-request)
 
 ## Examples
 Here are some *simple* examples of how to use this library assuming the default signature of the AWS Lambda C# function:
