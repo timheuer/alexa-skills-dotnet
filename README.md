@@ -16,7 +16,7 @@ Alexa.NET also serves as a base foundation for a set of further Alexa skill deve
 * APL Support [GitHub](https://github.com/stoiveyp/Alexa.NET.APL) / [NuGet](https://www.nuget.org/packages/Alexa.NET.APL)
 * Reminders API [GitHub](https://github.com/stoiveyp/Alexa.NET.Reminders) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Reminders)
 
-## Setup
+# Setup
 Regardless of your architecture, your function for Alexa will be accepting a SkillRequest and returning a SkillResponse. The deserialization of the incoming request into a SkillRequest object will depend on your framework.
 ```csharp
 public SkillResponse FunctionHandler(SkillRequest input, ILambdaContext context)
@@ -47,7 +47,7 @@ public SkillResponse FunctionHandler(SkillRequest input, ILambdaContext context)
 - [Responses Without Helpers](#responses-without-helpers)
 
 
-### Request Types
+# Request Types
 Alexa will send different types of requests depending on the events you should respond to. Below are all of the types of requests:
 
 - ```AccountLinkSkillEventRequest```
@@ -80,7 +80,7 @@ if (audioRequest.AudioRequestType == AudioRequestType.PlaybackNearlyFinished)
 }
 ```
 
-# AudioRequestType
+### AudioRequestType
 Each ```AudioPlayerRequest``` will also come with a request type to describe the state change:
 - ```PlaybackStarted```
 - ```PlaybackFinished```
@@ -98,7 +98,7 @@ var buttonID = elemSelReq.Token;
 ## Handling the IntentRequest
 This is the type that will likely be used most often. IntentRequest will also come with an ```Intent``` object and a ```DialogState``` of either ```STARTED```, ```IN_PROGRESS``` or ```COMPLETED```
 
-# Intent
+### Intent
 Each intent is defined by the name configured in the Alexa Developer Console. If you have included slots in your intent, they will be included in this object, along with a confirmation status.
 ```csharp
 var intentRequest = input.Request as IntentRequest;
@@ -193,7 +193,7 @@ switch(sysException.Error.Type)
 }
 ```
 
-### Responses
+# Responses
 
 ## Ask Vs Tell
 There are two helper methods for forming a speech response with ```ResponseBuilder```:
@@ -261,7 +261,7 @@ var audioResponse = ResponseBuilder.AudioPlayerPlay(PlayBehavior.ReplaceAll, aud
 return audioResponse
 ```
 
-### Session Variables
+# Session Variables
 Session variables can be saved into a response, and will be sent back and forth as long as the session remains open.
 
 ## Response with session variable
@@ -284,7 +284,7 @@ DateTime lastTime = session.Attributes["real_time"] as DateTime;
 return ResponseBuilder.Tell("The last day you asked was at " + lastTime.DayOfWeek.ToString());
 ```
 
-### Responses Without Helpers
+# Responses Without Helpers
 If you do not want to use the helper Tell/Ask functions, you can build up the response manually using the ```Response``` and ```IOutputSpeech``` objects. If you would like to include a ```StandardCard``` or ```LinkAccountCard``` in your response, you could add it like this onto the response body:
 ```csharp
 // create the speech response
