@@ -45,6 +45,7 @@ public SkillResponse FunctionHandler(SkillRequest input, ILambdaContext context)
     * [SSML Response With Reprompt](#ssml-response-with-reprompt)
 - [Session Variables](#session-variables)
 - [Responses Without Helpers](#responses-without-helpers)
+- [Progressive Responses](#progressive-responses)
 
 
 # Request Types
@@ -311,4 +312,10 @@ skillResponse.Response = responseBody;
 skillResponse.Version = "1.0";
 
 return skillResponse;
+```
+# Progressive Responses
+Your skill can send progressive responses to keep the user engaged while your skill prepares a full response to the user's request. Below is an example of sending a progressive response:
+```csharp
+var progressiveResponse = new ProgressiveResponse(skillRequest);
+progressiveResponse.SendSpeech("Please wait while I gather your data.");
 ```
