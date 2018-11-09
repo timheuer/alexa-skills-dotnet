@@ -47,7 +47,7 @@ public SkillResponse FunctionHandler(SkillRequest input, ILambdaContext context)
 - [Responses With No Helpers](#response-no-helpers)
 
 
-### Request-Types
+### Request Types
 Alexa will send different types of requests depending on what the user requested. Below are all of the types of requests:
 
 - ```AccountLinkSkillEventRequest```
@@ -84,7 +84,7 @@ var accountLinkReq = input.Request as AccountLinkSkillEventRequest;
 var accessToken = accountLinkReq.AccessToken;
 ```
 
-## Audio-Player-Request
+## Audio Player Request
 Audio Player Requests will be sent when a skill is supposed to play audio, or if an audio state change has occured on the device.
 
 ```csharp
@@ -210,7 +210,7 @@ switch(sysException.Error.Type)
 
 ### Responses
 
-## Ask-Vs-Tell
+## Ask Vs Tell
 There are two base methods for forming a speech response with ```ResponseBuilder```:
 ```csharp
 var finalResponse = ResponseBuilder.Tell("We are done here.");
@@ -218,7 +218,7 @@ var openEndedResponse = ResponseBuilder.Ask("Are we done here?");
 ```
 Using Tell sets ```ShouldEndSession``` to ```true```. Using Ask sets ```ShouldEndSession``` to ```false```. Use the appropriate function depending on whether you expect to continue dialog or not.
 
-## SSML-Response
+## SSML Response
 
 There are various types of responses you can build and this library provides a helper function to build them up.  A simple one of having Alexa tell the user something using SSML may look like this:
 ```csharp
@@ -231,7 +231,7 @@ var finalResponse = ResponseBuilder.Tell(speech);
 return finalResponse;
 ```
 
-## SSML-Response-With-Card
+## SSML Response With Card
 In your response you can also have a 'Card' response, which presents UI elements to Alexa. ```ResponseBuilder``` presently builds Simple cards only, which contain titles and plain text.
 ```csharp
 // create the speech response - cards still need a voice response
@@ -244,7 +244,7 @@ return finalResponse;
 
 ```
 
-## SSML-Response-With-Reprompt
+## SSML Response With Reprompt
 If you want to reprompt the user, use the Ask helpers. A reprompt can be useful if you would like to continue the conversation, or if you would like to remind the user to answer the question.
 ```csharp
 // create the speech response
@@ -264,7 +264,7 @@ var finalResponse = ResponseBuilder.Ask(speech, repromptBody);
 return finalResponse;
 ```
 
-## Play-Audio-File
+## Play Audio File
 If your skill is registered as an audio player, you can send directives (instructions to play, enqueue, or stop an audio stream). 
 
 ```csharp
@@ -277,7 +277,7 @@ var audioResponse = ResponseBuilder.AudioPlayerPlay(PlayBehavior.ReplaceAll, aud
 return audioResponse
 ```
 
-### Session-Variables
+### Session Variables
 Session variables can be saved into a response, and will be sent back and forth as long as the session remains open.
 
 ## Response with session variable
@@ -300,7 +300,7 @@ DateTime lastTime = session.Attributes["real_time"] as DateTime;
 return ResponseBuilder.Tell("The last day you asked was at " + lastTime.DayOfWeek.ToString());
 ```
 
-### Response-No-Helpers
+### Response No Helpers
 
 ## Build a response without using helpers
 
