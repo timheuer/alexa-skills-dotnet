@@ -319,3 +319,9 @@ Your skill can send progressive responses to keep the user engaged while your sk
 var progressiveResponse = new ProgressiveResponse(skillRequest);
 progressiveResponse.SendSpeech("Please wait while I gather your data.");
 ```
+
+# Community Contributions
+Alexa.NET has grown thanks to many suggestions, bug fixes, and direct contributions to the project here.  Be sure to give them thanks:
+
+- Steven Pears [@stevenpears](https://twitter.com/stevenpears) - tons of code contributions and extensions
+- [IcanBENCHurCAT](https://github.com/IcanBENCHurCAT) - documentation
