@@ -28,7 +28,7 @@ public SkillResponse FunctionHandler(SkillRequest input, ILambdaContext context)
 
 # Table of Contents
 - [Request Types](#request-types)    
-   * [AccountLinkSkillEventRequest](#accountlinkskilleventrequest)
+   * [AccountLinkSkillEventRequest](#handling-the-accountlinkskilleventrequest)
    * [AudioPlayerRequest](#handling-the-audioplayerrequest)
    * [DisplayElementSelectedRequest](#handling-the-displayelementselectedrequest)
    * [IntentRequest](#handling-the-intentrequest)
