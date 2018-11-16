@@ -20,7 +20,7 @@ namespace Alexa.NET.Request
 
         public static bool RequestTimestampWithinTolerance(DateTime timestamp)
         {
-            return Math.Abs(DateTime.Now.Subtract(timestamp).TotalSeconds) <= AllowedTimestampToleranceInSeconds;
+            return Math.Abs(DateTimeOffset.Now.Subtract(timestamp).TotalSeconds) <= AllowedTimestampToleranceInSeconds;
         }
 
         public static async Task<bool> Verify(string encodedSignature, Uri certificatePath, string body)
