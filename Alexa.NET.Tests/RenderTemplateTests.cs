@@ -302,6 +302,13 @@ namespace Alexa.NET.Tests
             Assert.True(CompareJson(actual, "TemplateImage.json"));
         }
 
+        [Fact]
+        public void HintCreatesCorrectJson()
+        {
+            var hint = new HintDirective("test hint");
+            Assert.True(CompareJson(hint, "HintDirective.json"));
+        }
+
         private bool CompareJson(object actual, string expectedFile)
         {
 

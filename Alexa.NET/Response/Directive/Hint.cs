@@ -1,13 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Alexa.NET.Response.Directive.Templates;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace Alexa.NET.Response.Directive
 {
     public class Hint
     {
+        public Hint()
+        {
+        }
+
+        public Hint(string hintText, string textType = TextType.Plain)
+        {
+            Text = hintText;
+            Type = textType;
+        }
+
         [JsonProperty("type")]
         public string Type { get; set; }
         
