@@ -1,0 +1,7 @@
+{
+  "type": "Hint",
+  "hint": {
+    "type": "PlainText",
+    "text": "test hint"
+  }
+}
