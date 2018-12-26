@@ -1,6 +1,5 @@
 ﻿using Alexa.NET.Request.Type;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,5 +14,7 @@ namespace Alexa.NET.Request
         [JsonProperty("AudioPlayer")]
         public PlaybackState AudioPlayer { get; set; }
 
+        [JsonProperty("Geolocation")]
+        public Geolocation Geolocation { get; set; }
     }
 }

@@ -278,6 +278,30 @@ namespace Alexa.NET.Tests
             Assert.False(RequestVerification.RequestTimestampWithinTolerance(request));
         }
 
+        [Fact]
+        public void GeolocationDataDeserializesCorrectly()
+        {
+            var locationData = Utility.ExampleFileContent<Geolocation>("Geolocation.json");
+            Assert.Equal(LocationServiceAccess.Enabled,locationData.LocationServices.Access);
+            Assert.Equal(LocationServiceStatus.Running, locationData.LocationServices.Status);
+
+            var expectedDate = DateTimeOffset.Parse("2018-12-14T07:05:48Z");
+            Assert.Equal(expectedDate,locationData.Timestamp);
+
+            Assert.Equal(38.2,locationData.Coordinate.Latitude);
+            Assert.Equal(28.3, locationData.Coordinate.Longitude);
+            Assert.Equal(12.1, locationData.Coordinate.Accuracy);
+
+            Assert.Equal(120.1,locationData.Altitude.Altitude);
+            Assert.Equal(30.1, locationData.Altitude.Accuracy);
+
+            Assert.Equal(180.0,locationData.Heading.Direction);
+            Assert.Equal(5.0, locationData.Heading.Accuracy);
+
+            Assert.Equal(10.0, locationData.Speed.Speed);
+            Assert.Equal(1.1, locationData.Speed.Accuracy);
+        }
+
         private T GetObjectFromExample<T>(string filename)
         {
             var json = File.ReadAllText(Path.Combine(ExamplesPath, filename));

@@ -1,0 +1,25 @@
+﻿{
+  "locationServices": {
+    "access": "ENABLED",
+    "status": "RUNNING"
+  },
+  "timestamp": "2018-12-14T07:05:48Z",
+  "coordinate": {
+    "latitudeInDegrees": 38.2,
+    "longitudeInDegrees": 28.3,
+    "accuracyInMeters": 12.1
+  },
+  "altitude": {
+    "altitudeInMeters": 120.1,
+    "accuracyInMeters": 30.1
+  },
+  "heading": {
+    "directionInDegrees": 180.0,
+    "accuracyInDegrees": 5.0
+  },
+  "speed": {
+    "speedInMetersPerSecond": 10.0,
+    "accuracyInMetresPerSecond": 1.1
+  }
+}
+   }
