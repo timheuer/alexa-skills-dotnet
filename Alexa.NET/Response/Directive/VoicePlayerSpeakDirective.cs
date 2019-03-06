@@ -7,7 +7,7 @@ namespace Alexa.NET.Response.Directive
 {
     public class VoicePlayerSpeakDirective : IProgressiveResponseDirective
     {
-        public VoicePlayerSpeakDirective()
+        internal VoicePlayerSpeakDirective()
         {
         }
 
