@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Alexa.NET.Response.Converters;
+using Newtonsoft.Json;
 
 namespace Alexa.NET.Response
 {
@@ -10,15 +11,16 @@ namespace Alexa.NET.Response
 
         public Reprompt(string text)
         {
-            OutputSpeech = new PlainTextOutputSpeech {Text = text};
+            OutputSpeech = new PlainTextOutputSpeech { Text = text };
         }
 
         public Reprompt(Ssml.Speech speech)
         {
-            OutputSpeech = new SsmlOutputSpeech {Ssml = speech.ToXml()};
+            OutputSpeech = new SsmlOutputSpeech { Ssml = speech.ToXml() };
         }
 
-        [JsonProperty("outputSpeech", NullValueHandling=NullValueHandling.Ignore)]
+        [JsonProperty("outputSpeech", NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(OutputSpeechConverter))]
         public IOutputSpeech OutputSpeech { get; set; }
     }
 }
