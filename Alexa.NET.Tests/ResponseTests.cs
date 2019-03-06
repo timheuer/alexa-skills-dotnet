@@ -193,503 +193,541 @@ namespace Alexa.NET.Tests
         }
 
         [Fact]
-        public void DeserializesEmptyResponse()
+        public void DeserializesExampleResponseJson()
         {
-            var response = ResponseBuilder.Empty();
-            var serialized = JsonConvert.SerializeObject(response);
-            var deserialized = JsonConvert.DeserializeObject<SkillResponse>(serialized);
+            var deserialized = Utility.ExampleFileContent<SkillResponse>("Response.json");
 
-            Assert.Equal("1.0", response.Version);
+            Assert.Equal("1.0", deserialized.Version);
+
+            var sessionAttributeSupportedHoriscopePeriods =
+                (dynamic)deserialized.SessionAttributes["supportedHoriscopePeriods"];
+
+            Assert.Equal(true, (bool)sessionAttributeSupportedHoriscopePeriods.daily);
+            Assert.Equal(false, (bool)sessionAttributeSupportedHoriscopePeriods.weekly);
+            Assert.Equal(false, (bool)sessionAttributeSupportedHoriscopePeriods.monthly);
+
+            var responseBody = deserialized.Response;
+
+            Assert.Equal(false, responseBody.ShouldEndSession);
+
+            var outputSpeech = responseBody.OutputSpeech;
+
+            Assert.Equal(typeof(PlainTextOutputSpeech), outputSpeech.GetType());
+
+            var plainTextOutput = (PlainTextOutputSpeech)outputSpeech;
+
+            Assert.Equal("PlainText", plainTextOutput.Type);
+            Assert.Equal("Today will provide you a new learning opportunity. Stick with it and the possibilities will be endless. Can I help you with anything else?", plainTextOutput.Text);
+
+            var card = responseBody.Card;
+
+            Assert.Equal(typeof(SimpleCard), card.GetType());
+
+            var simpleCard = (SimpleCard)card;
+
+            Assert.Equal("Simple", simpleCard.Type);
+            Assert.Equal("Horoscope", simpleCard.Title);
+            Assert.Equal("Today will provide you a new learning opportunity. Stick with it and the possibilities will be endless.", simpleCard.Content);
         }
 
         [Fact]
-        public void DeserializesSimpleCardResponse()
+        public void DeserializesExampleSimpleCardJson()
         {
-            var response = ResponseBuilder.Empty();
+            var deserialized = Utility.ExampleFileContent<ICard>("SimpleCard.json");
 
-            response.Response.Card = new SimpleCard
-            {
-                Title = "Card Title",
-                Content = "Card Content"
-            };
+            Assert.Equal(typeof(SimpleCard), deserialized.GetType());
 
-            var serialized = JsonConvert.SerializeObject(response);
-            var deserialized = JsonConvert.DeserializeObject<SkillResponse>(serialized);
+            var card = (SimpleCard)deserialized;
 
-            Assert.True(deserialized.Response.Card is SimpleCard);
-
-            var card1 = (SimpleCard)response.Response.Card;
-            var card2 = (SimpleCard)deserialized.Response.Card;
-
-            Assert.Equal(card1.Title, card2.Title);
-            Assert.Equal(card1.Content, card2.Content);
+            Assert.Equal("Simple", card.Type);
+            Assert.Equal("Example Title", card.Title);
+            Assert.Equal("Example Body Text", card.Content);
         }
 
         [Fact]
-        public void DeserializesStandardCardResponse()
+        public void DeserializesExampleStandardCardJson()
         {
-            var response = ResponseBuilder.Empty();
+            var deserialized = Utility.ExampleFileContent<ICard>("StandardCard.json");
 
-            response.Response.Card = new StandardCard
-            {
-                Title = "Card Title",
-                Content = "Card Content",
-                Image = new CardImage
-                {
-                    LargeImageUrl = "https://foo.com/large-image.png",
-                    SmallImageUrl = "https://foo.com/small-image.png",
-                },
-            };
+            Assert.Equal(typeof(StandardCard), deserialized.GetType());
 
-            var serialized = JsonConvert.SerializeObject(response);
-            var deserialized = JsonConvert.DeserializeObject<SkillResponse>(serialized);
+            var card = (StandardCard)deserialized;
 
-            Assert.True(deserialized.Response.Card is StandardCard);
-
-            var card1 = (StandardCard)response.Response.Card;
-            var card2 = (StandardCard)deserialized.Response.Card;
-
-            Assert.Equal(card1.Title, card2.Title);
-            Assert.Equal(card1.Content, card2.Content);
-            Assert.Equal(card1.Image.SmallImageUrl, card2.Image.SmallImageUrl);
-            Assert.Equal(card1.Image.LargeImageUrl, card2.Image.LargeImageUrl);
+            Assert.Equal("Standard", card.Type);
+            Assert.Equal("Example Title", card.Title);
+            Assert.Equal("Example Body Text", card.Content);
+            Assert.Equal("https://example.com/smallImage.png", card.Image.SmallImageUrl);
+            Assert.Equal("https://example.com/largeImage.png", card.Image.LargeImageUrl);
         }
 
         [Fact]
-        public void DeserializesLinkAccountCardResponse()
+        public void DeserializesExampleLinkAccountCardJson()
         {
-            var response = ResponseBuilder.Empty();
+            var deserialized = Utility.ExampleFileContent<ICard>("LinkAccountCard.json");
 
-            response.Response.Card = new LinkAccountCard();
+            Assert.Equal(typeof(LinkAccountCard), deserialized.GetType());
 
-            var serialized = JsonConvert.SerializeObject(response);
-            var deserialized = JsonConvert.DeserializeObject<SkillResponse>(serialized);
+            var card = (LinkAccountCard)deserialized;
 
-            Assert.True(deserialized.Response.Card is LinkAccountCard);
-
-            var card1 = (LinkAccountCard)response.Response.Card;
-            var card2 = (LinkAccountCard)deserialized.Response.Card;
+            Assert.Equal("LinkAccount", card.Type);
         }
 
         [Fact]
-        public void DeserializesAskForPermissionsConsentCardResponse()
+        public void DeserializesExampleAskForPermissionsConsentJson()
         {
-            var response = ResponseBuilder.Empty();
+            var deserialized = Utility.ExampleFileContent<ICard>("AskForPermissionsConsent.json");
 
-            response.Response.Card = new AskForPermissionsConsentCard
-            {
-                Permissions = new List<string>
-                {
-                    "Permission1",
-                    "Permission2"
-                }
-            };
+            Assert.Equal(typeof(AskForPermissionsConsentCard), deserialized.GetType());
 
-            var serialized = JsonConvert.SerializeObject(response);
-            var deserialized = JsonConvert.DeserializeObject<SkillResponse>(serialized);
+            var card = (AskForPermissionsConsentCard)deserialized;
 
-            Assert.True(deserialized.Response.Card is AskForPermissionsConsentCard);
-
-            var card1 = (AskForPermissionsConsentCard)response.Response.Card;
-            var card2 = (AskForPermissionsConsentCard)deserialized.Response.Card;
-
-            Assert.Equal(card1.Permissions.First(), card2.Permissions.First());
-            Assert.Equal(card1.Permissions.Last(), card2.Permissions.Last());
+            Assert.Equal("AskForPermissionsConsent", card.Type);
+            Assert.Equal(1, card.Permissions.Count);
+            Assert.Equal("read::alexa:household:list", card.Permissions.First());
         }
 
         [Fact]
-        public void DeserializesPlainTextOutputSpeechResponse()
+        public void DeserializesExamplePlainTextOutputSpeechJson()
         {
-            var response = ResponseBuilder.Empty();
+            var deserialized = Utility.ExampleFileContent<IOutputSpeech>("PlainTextOutputSpeech.json");
 
-            response.Response.OutputSpeech = new PlainTextOutputSpeech
-            {
-                Text = "Plain Text Output Speech"
-            };
+            Assert.Equal(typeof(PlainTextOutputSpeech), deserialized.GetType());
 
-            var serialized = JsonConvert.SerializeObject(response);
-            var deserialized = JsonConvert.DeserializeObject<SkillResponse>(serialized);
+            var outputSpeech = (PlainTextOutputSpeech)deserialized;
 
-            Assert.True(deserialized.Response.OutputSpeech is PlainTextOutputSpeech);
-
-            var speech1 = (PlainTextOutputSpeech)response.Response.OutputSpeech;
-            var speech2 = (PlainTextOutputSpeech)deserialized.Response.OutputSpeech;
-
-            Assert.Equal(speech1.Text, speech2.Text);
+            Assert.Equal("PlainText", outputSpeech.Type);
+            Assert.Equal("text content", outputSpeech.Text);
         }
 
         [Fact]
-        public void DeserializesSsmlOutputSpeechResponse()
+        public void DeserializesExampleSsmlOutputSpeechJson()
         {
-            var response = ResponseBuilder.Empty();
+            var deserialized = Utility.ExampleFileContent<IOutputSpeech>("SsmlOutputSpeech.json");
 
-            response.Response.OutputSpeech = new SsmlOutputSpeech
-            {
-                Ssml = "SSML Output Speech"
-            };
+            Assert.Equal(typeof(SsmlOutputSpeech), deserialized.GetType());
 
-            var serialized = JsonConvert.SerializeObject(response);
-            var deserialized = JsonConvert.DeserializeObject<SkillResponse>(serialized);
+            var outputSpeech = (SsmlOutputSpeech)deserialized;
 
-            Assert.True(deserialized.Response.OutputSpeech is SsmlOutputSpeech);
-
-            var speech1 = (SsmlOutputSpeech)response.Response.OutputSpeech;
-            var speech2 = (SsmlOutputSpeech)deserialized.Response.OutputSpeech;
-
-            Assert.Equal(speech1.Ssml, speech2.Ssml);
+            Assert.Equal("SSML", outputSpeech.Type);
+            Assert.Equal("ssml content", outputSpeech.Ssml);
         }
 
         [Fact]
-        public void DeserializesAudioPlayerPlayDirectiveResponse()
+        public void DeserializesExampleAudioPlayerWithMetadataJson()
         {
-            var response = ResponseBuilder.Empty();
+            var deserialized = Utility.ExampleFileContent<IDirective>("AudioPlayerWithMetadata.json");
 
-            response.Response.Directives = new List<IDirective>
-            {
-                new AudioPlayerPlayDirective
-                {
-                    AudioItem = new AudioItem
-                    {
-                        Metadata = new AudioItemMetadata
-                        {
-                            Art = new AudioItemSources
-                            {
-                                Sources = new List<AudioItemSource>
-                                {
-                                    new AudioItemSource
-                                    {
-                                        Url = "https://foo.com/art-source"
-                                    }
-                                }
-                            },
-                            BackgroundImage = new AudioItemSources
-                            {
-                                Sources = new List<AudioItemSource>
-                                {
-                                    new AudioItemSource
-                                    {
-                                        Url = "https://foo.com/background-image-source"
-                                    }
-                                }
-                            },
-                            Subtitle = "subtitle",
-                            Title = "title",
-                        },
-                        Stream = new AudioItemStream
-                        {
-                            ExpectedPreviousToken = "expected-previous-token",
-                            OffsetInMilliseconds = 100,
-                            Token = "token",
-                            Url = "https://foo.com/audio-item-stream"
-                        }
-                    },
-                    PlayBehavior = PlayBehavior.Enqueue
-                }
-            };
+            Assert.Equal(typeof(AudioPlayerPlayDirective), deserialized.GetType());
 
-            var serialized = JsonConvert.SerializeObject(response);
-            var deserialized = JsonConvert.DeserializeObject<SkillResponse>(serialized);
+            var directive = (AudioPlayerPlayDirective)deserialized;
 
-            Assert.True(deserialized.Response.Directives.First() is AudioPlayerPlayDirective);
+            Assert.Equal("AudioPlayer.Play", directive.Type);
+            Assert.Equal(PlayBehavior.Enqueue, directive.PlayBehavior);
 
-            var directive1 = (AudioPlayerPlayDirective)response.Response.Directives.First();
-            var directive2 = (AudioPlayerPlayDirective)deserialized.Response.Directives.First();
+            var stream = directive.AudioItem.Stream;
 
-            Assert.Equal(directive1.PlayBehavior, directive2.PlayBehavior);
-            Assert.Equal(directive1.AudioItem.Stream.Url, directive2.AudioItem.Stream.Url);
-            Assert.Equal(directive1.AudioItem.Stream.Token, directive2.AudioItem.Stream.Token);
-            Assert.Equal(directive1.AudioItem.Stream.OffsetInMilliseconds, directive2.AudioItem.Stream.OffsetInMilliseconds);
-            Assert.Equal(directive1.AudioItem.Stream.ExpectedPreviousToken, directive2.AudioItem.Stream.ExpectedPreviousToken);
-            Assert.Equal(directive1.AudioItem.Metadata.Title, directive2.AudioItem.Metadata.Title);
-            Assert.Equal(directive1.AudioItem.Metadata.Subtitle, directive2.AudioItem.Metadata.Subtitle);
-            Assert.Equal(directive1.AudioItem.Metadata.Art.Sources.First().Url, directive2.AudioItem.Metadata.Art.Sources.First().Url);
-            Assert.Equal(directive1.AudioItem.Metadata.BackgroundImage.Sources.First().Url, directive2.AudioItem.Metadata.BackgroundImage.Sources.First().Url);
+            Assert.Equal("https://url-of-the-stream-to-play", stream.Url);
+            Assert.Equal("opaque token representing this stream", stream.Token);
+            Assert.Equal("opaque token representing the previous stream", stream.ExpectedPreviousToken);
+            Assert.Equal(0, stream.OffsetInMilliseconds);
+
+            var metadata = directive.AudioItem.Metadata;
+
+            Assert.Equal("title of the track to display", metadata.Title);
+            Assert.Equal("subtitle of the track to display", metadata.Subtitle);
+            Assert.Equal(1, metadata.Art.Sources.Count);
+            Assert.Equal("https://url-of-the-album-art-image.png", metadata.Art.Sources.First().Url);
+            Assert.Equal(1, metadata.BackgroundImage.Sources.Count);
+            Assert.Equal("https://url-of-the-background-image.png", metadata.BackgroundImage.Sources.First().Url);
         }
 
         [Fact]
-        public void DeserializesClearQueueDirectiveResponse()
+        public void DeserializesExampleClearQueueDirectiveJson()
         {
-            var response = ResponseBuilder.Empty();
+            var deserialized = Utility.ExampleFileContent<IDirective>("ClearQueueDirective.json");
 
-            response.Response.Directives = new List<IDirective>
-            {
-                new ClearQueueDirective
-                {
-                    ClearBehavior  = ClearBehavior.ClearAll,
-                }
-            };
+            Assert.Equal(typeof(ClearQueueDirective), deserialized.GetType());
 
-            var serialized = JsonConvert.SerializeObject(response);
-            var deserialized = JsonConvert.DeserializeObject<SkillResponse>(serialized);
+            var directive = (ClearQueueDirective)deserialized;
 
-            Assert.True(deserialized.Response.Directives.First() is ClearQueueDirective);
-
-            var directive1 = (ClearQueueDirective)response.Response.Directives.First();
-            var directive2 = (ClearQueueDirective)deserialized.Response.Directives.First();
-
-            Assert.Equal(directive1.ClearBehavior, directive2.ClearBehavior);
+            Assert.Equal("AudioPlayer.ClearQueue", directive.Type);
+            Assert.Equal(ClearBehavior.ClearAll, directive.ClearBehavior);
         }
 
         [Fact]
-        public void DeserializesDialogConfirmIntentResponse()
+        public void DeserializesExampleDialogConfirmIntentJson()
         {
-            var response = ResponseBuilder.Empty();
+            var deserialized = Utility.ExampleFileContent<IDirective>("DialogConfirmIntent.json");
 
-            response.Response.Directives = new List<IDirective>
-            {
-                new DialogConfirmIntent
-                {
-                    UpdatedIntent = new Intent
-                    {
-                        ConfirmationStatus = "confirmation status",
-                        Name = "name",
-                        Slots = new Dictionary<string, Slot>
-                        {
-                            {
-                                "slot-key", new Slot
-                                {
-                                    Name = "slot-name",
-                                    Value = "slot-value",
-                                    ConfirmationStatus = "confirmation status",
-                                    Resolution = new Resolution
-                                    {
-                                        Authorities = new ResolutionAuthority[]
-                                        {
-                                            new ResolutionAuthority
-                                            {
-                                                Name = "name",
-                                                Status  = new ResolutionStatus
-                                                {
-                                                    Code = "code"
-                                                },
-                                                Values = new ResolutionValueContainer[]
-                                                {
-                                                    new ResolutionValueContainer
-                                                    {
-                                                        Value = new ResolutionValue
-                                                        {
-                                                            Name = "name",
-                                                            Id = "id"
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            };
+            Assert.Equal(typeof(DialogConfirmIntent), deserialized.GetType());
 
-            var serialized = JsonConvert.SerializeObject(response);
-            var deserialized = JsonConvert.DeserializeObject<SkillResponse>(serialized);
+            var directive = (DialogConfirmIntent)deserialized;
 
-            Assert.True(deserialized.Response.Directives.First() is DialogConfirmIntent);
+            Assert.Equal("Dialog.ConfirmIntent", directive.Type);
+            Assert.Equal("GetZodiacHoroscopeIntent", directive.UpdatedIntent.Name);
+            Assert.Equal(ConfirmationStatus.None, directive.UpdatedIntent.ConfirmationStatus);
 
-            var directive1 = (DialogConfirmIntent)response.Response.Directives.First();
-            var directive2 = (DialogConfirmIntent)deserialized.Response.Directives.First();
+            var slot1 = directive.UpdatedIntent.Slots["ZodiacSign"];
 
-            Assert.Equal(directive1.UpdatedIntent.Name, directive2.UpdatedIntent.Name);
-            Assert.Equal(directive1.UpdatedIntent.ConfirmationStatus, directive2.UpdatedIntent.ConfirmationStatus);
+            Assert.Equal("ZodiacSign", slot1.Name);
+            Assert.Equal("virgo", slot1.Value);
+            Assert.Equal(ConfirmationStatus.Confirmed, slot1.ConfirmationStatus);
 
-            var slot1 = directive1.UpdatedIntent.Slots.First();
-            var slot2 = directive2.UpdatedIntent.Slots.First();
+            var slot2 = directive.UpdatedIntent.Slots["Date"];
 
-            Assert.Equal(slot1.Key, slot2.Key);
-            Assert.Equal(slot1.Value.Name, slot2.Value.Name);
-            Assert.Equal(slot1.Value.ConfirmationStatus, slot2.Value.ConfirmationStatus);
-            Assert.Equal(slot1.Value.Value, slot2.Value.Value);
-
-            var authority1 = slot1.Value.Resolution.Authorities.First();
-            var authority2 = slot2.Value.Resolution.Authorities.First();
-
-            Assert.Equal(authority1.Name, authority2.Name);
-            Assert.Equal(authority1.Status.Code, authority2.Status.Code);
-            Assert.Equal(authority1.Values.First().Value.Name, authority2.Values.First().Value.Name);
-            Assert.Equal(authority1.Values.First().Value.Id, authority2.Values.First().Value.Id);
+            Assert.Equal("Date", slot2.Name);
+            Assert.Equal("2015-11-25", slot2.Value);
+            Assert.Equal(ConfirmationStatus.Confirmed, slot2.ConfirmationStatus);
         }
 
         [Fact]
-        public void DeserializesDialogConfirmSlotResponse()
+        public void DeserializesExampleDialogConfirmSlotJson()
         {
-            var response = ResponseBuilder.Empty();
+            var deserialized = Utility.ExampleFileContent<IDirective>("DialogConfirmSlot.json");
 
-            response.Response.Directives = new List<IDirective>
-            {
-                new DialogConfirmSlot("slot name"),
-            };
+            Assert.Equal(typeof(DialogConfirmSlot), deserialized.GetType());
 
-            var serialized = JsonConvert.SerializeObject(response);
-            var deserialized = JsonConvert.DeserializeObject<SkillResponse>(serialized);
+            var directive = (DialogConfirmSlot)deserialized;
 
-            Assert.True(deserialized.Response.Directives.First() is DialogConfirmSlot);
+            Assert.Equal("Dialog.ConfirmSlot", directive.Type);
+            Assert.Equal("Date", directive.SlotName);
+            Assert.Equal("GetZodiacHoroscopeIntent", directive.UpdatedIntent.Name);
 
-            var directive1 = (DialogConfirmSlot)response.Response.Directives.First();
-            var directive2 = (DialogConfirmSlot)deserialized.Response.Directives.First();
+            var slot1 = directive.UpdatedIntent.Slots["ZodiacSign"];
 
-            Assert.Equal(directive1.SlotName, directive2.SlotName);
+            Assert.Equal("ZodiacSign", slot1.Name);
+            Assert.Equal("virgo", slot1.Value);
+
+            var slot2 = directive.UpdatedIntent.Slots["Date"];
+
+            Assert.Equal("Date", slot2.Name);
+            Assert.Equal("2015-11-25", slot2.Value);
+            Assert.Equal(ConfirmationStatus.Confirmed, slot2.ConfirmationStatus);
         }
 
         [Fact]
-        public void DeserializesDialogDelegateResponse()
+        public void DeserializesExampleDialogDelegateJson()
         {
-            var response = ResponseBuilder.Empty();
+            var deserialized = Utility.ExampleFileContent<IDirective>("DialogDelegate.json");
 
-            response.Response.Directives = new List<IDirective>
-            {
-                new DialogDelegate()
-            };
+            Assert.Equal(typeof(DialogDelegate), deserialized.GetType());
 
-            var serialized = JsonConvert.SerializeObject(response);
-            var deserialized = JsonConvert.DeserializeObject<SkillResponse>(serialized);
+            var directive = (DialogDelegate)deserialized;
 
-            Assert.True(deserialized.Response.Directives.First() is DialogDelegate);
+            Assert.Equal("Dialog.Delegate", directive.Type);
+            Assert.Equal("GetZodiacHoroscopeIntent", directive.UpdatedIntent.Name);
+            Assert.Equal(ConfirmationStatus.None, directive.UpdatedIntent.ConfirmationStatus);
 
-            var directive1 = (DialogDelegate)response.Response.Directives.First();
-            var directive2 = (DialogDelegate)deserialized.Response.Directives.First();
+            var slot1 = directive.UpdatedIntent.Slots["ZodiacSign"];
+
+            Assert.Equal("ZodiacSign", slot1.Name);
+            Assert.Equal("virgo", slot1.Value);
+
+            var slot2 = directive.UpdatedIntent.Slots["Date"];
+
+            Assert.Equal("Date", slot2.Name);
+            Assert.Equal("2015-11-25", slot2.Value);
+            Assert.Equal(ConfirmationStatus.Confirmed, slot2.ConfirmationStatus);
         }
 
         [Fact]
-        public void DeserializesDialogElicitSlotResponse()
+        public void DeserializesExampleDialogElicitSlotJson()
         {
-            var response = ResponseBuilder.Empty();
+            var deserialized = Utility.ExampleFileContent<IDirective>("DialogElicitSlot.json");
 
-            response.Response.Directives = new List<IDirective>
-            {
-                new DialogElicitSlot("slot name")
-            };
+            Assert.Equal(typeof(DialogElicitSlot), deserialized.GetType());
 
-            var serialized = JsonConvert.SerializeObject(response);
-            var deserialized = JsonConvert.DeserializeObject<SkillResponse>(serialized);
+            var directive = (DialogElicitSlot)deserialized;
 
-            Assert.True(deserialized.Response.Directives.First() is DialogElicitSlot);
+            Assert.Equal("Dialog.ElicitSlot", directive.Type);
+            Assert.Equal("ZodiacSign", directive.SlotName);
+            Assert.Equal("GetZodiacHoroscopeIntent", directive.UpdatedIntent.Name);
+            Assert.Equal(ConfirmationStatus.None, directive.UpdatedIntent.ConfirmationStatus);
 
-            var directive1 = (DialogElicitSlot)response.Response.Directives.First();
-            var directive2 = (DialogElicitSlot)deserialized.Response.Directives.First();
+            var slot1 = directive.UpdatedIntent.Slots["ZodiacSign"];
 
-            Assert.Equal(directive1.SlotName, directive2.SlotName);
+            Assert.Equal("ZodiacSign", slot1.Name);
+            Assert.Equal("virgo", slot1.Value);
+
+            var slot2 = directive.UpdatedIntent.Slots["Date"];
+
+            Assert.Equal("Date", slot2.Name);
+            Assert.Equal("2015-11-25", slot2.Value);
+            Assert.Equal(ConfirmationStatus.Confirmed, slot2.ConfirmationStatus);
         }
 
         [Fact]
-        public void DeserializesDisplayRenderTemplateDirectiveResponse()
+        public void DeserializesExampleDisplayRenderTemplateDirectiveJson()
         {
-            var response = ResponseBuilder.Empty();
+            var deserialized = Utility.ExampleFileContent<IDirective>("DisplayRenderTemplateDirective.json");
 
-            response.Response.Directives = new List<IDirective>
-            {
-                new DisplayRenderTemplateDirective
-                {
-                    Template = new BodyTemplate1
-                    {
-                        BackButton = "back button",
-                        BackgroundImage = new TemplateImage
-                        {
-                            ContentDescription = "content description",
-                            Sources = new List<ImageSource>
-                            {
-                                new ImageSource
-                                {
-                                    Height = 100,
-                                    Size = "size",
-                                    Url = "url",
-                                    Width = 100
-                                }
-                            }
-                        },
-                    }
-                }
-            };
+            Assert.Equal(typeof(DisplayRenderTemplateDirective), deserialized.GetType());
 
-            var serialized = JsonConvert.SerializeObject(response);
-            var deserialized = JsonConvert.DeserializeObject<SkillResponse>(serialized);
+            var directive = (DisplayRenderTemplateDirective)deserialized;
 
-            Assert.True(deserialized.Response.Directives.First() is DisplayRenderTemplateDirective);
+            Assert.Equal("Display.RenderTemplate", directive.Type);
 
-            var directive1 = (DisplayRenderTemplateDirective)response.Response.Directives.First();
-            var directive2 = (DisplayRenderTemplateDirective)deserialized.Response.Directives.First();
+            var template = (BodyTemplate1)directive.Template;
+
+            Assert.Equal("BodyTemplate1", template.Type);
+            Assert.Equal("A2079", template.Token);
+            Assert.Equal("VISIBLE", template.BackButton);
+            Assert.Equal("My Favorite Car", template.Title);
+
+            var backgroundImage = template.BackgroundImage;
+
+            Assert.Equal("Textured grey background", backgroundImage.ContentDescription);
+            Assert.Equal(1, backgroundImage.Sources.Count);
+            Assert.Equal("https://www.example.com/background-image1.png", backgroundImage.Sources.First().Url);
+
+            var textContent = template.Content;
+
+            Assert.Equal("See my favorite car", textContent.Primary.Text);
+            Assert.Equal("PlainText", textContent.Primary.Type);
+            Assert.Equal("Custom-painted", textContent.Secondary.Text);
+            Assert.Equal("PlainText", textContent.Secondary.Type);
+            Assert.Equal("By me!", textContent.Tertiary.Text);
+            Assert.Equal("PlainText", textContent.Tertiary.Type);
         }
 
         [Fact]
-        public void DeserializesHintDirectiveResponse()
+        public void DeserializesExampleHintDirectiveJson()
         {
-            var response = ResponseBuilder.Empty();
+            var deserialized = Utility.ExampleFileContent<IDirective>("HintDirective.json");
 
-            response.Response.Directives = new List<IDirective>
-            {
-                new HintDirective
-                {
-                    Hint = new Hint
-                    {
-                        Text = "hint text",
-                        Type = "hint type"
-                    }
-                }
-            };
+            Assert.Equal(typeof(HintDirective), deserialized.GetType());
 
-            var serialized = JsonConvert.SerializeObject(response);
-            var deserialized = JsonConvert.DeserializeObject<SkillResponse>(serialized);
+            var directive = (HintDirective)deserialized;
 
-            Assert.True(deserialized.Response.Directives.First() is HintDirective);
-
-            var directive1 = (HintDirective)response.Response.Directives.First();
-            var directive2 = (HintDirective)deserialized.Response.Directives.First();
-
-            Assert.Equal(directive1.Hint.Text, directive2.Hint.Text);
-            Assert.Equal(directive1.Hint.Type, directive2.Hint.Type);
+            Assert.Equal("Hint", directive.Type);
+            Assert.Equal("PlainText", directive.Hint.Type);
+            Assert.Equal("test hint", directive.Hint.Text);
         }
 
         [Fact]
-        public void DeserializesStopDirectiveResponse()
+        public void DeserializesExampleStopDirectiveJson()
         {
-            var response = ResponseBuilder.Empty();
+            var deserialized = Utility.ExampleFileContent<IDirective>("StopDirective.json");
 
-            response.Response.Directives = new List<IDirective>
-            {
-                new StopDirective(),
-            };
+            Assert.Equal(typeof(StopDirective), deserialized.GetType());
 
-            var serialized = JsonConvert.SerializeObject(response);
-            var deserialized = JsonConvert.DeserializeObject<SkillResponse>(serialized);
+            var directive = (StopDirective)deserialized;
 
-            Assert.True(deserialized.Response.Directives.First() is StopDirective);
-
-            var directive1 = (StopDirective)response.Response.Directives.First();
-            var directive2 = (StopDirective)deserialized.Response.Directives.First();
+            Assert.Equal("AudioPlayer.Stop", directive.Type);
         }
 
         [Fact]
-        public void DeserializesVideoAppDirectiveResponse()
+        public void DeserializesExampleDirectiveVideoAppDirectiveWithMetadata()
         {
-            var response = ResponseBuilder.Empty();
+            var deserialized = Utility.ExampleFileContent<IDirective>("VideoAppDirectiveWithMetadata.json");
 
-            response.Response.Directives = new List<IDirective>
-            {
-                new VideoAppDirective
-                {
-                    VideoItem = new VideoItem("source")
-                    {
-                        Metadata = new VideoItemMetadata
-                        {
-                            Title = "title",
-                            Subtitle = "subtitle"
-                        }
-                    }
-                },
-            };
+            Assert.Equal(typeof(VideoAppDirective), deserialized.GetType());
 
-            var serialized = JsonConvert.SerializeObject(response);
-            var deserialized = JsonConvert.DeserializeObject<SkillResponse>(serialized);
+            var directive = (VideoAppDirective)deserialized;
 
-            Assert.True(deserialized.Response.Directives.First() is VideoAppDirective);
+            Assert.Equal("VideoApp.Launch", directive.Type);
+            Assert.Equal("https://www.example.com/video/sample-video-1.mp4", directive.VideoItem.Source);
+            Assert.Equal("Title for Sample Video", directive.VideoItem.Metadata.Title);
+            Assert.Equal("Secondary Title for Sample Video", directive.VideoItem.Metadata.Subtitle);
+        }
 
-            var directive1 = (VideoAppDirective)response.Response.Directives.First();
-            var directive2 = (VideoAppDirective)deserialized.Response.Directives.First();
+        [Fact]
+        public void DeserializesExampleTemplateBodyTemplate1Json()
+        {
+            var deserialized = Utility.ExampleFileContent<ITemplate>("TemplateBodyTemplate1.json");
 
-            Assert.Equal(directive1.VideoItem.Source, directive2.VideoItem.Source);
-            Assert.Equal(directive1.VideoItem.Metadata.Title, directive2.VideoItem.Metadata.Title);
-            Assert.Equal(directive1.VideoItem.Metadata.Subtitle, directive2.VideoItem.Metadata.Subtitle);
+            Assert.Equal(typeof(BodyTemplate1), deserialized.GetType());
+
+            var template = (BodyTemplate1)deserialized;
+
+            Assert.Equal("BodyTemplate1", template.Type);
+            Assert.Equal(BackButtonVisibility.Hidden, template.BackButton);
+
+            var textContent = template.Content;
+
+            Assert.Equal("See my favorite car", textContent.Primary.Text);
+            Assert.Equal("PlainText", textContent.Primary.Type);
+            Assert.Equal("Custom-painted", textContent.Secondary.Text);
+            Assert.Equal("PlainText", textContent.Secondary.Type);
+            Assert.Equal("By me!", textContent.Tertiary.Text);
+            Assert.Equal("PlainText", textContent.Tertiary.Type);
+        }
+
+        [Fact]
+        public void DeserializesExampleTemplateBodyTemplate2Json()
+        {
+            var deserialized = Utility.ExampleFileContent<ITemplate>("TemplateBodyTemplate2.json");
+
+            Assert.Equal(typeof(BodyTemplate2), deserialized.GetType());
+
+            var template = (BodyTemplate2)deserialized;
+
+            Assert.Equal("BodyTemplate2", template.Type);
+            Assert.Equal("A2079", template.Token);
+            Assert.Equal(BackButtonVisibility.Visible, template.BackButton);
+            Assert.Equal("My Favorite Car", template.Title);
+
+            var backgroundImage = template.BackgroundImage;
+
+            Assert.Equal("Textured grey background", backgroundImage.ContentDescription);
+            Assert.Equal(1, backgroundImage.Sources.Count);
+            Assert.Equal("https://www.example.com/background-image1.png", backgroundImage.Sources.First().Url);
+
+            var image = template.Image;
+
+            Assert.Equal("My favorite car", image.ContentDescription);
+            Assert.Equal(1, image.Sources.Count);
+            Assert.Equal("https://www.example.com/my-favorite-car.png", image.Sources.First().Url);
+
+            var textContent = template.Content;
+
+            Assert.Equal("See my favorite car", textContent.Primary.Text);
+            Assert.Equal("PlainText", textContent.Primary.Type);
+            Assert.Equal("Custom-painted", textContent.Secondary.Text);
+            Assert.Equal("PlainText", textContent.Secondary.Type);
+            Assert.Equal("By me!", textContent.Tertiary.Text);
+            Assert.Equal("PlainText", textContent.Tertiary.Type);
+        }
+
+        [Fact]
+        public void DeserializesExampleTemplateBodyTemplate6Json()
+        {
+            var deserialized = Utility.ExampleFileContent<ITemplate>("TemplateBodyTemplate6.json");
+
+            Assert.Equal(typeof(BodyTemplate6), deserialized.GetType());
+
+            var template = (BodyTemplate6)deserialized;
+
+            Assert.Equal("BodyTemplate6", template.Type);
+            Assert.Equal("SampleTemplate_3476", template.Token);
+            Assert.Equal(BackButtonVisibility.Visible, template.BackButton);
+            Assert.Equal("Sample BodyTemplate6", template.Title);
+
+            var backgroundImage = template.BackgroundImage;
+
+            Assert.Equal("Textured grey background", backgroundImage.ContentDescription);
+            Assert.Equal(1, backgroundImage.Sources.Count);
+            Assert.Equal("https://www.example.com/background-image1.png", backgroundImage.Sources.First().Url);
+
+            var image = template.Image;
+
+            Assert.Equal("Mount St. Helens landscape", image.ContentDescription);
+            Assert.Equal(1, image.Sources.Count);
+            Assert.Equal("https://example.com/resources/card-images/mount-saint-helen-small.png", image.Sources.First().Url);
+
+            var textContent = template.Content;
+
+            Assert.Equal("See my favorite car", textContent.Primary.Text);
+            Assert.Equal("PlainText", textContent.Primary.Type);
+            Assert.Equal("Custom-painted", textContent.Secondary.Text);
+            Assert.Equal("PlainText", textContent.Secondary.Type);
+            Assert.Equal("By me!", textContent.Tertiary.Text);
+            Assert.Equal("PlainText", textContent.Tertiary.Type);
+        }
+
+        [Fact]
+        public void DeserializesExampleTemplateBodyTemplate7Json()
+        {
+            var deserialized = Utility.ExampleFileContent<ITemplate>("TemplateBodyTemplate7.json");
+
+            Assert.Equal(typeof(BodyTemplate7), deserialized.GetType());
+
+            var template = (BodyTemplate7)deserialized;
+
+            Assert.Equal("BodyTemplate7", template.Type);
+            Assert.Equal("SampleTemplate_3476", template.Token);
+            Assert.Equal(BackButtonVisibility.Visible, template.BackButton);
+            Assert.Equal("Sample BodyTemplate7", template.Title);
+
+            var backgroundImage = template.BackgroundImage;
+
+            Assert.Equal("Textured grey background", backgroundImage.ContentDescription);
+            Assert.Equal(1, backgroundImage.Sources.Count);
+            Assert.Equal("https://www.example.com/background-image1.png", backgroundImage.Sources.First().Url);
+
+            var image = template.Image;
+
+            Assert.Equal("Mount St. Helens landscape", image.ContentDescription);
+            Assert.Equal(1, image.Sources.Count);
+            Assert.Equal("https://example.com/resources/card-images/mount-saint-helen-small.png", image.Sources.First().Url);
+        }
+
+        [Fact]
+        public void DeserializesExampleTemplateListTemplate1Json()
+        {
+            var deserialized = Utility.ExampleFileContent<ITemplate>("TemplateListTemplate1.json");
+
+            Assert.Equal(typeof(ListTemplate1), deserialized.GetType());
+
+            var template = (ListTemplate1)deserialized;
+
+            Assert.Equal("ListTemplate1", template.Type);
+            Assert.Equal("list_template_one", template.Token);
+            Assert.Equal("Pizzas", template.Title);
+
+            var listItems = template.Items;
+
+            Assert.Equal(2, listItems.Count);
+
+            var listItem1 = listItems.First();
+
+            Assert.Equal("item_1", listItem1.Token);
+            Assert.Equal("Supreme Large Pan Pizza", listItem1.Image.ContentDescription);
+            Assert.Equal(1, listItem1.Image.Sources.Count);
+            Assert.Equal("http://www.example.com/images/thumb/SupremePizza1.jpg", listItem1.Image.Sources.First().Url);
+            Assert.Equal("RichText", listItem1.Content.Primary.Type);
+            Assert.Equal("<font size='7'>Supreme</font> <br/> Large Pan Pizza $17.00", listItem1.Content.Primary.Text);
+            Assert.Equal("PlainText", listItem1.Content.Secondary.Type);
+            Assert.Equal("Secondary Text", listItem1.Content.Secondary.Text);
+            Assert.Equal("PlainText", listItem1.Content.Tertiary.Type);
+            Assert.Equal("", listItem1.Content.Tertiary.Text);
+
+            var listItem2 = listItems.Last();
+
+            Assert.Equal("item_2", listItem2.Token);
+            Assert.Equal("Meat Eater Large Pan Pizza", listItem2.Image.ContentDescription);
+            Assert.Equal(1, listItem2.Image.Sources.Count);
+            Assert.Equal("http://www.example.com/images/thumb/MeatEaterPizza1.jpg", listItem2.Image.Sources.First().Url);
+            Assert.Equal("RichText", listItem2.Content.Primary.Type);
+            Assert.Equal("<font size='7'>Meat Eater</font> <br/> Large Pan Pizza $19.00", listItem2.Content.Primary.Text);
+        }
+
+        [Fact]
+        public void DeserializesExampleTemplateListTemplate2Json()
+        {
+            var deserialized = Utility.ExampleFileContent<ITemplate>("TemplateListTemplate2.json");
+
+            Assert.Equal(typeof(ListTemplate2), deserialized.GetType());
+
+            var template = (ListTemplate2)deserialized;
+
+            Assert.Equal("ListTemplate2", template.Type);
+            Assert.Equal("A2079", template.Token);
+            Assert.Equal(BackButtonVisibility.Visible, template.BackButton);
+            Assert.Equal("My Favourite Pizzas", template.Title);
+
+            var backgroundImage = template.BackgroundImage;
+
+            Assert.Equal("Textured grey background", backgroundImage.ContentDescription);
+            Assert.Equal(1, backgroundImage.Sources.Count);
+            Assert.Equal("https://www.example.com/background-image1.png", backgroundImage.Sources.First().Url);
+
+            var listItems = template.Items;
+
+            Assert.Equal(1, listItems.Count);
+
+            var listItem1 = listItems.First();
+
+            Assert.Equal("item_1", listItem1.Token);
+            Assert.Equal("Supreme Large Pan Pizza", listItem1.Image.ContentDescription);
+            Assert.Equal(1, listItem1.Image.Sources.Count);
+            Assert.Equal("http://www.example.com/images/thumb/SupremePizza1.jpg", listItem1.Image.Sources.First().Url);
+            Assert.Equal("RichText", listItem1.Content.Primary.Type);
+            Assert.Equal("<font size='7'>Supreme</font> <br/> Large Pan Pizza $17.00", listItem1.Content.Primary.Text);
+            Assert.Equal("PlainText", listItem1.Content.Secondary.Type);
+            Assert.Equal("Secondary Text", listItem1.Content.Secondary.Text);
+            Assert.Equal("PlainText", listItem1.Content.Tertiary.Type);
+            Assert.Equal("", listItem1.Content.Tertiary.Text);
         }
 
         private bool CompareJson(object actual, JObject expected)
