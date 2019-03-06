@@ -1,8 +1,10 @@
 ﻿using System;
+using Alexa.NET.Response.Converters;
 using Newtonsoft.Json;
 
 namespace Alexa.NET.Response.Directive
 {
+    [JsonConverter(typeof(TemplateConverter))]
     public interface ITemplate
     {
         [JsonProperty("type", Required = Required.Always)]

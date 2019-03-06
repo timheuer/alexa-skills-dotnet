@@ -13,7 +13,6 @@ namespace Alexa.NET.Response.Directive
         public string Type => "Display.RenderTemplate";
 
         [JsonProperty("template", Required = Required.Always)]
-        [JsonConverter(typeof(TemplateConverter))]
         public ITemplate Template { get; set; }
     }
 }

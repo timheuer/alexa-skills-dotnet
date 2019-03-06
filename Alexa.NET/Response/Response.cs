@@ -7,11 +7,9 @@ namespace Alexa.NET.Response
     public class ResponseBody
     {
         [JsonProperty("outputSpeech", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(OutputSpeechConverter))]
         public IOutputSpeech OutputSpeech { get; set; }
 
         [JsonProperty("card", NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(CardConverter))]
         public ICard Card { get; set; }
 
         [JsonProperty("reprompt", NullValueHandling = NullValueHandling.Ignore)]
@@ -20,7 +18,7 @@ namespace Alexa.NET.Response
         [JsonProperty("shouldEndSession", NullValueHandling = NullValueHandling.Ignore)]
         public bool? ShouldEndSession { get; set; } = false;
 
-        [JsonProperty("directives", NullValueHandling = NullValueHandling.Ignore, ItemConverterType = typeof(DirectiveConverter))]
+        [JsonProperty("directives", NullValueHandling = NullValueHandling.Ignore)]
         public IList<IDirective> Directives { get; set; } = new List<IDirective>();
 
         public bool ShouldSerializeDirectives()
