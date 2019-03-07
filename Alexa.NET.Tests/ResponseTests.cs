@@ -193,44 +193,6 @@ namespace Alexa.NET.Tests
         }
 
         [Fact]
-        public void DeserializesExampleResponseJson()
-        {
-            var deserialized = Utility.ExampleFileContent<SkillResponse>("Response.json");
-
-            Assert.Equal("1.0", deserialized.Version);
-
-            var sessionAttributeSupportedHoriscopePeriods =
-                (dynamic)deserialized.SessionAttributes["supportedHoriscopePeriods"];
-
-            Assert.Equal(true, (bool)sessionAttributeSupportedHoriscopePeriods.daily);
-            Assert.Equal(false, (bool)sessionAttributeSupportedHoriscopePeriods.weekly);
-            Assert.Equal(false, (bool)sessionAttributeSupportedHoriscopePeriods.monthly);
-
-            var responseBody = deserialized.Response;
-
-            Assert.Equal(false, responseBody.ShouldEndSession);
-
-            var outputSpeech = responseBody.OutputSpeech;
-
-            Assert.Equal(typeof(PlainTextOutputSpeech), outputSpeech.GetType());
-
-            var plainTextOutput = (PlainTextOutputSpeech)outputSpeech;
-
-            Assert.Equal("PlainText", plainTextOutput.Type);
-            Assert.Equal("Today will provide you a new learning opportunity. Stick with it and the possibilities will be endless. Can I help you with anything else?", plainTextOutput.Text);
-
-            var card = responseBody.Card;
-
-            Assert.Equal(typeof(SimpleCard), card.GetType());
-
-            var simpleCard = (SimpleCard)card;
-
-            Assert.Equal("Simple", simpleCard.Type);
-            Assert.Equal("Horoscope", simpleCard.Title);
-            Assert.Equal("Today will provide you a new learning opportunity. Stick with it and the possibilities will be endless.", simpleCard.Content);
-        }
-
-        [Fact]
         public void DeserializesExampleSimpleCardJson()
         {
             var deserialized = Utility.ExampleFileContent<ICard>("SimpleCard.json");
@@ -728,6 +690,44 @@ namespace Alexa.NET.Tests
             Assert.Equal("Secondary Text", listItem1.Content.Secondary.Text);
             Assert.Equal("PlainText", listItem1.Content.Tertiary.Type);
             Assert.Equal("", listItem1.Content.Tertiary.Text);
+        }
+
+        [Fact]
+        public void DeserializesExampleResponseJson()
+        {
+            var deserialized = Utility.ExampleFileContent<SkillResponse>("Response.json");
+
+            Assert.Equal("1.0", deserialized.Version);
+
+            var sessionAttributeSupportedHoriscopePeriods =
+                JObject.FromObject(deserialized.SessionAttributes["supportedHoriscopePeriods"]);
+
+            Assert.Equal(true, sessionAttributeSupportedHoriscopePeriods.Value<bool>("daily"));
+            Assert.Equal(false, sessionAttributeSupportedHoriscopePeriods.Value<bool>("weekly"));
+            Assert.Equal(false, sessionAttributeSupportedHoriscopePeriods.Value<bool>("monthly"));
+
+            var responseBody = deserialized.Response;
+
+            Assert.Equal(false, responseBody.ShouldEndSession);
+
+            var outputSpeech = responseBody.OutputSpeech;
+
+            Assert.Equal(typeof(PlainTextOutputSpeech), outputSpeech.GetType());
+
+            var plainTextOutput = (PlainTextOutputSpeech)outputSpeech;
+
+            Assert.Equal("PlainText", plainTextOutput.Type);
+            Assert.Equal("Today will provide you a new learning opportunity. Stick with it and the possibilities will be endless. Can I help you with anything else?", plainTextOutput.Text);
+
+            var card = responseBody.Card;
+
+            Assert.Equal(typeof(SimpleCard), card.GetType());
+
+            var simpleCard = (SimpleCard)card;
+
+            Assert.Equal("Simple", simpleCard.Type);
+            Assert.Equal("Horoscope", simpleCard.Title);
+            Assert.Equal("Today will provide you a new learning opportunity. Stick with it and the possibilities will be endless.", simpleCard.Content);
         }
 
         private bool CompareJson(object actual, JObject expected)

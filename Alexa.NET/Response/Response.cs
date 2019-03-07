@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using Alexa.NET.Response.Converters;
 
 namespace Alexa.NET.Response
 {
