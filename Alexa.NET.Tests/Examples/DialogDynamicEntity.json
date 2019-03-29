@@ -1,0 +1,29 @@
+﻿{
+  "type": "Dialog.UpdateDynamicEntities",
+  "updateBehavior": "REPLACE",
+  "types": [
+    {
+      "name": "AirportSlotType",
+      "values": [
+        {
+          "id": "BOS",
+          "name": {
+            "value": "Logan International Airport",
+            "synonyms": [
+              "Boston Logan"
+            ]
+          }
+        },
+        {
+          "id": "LGA",
+          "name": {
+            "value": "LaGuardia Airport",
+            "synonyms": [
+              "New York"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
