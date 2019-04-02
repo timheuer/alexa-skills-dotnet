@@ -20,7 +20,7 @@ namespace Alexa.NET.Tests
             return JToken.DeepEquals(expectedJObject, actualJObject);
         }
 
-		public static T ExampleFileContent<T>(string expectedFile)
+        public static T ExampleFileContent<T>(string expectedFile)
         {
             using (var reader = new JsonTextReader(new StringReader(ExampleFileContent(expectedFile))))
             {
@@ -28,7 +28,7 @@ namespace Alexa.NET.Tests
             }
         }
 
-		public static string ExampleFileContent(string expectedFile)
+        public static string ExampleFileContent(string expectedFile)
         {
             return File.ReadAllText(Path.Combine(ExamplesPath, expectedFile));
         }
