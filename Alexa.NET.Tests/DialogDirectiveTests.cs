@@ -12,7 +12,7 @@ namespace Alexa.NET.Tests
         [Fact]
         public void Create_Valid_DialogDelegateDirective()
         {
-            var actual = new DialogDelegate{UpdatedIntent=GetUpdatedIntent()};
+            var actual = new DialogDelegate { UpdatedIntent = GetUpdatedIntent() };
 
             Assert.True(Utility.CompareJson(actual, "DialogDelegate.json"));
         }
@@ -22,16 +22,16 @@ namespace Alexa.NET.Tests
         {
             var actual = new DialogElicitSlot("ZodiacSign") { UpdatedIntent = GetUpdatedIntent() };
 
-			Assert.True(Utility.CompareJson(actual, "DialogElicitSlot.json"));
+            Assert.True(Utility.CompareJson(actual, "DialogElicitSlot.json"));
         }
 
-		[Fact]
-		public void Create_Valid_DialogConfirmSlotDirective()
-		{
-			var actual = new DialogConfirmSlot("Date") { UpdatedIntent = GetUpdatedIntent() };
+        [Fact]
+        public void Create_Valid_DialogConfirmSlotDirective()
+        {
+            var actual = new DialogConfirmSlot("Date") { UpdatedIntent = GetUpdatedIntent() };
 
-			Assert.True(Utility.CompareJson(actual, "DialogConfirmSlot.json"));
-		}
+            Assert.True(Utility.CompareJson(actual, "DialogConfirmSlot.json"));
+        }
 
         [Fact]
         public void Create_Valid_DialogConfirmIntentDirective()
@@ -42,17 +42,50 @@ namespace Alexa.NET.Tests
             Assert.True(Utility.CompareJson(actual, "DialogConfirmIntent.json"));
         }
 
+        [Fact]
+        public void Create_Valid_DialogDynamicEntityDirective()
+        {
+            var actual = new DialogUpdateDynamicEntities { UpdateBehavior = UpdateBehavior.Replace };
+            var airportSlotType = new SlotType
+            {
+                Name = "AirportSlotType",
+                Values = new[]
+                {
+                    new SlotTypeValue
+                    {
+                        Id = "BOS",
+                        Name = new SlotTypeValueName
+                        {
+                            Value = "Logan International Airport",
+                            Synonyms = new[] {"Boston Logan"}
+                        }
+                    },
+                    new SlotTypeValue
+                    {
+                        Id = "LGA",
+                        Name = new SlotTypeValueName
+                        {
+                            Value = "LaGuardia Airport",
+                            Synonyms = new[] {"New York"}
+                        }
+                    }
+                }
+            };
+            actual.Types.Add(airportSlotType);
+            Assert.True(Utility.CompareJson(actual, "DialogDynamicEntity.json"));
+        }
+
         private Intent GetUpdatedIntent()
         {
-			return new Intent
-			{
-				Name = "GetZodiacHoroscopeIntent",
-				ConfirmationStatus = ConfirmationStatus.None,
-				Slots = new System.Collections.Generic.Dictionary<string, Slot>{
-					{"ZodiacSign",new Slot{Name="ZodiacSign",Value="virgo"}},
-						{"Date",new Slot{Name="Date",Value="2015-11-25",ConfirmationStatus=ConfirmationStatus.Confirmed}}
-				}
-			};
+            return new Intent
+            {
+                Name = "GetZodiacHoroscopeIntent",
+                ConfirmationStatus = ConfirmationStatus.None,
+                Slots = new System.Collections.Generic.Dictionary<string, Slot>{
+                    {"ZodiacSign",new Slot{Name="ZodiacSign",Value="virgo"}},
+                        {"Date",new Slot{Name="Date",Value="2015-11-25",ConfirmationStatus=ConfirmationStatus.Confirmed}}
+                }
+            };
         }
     }
 }
