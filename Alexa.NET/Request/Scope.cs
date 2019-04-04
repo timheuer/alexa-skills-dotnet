@@ -5,6 +5,6 @@ namespace Alexa.NET.Request
     public class Scope
     {
         [JsonProperty("status")]
-        public string status { get; set; }
+        public string Status { get; set; }
     }
 }

@@ -100,7 +100,7 @@ namespace Alexa.NET.Tests
 
             Assert.NotNull(convertedObjContext);
             var scope = convertedObjContext.System.User.Permissions.Scopes["alexa::devices:all:geolocation:read"];
-            Assert.Equal("GRANTED", scope.status);
+            Assert.Equal("GRANTED", scope.Status);
         }
 
         [Fact]
