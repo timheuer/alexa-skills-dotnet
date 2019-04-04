@@ -94,6 +94,16 @@ namespace Alexa.NET.Tests
         }
 
         [Fact]
+        public void Can_read_scopes_example()
+        {
+            var convertedObjContext = GetObjectFromExample<Context>("GetScopes.json");
+
+            Assert.NotNull(convertedObjContext);
+            var scope = convertedObjContext.System.User.Permissions.Scopes["alexa::devices:all:geolocation:read"];
+            Assert.Equal("GRANTED", scope.status);
+        }
+
+        [Fact]
         public void Can_accept_new_versions()
         {
             var convertedObj = GetObjectFromExample<SkillRequest>("SessionEndedRequest.json");
