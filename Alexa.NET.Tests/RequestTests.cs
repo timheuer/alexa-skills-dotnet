@@ -80,7 +80,9 @@ namespace Alexa.NET.Tests
             var convertedObj = GetObjectFromExample<SkillRequest>("SessionEndedRequest.json");
 
             Assert.NotNull(convertedObj);
-            Assert.Equal(typeof(SessionEndedRequest), convertedObj.GetRequestType());
+            var sessionEndedRequest = Assert.IsType<SessionEndedRequest>(convertedObj.Request);
+            Assert.Equal(ErrorType.InvalidResponse,sessionEndedRequest.Error.Type);
+            Assert.Equal("test message", sessionEndedRequest.Error.Message);
         }
 
         [Fact]

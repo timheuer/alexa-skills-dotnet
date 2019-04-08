@@ -21,6 +21,10 @@
         "type": "SessionEndedRequest",
         "requestId": "amzn1.echo-api.request.0000000-0000-0000-0000-00000000000",
         "timestamp": "2015-05-13T12:34:56Z",
-        "reason": "USER_INITIATED"
+      "reason": "USER_INITIATED",
+      "error": {
+        "type": "INVALID_RESPONSE",
+        "message": "test message"
+      }
     }
 }
