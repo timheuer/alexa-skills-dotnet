@@ -3,13 +3,13 @@
   <PropertyGroup>
     <Description>A simple .NET Core library for handling Alexa Skill request/responses.</Description>
     <AssemblyTitle>Alexa.NET</AssemblyTitle>
-    <VersionPrefix>1.5.7</VersionPrefix>
+    <VersionPrefix>1.6.1</VersionPrefix>
     <Authors>Tim Heuer, Steven Pears</Authors>
     <TargetFramework>netstandard1.6</TargetFramework>
     <AssemblyName>Alexa.NET</AssemblyName>
     <PackageId>Alexa.NET</PackageId>
     <PackageTags>amazon;alexa;echo;dot;echo dot;skills</PackageTags>
-    <PackageReleaseNotes>Adding new Geolocation support - https://developer.amazon.com/docs/custom-skills/location-services-for-alexa-skills.html</PackageReleaseNotes>
+    <PackageReleaseNotes>Added permission scopes (by @VinceGusmini); Added response type converters (by @rdlaitila); Added Dynamic Entity support (by @stoiveyp)</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/timheuer/alexa-skills-dotnet</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/timheuer/alexa-skills-dotnet/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/timheuer/alexa-skills-dotnet</RepositoryUrl>

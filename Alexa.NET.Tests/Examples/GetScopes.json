@@ -1,0 +1,42 @@
+﻿{
+  "System": {
+    "application": {
+      "applicationId": "amzn1.ask.skill.00000000000000"
+    },
+    "user": {
+      "userId": "amzn1.ask.account.00000000AAAAAA",
+      "permissions": {
+        "scopes": {
+          "alexa::devices:all:geolocation:read": {
+            "status": "GRANTED"
+          }
+        }
+      }
+    },
+    "apiEndpoint": "https://api.eu.amazonalexa.com"
+  },
+  "Geolocation": {
+    "locationServices": {
+      "access": "ENABLED",
+      "status": "RUNNING"
+    },
+    "timestamp": "2019-04-04T16:24:09Z",
+    "coordinate": {
+      "latitudeInDegrees": 38.2,
+      "longitudeInDegrees": 28.3,
+      "accuracyInMeters": 12.1
+    },
+    "altitude": {
+      "altitudeInMeters": 120.1,
+      "accuracyInMeters": 30.1
+    },
+    "heading": {
+      "directionInDegrees": 180.0,
+      "accuracyInDegrees": 5.0
+    },
+    "speed": {
+      "speedInMetersPerSecond": 10.0,
+      "accuracyInMetresPerSecond": 1.1
+    }
+  }
+}
