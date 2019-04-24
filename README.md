@@ -16,6 +16,7 @@ Alexa.NET also serves as a base foundation for a set of further Alexa skill deve
 * APL Support [GitHub](https://github.com/stoiveyp/Alexa.NET.APL) / [NuGet](https://www.nuget.org/packages/Alexa.NET.APL)
 * Reminders API [GitHub](https://github.com/stoiveyp/Alexa.NET.Reminders) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Reminders)
 * Proactive Events API [GitHub](https://github.com/stoiveyp/Alexa.NET.ProactiveEvents) / [NuGet](https://www.nuget.org/packages/Alexa.NET.ProactiveEvents)
+* CanFulfillIntent Request Support [GitHub](https://raw.githubusercontent.com/stoiveyp/Alexa.NET.CanFulfillIntentRequest) / [NuGet](https://www.nuget.org/packages/Alexa.NET.CanFulfillIntentRequest)
 
 # Setup
 Regardless of your architecture, your function for Alexa will be accepting a SkillRequest and returning a SkillResponse. The deserialization of the incoming request into a SkillRequest object will depend on your framework.
