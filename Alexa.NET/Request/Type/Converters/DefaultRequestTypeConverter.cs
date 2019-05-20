@@ -4,7 +4,7 @@
     {
         public bool CanConvert(string requestType)
         {
-            return requestType == "IntentRequest" || requestType == "LaunchRequest" || requestType == "SessionEndedRequest";
+            return requestType == "IntentRequest" || requestType == "LaunchRequest" || requestType == "SessionEndedRequest" || requestType == "System.ExceptionEncountered";
         }
 
         public Request Convert(string requestType)
