@@ -11,7 +11,7 @@
     <PackageTags>amazon;alexa;echo;dot;echo dot;skills</PackageTags>
     <PackageReleaseNotes>Fix deserialization error; Added permission scopes (by @VinceGusmini); Added response type converters (by @rdlaitila); Added Dynamic Entity support (by @stoiveyp)</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/timheuer/alexa-skills-dotnet</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/timheuer/alexa-skills-dotnet/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/timheuer/alexa-skills-dotnet</RepositoryUrl>
     <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
     <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
