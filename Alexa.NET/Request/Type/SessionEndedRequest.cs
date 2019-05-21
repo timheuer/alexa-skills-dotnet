@@ -8,5 +8,8 @@ namespace Alexa.NET.Request.Type
         [JsonProperty("reason")]
         [JsonConverter(typeof(StringEnumConverter))]
         public Reason Reason { get; set; }
+
+        [JsonProperty("error",NullValueHandling=NullValueHandling.Ignore)]
+        public Error Error { get; set; }
     }
 }
