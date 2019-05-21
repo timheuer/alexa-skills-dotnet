@@ -3,13 +3,13 @@
   <PropertyGroup>
     <Description>A simple .NET Core library for handling Alexa Skill request/responses.</Description>
     <AssemblyTitle>Alexa.NET</AssemblyTitle>
-    <VersionPrefix>1.6.2</VersionPrefix>
+    <VersionPrefix>1.6.3</VersionPrefix>
     <Authors>Tim Heuer, Steven Pears</Authors>
     <TargetFramework>netstandard1.6</TargetFramework>
     <AssemblyName>Alexa.NET</AssemblyName>
     <PackageId>Alexa.NET</PackageId>
     <PackageTags>amazon;alexa;echo;dot;echo dot;skills</PackageTags>
-    <PackageReleaseNotes>Fix deserialization error; Added permission scopes (by @VinceGusmini); Added response type converters (by @rdlaitila); Added Dynamic Entity support (by @stoiveyp)</PackageReleaseNotes>
+    <PackageReleaseNotes>Added SessionEnd error object; Fix deserialization error; Added permission scopes (by @VinceGusmini); Added response type converters (by @rdlaitila); Added Dynamic Entity support (by @stoiveyp)</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/timheuer/alexa-skills-dotnet</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/timheuer/alexa-skills-dotnet</RepositoryUrl>
