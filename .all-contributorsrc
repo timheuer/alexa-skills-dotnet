@@ -5,6 +5,27 @@
   "imageSize": 100,
   "commit": false,
   "contributors": [
+     {
+      "login": "stoiveyp",
+      "name": "Steven Pears",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/147125?v=4",
+      "profile": "http://www.imacode.ninja",
+      "contributions": [
+        "code",
+        "doc",
+        "tutorial",
+        "test"
+      ]
+    },
+    {
+      "login": "yadavvineet",
+      "name": "yadavvineet",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/7949851?v=4",
+      "profile": "http://vineetyadav.com",
+      "contributions": [
+        "code"
+      ]
+    },
     {
       "login": "socsieng",
       "name": "Soc Sieng",
@@ -39,18 +60,6 @@
       "profile": "https://github.com/IcanBENCHurCAT",
       "contributions": [
         "doc"
-      ]
-    },
-    {
-      "login": "stoiveyp",
-      "name": "Steven Pears",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/147125?v=4",
-      "profile": "http://www.imacode.ninja",
-      "contributions": [
-        "code",
-        "doc",
-        "tutorial",
-        "test"
       ]
     }
   ],
