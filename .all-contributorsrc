@@ -5,6 +5,18 @@
   "imageSize": 100,
   "commit": false,
   "contributors": [
+     {
+      "login": "stoiveyp",
+      "name": "Steven Pears",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/147125?v=4",
+      "profile": "http://www.imacode.ninja",
+      "contributions": [
+        "code",
+        "doc",
+        "tutorial",
+        "test"
+      ]
+    },
     {
       "login": "yadavvineet",
       "name": "yadavvineet",
@@ -12,6 +24,42 @@
       "profile": "http://vineetyadav.com",
       "contributions": [
         "code"
+      ]
+    },
+    {
+      "login": "socsieng",
+      "name": "Soc Sieng",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/2647062?v=4",
+      "profile": "https://www.linkedin.com/in/soc-sieng-b45a9473/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "fuzzysb",
+      "name": "Stuart Buchanan",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/16162689?v=4",
+      "profile": "http://www.stuartbuchanan.co.uk",
+      "contributions": [
+        "test"
+      ]
+    },
+    {
+      "login": "rdlaitila",
+      "name": "Regan Laitila",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1124388?v=4",
+      "profile": "https://github.com/rdlaitila",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "IcanBENCHurCAT",
+      "name": "IcanBENCHurCAT",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/4152550?v=4",
+      "profile": "https://github.com/IcanBENCHurCAT",
+      "contributions": [
+        "doc"
       ]
     }
   ],
