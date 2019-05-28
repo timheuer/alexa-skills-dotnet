@@ -4,7 +4,17 @@
   ],
   "imageSize": 100,
   "commit": false,
-  "contributors": [ ],
+  "contributors": [
+    {
+      "login": "IcanBENCHurCAT",
+      "name": "IcanBENCHurCAT",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/4152550?v=4",
+      "profile": "https://github.com/IcanBENCHurCAT",
+      "contributions": [
+        "doc"
+      ]
+    }
+  ],
   "contributorsPerLine": 7,
   "projectName": "alexa-skills-dotnet",
   "projectOwner": "timheuer",
