@@ -79,6 +79,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "matthiasxc",
+      "name": "Matthias Shapiro",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/235365?v=4",
+      "profile": "http://matthiasshapiro.com",
+      "contributions": [
+        "code",
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
