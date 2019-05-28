@@ -4,7 +4,17 @@
   ],
   "imageSize": 100,
   "commit": false,
-  "contributors": [ ],
+  "contributors": [
+    {
+      "login": "yadavvineet",
+      "name": "yadavvineet",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/7949851?v=4",
+      "profile": "http://vineetyadav.com",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
   "contributorsPerLine": 7,
   "projectName": "alexa-skills-dotnet",
   "projectOwner": "timheuer",
