@@ -6,6 +6,15 @@
   "commit": false,
   "contributors": [
     {
+      "login": "fuzzysb",
+      "name": "Stuart Buchanan",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/16162689?v=4",
+      "profile": "http://www.stuartbuchanan.co.uk",
+      "contributions": [
+        "test"
+      ]
+    },
+    {
       "login": "rdlaitila",
       "name": "Regan Laitila",
       "avatar_url": "https://avatars0.githubusercontent.com/u/1124388?v=4",
