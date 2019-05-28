@@ -5,7 +5,7 @@
   "imageSize": 100,
   "commit": false,
   "contributors": [
-     {
+    {
       "login": "stoiveyp",
       "name": "Steven Pears",
       "avatar_url": "https://avatars3.githubusercontent.com/u/147125?v=4",
@@ -60,6 +60,15 @@
       "profile": "https://github.com/IcanBENCHurCAT",
       "contributions": [
         "doc"
+      ]
+    },
+    {
+      "login": "VinceGusmini",
+      "name": "VinceGusmini",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/29730840?v=4",
+      "profile": "https://www.ydeho.com/",
+      "contributions": [
+        "code"
       ]
     }
   ],
