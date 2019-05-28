@@ -1,6 +1,7 @@
 # Alexa Skills SDK for .NET
 
 ![Build status](https://timheuer.visualstudio.com/_apis/public/build/definitions/01aba697-af87-48c2-8bde-627fb90746d8/2/badge)
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 
 Alexa.NET is a helper library for working with Alexa skill requests/responses in C#.  Whether you are using the AWS Lambda service or hosting your own service on your server, this library aims just to make working with the Alexa API more natural for a C# developer using a strongly-typed object model.
 
@@ -322,8 +323,13 @@ var progressiveResponse = new ProgressiveResponse(skillRequest);
 progressiveResponse.SendSpeech("Please wait while I gather your data.");
 ```
 
-# Community Contributions
-Alexa.NET has grown thanks to many suggestions, bug fixes, and direct contributions to the project here.  Be sure to give them thanks:
+## Contributors
 
-- Steven Pears [@stevenpears](https://twitter.com/stevenpears) - tons of code contributions and extensions
-- [IcanBENCHurCAT](https://github.com/IcanBENCHurCAT) - documentation
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
