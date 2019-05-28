@@ -4,7 +4,17 @@
   ],
   "imageSize": 100,
   "commit": false,
-  "contributors": [ ],
+  "contributors": [
+    {
+      "login": "fuzzysb",
+      "name": "Stuart Buchanan",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/16162689?v=4",
+      "profile": "http://www.stuartbuchanan.co.uk",
+      "contributions": [
+        "test"
+      ]
+    }
+  ],
   "contributorsPerLine": 7,
   "projectName": "alexa-skills-dotnet",
   "projectOwner": "timheuer",
