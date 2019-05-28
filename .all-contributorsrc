@@ -107,6 +107,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "adriangodong",
+      "name": "Adrian Godong",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1140137?v=4",
+      "profile": "https://adriangodong.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
