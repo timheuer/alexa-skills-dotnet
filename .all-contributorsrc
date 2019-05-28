@@ -13,6 +13,18 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "stoiveyp",
+      "name": "Steven Pears",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/147125?v=4",
+      "profile": "http://www.imacode.ninja",
+      "contributions": [
+        "code",
+        "doc",
+        "tutorial",
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
