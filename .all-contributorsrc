@@ -89,6 +89,15 @@
         "code",
         "test"
       ]
+    },
+    {
+      "login": "TechPreacher",
+      "name": "Sascha Corti",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/841949?v=4",
+      "profile": "http://techpreacher.corti.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
