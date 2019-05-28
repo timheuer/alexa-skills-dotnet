@@ -6,6 +6,15 @@
   "commit": false,
   "contributors": [
     {
+      "login": "socsieng",
+      "name": "Soc Sieng",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/2647062?v=4",
+      "profile": "https://www.linkedin.com/in/soc-sieng-b45a9473/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
       "login": "fuzzysb",
       "name": "Stuart Buchanan",
       "avatar_url": "https://avatars3.githubusercontent.com/u/16162689?v=4",
