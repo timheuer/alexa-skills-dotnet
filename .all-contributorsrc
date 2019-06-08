@@ -116,6 +116,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "jaddie",
+      "name": "Jaddie",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/68933?v=4",
+      "profile": "http://jad.codes",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
