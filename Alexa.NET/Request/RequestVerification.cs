@@ -15,7 +15,7 @@ namespace Alexa.NET.Request
 
         public static bool RequestTimestampWithinTolerance(SkillRequest request)
         {
-            return RequestTimestampWithinTolerance(request.Request.Timestamp);
+            return RequestTimestampWithinTolerance(request.Request.Timestamp.ToLocalTime());
         }
 
         public static bool RequestTimestampWithinTolerance(DateTime timestamp)
