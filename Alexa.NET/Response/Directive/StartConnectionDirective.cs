@@ -10,7 +10,7 @@ namespace Alexa.NET.Response.Directive
         public string Type => "Connections.StartConnection";
 
         [JsonProperty("uri")]
-        public Uri Uri { get; set; }
+        public string Uri { get; set; }
 
         [JsonProperty("input")]
         public IConnectionTask Input { get; set; }

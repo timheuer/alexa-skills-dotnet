@@ -10,7 +10,7 @@ namespace Alexa.NET.Response.Converters
     {
         public static Dictionary<string, Func<IConnectionTask>> TaskFactoryFromUri = new Dictionary<string, Func<IConnectionTask>>
         {
-            {"connection://AMAZON.PrintPDF/1",() => new PrintPdfV1() }
+            {"PrintPDFRequest/1",() => new PrintPdfV1() }
         };
 
         public override bool CanRead => true;
@@ -24,17 +24,18 @@ namespace Alexa.NET.Response.Converters
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var jsonObject = JObject.Load(reader);
-            var typeKey = jsonObject["uri"] ?? jsonObject["Uri"];
-            var typeValue = typeKey.Value<string>();
-            var hasFactory = TaskFactoryFromUri.ContainsKey(typeValue);
+            var typeKey = jsonObject.Value<string>("@type");
+            var versionKey = jsonObject.Value<string>("@version");
+            var factoryKey = $"{typeKey}/{versionKey}";
+            var hasFactory = TaskFactoryFromUri.ContainsKey(factoryKey);
 
             if (!hasFactory)
                 throw new Exception(
                     $"unable to deserialize response. " +
-                    $"unrecognized directive type '{typeValue}'"
+                    $"unrecognized task type '{typeKey}' with version '{versionKey}'"
                 );
 
-            var directive = TaskFactoryFromUri[typeValue]();
+            var directive = TaskFactoryFromUri[factoryKey]();
 
             serializer.Populate(jsonObject.CreateReader(), directive);
 

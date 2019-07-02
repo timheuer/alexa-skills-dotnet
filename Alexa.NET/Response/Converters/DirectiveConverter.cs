@@ -24,7 +24,7 @@ namespace Alexa.NET.Response.Converters
             { "Hint", () => new HintDirective() },
             { "AudioPlayer.Stop", () => new StopDirective() },
             { "VideoApp.Launch", () => new VideoAppDirective() },
-            { "Connections.StartDirective", () => new StartConnectionDirective() }
+            { "Connections.StartConnection", () => new StartConnectionDirective() }
         };
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
