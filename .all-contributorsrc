@@ -1,0 +1,135 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "stoiveyp",
+      "name": "Steven Pears",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/147125?v=4",
+      "profile": "http://www.imacode.ninja",
+      "contributions": [
+        "code",
+        "doc",
+        "tutorial",
+        "test"
+      ]
+    },
+    {
+      "login": "yadavvineet",
+      "name": "yadavvineet",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/7949851?v=4",
+      "profile": "http://vineetyadav.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "socsieng",
+      "name": "Soc Sieng",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/2647062?v=4",
+      "profile": "https://www.linkedin.com/in/soc-sieng-b45a9473/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "fuzzysb",
+      "name": "Stuart Buchanan",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/16162689?v=4",
+      "profile": "http://www.stuartbuchanan.co.uk",
+      "contributions": [
+        "test"
+      ]
+    },
+    {
+      "login": "rdlaitila",
+      "name": "Regan Laitila",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1124388?v=4",
+      "profile": "https://github.com/rdlaitila",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "IcanBENCHurCAT",
+      "name": "IcanBENCHurCAT",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/4152550?v=4",
+      "profile": "https://github.com/IcanBENCHurCAT",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "VinceGusmini",
+      "name": "VinceGusmini",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/29730840?v=4",
+      "profile": "https://www.ydeho.com/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "tobiasviehweger",
+      "name": "Tobias Viehweger",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/2111803?v=4",
+      "profile": "http://www.yasoon.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "matthiasxc",
+      "name": "Matthias Shapiro",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/235365?v=4",
+      "profile": "http://matthiasshapiro.com",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "TechPreacher",
+      "name": "Sascha Corti",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/841949?v=4",
+      "profile": "http://techpreacher.corti.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "StenmannsAr",
+      "name": "StenmannsAr",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/27204921?v=4",
+      "profile": "https://github.com/StenmannsAr",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "adriangodong",
+      "name": "Adrian Godong",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1140137?v=4",
+      "profile": "https://adriangodong.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "jaddie",
+      "name": "Jaddie",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/68933?v=4",
+      "profile": "http://jad.codes",
+      "contributions": [
+        "bug"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "alexa-skills-dotnet",
+  "projectOwner": "timheuer",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}
