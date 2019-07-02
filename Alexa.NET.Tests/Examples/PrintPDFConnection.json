@@ -1,0 +1,12 @@
+{
+  "type": "Connections.StartConnection",
+  "uri": "connection://AMAZON.PrintPDF/1",
+  "input": {
+    "@type": "PrintPDFRequest",
+    "@version": "1",
+    "title": "title",
+    "description": "description",
+    "url": "http://www.example.com/flywheel.pdf"
+  },
+  "token": "none"
+}
