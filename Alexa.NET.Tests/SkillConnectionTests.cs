@@ -49,7 +49,7 @@ namespace Alexa.NET.Tests
                 {
                     Type="ConnectionCompleted",
                     Token="1234",
-                    Status = new SessionResumedRequestCauseStatus(200,"OK")
+                    Status = new TaskStatus(200,"OK")
                 }
             };
             Utility.CompareJson(task, "SessionResumedRequest.json");
@@ -74,6 +74,13 @@ namespace Alexa.NET.Tests
             Assert.Equal("AMAZON.PrintPDF",result.Task.Name);
             Assert.Equal("1",result.Task.Version);
             Assert.IsType<PrintPdfV1>(result.Task.Input);
+        }
+
+        [Fact]
+        public void  TestCompleteTaskDirective()
+        {
+            //TODO: stop this failing
+            Assert.False(true);
         }
     }
 }

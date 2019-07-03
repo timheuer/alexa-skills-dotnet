@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
 
-namespace Alexa.NET.Request.Type
+namespace Alexa.NET.ConnectionTasks
 {
-    public class SessionResumedRequestCauseStatus
+    public class TaskStatus
     {
-        public SessionResumedRequestCauseStatus() { }
+        public TaskStatus() { }
 
-        public SessionResumedRequestCauseStatus(int code, string message)
+        public TaskStatus(int code, string message)
         {
             Code = code;
             Message = message;
