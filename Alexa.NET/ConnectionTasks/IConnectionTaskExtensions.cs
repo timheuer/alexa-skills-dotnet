@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Alexa.NET.Response.Directive;
 
-namespace Alexa.NET.Response.Directive.ConnectionTasks
+namespace Alexa.NET.ConnectionTasks
 {
     public static class IConnectionTaskExtensions
     {

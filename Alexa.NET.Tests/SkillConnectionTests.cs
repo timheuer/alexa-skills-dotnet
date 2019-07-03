@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using Alexa.NET.ConnectionTasks;
 using Alexa.NET.Request.Type;
 using Alexa.NET.Response;
 using Alexa.NET.Response.Directive;
-using Alexa.NET.Response.Directive.ConnectionTasks;
 using Xunit;
 
 namespace Alexa.NET.Tests
@@ -64,6 +62,16 @@ namespace Alexa.NET.Tests
             Assert.Equal("1234",request.Cause.Token);
             Assert.Equal(200,request.Cause.Status.Code);
             Assert.Equal("OK",request.Cause.Status.Message);
+        }
+
+        [Fact]
+        public void LaunchRequestWithTaskDeserializesCorrectly()
+        {
+            var result = Utility.ExampleFileContent<LaunchRequest>("LaunchRequestWithTask.json");
+            Assert.NotNull(result.Task);
+            Assert.Equal("AMAZON.PrintPDF",result.Task.Name);
+            Assert.Equal("1",result.Task.Version);
+            Assert.IsType<PrintPdfV1>(result.Task.Input);
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Alexa.NET.Response.Directive.ConnectionTasks
+namespace Alexa.NET.ConnectionTasks
 {
     public class PrintPdfV1:IConnectionTask
     {
