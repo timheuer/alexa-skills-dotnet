@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Alexa.NET.ConnectionTasks;
+using Alexa.NET.ConnectionTasks.Inputs;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 

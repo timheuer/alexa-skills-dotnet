@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Newtonsoft.Json;
 
-namespace Alexa.NET.ConnectionTasks
+namespace Alexa.NET.ConnectionTasks.Inputs
 {
     public class PrintPdfV1:IConnectionTask
     {
@@ -12,8 +10,11 @@ namespace Alexa.NET.ConnectionTasks
         [JsonProperty("@type")]
         public string Type => "PrintPDFRequest";
 
+        [JsonProperty("context")]
+        public ConnectionTaskContext Context { get; set; }
+
         [JsonProperty("@version")]
-        public int Version = 1;
+        public int Version => 1;
 
         [JsonProperty("title")]
         public string Title { get; set; }

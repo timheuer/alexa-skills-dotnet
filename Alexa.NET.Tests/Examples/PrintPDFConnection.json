@@ -6,6 +6,9 @@
     "@version": "1",
     "title": "title",
     "description": "description",
+    "context": {
+      "providerId": "your-provider-skill-id"
+    }, 
     "url": "http://www.example.com/flywheel.pdf"
   },
   "token": "none"

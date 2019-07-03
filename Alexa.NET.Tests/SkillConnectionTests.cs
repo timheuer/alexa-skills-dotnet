@@ -1,5 +1,6 @@
 ﻿using System;
 using Alexa.NET.ConnectionTasks;
+using Alexa.NET.ConnectionTasks.Inputs;
 using Alexa.NET.Request.Type;
 using Alexa.NET.Response;
 using Alexa.NET.Response.Directive;
@@ -16,7 +17,8 @@ namespace Alexa.NET.Tests
             {
                 Title = "title",
                 Description = "description",
-                Url = new Uri("http://www.example.com/flywheel.pdf")
+                Url = new Uri("http://www.example.com/flywheel.pdf"),
+                Context = new ConnectionTaskContext { ProviderId="your-provider-skill-id"}
             };
             Utility.CompareJson(task.ToConnectionDirective("none"), "PrintPDFConnection.json");
         }
@@ -29,7 +31,7 @@ namespace Alexa.NET.Tests
 
             var directive = Assert.IsType<StartConnectionDirective>(raw);
             Assert.Equal("none", directive.Token);
-            Assert.Equal(PrintPdfV1.AssociatedUri,directive.Uri.ToString());
+            Assert.Equal(PrintPdfV1.AssociatedUri,directive.Uri);
 
             Assert.IsType<PrintPdfV1>(directive.Input);
         }
