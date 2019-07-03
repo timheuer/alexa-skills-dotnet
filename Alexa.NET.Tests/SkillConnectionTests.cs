@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Alexa.NET.Request.Type;
 using Alexa.NET.Response;
 using Alexa.NET.Response.Directive;
 using Alexa.NET.Response.Directive.ConnectionTasks;
@@ -33,6 +34,36 @@ namespace Alexa.NET.Tests
             Assert.Equal(PrintPdfV1.AssociatedUri,directive.Uri.ToString());
 
             Assert.IsType<PrintPdfV1>(directive.Input);
+        }
+
+        [Fact]
+        public void SessionResumedSerializesProperly()
+        {
+            var task = new SessionResumedRequest
+            {
+                RequestId = "string",
+                Timestamp = new DateTime(2019,07,03),
+                Locale = "en-GB",
+                OriginIpAddress = "string",
+                Cause = new SessionResumedRequestCause
+                {
+                    Type="ConnectionCompleted",
+                    Token="1234",
+                    Status = new SessionResumedRequestCauseStatus(200,"OK")
+                }
+            };
+            Utility.CompareJson(task, "SessionResumedRequest.json");
+        }
+
+        [Fact]
+        public void SessionResumedDeserializesProperly()
+        {
+            var result = Utility.ExampleFileContent<Request.Type.Request>("SessionResumedRequest.json");
+            var request = Assert.IsType<SessionResumedRequest>(result);
+
+            Assert.Equal("1234",request.Cause.Token);
+            Assert.Equal(200,request.Cause.Status.Code);
+            Assert.Equal("OK",request.Cause.Status.Message);
         }
     }
 }
