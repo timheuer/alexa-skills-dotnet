@@ -92,7 +92,7 @@ namespace Alexa.NET.Tests
                 Description = "Flywheel",
                 ImageV1Type = PrintImageV1Type.JPEG,
                 Url = "http://www.example.com/flywheel.jpeg"
-            }.ToConnectionDirective(null);
+            }.ToConnectionDirective();
             Assert.Equal(PrintImageV1.AssociatedUri,directive.Uri);
             Assert.True(Utility.CompareJson(directive,"PrintImageConnection.json"));
             Assert.IsType<PrintImageV1>(Utility.ExampleFileContent<StartConnectionDirective>("PrintImageConnection.json").Input);
@@ -110,6 +110,20 @@ namespace Alexa.NET.Tests
             }.ToConnectionDirective("none");
             Assert.Equal(PrintPdfV1.AssociatedUri, directive.Uri);
             Assert.True(Utility.CompareJson(directive, "PrintPDFConnection.json"));
+            Assert.IsType<PrintPdfV1>(Utility.ExampleFileContent<StartConnectionDirective>("PrintPDFConnection.json").Input);
+        }
+
+        [Fact]
+        public void PrintWebPageConnectionComparison()
+        {
+            var directive = new PrintWebPageV1
+            {
+                Title = "title",
+                Description = "description",
+                Url = "http://www.example.com/flywheel.html"
+            }.ToConnectionDirective();
+            Assert.Equal(PrintWebPageV1.AssociatedUri, directive.Uri);
+            Assert.True(Utility.CompareJson(directive, "PrintWebPageConnection.json"));
             Assert.IsType<PrintPdfV1>(Utility.ExampleFileContent<StartConnectionDirective>("PrintPDFConnection.json").Input);
         }
 
