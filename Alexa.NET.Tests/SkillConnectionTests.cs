@@ -79,8 +79,8 @@ namespace Alexa.NET.Tests
         [Fact]
         public void  TestCompleteTaskDirective()
         {
-            //TODO: stop this failing
-            Assert.False(true);
+            var directive = new CompleteTaskDirective(200, "return as desired");
+            Assert.True(Utility.CompareJson(directive,"CompleteTaskDirective.json"));
         }
     }
 }
