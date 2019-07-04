@@ -7,14 +7,15 @@ using Newtonsoft.Json.Linq;
 
 namespace Alexa.NET.Response.Converters
 {
-    public class ConnectionTaskConverter:JsonConverter
+    public class ConnectionTaskConverter : JsonConverter
     {
         public static Dictionary<string, Func<IConnectionTask>> TaskFactoryFromUri = new Dictionary<string, Func<IConnectionTask>>
         {
             {"PrintPDFRequest/1",() => new PrintPdfV1() },
             {"PrintImageRequest/1", () => new PrintImageV1() },
             {"PrintWebPageRequest/1",() => new PrintWebPageV1()},
-            {"ScheduleTaxiReservationRequest/1",() => new ScheduleTaxiReservation() }
+            {"ScheduleTaxiReservationRequest/1",() => new ScheduleTaxiReservation() },
+            {"ScheduleFoodEstablishmentReservationRequest/1",() => new ScheduleFoodEstablishmentReservation()}
         };
 
         public override bool CanRead => true;

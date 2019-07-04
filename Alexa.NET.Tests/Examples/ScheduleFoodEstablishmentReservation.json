@@ -1,0 +1,24 @@
+{
+  "type": "Connections.StartConnection",
+  "uri": "connection://AMAZON.ScheduleFoodEstablishmentReservation/1",
+  "input": {
+    "@type": "ScheduleFoodEstablishmentReservationRequest",
+    "@version": "1",
+    "startTime": "2018-04-08T01:15:46Z",
+    "partySize": 2,
+    "restaurant": {
+      "@type": "Restaurant",
+      "@version": "1",
+      "name": "Amazon Day 1 Restaurant",
+      "location": {
+        "@type": "PostalAddress",
+        "@version": "1",
+        "streetAddress": "2121 7th Avenue",
+        "locality": "Seattle",
+        "region": "WA",
+        "postalCode": "98121",
+        "country": "US"
+      }
+    }
+  }
+}

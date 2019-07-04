@@ -18,7 +18,7 @@ namespace Alexa.NET.Tests
                 Title = "title",
                 Description = "description",
                 Url = "http://www.example.com/flywheel.pdf",
-                Context = new ConnectionTaskContext { ProviderId="your-provider-skill-id"}
+                Context = new ConnectionTaskContext { ProviderId = "your-provider-skill-id" }
             };
             Utility.CompareJson(task.ToConnectionDirective("none"), "PrintPDFConnection.json");
         }
@@ -31,7 +31,7 @@ namespace Alexa.NET.Tests
 
             var directive = Assert.IsType<StartConnectionDirective>(raw);
             Assert.Equal("none", directive.Token);
-            Assert.Equal(PrintPdfV1.AssociatedUri,directive.Uri);
+            Assert.Equal(PrintPdfV1.AssociatedUri, directive.Uri);
 
             Assert.IsType<PrintPdfV1>(directive.Input);
         }
@@ -42,14 +42,14 @@ namespace Alexa.NET.Tests
             var task = new SessionResumedRequest
             {
                 RequestId = "string",
-                Timestamp = new DateTime(2019,07,03),
+                Timestamp = new DateTime(2019, 07, 03),
                 Locale = "en-GB",
                 OriginIpAddress = "string",
                 Cause = new SessionResumedRequestCause
                 {
-                    Type="ConnectionCompleted",
-                    Token="1234",
-                    Status = new TaskStatus(200,"OK")
+                    Type = "ConnectionCompleted",
+                    Token = "1234",
+                    Status = new TaskStatus(200, "OK")
                 }
             };
             Utility.CompareJson(task, "SessionResumedRequest.json");
@@ -61,9 +61,9 @@ namespace Alexa.NET.Tests
             var result = Utility.ExampleFileContent<Request.Type.Request>("SessionResumedRequest.json");
             var request = Assert.IsType<SessionResumedRequest>(result);
 
-            Assert.Equal("1234",request.Cause.Token);
-            Assert.Equal(200,request.Cause.Status.Code);
-            Assert.Equal("OK",request.Cause.Status.Message);
+            Assert.Equal("1234", request.Cause.Token);
+            Assert.Equal(200, request.Cause.Status.Code);
+            Assert.Equal("OK", request.Cause.Status.Message);
         }
 
         [Fact]
@@ -71,16 +71,16 @@ namespace Alexa.NET.Tests
         {
             var result = Utility.ExampleFileContent<LaunchRequest>("LaunchRequestWithTask.json");
             Assert.NotNull(result.Task);
-            Assert.Equal("AMAZON.PrintPDF",result.Task.Name);
-            Assert.Equal("1",result.Task.Version);
+            Assert.Equal("AMAZON.PrintPDF", result.Task.Name);
+            Assert.Equal("1", result.Task.Version);
             Assert.IsType<PrintPdfV1>(result.Task.Input);
         }
 
         [Fact]
-        public void  TestCompleteTaskDirective()
+        public void TestCompleteTaskDirective()
         {
             var directive = new CompleteTaskDirective(200, "return as desired");
-            Assert.True(Utility.CompareJson(directive,"CompleteTaskDirective.json"));
+            Assert.True(Utility.CompareJson(directive, "CompleteTaskDirective.json"));
         }
 
         [Fact]
@@ -93,8 +93,8 @@ namespace Alexa.NET.Tests
                 ImageV1Type = PrintImageV1Type.JPEG,
                 Url = "http://www.example.com/flywheel.jpeg"
             }.ToConnectionDirective();
-            Assert.Equal(PrintImageV1.AssociatedUri,directive.Uri);
-            Assert.True(Utility.CompareJson(directive,"PrintImageConnection.json"));
+            Assert.Equal(PrintImageV1.AssociatedUri, directive.Uri);
+            Assert.True(Utility.CompareJson(directive, "PrintImageConnection.json"));
             Assert.IsType<PrintImageV1>(Utility.ExampleFileContent<StartConnectionDirective>("PrintImageConnection.json").Input);
         }
 
@@ -153,6 +153,31 @@ namespace Alexa.NET.Tests
             Assert.Equal(ScheduleTaxiReservation.AssociatedUri, directive.Uri);
             Assert.True(Utility.CompareJson(directive, "ScheduleTaxiReservation.json"));
             Assert.IsType<ScheduleTaxiReservation>(Utility.ExampleFileContent<StartConnectionDirective>("ScheduleTaxiReservation.json").Input);
+        }
+
+        [Fact]
+        public void ScheduleFoodReservationConnectionComparison()
+        {
+            var directive = new ScheduleFoodEstablishmentReservation
+            {
+                PartySize = 2,
+                StartTime = new DateTime(2018,04,08,01,15,46),
+                Restaurant = new Restaurant
+                {
+                    Name = "Amazon Day 1 Restaurant",
+                    Location = new PostalAddress
+                    {
+                        StreetAddress = "2121 7th Avenue",
+                        Locality = "Seattle",
+                        Region = "WA",
+                        PostalCode = "98121",
+                        Country = "US"
+                    }
+                }
+            }.ToConnectionDirective();
+            Assert.Equal(ScheduleFoodEstablishmentReservation.AssociatedUri, directive.Uri);
+            Assert.True(Utility.CompareJson(directive, "ScheduleFoodEstablishmentReservation.json"));
+            Assert.IsType<ScheduleFoodEstablishmentReservation>(Utility.ExampleFileContent<StartConnectionDirective>("ScheduleFoodEstablishmentReservation.json").Input);
         }
 
     }
