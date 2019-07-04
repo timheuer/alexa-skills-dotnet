@@ -1,0 +1,27 @@
+{
+  "type": "Connections.StartConnection",
+  "uri": "connection://AMAZON.ScheduleTaxiReservation/1",
+  "input": {
+    "@type": "ScheduleTaxiReservationRequest",
+    "@version": "1",
+    "partySize": 4,
+    "pickupLocation": {
+      "@type": "PostalAddress",
+      "@version": "1",
+      "streetAddress": "415 106th Ave NE",
+      "locality": "Bellevue",
+      "region": "WA",
+      "postalCode": "98004",
+      "country": "US"
+    },
+    "dropoffLocation": {
+      "@type": "PostalAddress",
+      "@version": "1",
+      "streetAddress": "2031 6th Ave.",
+      "locality": "Seattle",
+      "region": "WA",
+      "postalCode": "98121",
+      "country": "US"
+    }
+  }
+}

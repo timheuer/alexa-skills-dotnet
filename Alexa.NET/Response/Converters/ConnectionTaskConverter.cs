@@ -13,7 +13,8 @@ namespace Alexa.NET.Response.Converters
         {
             {"PrintPDFRequest/1",() => new PrintPdfV1() },
             {"PrintImageRequest/1", () => new PrintImageV1() },
-            {"PrintWebPageRequest/1",() => new PrintWebPageV1()}
+            {"PrintWebPageRequest/1",() => new PrintWebPageV1()},
+            {"ScheduleTaxiReservationRequest/1",() => new ScheduleTaxiReservation() }
         };
 
         public override bool CanRead => true;

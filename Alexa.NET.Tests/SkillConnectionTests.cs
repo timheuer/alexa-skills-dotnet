@@ -127,5 +127,33 @@ namespace Alexa.NET.Tests
             Assert.IsType<PrintPdfV1>(Utility.ExampleFileContent<StartConnectionDirective>("PrintPDFConnection.json").Input);
         }
 
+        [Fact]
+        public void ScheduleTaxiReservationConnectionComparison()
+        {
+            var directive = new ScheduleTaxiReservation
+            {
+                PartySize = 4,
+                PickupLocation = new PostalAddress
+                {
+                    StreetAddress = "415 106th Ave NE",
+                    Locality = "Bellevue",
+                    Region = "WA",
+                    PostalCode = "98004",
+                    Country = "US"
+                },
+                DropoffLocation = new PostalAddress
+                {
+                    StreetAddress = "2031 6th Ave.",
+                    Locality = "Seattle",
+                    Region = "WA",
+                    PostalCode = "98121",
+                    Country = "US"
+                }
+            }.ToConnectionDirective();
+            Assert.Equal(ScheduleTaxiReservation.AssociatedUri, directive.Uri);
+            Assert.True(Utility.CompareJson(directive, "ScheduleTaxiReservation.json"));
+            Assert.IsType<ScheduleTaxiReservation>(Utility.ExampleFileContent<StartConnectionDirective>("ScheduleTaxiReservation.json").Input);
+        }
+
     }
 }
