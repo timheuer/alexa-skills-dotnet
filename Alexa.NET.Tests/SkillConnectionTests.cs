@@ -17,7 +17,7 @@ namespace Alexa.NET.Tests
             {
                 Title = "title",
                 Description = "description",
-                Url = new Uri("http://www.example.com/flywheel.pdf"),
+                Url = "http://www.example.com/flywheel.pdf",
                 Context = new ConnectionTaskContext { ProviderId="your-provider-skill-id"}
             };
             Utility.CompareJson(task.ToConnectionDirective("none"), "PrintPDFConnection.json");
@@ -82,5 +82,36 @@ namespace Alexa.NET.Tests
             var directive = new CompleteTaskDirective(200, "return as desired");
             Assert.True(Utility.CompareJson(directive,"CompleteTaskDirective.json"));
         }
+
+        [Fact]
+        public void PrintImageConnectionComparison()
+        {
+            var directive = new PrintImageV1
+            {
+                Title = "Flywheel Document",
+                Description = "Flywheel",
+                ImageV1Type = PrintImageV1Type.JPEG,
+                Url = "http://www.example.com/flywheel.jpeg"
+            }.ToConnectionDirective(null);
+            Assert.Equal(PrintImageV1.AssociatedUri,directive.Uri);
+            Assert.True(Utility.CompareJson(directive,"PrintImageConnection.json"));
+            Assert.IsType<PrintImageV1>(Utility.ExampleFileContent<StartConnectionDirective>("PrintImageConnection.json").Input);
+        }
+
+        [Fact]
+        public void PrintPDFConnectionComparison()
+        {
+            var directive = new PrintPdfV1
+            {
+                Title = "title",
+                Description = "description",
+                Url = "http://www.example.com/flywheel.pdf",
+                Context = new ConnectionTaskContext { ProviderId = "your-provider-skill-id" }
+            }.ToConnectionDirective("none");
+            Assert.Equal(PrintPdfV1.AssociatedUri, directive.Uri);
+            Assert.True(Utility.CompareJson(directive, "PrintPDFConnection.json"));
+            Assert.IsType<PrintPdfV1>(Utility.ExampleFileContent<StartConnectionDirective>("PrintPDFConnection.json").Input);
+        }
+
     }
 }

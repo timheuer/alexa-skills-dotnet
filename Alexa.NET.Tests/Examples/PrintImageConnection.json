@@ -1,0 +1,12 @@
+{
+  "type": "Connections.StartConnection",
+  "uri": "connection://AMAZON.PrintImage/1",
+  "input": {
+    "@type": "PrintImageRequest",
+    "@version": "1",
+    "title": "Flywheel Document",
+    "description": "Flywheel",
+    "imageType": "JPEG",
+    "url": "http://www.example.com/flywheel.jpeg"
+  }
+}

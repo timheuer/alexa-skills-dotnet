@@ -15,13 +15,14 @@ namespace Alexa.NET.Response.Directive
         [JsonProperty("input")]
         public IConnectionTask Input { get; set; }
 
-        [JsonProperty("token")]
+        [JsonProperty("token",NullValueHandling = NullValueHandling.Ignore)]
         public string Token { get; set; }
 
         public StartConnectionDirective(){}
 
         public StartConnectionDirective(IConnectionTask input, string token)
         {
+            this.Uri = input.ConnectionUri;
             this.Input = input;
             this.Token = token;
         }

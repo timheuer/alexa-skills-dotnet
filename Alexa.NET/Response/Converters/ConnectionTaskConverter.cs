@@ -11,7 +11,8 @@ namespace Alexa.NET.Response.Converters
     {
         public static Dictionary<string, Func<IConnectionTask>> TaskFactoryFromUri = new Dictionary<string, Func<IConnectionTask>>
         {
-            {"PrintPDFRequest/1",() => new PrintPdfV1() }
+            {"PrintPDFRequest/1",() => new PrintPdfV1() },
+            {"PrintImageRequest/1", () => new PrintImageV1() }
         };
 
         public override bool CanRead => true;

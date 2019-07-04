@@ -7,14 +7,17 @@ namespace Alexa.NET.ConnectionTasks.Inputs
     {
         public const string AssociatedUri = "connection://AMAZON.PrintPDF/1";
 
+        [JsonIgnore]
+        public string ConnectionUri => AssociatedUri;
+
         [JsonProperty("@type")]
         public string Type => "PrintPDFRequest";
 
-        [JsonProperty("context")]
+        [JsonProperty("context", NullValueHandling = NullValueHandling.Ignore)]
         public ConnectionTaskContext Context { get; set; }
 
         [JsonProperty("@version")]
-        public int Version => 1;
+        public string Version => 1.ToString();
 
         [JsonProperty("title")]
         public string Title { get; set; }
@@ -23,7 +26,7 @@ namespace Alexa.NET.ConnectionTasks.Inputs
         public string Description { get; set; }
 
         [JsonProperty("url")]
-        public Uri Url { get; set; }
+        public string Url { get; set; }
 
     }
 }
