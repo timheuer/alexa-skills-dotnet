@@ -69,14 +69,14 @@ namespace Alexa.NET.Response
 
         }
 
-        public Task<HttpResponseMessage> SendSpeech(Ssml.Speech speech)
+        public Task<HttpResponseMessage> SendSpeech(Ssml.Speech ssml)
         {
-            return Send(new VoicePlayerSpeakDirective(speech));
+            return Send(new VoicePlayerSpeakDirective(ssml));
         }
 
-        public Task<HttpResponseMessage> SendSpeech(string speech)
+        public Task<HttpResponseMessage> SendSpeech(string ssml)
         {
-            return Send(new VoicePlayerSpeakDirective(speech));
+            return Send(new VoicePlayerSpeakDirective(ssml));
         }
 
         public bool CanSend()

@@ -1,0 +1,18 @@
+﻿{
+    "type": "LaunchRequest",
+    "requestId": "string",
+    "timestamp": "2019-07-03T00:00:00",
+    "locale": "string",
+    "originIpAddress": "string",
+    "task": {
+        "name": "AMAZON.PrintPDF",
+        "version": "1",
+        "input": {
+            "@type": "PrintPDFRequest",
+            "@version": "1",
+            "title": "Flywheel",
+            "description": "Flywheel",
+            "url": "http://www.example.com/flywheel.pdf"
+        }
+    }
+}

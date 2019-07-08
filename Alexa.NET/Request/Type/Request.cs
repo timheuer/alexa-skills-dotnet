@@ -4,6 +4,7 @@ using Alexa.NET.Helpers;
 
 namespace Alexa.NET.Request.Type
 {
+    [JsonConverter(typeof(RequestConverter))]
     public abstract class Request
     {
         [JsonProperty("type")]
