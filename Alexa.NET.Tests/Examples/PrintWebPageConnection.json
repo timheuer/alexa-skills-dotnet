@@ -1,0 +1,11 @@
+{
+  "type": "Connections.StartConnection",
+  "uri": "connection://AMAZON.PrintWebPage/1",
+  "input": {
+    "@type": "PrintWebPageRequest",
+    "@version": "1",
+    "title": "title",
+    "description": "description",
+    "url": "http://www.example.com/flywheel.html"
+  }
+}

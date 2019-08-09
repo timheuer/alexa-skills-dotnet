@@ -1,0 +1,16 @@
+{
+  "type": "SessionResumedRequest",
+  "requestId": "string",
+  "timestamp": "2019-07-03T00:00:00",
+  "locale": "en-GB",
+  "originIpAddress": "string",
+  "cause": {
+    "type": "ConnectionCompleted",
+    "token": "1234",
+    "status": {
+      "code": 200,
+      "message": "OK"
+    },
+    "result": null
+  }
+}

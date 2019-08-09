@@ -14,7 +14,8 @@ namespace Alexa.NET.Request.Type
             new AudioPlayerRequestTypeConverter(),
             new PlaybackRequestTypeConverter(),
             new TemplateEventRequestTypeConverter(),
-            new SkillEventRequestTypeConverter()
+            new SkillEventRequestTypeConverter(),
+            new SkillConnectionRequestTypeConverter()
         });
 
         public override bool CanWrite => false;
