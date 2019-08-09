@@ -9,7 +9,7 @@
     <AssemblyName>Alexa.NET</AssemblyName>
     <PackageId>Alexa.NET</PackageId>
     <PackageTags>amazon;alexa;echo;dot;echo dot;skills</PackageTags>
-    <PackageReleaseNotes>Added core support for Skill connections (by @stoiveyp) and in association with Alexa.NET.Management enables the end-to-end.</PackageReleaseNotes>
+    <PackageReleaseNotes>1.8.0 release makes this a .NET Standard 2 library; Bumping JSON.NET package version support as well.</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/timheuer/alexa-skills-dotnet</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/timheuer/alexa-skills-dotnet</RepositoryUrl>
