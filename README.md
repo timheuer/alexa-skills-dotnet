@@ -8,7 +8,6 @@ Alexa.NET is a helper library for working with Alexa skill requests/responses in
 Alexa.NET also serves as a base foundation for a set of further Alexa skill development extensions from [Steven Pears](https://github.com/stoiveyp):
 
 * Management [GitHub](https://github.com/stoiveyp/Alexa.NET.Management) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Management)
-* Notifications [GitHub](https://github.com/stoiveyp/Alexa.NET.Notifications) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Notifications)
 * In-skill Pricing [GitHub](https://github.com/stoiveyp/Alexa.NET.InSkillPricing) / [NuGet](https://www.nuget.org/packages/Alexa.NET.InSkillPricing)
 * Messaging [GitHub](https://github.com/stoiveyp/Alexa.NET.SkillMessaging) / [NuGet](https://www.nuget.org/packages/Alexa.NET.SkillMessaging)
 * Gadgets [GitHub](https://github.com/stoiveyp/Alexa.NET.Gadgets) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Gadgets)
