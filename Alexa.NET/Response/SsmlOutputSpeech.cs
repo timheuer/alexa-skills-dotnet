@@ -19,6 +19,6 @@ namespace Alexa.NET.Response
 
         [JsonProperty("playBehavior", NullValueHandling = NullValueHandling.Ignore)]
         [JsonConverter(typeof(StringEnumConverter))]
-        public PlayBehavior PlayBehavior { get; set; } = PlayBehavior.Enqueue;
+        public PlayBehavior? PlayBehavior { get; set; }
     }
 }
