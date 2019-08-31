@@ -259,6 +259,21 @@ namespace Alexa.NET.Tests
 
             Assert.Equal("PlainText", outputSpeech.Type);
             Assert.Equal("text content", outputSpeech.Text);
+            Assert.Equal(null, outputSpeech.PlayBehavior);
+        }
+
+        [Fact]
+        public void DeserializesExamplePlainTextOutputSpeechWithPlayBehaviorJson()
+        {
+            var deserialized = Utility.ExampleFileContent<IOutputSpeech>("PlainTextOutputSpeechWithPlayBehavior.json");
+
+            Assert.Equal(typeof(PlainTextOutputSpeech), deserialized.GetType());
+
+            var outputSpeech = (PlainTextOutputSpeech)deserialized;
+
+            Assert.Equal("PlainText", outputSpeech.Type);
+            Assert.Equal("text content", outputSpeech.Text);
+            Assert.Equal(PlayBehavior.ReplaceAll, outputSpeech.PlayBehavior);
         }
 
         [Fact]
@@ -272,6 +287,20 @@ namespace Alexa.NET.Tests
 
             Assert.Equal("SSML", outputSpeech.Type);
             Assert.Equal("ssml content", outputSpeech.Ssml);
+        }
+
+        [Fact]
+        public void DeserializesExampleSsmlOutputSpeechWithPlayBehaviorJson()
+        {
+            var deserialized = Utility.ExampleFileContent<IOutputSpeech>("SsmlOutputSpeechWithPlayBehavior.json");
+
+            Assert.Equal(typeof(SsmlOutputSpeech), deserialized.GetType());
+
+            var outputSpeech = (SsmlOutputSpeech)deserialized;
+
+            Assert.Equal("SSML", outputSpeech.Type);
+            Assert.Equal("ssml content", outputSpeech.Ssml);
+            Assert.Equal(PlayBehavior.ReplaceEnqueued, outputSpeech.PlayBehavior);
         }
 
         [Fact]
