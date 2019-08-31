@@ -341,6 +341,7 @@ namespace Alexa.NET.Tests
 
             Assert.Equal("SSML", outputSpeech.Type);
             Assert.Equal("ssml content", outputSpeech.Ssml);
+            Assert.Equal(null, outputSpeech.PlayBehavior);
         }
 
         [Fact]
