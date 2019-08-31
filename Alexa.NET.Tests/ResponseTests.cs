@@ -249,6 +249,24 @@ namespace Alexa.NET.Tests
         }
 
         [Fact]
+        public void SerializesPlainTextOutputSpeechToJson()
+        {
+            var plainTextOutputSpeech = new PlainTextOutputSpeech { Text = "text content" };
+            var json = JsonConvert.SerializeObject(plainTextOutputSpeech, Formatting.Indented, new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            });
+
+            const string example = "PlainTextOutputSpeech.json";
+            var workingJson = File.ReadAllText(Path.Combine(ExamplesPath, example));
+
+            workingJson = Regex.Replace(workingJson, @"\s", "");
+            json = Regex.Replace(json, @"\s", "");
+
+            Assert.Equal(workingJson, json);
+        }
+
+        [Fact]
         public void DeserializesExamplePlainTextOutputSpeechJson()
         {
             var deserialized = Utility.ExampleFileContent<IOutputSpeech>("PlainTextOutputSpeech.json");
@@ -260,6 +278,24 @@ namespace Alexa.NET.Tests
             Assert.Equal("PlainText", outputSpeech.Type);
             Assert.Equal("text content", outputSpeech.Text);
             Assert.Equal(null, outputSpeech.PlayBehavior);
+        }
+
+        [Fact]
+        public void SerializesPlainTextOutputSpeechWithPlayBehaviorToJson()
+        {
+            var plainTextOutputSpeech = new PlainTextOutputSpeech { Text = "text content", PlayBehavior = PlayBehavior.ReplaceAll };
+            var json = JsonConvert.SerializeObject(plainTextOutputSpeech, Formatting.Indented, new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            });
+
+            const string example = "PlainTextOutputSpeechWithPlayBehavior.json";
+            var workingJson = File.ReadAllText(Path.Combine(ExamplesPath, example));
+
+            workingJson = Regex.Replace(workingJson, @"\s", "");
+            json = Regex.Replace(json, @"\s", "");
+
+            Assert.Equal(workingJson, json);
         }
 
         [Fact]
@@ -277,6 +313,24 @@ namespace Alexa.NET.Tests
         }
 
         [Fact]
+        public void SerializesSsmlOutputSpeechToJson()
+        {
+            var ssmlOutputSpeech = new SsmlOutputSpeech { Ssml = "ssml content" };
+            var json = JsonConvert.SerializeObject(ssmlOutputSpeech, Formatting.Indented, new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            });
+
+            const string example = "SsmlOutputSpeech.json";
+            var workingJson = File.ReadAllText(Path.Combine(ExamplesPath, example));
+
+            workingJson = Regex.Replace(workingJson, @"\s", "");
+            json = Regex.Replace(json, @"\s", "");
+
+            Assert.Equal(workingJson, json);
+        }
+
+        [Fact]
         public void DeserializesExampleSsmlOutputSpeechJson()
         {
             var deserialized = Utility.ExampleFileContent<IOutputSpeech>("SsmlOutputSpeech.json");
@@ -287,6 +341,24 @@ namespace Alexa.NET.Tests
 
             Assert.Equal("SSML", outputSpeech.Type);
             Assert.Equal("ssml content", outputSpeech.Ssml);
+        }
+
+        [Fact]
+        public void SerializesSsmlOutputSpeechWithPlayBehaviorToJson()
+        {
+            var ssmlOutputSpeech = new SsmlOutputSpeech { Ssml = "ssml content", PlayBehavior = PlayBehavior.ReplaceEnqueued };
+            var json = JsonConvert.SerializeObject(ssmlOutputSpeech, Formatting.Indented, new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            });
+
+            const string example = "SsmlOutputSpeechWithPlayBehavior.json";
+            var workingJson = File.ReadAllText(Path.Combine(ExamplesPath, example));
+
+            workingJson = Regex.Replace(workingJson, @"\s", "");
+            json = Regex.Replace(json, @"\s", "");
+
+            Assert.Equal(workingJson, json);
         }
 
         [Fact]
