@@ -54,18 +54,7 @@ namespace Alexa.NET.Tests
                 }
             };
 
-            var json = JsonConvert.SerializeObject(skillResponse, Formatting.Indented, new JsonSerializerSettings
-            {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-            });
-
-            const string example = "Response.json";
-            var workingJson = File.ReadAllText(Path.Combine(ExamplesPath, example));
-
-            workingJson = Regex.Replace(workingJson, @"\s", "");
-            json = Regex.Replace(json, @"\s", "");
-
-            Assert.Equal(workingJson, json);
+            Assert.True(Utility.CompareJson(skillResponse, "Response.json"));
         }
 
         [Fact]
@@ -252,18 +241,7 @@ namespace Alexa.NET.Tests
         public void SerializesPlainTextOutputSpeechToJson()
         {
             var plainTextOutputSpeech = new PlainTextOutputSpeech { Text = "text content" };
-            var json = JsonConvert.SerializeObject(plainTextOutputSpeech, Formatting.Indented, new JsonSerializerSettings
-            {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-            });
-
-            const string example = "PlainTextOutputSpeech.json";
-            var workingJson = File.ReadAllText(Path.Combine(ExamplesPath, example));
-
-            workingJson = Regex.Replace(workingJson, @"\s", "");
-            json = Regex.Replace(json, @"\s", "");
-
-            Assert.Equal(workingJson, json);
+            Assert.True(Utility.CompareJson(plainTextOutputSpeech, "PlainTextOutputSpeech.json"));
         }
 
         [Fact]
@@ -284,18 +262,7 @@ namespace Alexa.NET.Tests
         public void SerializesPlainTextOutputSpeechWithPlayBehaviorToJson()
         {
             var plainTextOutputSpeech = new PlainTextOutputSpeech { Text = "text content", PlayBehavior = PlayBehavior.ReplaceAll };
-            var json = JsonConvert.SerializeObject(plainTextOutputSpeech, Formatting.Indented, new JsonSerializerSettings
-            {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-            });
-
-            const string example = "PlainTextOutputSpeechWithPlayBehavior.json";
-            var workingJson = File.ReadAllText(Path.Combine(ExamplesPath, example));
-
-            workingJson = Regex.Replace(workingJson, @"\s", "");
-            json = Regex.Replace(json, @"\s", "");
-
-            Assert.Equal(workingJson, json);
+            Assert.True(Utility.CompareJson(plainTextOutputSpeech, "PlainTextOutputSpeechWithPlayBehavior.json"));
         }
 
         [Fact]
@@ -316,18 +283,7 @@ namespace Alexa.NET.Tests
         public void SerializesSsmlOutputSpeechToJson()
         {
             var ssmlOutputSpeech = new SsmlOutputSpeech { Ssml = "ssml content" };
-            var json = JsonConvert.SerializeObject(ssmlOutputSpeech, Formatting.Indented, new JsonSerializerSettings
-            {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-            });
-
-            const string example = "SsmlOutputSpeech.json";
-            var workingJson = File.ReadAllText(Path.Combine(ExamplesPath, example));
-
-            workingJson = Regex.Replace(workingJson, @"\s", "");
-            json = Regex.Replace(json, @"\s", "");
-
-            Assert.Equal(workingJson, json);
+            Assert.True(Utility.CompareJson(ssmlOutputSpeech, "SsmlOutputSpeech.json"));
         }
 
         [Fact]
@@ -348,18 +304,7 @@ namespace Alexa.NET.Tests
         public void SerializesSsmlOutputSpeechWithPlayBehaviorToJson()
         {
             var ssmlOutputSpeech = new SsmlOutputSpeech { Ssml = "ssml content", PlayBehavior = PlayBehavior.ReplaceEnqueued };
-            var json = JsonConvert.SerializeObject(ssmlOutputSpeech, Formatting.Indented, new JsonSerializerSettings
-            {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-            });
-
-            const string example = "SsmlOutputSpeechWithPlayBehavior.json";
-            var workingJson = File.ReadAllText(Path.Combine(ExamplesPath, example));
-
-            workingJson = Regex.Replace(workingJson, @"\s", "");
-            json = Regex.Replace(json, @"\s", "");
-
-            Assert.Equal(workingJson, json);
+            Assert.True(Utility.CompareJson(ssmlOutputSpeech, "SsmlOutputSpeechWithPlayBehavior.json"));
         }
 
         [Fact]
