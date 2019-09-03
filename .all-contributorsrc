@@ -125,6 +125,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "evgeni-nabokov",
+      "name": "Evgeni Nabokov",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/3168823?v=4",
+      "profile": "https://github.com/evgeni-nabokov",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
