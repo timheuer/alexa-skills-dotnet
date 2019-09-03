@@ -3,13 +3,13 @@
   <PropertyGroup>
     <Description>A simple .NET Core library for handling Alexa Skill request/responses.</Description>
     <AssemblyTitle>Alexa.NET</AssemblyTitle>
-    <VersionPrefix>1.8.1</VersionPrefix>
+    <VersionPrefix>1.8.2</VersionPrefix>
     <Authors>Tim Heuer, Steven Pears</Authors>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Alexa.NET</AssemblyName>
     <PackageId>Alexa.NET</PackageId>
     <PackageTags>amazon;alexa;echo;dot;echo dot;skills</PackageTags>
-    <PackageReleaseNotes>Added dynamic entity update to directive list; 1.8.0 release makes this a .NET Standard 2 library; Bumping JSON.NET package version support as well.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added PlayBehavior to OutputSpeech (thanks @evgeni-nabokov); 1.8.0 release makes this a .NET Standard 2 library; Bumping JSON.NET package version support as well.</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/timheuer/alexa-skills-dotnet</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/timheuer/alexa-skills-dotnet</RepositoryUrl>
