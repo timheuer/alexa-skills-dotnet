@@ -1,0 +1,5 @@
+﻿{
+  "type": "PlainText",
+  "text": "text content",
+  "playBehavior": "REPLACE_ALL"
+}
