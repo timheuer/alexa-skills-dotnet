@@ -1,4 +1,4 @@
-name: ASP.NET Core CI
+name: ReleaseBuild-Master
 
 on: [push]
 
@@ -13,5 +13,9 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 2.2.401
-    - name: Build with dotnet
+    - name: Run Build
       run: dotnet build --configuration Release
+    - name: Run Tests
+      run: dotnet test --configuration Release --logger trx;logfilename=TEST.xml
+    - name: Pack
+      run: dotnet pack 
