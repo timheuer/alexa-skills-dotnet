@@ -1,5 +1,13 @@
 # Alexa Skills SDK for .NET
 
+<table>
+    <tr>
+        <!-- Do not translate this table -->
+        <td> Read this documentation in </td>
+        <td><a href="/docs/README_es.md">Español</a></td>
+    </tr>
+</table>
+
 [![Build Status](https://dev.azure.com/timheuer/Alexa.NET/_apis/build/status/Alexa.NET-master?branchName=master)](https://dev.azure.com/timheuer/Alexa.NET/_build/latest?definitionId=2&branchName=master)
 [![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors)
 
@@ -29,25 +37,34 @@ public SkillResponse FunctionHandler(SkillRequest input, ILambdaContext context)
 ```
 
 # Table of Contents
-- [Request Types](#request-types)    
-   * [AccountLinkSkillEventRequest](#handling-the-accountlinkskilleventrequest)
-   * [AudioPlayerRequest](#handling-the-audioplayerrequest)
-   * [DisplayElementSelectedRequest](#handling-the-displayelementselectedrequest)
-   * [IntentRequest](#handling-the-intentrequest)
-   * [LaunchRequest](#handling-the-launchrequest)
-   * [PermissionSkillEventRequest](#handling-the-permissionskilleventrequest)
-   * [PlaybackControllerRequest](#handling-the-playbackcontrollerrequest)
-   * [SessionEndedRequest](#handling-the-sessionendedrequest)
-   * [SkillEventRequest](#handling-the-skilleventrequest)
-   * [SystemExceptionRequest](#handling-the-systemexceptionrequest)
-- [Responses](#responses)
-    * [Ask vs. Tell](#ask-vs-tell)
-    * [SSML Response](#ssml-response)
-    * [SSML Response With Card](#ssml-response-with-card)
-    * [SSML Response With Reprompt](#ssml-response-with-reprompt)
-- [Session Variables](#session-variables)
-- [Responses Without Helpers](#responses-without-helpers)
-- [Progressive Responses](#progressive-responses)
+- [Alexa Skills SDK for .NET](#Alexa-Skills-SDK-for-NET)
+- [Setup](#Setup)
+- [Table of Contents](#Table-of-Contents)
+- [Request Types](#Request-Types)
+  - [Handling the AccountLinkSkillEventRequest](#Handling-the-AccountLinkSkillEventRequest)
+  - [Handling the AudioPlayerRequest](#Handling-the-AudioPlayerRequest)
+    - [AudioRequestType](#AudioRequestType)
+  - [Handling the DisplayElementSelectedRequest](#Handling-the-DisplayElementSelectedRequest)
+  - [Handling the IntentRequest](#Handling-the-IntentRequest)
+    - [Intent](#Intent)
+  - [Handling the LaunchRequest](#Handling-the-LaunchRequest)
+  - [Handling the PermissionSkillEventRequest](#Handling-the-PermissionSkillEventRequest)
+  - [Handling the PlaybackControllerRequest](#Handling-the-PlaybackControllerRequest)
+  - [Handling the SessionEndedRequest](#Handling-the-SessionEndedRequest)
+  - [Handling the SkillEventRequest](#Handling-the-SkillEventRequest)
+  - [Handling the SystemExceptionRequest](#Handling-the-SystemExceptionRequest)
+- [Responses](#Responses)
+  - [Ask Vs Tell](#Ask-Vs-Tell)
+  - [SSML Response](#SSML-Response)
+  - [SSML Response With Card](#SSML-Response-With-Card)
+  - [SSML Response With Reprompt](#SSML-Response-With-Reprompt)
+  - [Play Audio File](#Play-Audio-File)
+- [Session Variables](#Session-Variables)
+  - [Response with session variable](#Response-with-session-variable)
+  - [Retrieving session variable from request](#Retrieving-session-variable-from-request)
+- [Responses Without Helpers](#Responses-Without-Helpers)
+- [Progressive Responses](#Progressive-Responses)
+  - [Contributors](#Contributors)
 
 
 # Request Types
