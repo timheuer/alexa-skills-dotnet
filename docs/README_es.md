@@ -1,7 +1,6 @@
 # Alexa Skills SDK para .NET
 
 [![Build Status](https://dev.azure.com/timheuer/Alexa.NET/_apis/build/status/Alexa.NET-master?branchName=master)](https://dev.azure.com/timheuer/Alexa.NET/_build/latest?definitionId=2&branchName=master)
-[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors)
 
 Alexa.NET es una librera auxiliar que permite trabajar con peticiones y respuestas para skills de Alexa en C#.  Si estas utilizando el servicio de AWS Lambda o tienes hospedado tu propio servicio en tu propio servidor, esta libreria tiene como objetivo simplemente hacer que trabajar con Alexa API sea mas natural para desarrolladores C#, usando un modelo de objetos fuertemente tipado.
 
