@@ -4,7 +4,7 @@
 Read this document in [Español](/docs/README_es.md)
 
 [![Build Status](https://dev.azure.com/timheuer/Alexa.NET/_apis/build/status/Alexa.NET-master?branchName=master)](https://dev.azure.com/timheuer/Alexa.NET/_build/latest?definitionId=2&branchName=master)
-[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-15-orange.svg?style=flat-square)](#contributors)
 
 Alexa.NET is a helper library for working with Alexa skill requests/responses in C#.  Whether you are using the AWS Lambda service or hosting your own service on your server, this library aims just to make working with the Alexa API more natural for a C# developer using a strongly-typed object model.
 
@@ -350,6 +350,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://adriangodong.com"><img src="https://avatars3.githubusercontent.com/u/1140137?v=4" width="100px;" alt="Adrian Godong"/><br /><sub><b>Adrian Godong</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=adriangodong" title="Code">💻</a></td>
     <td align="center"><a href="http://jad.codes"><img src="https://avatars0.githubusercontent.com/u/68933?v=4" width="100px;" alt="Jaddie"/><br /><sub><b>Jaddie</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/issues?q=author%3Ajaddie" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/evgeni-nabokov"><img src="https://avatars3.githubusercontent.com/u/3168823?v=4" width="100px;" alt="Evgeni Nabokov"/><br /><sub><b>Evgeni Nabokov</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=evgeni-nabokov" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://dev.to/mteheran"><img src="https://avatars0.githubusercontent.com/u/3578356?v=4" width="100px;" alt="Miguel Teheran"/><br /><sub><b>Miguel Teheran</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=Mteheran" title="Documentation">📖</a></td>
   </tr>
 </table>
 
