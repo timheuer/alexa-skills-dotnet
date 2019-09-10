@@ -51,6 +51,7 @@ public SkillResponse FunctionHandler(SkillRequest input, ILambdaContext context)
 - [Session Variables](#session-variables)
 - [Responses Without Helpers](#responses-without-helpers)
 - [Progressive Responses](#progressive-responses)
+- [Contributors](#contributors)
 
 
 # Request Types
