@@ -1,12 +1,7 @@
 # Alexa Skills SDK for .NET
 
-<table>
-    <tr>
-        <!-- Do not translate this table -->
-        <td> Read this documentation in </td>
-        <td><a href="/docs/README_es.md">Español</a></td>
-    </tr>
-</table>
+
+Read this document in [Español](/docs/README_es.md)
 
 [![Build Status](https://dev.azure.com/timheuer/Alexa.NET/_apis/build/status/Alexa.NET-master?branchName=master)](https://dev.azure.com/timheuer/Alexa.NET/_build/latest?definitionId=2&branchName=master)
 [![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors)
