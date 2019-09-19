@@ -25,9 +25,3 @@ jobs:
 
     - name: Make NuGet
       run: dotnet pack /p:Configuration=release --verbosity Detailed
-    # - name: Drop Artifacts
-    #   uses: actions/upload-artifact@master
-    #   with:
-    #     name: artifacts
-    #     path: bin/Release/netstandard2.0/
-
