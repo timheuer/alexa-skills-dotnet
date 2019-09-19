@@ -30,7 +30,7 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: artifacts
-        path: [Alexa.NET/artifacts,ALexa.NET.Tests/artifacts]
+        path: [Alexa.NET/artifacts,Alexa.NET.Tests/artifacts]
 
     - name: NuGet
       uses: timheuer/nuget-tool-installer@releases/v0.1
