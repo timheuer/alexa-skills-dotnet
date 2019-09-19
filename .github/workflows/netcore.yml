@@ -26,11 +26,17 @@ jobs:
     - name: Pack
       run: dotnet pack /p:Configuration=release --output artifacts --verbosity Detailed
 
-    - name: Publish Artifacts
+    - name: Publish Package Artifacts
       uses: actions/upload-artifact@master
       with:
         name: artifacts
-        path: [Alexa.NET/artifacts,Alexa.NET.Tests/artifacts]
+        path: Alexa.NET/artifacts
+
+    - name: Publish Test Artifacts
+      uses: actions/upload-artifact@master
+      with:
+        name: artifacts
+        path: Alexa.NET.Tests/artifacts
 
     - name: NuGet
       uses: timheuer/nuget-tool-installer@releases/v0.1
