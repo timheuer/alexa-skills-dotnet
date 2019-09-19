@@ -35,5 +35,5 @@ jobs:
     - name: NuGet
       uses: timheuer/nuget-tool-installer@releases/v0.1
       with:
-        nuget-version: '>=5.3.0'
+        nuget-version: '>=5.1.0'
 
