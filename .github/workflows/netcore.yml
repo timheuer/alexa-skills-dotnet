@@ -17,11 +17,18 @@ jobs:
     - name: Restore
       run: dotnet restore
 
-    - name: Run Build
+    - name: Build
       run: dotnet build --configuration Release
     
-    - name: Run Tests
+    - name: Test
       run: dotnet test --configuration Release --logger trx;logfilename=TEST.xml
 
-    - name: Make NuGet
-      run: dotnet pack /p:Configuration=release --verbosity Detailed
+    - name: Pack
+      run: dotnet pack /p:Configuration=release --output packages --verbosity Detailed
+
+    - name: Publish Artifacts
+      uses: actions/upload-artifact@master
+      with:
+        name: artifacts
+        path: packages
+
