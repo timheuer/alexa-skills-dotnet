@@ -1,21 +1,33 @@
-name: ReleaseBuild-Master
+name: Release-Build-Pack-Master
 
 on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1
+    
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 2.2.401
+    
+    - name: Restore
+      run: dotnet restore
+
     - name: Run Build
       run: dotnet build --configuration Release
+    
     - name: Run Tests
       run: dotnet test --configuration Release --logger trx;logfilename=TEST.xml
-    - name: Pack
-      run: dotnet pack 
+
+    - name: Make NuGet
+      run: dotnet pack /p:Configuration=release --verbosity Detailed
+    # - name: Drop Artifacts
+    #   uses: actions/upload-artifact@master
+    #   with:
+    #     name: artifacts
+    #     path: bin/Release/netstandard2.0/
+
