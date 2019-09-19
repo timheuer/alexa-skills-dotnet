@@ -21,16 +21,16 @@ jobs:
       run: dotnet build --configuration Release
     
     - name: Test
-      run: dotnet test --configuration Release --logger trx;logfilename=TEST.xml
+      run: dotnet test --configuration Release --results-directory artifacts --logger trx;logfilename=TEST.xml
 
     - name: Pack
-      run: dotnet pack /p:Configuration=release --output packages --verbosity Detailed
+      run: dotnet pack /p:Configuration=release --output artifacts --verbosity Detailed
 
     - name: Publish Artifacts
       uses: actions/upload-artifact@master
       with:
         name: artifacts
-        path: Alexa.NET/packages
+        path: Alexa.NET/artifacts
 
     - name: NuGet
       uses: timheuer/nuget-tool-installer@releases/v0.1
