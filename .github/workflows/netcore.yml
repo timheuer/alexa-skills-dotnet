@@ -23,6 +23,13 @@ jobs:
     - name: Test
       run: dotnet test --configuration Release --results-directory artifacts --logger trx;logfilename=TEST.xml
 
+    - name: Publish Test Artifacts
+      uses: actions/upload-artifact@master
+      if: always()
+      with:
+        name: artifacts
+        path: Alexa.NET.Tests/artifacts
+
     - name: Pack
       run: dotnet pack /p:Configuration=release --output artifacts --verbosity Detailed
 
@@ -31,12 +38,6 @@ jobs:
       with:
         name: artifacts
         path: Alexa.NET/artifacts
-
-    - name: Publish Test Artifacts
-      uses: actions/upload-artifact@master
-      with:
-        name: artifacts
-        path: Alexa.NET.Tests/artifacts
 
     - name: NuGet
       uses: timheuer/nuget-tool-installer@releases/v0.1
