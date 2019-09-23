@@ -14,6 +14,9 @@ jobs:
       with:
         dotnet-version: 2.2.401
     
+    - name: NuGet CLI check
+      run: nuget list
+
     - name: Restore
       run: dotnet restore
 
