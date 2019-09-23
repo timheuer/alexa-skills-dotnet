@@ -359,3 +359,6 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+## Code of Conduct
+This project has adopted the [.NET Foundation Code of Conduct](https://dotnetfoundation.org/code-of-conduct). For more information see the Code of Conduct itself or contact project maintainers with any additional questions or comments or to report a violation.
