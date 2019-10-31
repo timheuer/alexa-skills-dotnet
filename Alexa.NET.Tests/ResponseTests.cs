@@ -777,6 +777,21 @@ namespace Alexa.NET.Tests
             Assert.Equal("Today will provide you a new learning opportunity. Stick with it and the possibilities will be endless.", simpleCard.Content);
         }
 
+        [Fact]
+        public void PlainTextConstructorSetsText()
+        {
+            var plainText = new PlainTextOutputSpeech("testing output");
+            Assert.Equal("testing output", plainText.Text);
+        }
+
+        [Fact]
+        public void SsmlTextConstructorSetsText()
+        {
+            var output = new Speech(new PlainText("testing output")).ToXml();
+            var ssmlText = new SsmlOutputSpeech(output);
+            Assert.Equal(output, ssmlText.Ssml);
+        }
+
         private bool CompareJson(object actual, JObject expected)
         {
             var actualJObject = JObject.FromObject(actual);

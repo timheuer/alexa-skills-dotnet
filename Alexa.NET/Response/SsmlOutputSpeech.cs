@@ -6,6 +6,16 @@ namespace Alexa.NET.Response
 {
     public class SsmlOutputSpeech : IOutputSpeech
     {
+        public SsmlOutputSpeech()
+        {
+
+        }
+
+        public SsmlOutputSpeech(string ssml)
+        {
+            Ssml = ssml;
+        }
+
         [JsonRequired]
         [JsonProperty("type")]
         public string Type
