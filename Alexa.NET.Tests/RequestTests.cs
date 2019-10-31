@@ -196,6 +196,8 @@ namespace Alexa.NET.Tests
             var convertedObj = GetObjectFromExample<SkillRequest>("SkillEventPermissionChange.json");
             var request = Assert.IsAssignableFrom<PermissionSkillEventRequest>(convertedObj.Request);
             Assert.Equal(request.Body.AcceptedPermissions.First().Scope, "testScope");
+            Assert.True(request.EventCreationTime.HasValue);
+            Assert.True(request.EventPublishingTime.HasValue);
         }
 
         [Fact]
