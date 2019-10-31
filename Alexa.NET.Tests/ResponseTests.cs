@@ -730,6 +730,13 @@ namespace Alexa.NET.Tests
             Assert.Equal("Today will provide you a new learning opportunity. Stick with it and the possibilities will be endless.", simpleCard.Content);
         }
 
+        [Fact]
+        public void PlainTextConstructorSetsText()
+        {
+            var plainText = new PlainTextOutputSpeech("testing output");
+            Assert.Equal("testing output", plainText.Text);
+        }
+
         private bool CompareJson(object actual, JObject expected)
         {
             var actualJObject = JObject.FromObject(actual);
