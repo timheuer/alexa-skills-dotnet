@@ -1,0 +1,5 @@
+﻿{
+  "type": "SSML",
+  "ssml": "ssml content",
+  "playBehavior": "REPLACE_ENQUEUED"
+}
