@@ -737,6 +737,14 @@ namespace Alexa.NET.Tests
             Assert.Equal("testing output", plainText.Text);
         }
 
+        [Fact]
+        public void SsmlTextConstructorSetsText()
+        {
+            var output = new Speech(new PlainText("testing output")).ToXml();
+            var ssmlText = new SsmlOutputSpeech(output);
+            Assert.Equal(output, ssmlText.Ssml);
+        }
+
         private bool CompareJson(object actual, JObject expected)
         {
             var actualJObject = JObject.FromObject(actual);
