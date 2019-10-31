@@ -22,6 +22,11 @@
                 return new PermissionSkillEventRequest();
             }
 
+            if (requestType == "AlexaSkillEvent.SkillDisabled" || requestType == "AlexaSkillEvent.SkillEnabled")
+            {
+                return new SkillEnablementSkillEventRequest();
+            }
+
             return new SkillEventRequest();
         }
     }
