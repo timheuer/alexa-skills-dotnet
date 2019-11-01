@@ -316,6 +316,15 @@ namespace Alexa.NET.Tests
             Assert.Equal(1.1, locationData.Speed.Accuracy);
         }
 
+        [Fact]
+        public void Can_Read_Person_Information()
+        {
+            var request = GetObjectFromExample<SkillRequest>("BuiltInIntentRequest.json");
+            Assert.NotNull(request.Context.System.Person);
+            Assert.Equal("amzn1.ask.account.personid",request.Context.System.Person.PersonId);
+            Assert.Equal("Atza|BBBBBBB", request.Context.System.Person.AccessToken);
+        }
+
         private T GetObjectFromExample<T>(string filename)
         {
             var json = File.ReadAllText(Path.Combine(ExamplesPath, filename));

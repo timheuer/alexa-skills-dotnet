@@ -27,7 +27,9 @@ namespace Alexa.NET.Response.Ssml
 				throw new InvalidOperationException("No text available");
 			}
 
-            XElement root = new XElement("speak", new XAttribute(XNamespace.Xmlns + "amazon", Namespaces.TempAmazon));
+            XElement root = new XElement("speak", 
+                new XAttribute(XNamespace.Xmlns + "amazon", Namespaces.TempAmazon),
+                new XAttribute(XNamespace.Xmlns + "alexa",Namespaces.TempAlexa));
             root.Add(Elements.Select(e => e.ToXml()));
 
 			string xmlString = root.ToString(SaveOptions.DisableFormatting);

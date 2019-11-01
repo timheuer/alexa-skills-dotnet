@@ -17,6 +17,9 @@ namespace Alexa.NET.Request
         [JsonProperty("application")]
         public Application Application { get; set; }
 
+        [JsonProperty("person",NullValueHandling = NullValueHandling.Ignore)]
+        public Person Person { get; set; }
+
         [JsonProperty("user")]
         public User User { get; set; }
 
