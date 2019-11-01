@@ -3,13 +3,13 @@
   <PropertyGroup>
     <Description>A simple .NET Core library for handling Alexa Skill request/responses.</Description>
     <AssemblyTitle>Alexa.NET</AssemblyTitle>
-    <VersionPrefix>1.9.0</VersionPrefix>
+    <VersionPrefix>1.10.0</VersionPrefix>
     <Authors>Tim Heuer, Steven Pears</Authors>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Alexa.NET</AssemblyName>
     <PackageId>Alexa.NET</PackageId>
     <PackageTags>amazon;alexa;echo;dot;echo dot;skills</PackageTags>
-    <PackageReleaseNotes>Added SkillEnabled/Disabled event handling behavior (new).  Added some ctors to SpeechOutput for easier use. (thanks @stoiveyp); </PackageReleaseNotes>
+    <PackageReleaseNotes>Added Alexa voice profile support (new) (thanks @stoiveyp). </PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/timheuer/alexa-skills-dotnet</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/timheuer/alexa-skills-dotnet</RepositoryUrl>
