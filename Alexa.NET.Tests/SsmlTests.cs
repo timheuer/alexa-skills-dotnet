@@ -244,7 +244,7 @@ namespace Alexa.NET.Tests
         [Fact]
         public void Ssml_Alexa_Name_generate_alexa_name()
         {
-            const string expected = "<speak><alexa:name type=\"first\" personId=\"amzn1.ask.person.ABCDEF\"/></speak>";
+            const string expected = "<speak><alexa:name type=\"first\" personId=\"amzn1.ask.person.ABCDEF\" /></speak>";
 
             var alexaName = new AlexaName("amzn1.ask.person.ABCDEF");
 
