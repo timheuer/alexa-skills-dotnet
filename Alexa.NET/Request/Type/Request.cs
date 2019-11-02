@@ -7,7 +7,7 @@ namespace Alexa.NET.Request.Type
     [JsonConverter(typeof(RequestConverter))]
     public abstract class Request
     {
-        [JsonProperty("type")]
+        [JsonProperty("type",Required = Required.Always)]
         public string Type { get; set; }
 
         [JsonProperty("requestId")]
