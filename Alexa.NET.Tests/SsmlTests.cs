@@ -241,6 +241,20 @@ namespace Alexa.NET.Tests
             CompareXml(expected, speech);
         }
 
+        [Fact]
+        public void Ssml_Alexa_Name_generate_alexa_name()
+        {
+            const string expected = "<speak><alexa:name type=\"first\" personId=\"amzn1.ask.person.ABCDEF\" /></speak>";
+
+            var alexaName = new AlexaName("amzn1.ask.person.ABCDEF");
+
+            var xmlHost = new Speech();
+            xmlHost.Elements.Add(alexaName);
+            var actual = xmlHost.ToXml();
+
+            Assert.Equal(expected, actual);
+        }
+
         private void CompareXml(string expected, ISsml ssml)
         {
             var actual = ssml.ToXml().ToString(SaveOptions.DisableFormatting);
