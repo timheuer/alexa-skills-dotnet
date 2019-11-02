@@ -4,7 +4,7 @@
     {
         public bool CanConvert(string requestType)
         {
-            return requestType.StartsWith("PlaybackController");
+            return requestType != null && requestType.StartsWith("PlaybackController");
         }
 
         public Request Convert(string requestType)

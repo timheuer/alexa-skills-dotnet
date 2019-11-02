@@ -7,7 +7,7 @@
             return requestType == "AlexaSkillEvent.SkillPermissionAccepted" ||
                    requestType == "AlexaSkillEvent.SkillPermissionChanged" ||
                    requestType == "AlexaSkillEvent.SkillAccountLinked" ||
-                   requestType.StartsWith("AlexaSkillEvent");
+                   requestType != null && requestType.StartsWith("AlexaSkillEvent");
         }
 
         public Request Convert(string requestType)
