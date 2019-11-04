@@ -44,6 +44,7 @@ namespace Alexa.NET.Tests
                 RequestId = "string",
                 Timestamp = new DateTime(2019, 07, 03),
                 Locale = "en-GB",
+                Type = "SessionResumedRequest",
                 OriginIpAddress = "string",
                 Cause = new SessionResumedRequestCause
                 {
