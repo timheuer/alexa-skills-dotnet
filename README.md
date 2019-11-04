@@ -4,7 +4,7 @@
 Read this document in [Español](/docs/README_es.md)
 
 [![Build Status](https://dev.azure.com/timheuer/Alexa.NET/_apis/build/status/Alexa.NET-master?branchName=master)](https://dev.azure.com/timheuer/Alexa.NET/_build/latest?definitionId=2&branchName=master)
-[![All Contributors](https://img.shields.io/badge/all_contributors-15-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors)
 
 Alexa.NET is a helper library for working with Alexa skill requests/responses in C#.  Whether you are using the AWS Lambda service or hosting your own service on your server, this library aims just to make working with the Alexa API more natural for a C# developer using a strongly-typed object model.
 
@@ -353,6 +353,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://dev.to/mteheran"><img src="https://avatars0.githubusercontent.com/u/3578356?v=4" width="100px;" alt="Miguel Teheran"/><br /><sub><b>Miguel Teheran</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=Mteheran" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://martincostello.com/"><img src="https://avatars0.githubusercontent.com/u/1439341?v=4" width="100px;" alt="Martin Costello"/><br /><sub><b>Martin Costello</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=martincostello" title="Code">💻</a></td>
   </tr>
 </table>
 
