@@ -32,6 +32,7 @@ public SkillResponse FunctionHandler(SkillRequest input, ILambdaContext context)
 ```
 
 # Table of Contents
+- [Contributors](#contributors)
 - [Request Types](#request-types)    
    * [AccountLinkSkillEventRequest](#handling-the-accountlinkskilleventrequest)
    * [AudioPlayerRequest](#handling-the-audioplayerrequest)
@@ -51,7 +52,6 @@ public SkillResponse FunctionHandler(SkillRequest input, ILambdaContext context)
 - [Session Variables](#session-variables)
 - [Responses Without Helpers](#responses-without-helpers)
 - [Progressive Responses](#progressive-responses)
-- [Contributors](#contributors)
 
 
 # Request Types
