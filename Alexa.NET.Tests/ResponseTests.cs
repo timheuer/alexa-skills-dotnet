@@ -792,6 +792,21 @@ namespace Alexa.NET.Tests
             Assert.Equal(output, ssmlText.Ssml);
         }
 
+        [Fact]
+        public void NewDirectiveSupport()
+        {
+            var directive = new JsonDirective("UnknownDirectiveType");
+            directive.Properties.Add("testProperty",new JObject(new JProperty("value","test")));
+            var jsonOutput = JsonConvert.SerializeObject(directive);
+
+            var outputDirective = JsonConvert.DeserializeObject<IDirective>(jsonOutput);
+            var jsonInput = Assert.IsType<JsonDirective>(outputDirective);
+            Assert.Equal("UnknownDirectiveType",jsonInput.Type);
+            Assert.True(jsonInput.Properties.ContainsKey("testProperty"));
+            var jsonObject = Assert.IsType<JObject>(jsonInput.Properties["testProperty"]);
+            Assert.Equal("test",jsonObject.Value<string>("value"));
+        }
+
         private bool CompareJson(object actual, JObject expected)
         {
             var actualJObject = JObject.FromObject(actual);

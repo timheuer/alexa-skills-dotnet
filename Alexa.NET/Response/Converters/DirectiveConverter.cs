@@ -41,13 +41,16 @@ namespace Alexa.NET.Response.Converters
             var typeValue = typeKey.Value<string>();
             var hasFactory = TypeFactories.ContainsKey(typeValue);
 
-            if (!hasFactory)
-                throw new Exception(
-                    $"unable to deserialize response. " +
-                    $"unrecognized directive type '{typeValue}'"
-                );
+            IDirective directive;
 
-            var directive = TypeFactories[typeValue]();
+            if (!hasFactory)
+            {
+                directive = new JsonDirective(typeValue);
+            }
+            else
+            {
+                directive = TypeFactories[typeValue]();
+            }
 
             serializer.Populate(jsonObject.CreateReader(), directive);
 
