@@ -1,15 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Description>A simple .NET Core library for handling Alexa Skill request/responses.</Description>
     <AssemblyTitle>Alexa.NET</AssemblyTitle>
-    <VersionPrefix>1.10.2</VersionPrefix>
+    <VersionPrefix>1.11.0</VersionPrefix>
     <Authors>Tim Heuer, Steven Pears</Authors>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Alexa.NET</AssemblyName>
     <PackageId>Alexa.NET</PackageId>
     <PackageTags>amazon;alexa;echo;dot;echo dot;skills</PackageTags>
-    <PackageReleaseNotes>Adding new JSONDirective to help be more agile with fast-changes in Alexa APIs; Added modification to ensure requests have required attributes by adding JSON required attribute (thanks @martincostello)  Added Alexa voice profile support (new) (thanks @stoiveyp). </PackageReleaseNotes>
+    <PackageReleaseNotes>Adding domain and emotion tag support (thanks @stoiveyp). </PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/timheuer/alexa-skills-dotnet</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/timheuer/alexa-skills-dotnet</RepositoryUrl>
