@@ -10,7 +10,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Setup .NET Core
+    - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1.0.0
       with:
         dotnet-version: 3.1.100
@@ -40,5 +40,11 @@ jobs:
         uses: actions/download-artifact@master
         with:
           name: nupkg
+
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v1.0.0
+      with:
+        dotnet-version: 3.1.100
+
       - name: Push to NuGet
         run: dotnet nuget push nupkg\*.nupkg -k ${{ secrets.NUGET_API_KEY }} --skip-duplicate -s https://nuget.org
