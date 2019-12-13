@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Setup .NET Core SDK
-      uses: actions/setup-dotnet@v1.0.0
+      uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.100
     - name: Build with dotnet
@@ -19,7 +19,7 @@ jobs:
 
     - name: List SDKs
       run: dotnet --list-sdks
-      
+
     # Run the tests, ideally should stop here if a fail and also publish results as artifacts
     - name: Test with dotnet-version
       run: dotnet test
@@ -45,7 +45,7 @@ jobs:
           name: nupkg
 
       - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v1.0.0
+        uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 3.1.100
 
