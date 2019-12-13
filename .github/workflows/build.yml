@@ -1,17 +1,44 @@
-name: .NET Core
+name: .NET Core Build and Deploy
 
 on: [push]
 
 jobs:
   build:
+    #if: github.event_name == 'push' && contains(toJson(github.event.commits), '***NO_CI***') == false && contains(toJson(github.event.commits), '[ci skip]') == false && contains(toJson(github.event.commits), '[skip ci]') == false
+    name: Build
+    runs-on: ubuntu-latest
 
-    runs-on: self-hosted
-    if: "!contains(github.event.head_commit.message, '***NO_CI***')"
     steps:
     - uses: actions/checkout@v1
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v1.0.0
       with:
-        dotnet-version: 2.2.108
+        dotnet-version: 3.1.100
     - name: Build with dotnet
       run: dotnet build --configuration Release
+
+    # Run the tests, ideally should stop here if a fail and also publish results as artifacts
+    - name: Test with dotnet-version
+      run: dotnet test
+
+    - name: Pack the NuGet Package
+      run: dotnet pack --configuration Release -o finalpackage
+
+    # sign the NuGet Package -- can't do this without nuget.exe as dotnet CLI doesn't expose that
+    - name: Publish the artifact
+      uses: actions/upload-artifact@master
+      with:
+        name: nupkg
+        path: finalpackage
+
+  deploy:
+    needs: build
+    name: Deploy to NuGet
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Package artifact
+        uses: actions/download-artifact@master
+        with:
+          name: nupkg
+      - name: Push to NuGet
+        run: dotnet push nuget nupkg -k ${{ secrets.NUGET_API_KEY }} --skip-duplicate
