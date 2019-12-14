@@ -1,10 +1,13 @@
-name: .NET Core Build and Deploy
+name: "Sign Test"
 
-on: [push]
+on:
+  push:
+    branches:
+      - signing-action
 
 jobs:
   build:
-    if: github.event_name == 'push' && contains(toJson(github.event.commits), '***NO_CI***') == false && contains(toJson(github.event.commits), '[ci skip]') == false && contains(toJson(github.event.commits), '[skip ci]') == false
+    #if: github.event_name == 'push' && contains(toJson(github.event.commits), '***NO_CI***') == false && contains(toJson(github.event.commits), '[ci skip]') == false && contains(toJson(github.event.commits), '[skip ci]') == false
     name: Build Package
     runs-on: ubuntu-latest
 
@@ -44,24 +47,27 @@ jobs:
         uses: actions/download-artifact@master
         with:
           name: nupkg
-      
+
+      - name: Get Certificate
+        id: certificate
+        uses: timheuer/base64-to-file@v1
+        with:
+          fileName: 'codesign.pfx'
+          encodedString: ${{ secrets.SIGNING_CERT }}
+
       # Sign the package
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.2
         with:
           nuget-api-key: ${{ secrets.NUGET_API_KEY }}
           nuget-version: latest
+      
+      - name: Sign Package
+        run: nuget sign nupkg/*.nupkg -CertificatePath ${{ steps.certificate.outputs.filePath }} -CertificatePassword ${{ secrets.CERT_PWD }} -Timestamper http://timestamp.digicert.com
 
-      - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v1
+      - name: Re-upload artifact
+        uses: actions/upload-artifact@master
         with:
-          dotnet-version: 3.1.100
-
-      #- name: Push to NuGet
-      #  run: dotnet nuget push nupkg/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://nuget.org --skip-duplicate
-
-      #- name: Add GPR Source
-      #  run: nuget sources Add -Name "GPR" -Source ${{ secrets. GPR_URI }} -UserName ${{ GPR_USERNAME }} -Password ${{ secrets.GITHUB_TOKEN }}
-
-      #- name: Push to GitHub Packages
-      #  run: nuget push nupkg/*.nupkg -Source "GPR" -SkipDuplicate
+          name: signedpackage
+          path: nupkg
+      
