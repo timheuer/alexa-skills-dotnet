@@ -335,6 +335,7 @@ namespace Alexa.NET.Tests
             Assert.Equal("alexa::alerts:reminders:skill:readwrite",askFor.Payload.PermissionScope);
             Assert.Equal(200,askFor.Status.Code);
             Assert.Equal("Test Message",askFor.Status.Message);
+            Utility.CompareJson(askFor, "ConnectionsResponseRequest.json");
         }
 
         private T GetObjectFromExample<T>(string filename)
