@@ -63,7 +63,7 @@ jobs:
           nuget-version: latest
 
       - name: Sign Package
-        run: nuget sign nupkg/*.nupkg -CertificatePath ${{ steps.certificate.outputs.filePath }} -CertificatePassword ${{ secrets.CERT_PWD }} -Timestamper http://timestamp.digicert.com -Verbosity detailed -NonInteractive -ConfigFile ../nuget.config
+        run: nuget sign nupkg/*.nupkg -CertificatePath ${{ steps.certificate.outputs.filePath }} -CertificatePassword ${{ secrets.CERT_PWD }} -Timestamper http://timestamp.digicert.com -Verbosity detailed -NonInteractive
 
       - name: Re-upload artifact
         uses: actions/upload-artifact@master
