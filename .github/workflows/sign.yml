@@ -26,7 +26,7 @@ jobs:
 
     # Run the tests, ideally should stop here if a fail and also publish results as artifacts
     - name: Test
-      run: dotnet test --no-build
+      run: dotnet test
 
     - name: Pack
       run: dotnet pack --configuration Release -o finalpackage --no-build
