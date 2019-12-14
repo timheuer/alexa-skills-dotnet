@@ -62,6 +62,9 @@ jobs:
           nuget-api-key: ${{ secrets.NUGET_API_KEY }}
           nuget-version: latest
       
+      - name: Set signature mode
+        run: nuget.exe config -set signatureValidationMode=accept
+        
       - name: Sign Package
         run: nuget sign nupkg/*.nupkg -CertificatePath ${{ steps.certificate.outputs.filePath }} -CertificatePassword ${{ secrets.CERT_PWD }} -Timestamper http://timestamp.digicert.com -Verbosity detailed -NonInteractive
 
