@@ -16,14 +16,14 @@ jobs:
         dotnet-version: 3.1.100
 
     - name: Restore
-      run: dotnet restore --configuration Release
+      run: dotnet restore
 
     - name: Build
       run: dotnet build --configuration Release --no-restore
 
     # Run the tests, ideally should stop here if a fail and also publish results as artifacts
     - name: Test
-      run: dotnet test --no-build
+      run: dotnet test
 
     - name: Pack
       run: dotnet pack --configuration Release -o finalpackage --no-build
