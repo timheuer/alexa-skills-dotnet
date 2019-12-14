@@ -325,6 +325,18 @@ namespace Alexa.NET.Tests
             Assert.Equal("Atza|BBBBBBB", request.Context.System.Person.AccessToken);
         }
 
+        [Fact]
+        public void HandleConnectionsSendResponseRequest()
+        {
+            var request = GetObjectFromExample<Request.Type.Request>("ConnectionsResponseRequest.json");
+            var askFor = Assert.IsType<AskForPermissionRequest>(request);
+            Assert.Equal("AskFor",askFor.Name);
+            Assert.Equal(PermissionStatus.Denied,askFor.Payload.Status);
+            Assert.Equal("alexa::alerts:reminders:skill:readwrite",askFor.Payload.PermissionScope);
+            Assert.Equal(200,askFor.Status.Code);
+            Assert.Equal("Test Message",askFor.Status.Message);
+        }
+
         private T GetObjectFromExample<T>(string filename)
         {
             var json = File.ReadAllText(Path.Combine(ExamplesPath, filename));

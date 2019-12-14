@@ -50,7 +50,7 @@ namespace Alexa.NET.Tests
                 {
                     Type = "ConnectionCompleted",
                     Token = "1234",
-                    Status = new TaskStatus(200, "OK")
+                    Status = new ConnectionStatus(200, "OK")
                 }
             };
             Utility.CompareJson(task, "SessionResumedRequest.json");

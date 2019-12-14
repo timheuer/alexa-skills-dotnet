@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace Alexa.NET.Request.Type
 {
@@ -15,7 +16,8 @@ namespace Alexa.NET.Request.Type
             new PlaybackRequestTypeConverter(),
             new TemplateEventRequestTypeConverter(),
             new SkillEventRequestTypeConverter(),
-            new SkillConnectionRequestTypeConverter()
+            new SkillConnectionRequestTypeConverter(),
+            new ConnectionResponseTypeConverter()
         });
 
         public override bool CanWrite => false;
@@ -36,7 +38,7 @@ namespace Alexa.NET.Request.Type
             var jObject = JObject.Load(reader);
 
             // Create target request object based on "type" property
-            var target = Create(jObject["type"].Value<string>());
+            var target = Create(jObject);
 
             // Populate the object properties
             serializer.Populate(jObject.CreateReader(), target);
@@ -44,10 +46,17 @@ namespace Alexa.NET.Request.Type
             return target;
         }
 
-        public Request Create(string requestType)
+        public Request Create(JObject data)
         {
+            var requestType = data.Value<string>("type");
             var converter = RequestConverters.FirstOrDefault(c => c.CanConvert(requestType));
-            return converter?.Convert(requestType) ?? throw new ArgumentOutOfRangeException(nameof(Type), $"Unknown request type: {requestType}.");
+            return converter switch
+            {
+                null =>
+                throw new ArgumentOutOfRangeException(nameof(Type), $"Unknown request type: {requestType}."),
+                IDataDrivenRequestTypeConverter dataDriven => dataDriven.Convert(data),
+                _ => converter.Convert(requestType)
+            };
         }
     }
 }

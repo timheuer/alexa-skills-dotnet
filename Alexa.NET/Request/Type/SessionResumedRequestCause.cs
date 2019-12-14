@@ -12,7 +12,7 @@ namespace Alexa.NET.Request.Type
         public string Token { get; set; }
 
         [JsonProperty("status")]
-        public TaskStatus Status { get; set; }
+        public ConnectionStatus Status { get; set; }
 
         [JsonProperty("result")]
         public object Result { get; set; }

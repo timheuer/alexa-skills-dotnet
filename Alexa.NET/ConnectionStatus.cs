@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
 
-namespace Alexa.NET.ConnectionTasks
+namespace Alexa.NET
 {
-    public class TaskStatus
+    public class ConnectionStatus
     {
-        public TaskStatus() { }
+        public ConnectionStatus() { }
 
-        public TaskStatus(int code, string message)
+        public ConnectionStatus(int code, string message)
         {
             Code = code;
             Message = message;
