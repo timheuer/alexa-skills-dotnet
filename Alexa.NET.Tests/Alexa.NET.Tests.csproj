@@ -17,6 +17,9 @@
     <None Remove="Examples\AskForPermissionConsent.json" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Examples\AskForPermissionsConsent.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Examples\ClearQueueDirective.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -119,7 +122,7 @@
     <None Update="Examples\StandardCard.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Examples\AskForPermissionsConsent.json">
+    <None Update="Examples\AskForPermissionsConsentDirective.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Examples\Resolution.json">
