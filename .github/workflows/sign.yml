@@ -50,7 +50,7 @@ jobs:
 
       - name: Get Certificate
         id: certificate
-        uses: timheuer/base64-to-file@v1
+        uses: timheuer/base64-to-file@v1.0.1
         with:
           fileName: 'codesign.pfx'
           encodedString: ${{ secrets.SIGNING_CERT }}
