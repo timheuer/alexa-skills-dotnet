@@ -1,11 +1,14 @@
 name: .NET Core Build and Deploy
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   build:
     if: github.event_name == 'push' && contains(toJson(github.event.commits), '***NO_CI***') == false && contains(toJson(github.event.commits), '[ci skip]') == false && contains(toJson(github.event.commits), '[skip ci]') == false
-    name: Build
+    name: Build Package 
     runs-on: ubuntu-latest
 
     steps:
@@ -14,21 +17,21 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.100
-    - name: Build with dotnet
-      run: dotnet build --configuration Release
 
-    - name: List SDKs
-      run: dotnet --list-sdks
+    - name: Restore
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
 
     # Run the tests, ideally should stop here if a fail and also publish results as artifacts
-    - name: Test with dotnet-version
+    - name: Test
       run: dotnet test
 
-    - name: Pack the NuGet Package
-      run: dotnet pack --configuration Release -o finalpackage
+    - name: Pack
+      run: dotnet pack --configuration Release -o finalpackage --no-build
 
-    # sign the NuGet Package -- can't do this without nuget.exe as dotnet CLI doesn't expose that
-    - name: Publish the artifact
+    - name: Publish artifact
       uses: actions/upload-artifact@master
       with:
         name: nupkg
@@ -36,18 +39,47 @@ jobs:
 
   deploy:
     needs: build
-    name: Deploy to NuGet
-    runs-on: ubuntu-latest
+    name: Deploy Packages
+    runs-on: windows-latest # using windows agent due to nuget can't sign on linux yet
     steps:
       - name: Download Package artifact
         uses: actions/download-artifact@master
         with:
           name: nupkg
+      
+      # Sign the package
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.2
+        with:
+          nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+          nuget-version: latest
 
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 3.1.100
 
-      - name: Push to NuGet
-        run: dotnet nuget push nupkg/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://nuget.org --skip-duplicate
+      - name: Get certificate
+        id: cert_file
+        uses: timheuer/base64-to-file@master
+        with:
+          fileName: 'certfile.pfx'
+          encodedString: ${{ secrets.SIGNING_CERT }}
+          
+      - name: Sign NuGet Package
+        run: nuget sign nupkg\*.nupkg -CertificatePath ${{ steps.cert_file.outputs.filePath }} -CertificatePassword ${{ secrets.CERT_PWD }}  -Timestamper http://timestamp.digicert.com -NonInteractive
+
+      #- name: Push to NuGet
+      #  run: dotnet nuget push nupkg\*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://nuget.org --skip-duplicate
+
+      #- name: Add GPR Source
+      #  run: nuget sources Add -Name "GPR" -Source ${{ secrets. GPR_URI }} -UserName ${{ GPR_USERNAME }} -Password ${{ secrets.GITHUB_TOKEN }}
+
+      #- name: Push to GitHub Packages
+      #  run: nuget push nupkg\*.nupkg -Source "GPR" -SkipDuplicate
+
+      - name: Publish signed artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: signednupkg
+          path: nupkg
