@@ -47,7 +47,6 @@ jobs:
         with:
           name: nupkg
       
-      # Sign the package
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.2
         with:
@@ -65,7 +64,8 @@ jobs:
         with:
           fileName: 'certfile.pfx'
           encodedString: ${{ secrets.SIGNING_CERT }}
-          
+      
+      # Sign the package
       - name: Sign NuGet Package
         run: nuget sign nupkg\*.nupkg -CertificatePath ${{ steps.cert_file.outputs.filePath }} -CertificatePassword ${{ secrets.CERT_PWD }}  -Timestamper http://timestamp.digicert.com -NonInteractive
 
