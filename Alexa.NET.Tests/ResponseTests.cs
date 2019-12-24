@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
 using Alexa.NET.Request;
 using Alexa.NET.Response;
@@ -805,6 +807,55 @@ namespace Alexa.NET.Tests
             Assert.True(jsonInput.Properties.ContainsKey("testProperty"));
             var jsonObject = Assert.IsType<JObject>(jsonInput.Properties["testProperty"]);
             Assert.Equal("test",jsonObject.Value<string>("value"));
+        }
+
+        [Fact]
+        public void EmptyDirectiveOrNoOverrideUsesSetValue()
+        {
+            var tell = ResponseBuilder.Tell("this should end the session");
+            Assert.True(tell.Response.ShouldEndSession);
+
+            tell.Response.Directives.Add(new JsonDirective("nothingspecial"));
+            Assert.True(tell.Response.ShouldEndSession);
+        }
+
+        [Fact]
+        public void DirectiveShouldEndSessionOverrideSupport()
+        {
+            var tell = ResponseBuilder.Tell("this should end the session");
+            Assert.True(tell.Response.ShouldEndSession);
+
+            tell.Response.Directives.Add(new VideoAppDirective("https://example.com/test.mp4"));
+            Assert.Null(tell.Response.ShouldEndSession);
+        }
+
+        [Fact]
+        public void MultipleShouldEndDirectivesWithCommonRequirement()
+        {
+            var tell = ResponseBuilder.Tell("this should end the session");
+            Assert.True(tell.Response.ShouldEndSession);
+
+            tell.Response.Directives.Add(new VideoAppDirective("https://example.com/test.mp4"));
+            tell.Response.Directives.Add(new VideoAppDirective("https://example.com/test.mp4"));
+            Assert.Null(tell.Response.ShouldEndSession);
+        }
+
+        [Fact]
+        public void ContradictingEndSessionOverrideThrowsException()
+        {
+            var tell = ResponseBuilder.Tell("this should end the session");
+            Assert.True(tell.Response.ShouldEndSession);
+
+            //This will error as VideoApp needs a null EndSession and FakeDirective needs true
+            tell.Response.Directives.Add(new VideoAppDirective("https://example.com/test.mp4"));
+            tell.Response.Directives.Add(new FakeDirective());
+            Assert.Throws<InvalidOperationException>(() => tell.Response.ShouldEndSession);
+        }
+
+        private class FakeDirective : IDirective, IEndSessionDirective
+        {
+            public string Type => "fake";
+            public bool? ShouldEndSession => true;
         }
 
         private bool CompareJson(object actual, JObject expected)

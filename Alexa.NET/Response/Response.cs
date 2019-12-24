@@ -1,5 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Alexa.NET.Response
 {
@@ -14,8 +16,30 @@ namespace Alexa.NET.Response
         [JsonProperty("reprompt", NullValueHandling = NullValueHandling.Ignore)]
         public Reprompt Reprompt { get; set; }
 
+        private bool? _explicitValue = null;
+
         [JsonProperty("shouldEndSession", NullValueHandling = NullValueHandling.Ignore)]
-        public bool? ShouldEndSession { get; set; } = false;
+        public bool? ShouldEndSession
+        {
+            get
+            {
+                var overrideDirectives = Directives?.OfType<IEndSessionDirective>();
+                if (overrideDirectives == null || !overrideDirectives.Any())
+                {
+                    return _explicitValue;
+                }
+
+                var first = overrideDirectives.First().ShouldEndSession;
+                if (!overrideDirectives.All(od => od.ShouldEndSession == first))
+                {
+                    throw new InvalidOperationException("Response contains directives with incompatible ShouldEndSession requirements");
+                }
+
+                return first;
+
+            }
+            set => _explicitValue = value;
+        }
 
         [JsonProperty("directives", NullValueHandling = NullValueHandling.Ignore)]
         public IList<IDirective> Directives { get; set; } = new List<IDirective>();
