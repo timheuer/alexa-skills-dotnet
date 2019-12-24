@@ -1,17 +1,85 @@
-name: .NET Core
+name: .NET Core Build and Deploy
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   build:
-
-    runs-on: self-hosted
+    if: github.event_name == 'push' && contains(toJson(github.event.commits), '***NO_CI***') == false && contains(toJson(github.event.commits), '[ci skip]') == false && contains(toJson(github.event.commits), '[skip ci]') == false
+    name: Build Package 
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v1
-    - name: Setup .NET Core
+    - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 2.2.108
-    - name: Build with dotnet
-      run: dotnet build --configuration Release
+        dotnet-version: 3.1.100
+
+    - name: Restore
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+
+    # Run the tests, ideally should stop here if a fail and also publish results as artifacts
+    - name: Test
+      run: dotnet test
+
+    - name: Pack
+      run: dotnet pack --configuration Release -o finalpackage --no-build
+
+    - name: Publish artifact
+      uses: actions/upload-artifact@master
+      with:
+        name: nupkg
+        path: finalpackage
+
+  deploy:
+    needs: build
+    name: Deploy Packages
+    runs-on: windows-latest # using windows agent due to nuget can't sign on linux yet
+    steps:
+      - name: Download Package artifact
+        uses: actions/download-artifact@master
+        with:
+          name: nupkg
+      
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.2
+        with:
+          nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+          nuget-version: latest
+
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.100
+
+      - name: Get certificate
+        id: cert_file
+        uses: timheuer/base64-to-file@master
+        with:
+          fileName: 'certfile.pfx'
+          encodedString: ${{ secrets.SIGNING_CERT }}
+      
+      # Sign the package
+      - name: Sign NuGet Package
+        run: nuget sign nupkg\*.nupkg -CertificatePath ${{ steps.cert_file.outputs.filePath }} -CertificatePassword ${{ secrets.CERT_PWD }}  -Timestamper http://timestamp.digicert.com -NonInteractive
+
+      #- name: Push to NuGet
+      #  run: dotnet nuget push nupkg\*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://nuget.org --skip-duplicate
+
+      #- name: Add GPR Source
+      #  run: nuget sources Add -Name "GPR" -Source ${{ secrets. GPR_URI }} -UserName ${{ GPR_USERNAME }} -Password ${{ secrets.GITHUB_TOKEN }}
+
+      #- name: Push to GitHub Packages
+      #  run: nuget push nupkg\*.nupkg -Source "GPR" -SkipDuplicate
+
+      - name: Publish signed artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: signednupkg
+          path: nupkg
