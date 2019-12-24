@@ -2,7 +2,7 @@
 
 namespace Alexa.NET.Response.Directive
 {
-    public class VideoAppDirective:IDirective,IEndSessionDirective
+    public class VideoAppDirective:IEndSessionDirective
     {
         public VideoAppDirective()
         {

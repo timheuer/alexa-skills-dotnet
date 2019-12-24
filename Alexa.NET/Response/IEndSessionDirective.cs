@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace Alexa.NET.Response
 {
-    public interface IEndSessionDirective
+    public interface IEndSessionDirective: IDirective
     {
         [JsonIgnore]
         bool? ShouldEndSession { get; }
