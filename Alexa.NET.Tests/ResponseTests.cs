@@ -841,21 +841,21 @@ namespace Alexa.NET.Tests
         }
 
         [Fact]
-        public void ContradictingEndSessionOverrideThrowsException()
+        public void ContradictingEndSessionOverrideDefaultsToExplicit()
         {
             var tell = ResponseBuilder.Tell("this should end the session");
             Assert.True(tell.Response.ShouldEndSession);
 
-            //This will error as VideoApp needs a null EndSession and FakeDirective needs true
+            //As VideoApp needs a null EndSession and FakeDirective needs false - reverts to explicit
             tell.Response.Directives.Add(new VideoAppDirective("https://example.com/test.mp4"));
             tell.Response.Directives.Add(new FakeDirective());
-            Assert.Throws<InvalidOperationException>(() => tell.Response.ShouldEndSession);
+            Assert.True(tell.Response.ShouldEndSession);
         }
 
         private class FakeDirective : IDirective, IEndSessionDirective
         {
             public string Type => "fake";
-            public bool? ShouldEndSession => true;
+            public bool? ShouldEndSession => false;
         }
 
         private bool CompareJson(object actual, JObject expected)

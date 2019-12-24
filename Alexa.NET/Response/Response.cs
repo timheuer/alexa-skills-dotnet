@@ -16,7 +16,7 @@ namespace Alexa.NET.Response
         [JsonProperty("reprompt", NullValueHandling = NullValueHandling.Ignore)]
         public Reprompt Reprompt { get; set; }
 
-        private bool? _explicitValue = null;
+        private bool? _shouldEndSession = null;
 
         [JsonProperty("shouldEndSession", NullValueHandling = NullValueHandling.Ignore)]
         public bool? ShouldEndSession
@@ -26,19 +26,19 @@ namespace Alexa.NET.Response
                 var overrideDirectives = Directives?.OfType<IEndSessionDirective>();
                 if (overrideDirectives == null || !overrideDirectives.Any())
                 {
-                    return _explicitValue;
+                    return _shouldEndSession;
                 }
 
                 var first = overrideDirectives.First().ShouldEndSession;
                 if (!overrideDirectives.All(od => od.ShouldEndSession == first))
                 {
-                    throw new InvalidOperationException("Response contains directives with incompatible ShouldEndSession requirements");
+                    return _shouldEndSession;
                 }
 
                 return first;
 
             }
-            set => _explicitValue = value;
+            set => _shouldEndSession = value;
         }
 
         [JsonProperty("directives", NullValueHandling = NullValueHandling.Ignore)]
