@@ -852,7 +852,7 @@ namespace Alexa.NET.Tests
             Assert.True(tell.Response.ShouldEndSession);
         }
 
-        private class FakeDirective : IDirective, IEndSessionDirective
+        private class FakeDirective : IEndSessionDirective
         {
             public string Type => "fake";
             public bool? ShouldEndSession => false;
