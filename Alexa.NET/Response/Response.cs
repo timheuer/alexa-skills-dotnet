@@ -16,7 +16,7 @@ namespace Alexa.NET.Response
         [JsonProperty("reprompt", NullValueHandling = NullValueHandling.Ignore)]
         public Reprompt Reprompt { get; set; }
 
-        private bool? _shouldEndSession = null;
+        private bool? _shouldEndSession = false;
 
         [JsonProperty("shouldEndSession", NullValueHandling = NullValueHandling.Ignore)]
         public bool? ShouldEndSession
