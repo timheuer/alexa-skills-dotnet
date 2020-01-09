@@ -5,6 +5,10 @@ namespace Alexa.NET.Response
 {
     public class ResponseBody
     {
+        [JsonProperty("canFulfillIntent", NullValueHandling = NullValueHandling.Ignore)]
+        public CanFulfillIntentResponse CanFulfillIntent { get; set; }
+
+
         [JsonProperty("outputSpeech", NullValueHandling = NullValueHandling.Ignore)]
         public IOutputSpeech OutputSpeech { get; set; }
 

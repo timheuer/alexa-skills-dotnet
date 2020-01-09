@@ -1,6 +1,7 @@
 ﻿using Alexa.NET.Request;
 using Alexa.NET.Response;
 using Alexa.NET.Response.Directive;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -62,6 +63,39 @@ namespace Alexa.NET
         public static SkillResponse TellWithReprompt(string speechResponse, Reprompt reprompt, Session sessionAttributes)
         {
             return TellWithReprompt(new PlainTextOutputSpeech { Text = speechResponse }, reprompt,sessionAttributes);
+        }
+
+        public static SkillResponse CanFulfillAll(Request.Type.IntentRequest intentRequest)
+        {
+            SkillResponse response = new SkillResponse { Version = "1.0" };
+            response.Response = new ResponseBody
+            {
+                CanFulfillIntent = new CanFulfillIntentResponse
+                {
+                    CanFulfill = CanFulfill.YES,
+                    Slots = intentRequest.Intent.Slots.ToDictionary(s => s.Key, s => new CanFulfillSlot { CanFulfill = CanFulfill.YES, CanUnderstand = CanFulfill.YES }),
+                }
+            };
+
+
+            return response;
+        }
+
+
+        public static SkillResponse CanNotFulfillAll(Request.Type.IntentRequest intentRequest)
+        {
+            SkillResponse response = new SkillResponse { Version = "1.0" };
+            response.Response = new ResponseBody
+            {
+                CanFulfillIntent = new CanFulfillIntentResponse
+                {
+                    CanFulfill = CanFulfill.NO,
+                    Slots = intentRequest.Intent.Slots.ToDictionary(s => s.Key, s => new CanFulfillSlot { CanFulfill = CanFulfill.NO, CanUnderstand = CanFulfill.NO }),
+                }
+            };
+
+
+            return response;
         }
 
         public static SkillResponse TellWithReprompt(Response.Ssml.Speech speechResponse, Reprompt reprompt, Session sessionAttributes)
@@ -185,7 +219,7 @@ namespace Alexa.NET
 
         public static SkillResponse Ask(string speechResponse, Reprompt reprompt)
         {
-            return Ask(new PlainTextOutputSpeech {Text = speechResponse}, reprompt);
+            return Ask(new PlainTextOutputSpeech { Text = speechResponse}, reprompt);
         }
 
         public static SkillResponse Ask(Response.Ssml.Speech speechResponse, Reprompt reprompt)
@@ -357,7 +391,7 @@ namespace Alexa.NET
         #region Main Response Builder
         private static SkillResponse BuildResponse(IOutputSpeech outputSpeech, bool shouldEndSession, Session sessionAttributes, Reprompt reprompt, ICard card)
         {
-            SkillResponse response = new SkillResponse {Version = "1.0"};
+            SkillResponse response = new SkillResponse { Version = "1.0"};
             if (sessionAttributes != null) response.SessionAttributes = sessionAttributes.Attributes;
 
             ResponseBody body = new ResponseBody
