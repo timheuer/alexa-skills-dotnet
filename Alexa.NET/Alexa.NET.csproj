@@ -3,13 +3,13 @@
   <PropertyGroup>
     <Description>A simple .NET Core library for handling Alexa Skill request/responses.</Description>
     <AssemblyTitle>Alexa.NET</AssemblyTitle>
-    <VersionPrefix>1.11.0</VersionPrefix>
+    <VersionPrefix>1.12.0</VersionPrefix>
     <Authors>Tim Heuer, Steven Pears</Authors>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Alexa.NET</AssemblyName>
     <PackageId>Alexa.NET</PackageId>
     <PackageTags>amazon;alexa;echo;dot;echo dot;skills</PackageTags>
-    <PackageReleaseNotes>Adding domain and emotion tag support (thanks @stoiveyp). </PackageReleaseNotes>
+    <PackageReleaseNotes>BREAKING CHANGE: To support new Ask For Permissions capabilities, some refactoring was done and may break those relying on explicit typing of TaskStatus.  See #187 for details.  Also fixing ShouldEndSession capabilities in a few scenarios.  Thanks @stoiveyp! </PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/timheuer/alexa-skills-dotnet</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/timheuer/alexa-skills-dotnet</RepositoryUrl>
@@ -18,6 +18,7 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

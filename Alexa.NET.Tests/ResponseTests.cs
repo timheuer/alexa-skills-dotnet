@@ -858,6 +858,16 @@ namespace Alexa.NET.Tests
             public bool? ShouldEndSession => false;
         }
 
+        public void HandlesExampleAskForPermissionsConsentDirective()
+        {
+            var deserialized = Utility.ExampleFileContent<IDirective>("AskForPermissionsConsentDirective.json");
+            var askFor = Assert.IsType<AskForPermissionDirective>(deserialized);
+            Assert.Equal(1.ToString(),askFor.Payload.Version);
+            Assert.Equal("AskFor",askFor.Name);
+            Assert.Equal("alexa::alerts:reminders:skill:readwrite",askFor.Payload.PermissionScope);
+            Utility.CompareJson(askFor, "AskForPermissionsConsentDirective.json");
+        }
+
         private bool CompareJson(object actual, JObject expected)
         {
             var actualJObject = JObject.FromObject(actual);
