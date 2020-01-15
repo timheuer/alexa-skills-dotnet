@@ -2,7 +2,7 @@
 
 namespace Alexa.NET.Response.Directive
 {
-    public class VideoAppDirective:IDirective
+    public class VideoAppDirective:IEndSessionDirective
     {
         public VideoAppDirective()
         {
@@ -18,5 +18,7 @@ namespace Alexa.NET.Response.Directive
 
         [JsonProperty("videoItem",Required = Required.Always)]
         public VideoItem VideoItem { get; set; }
+
+        public bool? ShouldEndSession => null;
     }
 }
