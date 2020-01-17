@@ -31,6 +31,11 @@ namespace Alexa.NET.Request
             }
 
             var certificate = await GetCertificate(certificatePath);
+            return Verify(encodedSignature, certificate, body);
+        }
+
+        public static bool Verify(string encodedSignature, X509Certificate2 certificate, string body)
+        {
             if (!ValidSigningCertificate(certificate) || !VerifyChain(certificate))
             {
                 return false;
