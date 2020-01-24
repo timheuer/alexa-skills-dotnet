@@ -21,6 +21,7 @@ Alexa.NET also serves as a base foundation for a set of further Alexa skill deve
 * Reminders API [GitHub](https://github.com/stoiveyp/Alexa.NET.Reminders) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Reminders)
 * Proactive Events API [GitHub](https://github.com/stoiveyp/Alexa.NET.ProactiveEvents) / [NuGet](https://www.nuget.org/packages/Alexa.NET.ProactiveEvents)
 * CanFulfillIntent Request Support [GitHub](https://github.com/stoiveyp/Alexa.NET.CanFulfillIntentRequest) / [NuGet](https://www.nuget.org/packages/Alexa.NET.CanFulfillIntentRequest)
+* Response Assertions [GitHub](https://github.com/stoiveyp/Alexa.NET.TestUtility/tree/master/Alexa.NET.Assertions) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Assertions)
 * SkillFlow support (experimental)
     * Object Model [GitHub](https://github.com/stoiveyp/Alexa.NET.SkillFlow) / [NuGet](https://www.nuget.org/packages/Alexa.NET.SkillFlow)
     * Interpreter [GitHub](https://github.com/stoiveyp/Alexa.NET.SkillFlow.Interpreter) / [NuGet](https://www.nuget.org/packages/Alexa.NET.SkillFlow.Interpreter)
