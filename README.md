@@ -4,6 +4,7 @@
 Read this document in [Español](/docs/README_es.md)
 
 [![Build Status](https://dev.azure.com/timheuer/Alexa.NET/_apis/build/status/Alexa.NET-master?branchName=master)](https://dev.azure.com/timheuer/Alexa.NET/_build/latest?definitionId=2&branchName=master)
+![.NET Core Build and Deploy](https://github.com/timheuer/alexa-skills-dotnet/workflows/.NET%20Core%20Build%20and%20Deploy/badge.svg?branch=master)
 [![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors)
 [![Sponsor Me](https://img.shields.io/badge/Sponsor%20Me%20and%20My%20Projects!--lightgre?style=social&logo=github)](https://github.com/sponsors/timheuer)
 
