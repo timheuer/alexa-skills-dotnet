@@ -3,13 +3,13 @@
   <PropertyGroup>
     <Description>A simple .NET Core library for handling Alexa Skill request/responses.</Description>
     <AssemblyTitle>Alexa.NET</AssemblyTitle>
-    <VersionPrefix>1.12.0</VersionPrefix>
+    <VersionPrefix>1.13.0</VersionPrefix>
     <Authors>Tim Heuer, Steven Pears</Authors>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Alexa.NET</AssemblyName>
     <PackageId>Alexa.NET</PackageId>
     <PackageTags>amazon;alexa;echo;dot;echo dot;skills</PackageTags>
-    <PackageReleaseNotes>BREAKING CHANGE: To support new Ask For Permissions capabilities, some refactoring was done and may break those relying on explicit typing of TaskStatus.  See #187 for details.  Also fixing ShouldEndSession capabilities in a few scenarios.  Thanks @stoiveyp! </PackageReleaseNotes>
+    <PackageReleaseNotes>Fixing serialization and adding custom certificate verification option. Thanks @shinya-terasaki and @stoiveyp! </PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/timheuer/alexa-skills-dotnet</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/timheuer/alexa-skills-dotnet</RepositoryUrl>
