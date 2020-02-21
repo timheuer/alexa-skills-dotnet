@@ -23,14 +23,19 @@ namespace Alexa.NET.Request
             return Math.Abs(DateTimeOffset.Now.Subtract(timestamp).TotalSeconds) <= AllowedTimestampToleranceInSeconds;
         }
 
-        public static async Task<bool> Verify(string encodedSignature, Uri certificatePath, string body)
+        public static async Task<bool> Verify(string encodedSignature, Uri certificatePath, string body, Func<Uri,Task<X509Certificate2>> getCertificate = null)
         {
             if (!VerifyCertificateUrl(certificatePath))
             {
                 return false;
             }
 
-            var certificate = await GetCertificate(certificatePath);
+            var certificate = await (getCertificate ?? GetCertificate)(certificatePath);
+            return Verify(encodedSignature, certificate, body);
+        }
+
+        public static bool Verify(string encodedSignature, X509Certificate2 certificate, string body)
+        {
             if (!ValidSigningCertificate(certificate) || !VerifyChain(certificate))
             {
                 return false;
