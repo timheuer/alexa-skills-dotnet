@@ -4,6 +4,7 @@
 Read this document in [Español](/docs/README_es.md)
 
 [![Build Status](https://dev.azure.com/timheuer/Alexa.NET/_apis/build/status/Alexa.NET-master?branchName=master)](https://dev.azure.com/timheuer/Alexa.NET/_build/latest?definitionId=2&branchName=master)
+![.NET Core Build and Deploy](https://github.com/timheuer/alexa-skills-dotnet/workflows/.NET%20Core%20Build%20and%20Deploy/badge.svg?branch=master)
 [![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors)
 [![Sponsor Me](https://img.shields.io/badge/Sponsor%20Me%20and%20My%20Projects!--lightgre?style=social&logo=github)](https://github.com/sponsors/timheuer)
 
@@ -21,6 +22,7 @@ Alexa.NET also serves as a base foundation for a set of further Alexa skill deve
 * Reminders API [GitHub](https://github.com/stoiveyp/Alexa.NET.Reminders) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Reminders)
 * Proactive Events API [GitHub](https://github.com/stoiveyp/Alexa.NET.ProactiveEvents) / [NuGet](https://www.nuget.org/packages/Alexa.NET.ProactiveEvents)
 * CanFulfillIntent Request Support [GitHub](https://github.com/stoiveyp/Alexa.NET.CanFulfillIntentRequest) / [NuGet](https://www.nuget.org/packages/Alexa.NET.CanFulfillIntentRequest)
+* Response Assertions [GitHub](https://github.com/stoiveyp/Alexa.NET.TestUtility/tree/master/Alexa.NET.Assertions) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Assertions)
 * SkillFlow support (experimental)
     * Object Model [GitHub](https://github.com/stoiveyp/Alexa.NET.SkillFlow) / [NuGet](https://www.nuget.org/packages/Alexa.NET.SkillFlow)
     * Interpreter [GitHub](https://github.com/stoiveyp/Alexa.NET.SkillFlow.Interpreter) / [NuGet](https://www.nuget.org/packages/Alexa.NET.SkillFlow.Interpreter)
@@ -337,32 +339,36 @@ progressiveResponse.SendSpeech("Please wait while I gather your data.");
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="http://www.imacode.ninja"><img src="https://avatars3.githubusercontent.com/u/147125?v=4" width="100px;" alt="Steven Pears"/><br /><sub><b>Steven Pears</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=stoiveyp" title="Code">💻</a> <a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=stoiveyp" title="Documentation">📖</a> <a href="#tutorial-stoiveyp" title="Tutorials">✅</a> <a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=stoiveyp" title="Tests">⚠️</a></td>
-    <td align="center"><a href="http://vineetyadav.com"><img src="https://avatars1.githubusercontent.com/u/7949851?v=4" width="100px;" alt="yadavvineet"/><br /><sub><b>yadavvineet</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=yadavvineet" title="Code">💻</a></td>
-    <td align="center"><a href="https://www.linkedin.com/in/soc-sieng-b45a9473/"><img src="https://avatars1.githubusercontent.com/u/2647062?v=4" width="100px;" alt="Soc Sieng"/><br /><sub><b>Soc Sieng</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=socsieng" title="Documentation">📖</a></td>
-    <td align="center"><a href="http://www.stuartbuchanan.co.uk"><img src="https://avatars3.githubusercontent.com/u/16162689?v=4" width="100px;" alt="Stuart Buchanan"/><br /><sub><b>Stuart Buchanan</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=fuzzysb" title="Tests">⚠️</a></td>
-    <td align="center"><a href="https://github.com/rdlaitila"><img src="https://avatars0.githubusercontent.com/u/1124388?v=4" width="100px;" alt="Regan Laitila"/><br /><sub><b>Regan Laitila</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=rdlaitila" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/IcanBENCHurCAT"><img src="https://avatars1.githubusercontent.com/u/4152550?v=4" width="100px;" alt="IcanBENCHurCAT"/><br /><sub><b>IcanBENCHurCAT</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=IcanBENCHurCAT" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://www.ydeho.com/"><img src="https://avatars3.githubusercontent.com/u/29730840?v=4" width="100px;" alt="VinceGusmini"/><br /><sub><b>VinceGusmini</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=VinceGusmini" title="Code">💻</a></td>
+    <td align="center"><a href="http://www.imacode.ninja"><img src="https://avatars3.githubusercontent.com/u/147125?v=4" width="100px;" alt=""/><br /><sub><b>Steven Pears</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=stoiveyp" title="Code">💻</a> <a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=stoiveyp" title="Documentation">📖</a> <a href="#tutorial-stoiveyp" title="Tutorials">✅</a> <a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=stoiveyp" title="Tests">⚠️</a></td>
+    <td align="center"><a href="http://vineetyadav.com"><img src="https://avatars1.githubusercontent.com/u/7949851?v=4" width="100px;" alt=""/><br /><sub><b>yadavvineet</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=yadavvineet" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/soc-sieng-b45a9473/"><img src="https://avatars1.githubusercontent.com/u/2647062?v=4" width="100px;" alt=""/><br /><sub><b>Soc Sieng</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=socsieng" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://www.stuartbuchanan.co.uk"><img src="https://avatars3.githubusercontent.com/u/16162689?v=4" width="100px;" alt=""/><br /><sub><b>Stuart Buchanan</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=fuzzysb" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/rdlaitila"><img src="https://avatars0.githubusercontent.com/u/1124388?v=4" width="100px;" alt=""/><br /><sub><b>Regan Laitila</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=rdlaitila" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/IcanBENCHurCAT"><img src="https://avatars1.githubusercontent.com/u/4152550?v=4" width="100px;" alt=""/><br /><sub><b>IcanBENCHurCAT</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=IcanBENCHurCAT" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://www.ydeho.com/"><img src="https://avatars3.githubusercontent.com/u/29730840?v=4" width="100px;" alt=""/><br /><sub><b>VinceGusmini</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=VinceGusmini" title="Code">💻</a></td>
   </tr>
   <tr>
-    <td align="center"><a href="http://www.yasoon.com"><img src="https://avatars2.githubusercontent.com/u/2111803?v=4" width="100px;" alt="Tobias Viehweger"/><br /><sub><b>Tobias Viehweger</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=tobiasviehweger" title="Code">💻</a></td>
-    <td align="center"><a href="http://matthiasshapiro.com"><img src="https://avatars3.githubusercontent.com/u/235365?v=4" width="100px;" alt="Matthias Shapiro"/><br /><sub><b>Matthias Shapiro</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=matthiasxc" title="Code">💻</a> <a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=matthiasxc" title="Tests">⚠️</a></td>
-    <td align="center"><a href="http://techpreacher.corti.com"><img src="https://avatars1.githubusercontent.com/u/841949?v=4" width="100px;" alt="Sascha Corti"/><br /><sub><b>Sascha Corti</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=TechPreacher" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/StenmannsAr"><img src="https://avatars3.githubusercontent.com/u/27204921?v=4" width="100px;" alt="StenmannsAr"/><br /><sub><b>StenmannsAr</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=StenmannsAr" title="Code">💻</a></td>
-    <td align="center"><a href="https://adriangodong.com"><img src="https://avatars3.githubusercontent.com/u/1140137?v=4" width="100px;" alt="Adrian Godong"/><br /><sub><b>Adrian Godong</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=adriangodong" title="Code">💻</a></td>
-    <td align="center"><a href="http://jad.codes"><img src="https://avatars0.githubusercontent.com/u/68933?v=4" width="100px;" alt="Jaddie"/><br /><sub><b>Jaddie</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/issues?q=author%3Ajaddie" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="https://github.com/evgeni-nabokov"><img src="https://avatars3.githubusercontent.com/u/3168823?v=4" width="100px;" alt="Evgeni Nabokov"/><br /><sub><b>Evgeni Nabokov</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=evgeni-nabokov" title="Code">💻</a></td>
+    <td align="center"><a href="http://www.yasoon.com"><img src="https://avatars2.githubusercontent.com/u/2111803?v=4" width="100px;" alt=""/><br /><sub><b>Tobias Viehweger</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=tobiasviehweger" title="Code">💻</a></td>
+    <td align="center"><a href="http://matthiasshapiro.com"><img src="https://avatars3.githubusercontent.com/u/235365?v=4" width="100px;" alt=""/><br /><sub><b>Matthias Shapiro</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=matthiasxc" title="Code">💻</a> <a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=matthiasxc" title="Tests">⚠️</a></td>
+    <td align="center"><a href="http://techpreacher.corti.com"><img src="https://avatars1.githubusercontent.com/u/841949?v=4" width="100px;" alt=""/><br /><sub><b>Sascha Corti</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=TechPreacher" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/StenmannsAr"><img src="https://avatars3.githubusercontent.com/u/27204921?v=4" width="100px;" alt=""/><br /><sub><b>StenmannsAr</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=StenmannsAr" title="Code">💻</a></td>
+    <td align="center"><a href="https://adriangodong.com"><img src="https://avatars3.githubusercontent.com/u/1140137?v=4" width="100px;" alt=""/><br /><sub><b>Adrian Godong</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=adriangodong" title="Code">💻</a></td>
+    <td align="center"><a href="http://jad.codes"><img src="https://avatars0.githubusercontent.com/u/68933?v=4" width="100px;" alt=""/><br /><sub><b>Jaddie</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/issues?q=author%3Ajaddie" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/evgeni-nabokov"><img src="https://avatars3.githubusercontent.com/u/3168823?v=4" width="100px;" alt=""/><br /><sub><b>Evgeni Nabokov</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=evgeni-nabokov" title="Code">💻</a></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://dev.to/mteheran"><img src="https://avatars0.githubusercontent.com/u/3578356?v=4" width="100px;" alt="Miguel Teheran"/><br /><sub><b>Miguel Teheran</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=Mteheran" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://martincostello.com/"><img src="https://avatars0.githubusercontent.com/u/1439341?v=4" width="100px;" alt="Martin Costello"/><br /><sub><b>Martin Costello</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=martincostello" title="Code">💻</a></td>
+    <td align="center"><a href="https://dev.to/mteheran"><img src="https://avatars0.githubusercontent.com/u/3578356?v=4" width="100px;" alt=""/><br /><sub><b>Miguel Teheran</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=Mteheran" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://martincostello.com/"><img src="https://avatars0.githubusercontent.com/u/1439341?v=4" width="100px;" alt=""/><br /><sub><b>Martin Costello</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=martincostello" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/shinya-terasaki"><img src="https://avatars2.githubusercontent.com/u/16497603?v=4" width="100px;" alt=""/><br /><sub><b>Shinya Terasaki</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=shinya-terasaki" title="Code">💻</a></td>
   </tr>
 </table>
 
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
