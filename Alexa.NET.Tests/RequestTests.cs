@@ -21,6 +21,7 @@ namespace Alexa.NET.Tests
 
             Assert.NotNull(convertedObj);
             Assert.Equal(typeof(IntentRequest), convertedObj.GetRequestType());
+            Assert.True(Utility.CompareJson(convertedObj,IntentRequestFile));
         }
 
         [Fact]
