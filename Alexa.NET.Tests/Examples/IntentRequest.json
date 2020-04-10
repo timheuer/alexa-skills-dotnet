@@ -1,5 +1,5 @@
 ﻿{
-    "version": "1.0",
+  "version": "1.0",
   "session": {
     "new": false,
     "sessionId": "amzn1.echo-api.session.0000000-0000-0000-0000-00000000000",
@@ -19,7 +19,7 @@
       "permissions": null
     }
   },
-    "context": null,
+  "context": null,
   "request": {
     "type": "IntentRequest",
     "dialogState": "IN_PROGRESS",
