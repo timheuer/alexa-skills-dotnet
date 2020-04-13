@@ -7,6 +7,7 @@ namespace Alexa.NET.Request.Type
         [JsonProperty("dialogState")]
         public string DialogState { get; set; }
 
+        [JsonProperty("intent")]
         public Intent Intent { get; set; }
     }
 }
