@@ -19,15 +19,13 @@ namespace Alexa.NET.Request
             return _cache.AddOrUpdate(uri, cert, (u,c) => cert);
         }
 
-        public Task OnCertificateValidationFailed(X509Certificate2 certificate)
+        public void OnCertificateValidationFailed(X509Certificate2 certificate)
         {
             var pair = _cache.FirstOrDefault(kvp => kvp.Value == certificate);
             if (pair.Key != default)
             {
                 _cache.TryRemove(pair.Key, out _);
             }
-
-            return Task.CompletedTask;
         }
     }
 }

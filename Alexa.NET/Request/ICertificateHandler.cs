@@ -7,6 +7,6 @@ namespace Alexa.NET.Request
     public interface ICertificateHandler
     {
         Task<X509Certificate2> GetCertificate(Uri uri);
-        Task OnCertificateValidationFailed(X509Certificate2 certificate);
+        void OnCertificateValidationFailed(X509Certificate2 certificate);
     }
 }
