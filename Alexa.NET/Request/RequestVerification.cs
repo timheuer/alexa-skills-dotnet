@@ -12,7 +12,7 @@ namespace Alexa.NET.Request
     public static class RequestVerification
     {
         private const int AllowedTimestampToleranceInSeconds = 150;
-        private IDictionary<Uri, X509Certificate2> CachedCerts { get; } = new Dictionary<Uri, X509Certificate2>();
+        private static IDictionary<Uri, X509Certificate2> CachedCerts { get; } = new Dictionary<Uri, X509Certificate2>();
 
         public static bool RequestTimestampWithinTolerance(SkillRequest request)
         {
