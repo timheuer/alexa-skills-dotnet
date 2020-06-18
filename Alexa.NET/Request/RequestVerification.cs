@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
@@ -12,6 +10,7 @@ namespace Alexa.NET.Request
     public static class RequestVerification
     {
         private const int AllowedTimestampToleranceInSeconds = 150;
+        public static ICertificateHandler CertificateHandler { get; set; }
 
         public static bool RequestTimestampWithinTolerance(SkillRequest request)
         {
@@ -23,14 +22,20 @@ namespace Alexa.NET.Request
             return Math.Abs(DateTimeOffset.Now.Subtract(timestamp).TotalSeconds) <= AllowedTimestampToleranceInSeconds;
         }
 
-        public static async Task<bool> Verify(string encodedSignature, Uri certificatePath, string body, Func<Uri,Task<X509Certificate2>> getCertificate = null)
+        public static async Task<bool> Verify(string encodedSignature, Uri certificatePath, string body, Func<Uri, Task<X509Certificate2>> getCertificate = null)
         {
             if (!VerifyCertificateUrl(certificatePath))
             {
                 return false;
             }
 
-            var certificate = await (getCertificate ?? GetCertificate)(certificatePath);
+            getCertificate ??= CertificateHandler == null
+                ? GetCertificate
+                : (Func<Uri, Task<X509Certificate2>>) CertificateHandler.GetCertificate;
+
+            var certificate = await getCertificate(certificatePath);
+            
+
             return Verify(encodedSignature, certificate, body);
         }
 
@@ -38,11 +43,13 @@ namespace Alexa.NET.Request
         {
             if (!ValidSigningCertificate(certificate) || !VerifyChain(certificate))
             {
+                CertificateHandler?.OnCertificateValidationFailed(certificate);
                 return false;
             }
 
             if (!AssertHashMatch(certificate, encodedSignature, body))
             {
+                CertificateHandler?.OnCertificateValidationFailed(certificate);
                 return false;
             }
 
