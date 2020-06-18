@@ -12,6 +12,7 @@ namespace Alexa.NET.Request
     public static class RequestVerification
     {
         private const int AllowedTimestampToleranceInSeconds = 150;
+        private IDictionary<Uri, X509Certificate2> CachedCerts { get; } = new Dictionary<Uri, X509Certificate2>();
 
         public static bool RequestTimestampWithinTolerance(SkillRequest request)
         {
@@ -59,9 +60,14 @@ namespace Alexa.NET.Request
 
         public static async Task<X509Certificate2> GetCertificate(Uri certificatePath)
         {
+            if (CachedCerts.ContainsKey(certificatePath))
+            {
+                return CachedCerts[certificatePath];
+            }
             var response = await new HttpClient().GetAsync(certificatePath);
-            var bytes = await response.Content.ReadAsByteArrayAsync();
-            return new X509Certificate2(bytes);
+            var newCert = new X509Certificate2(await response.Content.ReadAsByteArrayAsync());
+            CachedCerts.Add(certificatePath, newCert);
+            return newCert;
         }
 
         public static bool VerifyChain(X509Certificate2 certificate)
