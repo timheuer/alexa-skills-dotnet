@@ -39,11 +39,13 @@ namespace Alexa.NET.Request
         {
             if (!ValidSigningCertificate(certificate) || !VerifyChain(certificate))
             {
+                CachedCerts.Remove(CachedCerts.FirstOrDefault(x => x.Value == certificate).Key);
                 return false;
             }
 
             if (!AssertHashMatch(certificate, encodedSignature, body))
             {
+                CachedCerts.Remove(CachedCerts.FirstOrDefault(x => x.Value == certificate).Key);
                 return false;
             }
 
