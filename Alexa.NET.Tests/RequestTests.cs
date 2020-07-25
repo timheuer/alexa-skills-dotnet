@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Alexa.NET.Request;
@@ -337,6 +338,14 @@ namespace Alexa.NET.Tests
             Assert.Equal(200,askFor.Status.Code);
             Assert.Equal("Test Message",askFor.Status.Message);
             Utility.CompareJson(askFor, "ConnectionsResponseRequest.json");
+        }
+
+        [Fact]
+        public void MultiValueSlot()
+        {
+            var slots = Utility.ExampleFileContent<Dictionary<string, Slot>>("MultiValueSlot.json");
+            Assert.Single(slots);
+            Assert.True(Utility.CompareJson(slots,"MultiValueSlot.json"));
         }
 
         private T GetObjectFromExample<T>(string filename)

@@ -16,7 +16,7 @@ Alexa.NET also serves as a base foundation for a set of further Alexa skill deve
 * In-skill Pricing [GitHub](https://github.com/stoiveyp/Alexa.NET.InSkillPricing) / [NuGet](https://www.nuget.org/packages/Alexa.NET.InSkillPricing)
 * Messaging [GitHub](https://github.com/stoiveyp/Alexa.NET.SkillMessaging) / [NuGet](https://www.nuget.org/packages/Alexa.NET.SkillMessaging)
 * Gadgets [GitHub](https://github.com/stoiveyp/Alexa.NET.Gadgets) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Gadgets)
-* Customer Profile API [GitHub](https://github.com/stoiveyp/Alexa.NET.CustomerProfile) / [NuGet](https://www.nuget.org/packages/Alexa.NET.CustomerProfile)
+* Customer and Person Profile API [GitHub](https://github.com/stoiveyp/Alexa.NET.Profile) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Profile)
 * Settings API [GitHub](https://github.com/stoiveyp/Alexa.NET.Settings) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Settings)
 * APL Support [GitHub](https://github.com/stoiveyp/Alexa.NET.APL) / [NuGet](https://www.nuget.org/packages/Alexa.NET.APL)
 * Reminders API [GitHub](https://github.com/stoiveyp/Alexa.NET.Reminders) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Reminders)
