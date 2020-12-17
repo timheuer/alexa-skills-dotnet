@@ -3,7 +3,18 @@ name: .NET Core Build and Deploy
 on:
   push:
     branches:
-      - master
+    - master
+    paths-ignore:
+    - '**/*.md'
+    - '**/*.gitignore'
+    - '**/*.gitattributes'
+  workflow_dispatch:
+    branches:
+    - master
+    paths-ignore:
+    - '**/*.md'
+    - '**/*.gitignore'
+    - '**/*.gitattributes'
 
 jobs:
   build:
@@ -12,11 +23,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.100
+        dotnet-version: 3.1.x
 
     - name: Restore
       run: dotnet restore
@@ -39,6 +50,9 @@ jobs:
 
   deploy:
     needs: build
+    environment:
+      name: production
+      url: https://www.nuget.org/packages/Alexa.NET/
     name: Deploy Packages
     runs-on: windows-latest # using windows agent due to nuget can't sign on linux yet
     steps:
@@ -56,7 +70,7 @@ jobs:
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 3.1.100
+          dotnet-version: 3.1.x
 
       - name: Get certificate
         id: cert_file
@@ -69,14 +83,14 @@ jobs:
       - name: Sign NuGet Package
         run: nuget sign nupkg\*.nupkg -CertificatePath ${{ steps.cert_file.outputs.filePath }} -CertificatePassword ${{ secrets.CERT_PWD }}  -Timestamper http://timestamp.digicert.com -NonInteractive
 
-      #- name: Push to NuGet
-      #  run: dotnet nuget push nupkg\*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://nuget.org --skip-duplicate
+      - name: Push to NuGet
+        run: dotnet nuget push nupkg\*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://nuget.org --skip-duplicate
 
-      #- name: Add GPR Source
-      #  run: nuget sources Add -Name "GPR" -Source ${{ secrets. GPR_URI }} -UserName ${{ GPR_USERNAME }} -Password ${{ secrets.GITHUB_TOKEN }}
+      - name: Add GPR Source
+        run: nuget sources Add -Name "GPR" -Source ${{ secrets. GPR_URI }} -UserName ${{ GPR_USERNAME }} -Password ${{ secrets.GITHUB_TOKEN }}
 
-      #- name: Push to GitHub Packages
-      #  run: nuget push nupkg\*.nupkg -Source "GPR" -SkipDuplicate
+      - name: Push to GitHub Packages
+        run: nuget push nupkg\*.nupkg -Source "GPR" -SkipDuplicate
 
       - name: Publish signed artifact
         uses: actions/upload-artifact@master
