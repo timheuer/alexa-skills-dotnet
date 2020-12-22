@@ -129,10 +129,18 @@ namespace Alexa.NET.Request.Type
         public const string StartOver = "AMAZON.StartOverIntent";
 
         /// <summary>
-		/// Purpose
-		/// - Triggered when the user's spoken input does not match any of the other intents in the skill
+        /// Purpose
+        /// - Triggered when the user's spoken input does not match any of the other intents in the skill
         /// </summary>
-		public const string Fallback = "AMAZON.FallbackIntent";
+        public const string Fallback = "AMAZON.FallbackIntent";
+
+        /// <summary>
+        /// Purpose
+        /// - Navigate user to the device home screen. The skill session will end.
+        ///
+        /// Common Utterances: "Alexa, go home", "Alexa, go to the home screen", "Alexa, go to my home page"
+        /// </summary>
+        public const string NavigateHome = "AMAZON.NavigateHomeIntent";
     }
 
 }
