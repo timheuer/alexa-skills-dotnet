@@ -17,6 +17,6 @@ namespace Alexa.NET.Response.Directive
 
         [JsonRequired]
         [JsonProperty("offsetInMilliseconds")]
-        public int OffsetInMilliseconds { get; set; }
+        public long OffsetInMilliseconds { get; set; }
     }
 }

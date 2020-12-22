@@ -252,12 +252,12 @@ namespace Alexa.NET
             return AudioPlayerPlay(playBehavior, url, token, 0);
         }
 
-        public static SkillResponse AudioPlayerPlay(PlayBehavior playBehavior, string url, string token, int offsetInMilliseconds)
+        public static SkillResponse AudioPlayerPlay(PlayBehavior playBehavior, string url, string token, long offsetInMilliseconds)
         {
             return AudioPlayerPlay(playBehavior, url, token, null, offsetInMilliseconds);
         }
 
-        public static SkillResponse AudioPlayerPlay(PlayBehavior playBehavior, string url, string token, string expectedPreviousToken, int offsetInMilliseconds)
+        public static SkillResponse AudioPlayerPlay(PlayBehavior playBehavior, string url, string token, string expectedPreviousToken, long offsetInMilliseconds)
         {
             var response = BuildResponse(null, true, null, null, null);
             response.Response.Directives.Add(new AudioPlayerPlayDirective()
