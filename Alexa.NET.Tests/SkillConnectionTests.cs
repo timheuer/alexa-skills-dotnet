@@ -176,6 +176,7 @@ namespace Alexa.NET.Tests
                     }
                 }
             }.ToConnectionDirective();
+            directive.OnComplete = OnCompleteAction.ResumeSession;
             Assert.Equal(ScheduleFoodEstablishmentReservation.AssociatedUri, directive.Uri);
             Assert.True(Utility.CompareJson(directive, "ScheduleFoodEstablishmentReservation.json"));
             Assert.IsType<ScheduleFoodEstablishmentReservation>(Utility.ExampleFileContent<StartConnectionDirective>("ScheduleFoodEstablishmentReservation.json").Input);
