@@ -325,6 +325,7 @@ namespace Alexa.NET.Tests
             Assert.NotNull(request.Context.System.Person);
             Assert.Equal("amzn1.ask.account.personid",request.Context.System.Person.PersonId);
             Assert.Equal("Atza|BBBBBBB", request.Context.System.Person.AccessToken);
+            Assert.Equal(300,request.Context.System.Person.AuthenticationConfidenceLevel.Level);
         }
 
         [Fact]
