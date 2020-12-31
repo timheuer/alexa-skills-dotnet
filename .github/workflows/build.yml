@@ -67,7 +67,7 @@ jobs:
     runs-on: windows-latest # using windows agent due to nuget can't sign on linux yet
     steps:
       - name: Download Package artifact
-        uses: actions/download-artifact@master
+        uses: actions/download-artifact@v2
         with:
           name: nupkg
       
@@ -91,19 +91,19 @@ jobs:
       
       # Sign the package
       - name: Sign NuGet Package
-        run: nuget sign nupkg\*.nupkg -CertificatePath ${{ steps.cert_file.outputs.filePath }} -CertificatePassword ${{ secrets.CERT_PWD }}  -Timestamper http://timestamp.digicert.com -NonInteractive
+        run: nuget sign **/*.nupkg -CertificatePath ${{ steps.cert_file.outputs.filePath }} -CertificatePassword ${{ secrets.CERT_PWD }}  -Timestamper http://timestamp.digicert.com -NonInteractive
 
       - name: Push to NuGet
-        run: dotnet nuget push nupkg\*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://nuget.org --skip-duplicate
+        run: dotnet nuget push **/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
 
       - name: Add GPR Source
         run: nuget sources Add -Name "GPR" -Source ${{ secrets.GPR_URI }} -UserName ${{ secrets.GPR_USERNAME }} -Password ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push to GitHub Packages
-        run: nuget push nupkg\*.nupkg -Source "GPR" -SkipDuplicate
+        run: nuget push **/*.nupkg -Source "GPR" -SkipDuplicate
 
       - name: Publish signed artifact
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v2
         with:
           name: signednupkg
           path: nupkg
