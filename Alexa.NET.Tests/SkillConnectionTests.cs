@@ -3,7 +3,9 @@ using Alexa.NET.ConnectionTasks;
 using Alexa.NET.ConnectionTasks.Inputs;
 using Alexa.NET.Request.Type;
 using Alexa.NET.Response;
+using Alexa.NET.Response.Converters;
 using Alexa.NET.Response.Directive;
+using Alexa.NET.Tests.Examples;
 using Xunit;
 
 namespace Alexa.NET.Tests
@@ -75,6 +77,18 @@ namespace Alexa.NET.Tests
             Assert.Equal("AMAZON.PrintPDF", result.Task.Name);
             Assert.Equal("1", result.Task.Version);
             Assert.IsType<PrintPdfV1>(result.Task.Input);
+        }
+
+        [Fact]
+        public void LaunchRequestWithCustomTaskDeserializesCorrectly()
+        {
+            ExampleTaskConverter.AddToConnectionTaskConverters();
+            var result = Utility.ExampleFileContent<LaunchRequest>("LaunchRequestWithCustomTask.json");
+            Assert.NotNull(result.Task);
+            Assert.Equal("Custom.ExampleTask", result.Task.Name);
+            Assert.Equal("1", result.Task.Version);
+            Assert.IsType<ExampleTask>(result.Task.Input);
+            Assert.Equal(((ExampleTask)result.Task.Input).RandomParameter, "parameterValue");
         }
 
         [Fact]
