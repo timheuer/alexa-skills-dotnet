@@ -18,6 +18,9 @@ namespace Alexa.NET.Response
             OutputSpeech = new SsmlOutputSpeech {Ssml = speech.ToXml()};
         }
 
+        public static implicit operator Reprompt(string text) => new Reprompt(text);
+        public static implicit operator Reprompt(Ssml.Speech speech) => new Reprompt(speech);
+
         [JsonProperty("outputSpeech", NullValueHandling=NullValueHandling.Ignore)]
         public IOutputSpeech OutputSpeech { get; set; }
     }

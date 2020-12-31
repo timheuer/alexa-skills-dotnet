@@ -178,9 +178,19 @@ namespace Alexa.NET
         #endregion
 
         #region Ask Responses
+        public static SkillResponse Ask(IOutputSpeech speechResponse, string reprompt)
+        {
+            return Ask(speechResponse, new Reprompt(reprompt));
+        }
+
         public static SkillResponse Ask(IOutputSpeech speechResponse, Reprompt reprompt)
         {
             return BuildResponse(speechResponse, false, null, reprompt, null);
+        }
+
+        public static SkillResponse Ask(string speechResponse, string reprompt)
+        {
+            return Ask(speechResponse, new Reprompt(reprompt));
         }
 
         public static SkillResponse Ask(string speechResponse, Reprompt reprompt)
@@ -188,9 +198,19 @@ namespace Alexa.NET
             return Ask(new PlainTextOutputSpeech {Text = speechResponse}, reprompt);
         }
 
+        public static SkillResponse Ask(Response.Ssml.Speech speechResponse, string reprompt)
+        {
+            return Ask(speechResponse, new Reprompt(reprompt));
+        }
+
         public static SkillResponse Ask(Response.Ssml.Speech speechResponse, Reprompt reprompt)
         {
             return Ask(new SsmlOutputSpeech {Ssml = speechResponse.ToXml()}, reprompt);
+        }
+
+        public static SkillResponse Ask(IOutputSpeech speechResponse, string reprompt, Session sessionAttributes)
+        {
+            return Ask(speechResponse, new Reprompt(reprompt), sessionAttributes);
         }
 
         public static SkillResponse Ask(IOutputSpeech speechResponse, Reprompt reprompt, Session sessionAttributes)
@@ -198,9 +218,19 @@ namespace Alexa.NET
             return BuildResponse(speechResponse, false, sessionAttributes, reprompt, null);
         }
 
+        public static SkillResponse Ask(string speechResponse, string reprompt, Session sessionAttributes)
+        {
+            return Ask(speechResponse, new Reprompt(reprompt), sessionAttributes);
+        }
+
         public static SkillResponse Ask(string speechResponse, Reprompt reprompt, Session sessionAttributes)
         {
             return Ask(new PlainTextOutputSpeech { Text = speechResponse }, reprompt, sessionAttributes);
+        }
+
+        public static SkillResponse Ask(Response.Ssml.Speech speechResponse, string reprompt, Session sessionAttributes)
+        {
+            return Ask(speechResponse, new Reprompt(reprompt), sessionAttributes);
         }
 
         public static SkillResponse Ask(Response.Ssml.Speech speechResponse, Reprompt reprompt, Session sessionAttributes)
@@ -208,9 +238,19 @@ namespace Alexa.NET
             return Ask(new SsmlOutputSpeech { Ssml = speechResponse.ToXml() }, reprompt, sessionAttributes);
         }
 
+        public static SkillResponse AskWithCard(IOutputSpeech speechResponse, string title, string content, string reprompt)
+        {
+            return AskWithCard(speechResponse, title, content, new Reprompt(reprompt));
+        }
+
         public static SkillResponse AskWithCard(IOutputSpeech speechResponse, string title, string content, Reprompt reprompt)
         {
             return AskWithCard(speechResponse, title, content, reprompt, null);
+        }
+
+        public static SkillResponse AskWithCard(string speechResponse, string title, string content, string reprompt)
+        {
+            return AskWithCard(speechResponse, title, content, new Reprompt(reprompt));
         }
 
         public static SkillResponse AskWithCard(string speechResponse, string title, string content, Reprompt reprompt)
@@ -218,9 +258,19 @@ namespace Alexa.NET
             return AskWithCard(new PlainTextOutputSpeech { Text = speechResponse }, title, content, reprompt);
         }
 
+        public static SkillResponse AskWithCard(Response.Ssml.Speech speechResponse, string title, string content, string reprompt)
+        {
+            return AskWithCard(speechResponse, title, content, new Reprompt(reprompt));
+        }
+
         public static SkillResponse AskWithCard(Response.Ssml.Speech speechResponse, string title, string content, Reprompt reprompt)
         {
             return AskWithCard(new SsmlOutputSpeech { Ssml = speechResponse.ToXml() }, title, content, reprompt);
+        }
+
+        public static SkillResponse AskWithCard(IOutputSpeech speechResponse, string title, string content, string reprompt, Session sessionAttributes)
+        {
+            return AskWithCard(speechResponse, title, content, new Reprompt(reprompt), sessionAttributes);
         }
 
         public static SkillResponse AskWithCard(IOutputSpeech speechResponse, string title, string content, Reprompt reprompt, Session sessionAttributes)
@@ -234,9 +284,19 @@ namespace Alexa.NET
             return BuildResponse(speechResponse, false, sessionAttributes, reprompt, card);
         }
 
+        public static SkillResponse AskWithCard(string speechResponse, string title, string content, string reprompt, Session sessionAttributes)
+        {
+            return AskWithCard(speechResponse, title, content, new Reprompt(reprompt), sessionAttributes);
+        }
+
         public static SkillResponse AskWithCard(string speechResponse, string title, string content, Reprompt reprompt, Session sessionAttributes)
         {
             return AskWithCard(new PlainTextOutputSpeech { Text = speechResponse }, title, content, reprompt, sessionAttributes);
+        }
+
+        public static SkillResponse AskWithCard(Response.Ssml.Speech speechResponse, string title, string content, string reprompt, Session sessionAttributes)
+        {
+            return AskWithCard(speechResponse, title, content, new Reprompt(reprompt), sessionAttributes);
         }
 
         public static SkillResponse AskWithCard(Response.Ssml.Speech speechResponse, string title, string content, Reprompt reprompt, Session sessionAttributes)
