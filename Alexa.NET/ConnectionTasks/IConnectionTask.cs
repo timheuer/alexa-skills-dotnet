@@ -9,14 +9,5 @@ namespace Alexa.NET.ConnectionTasks
     {
         [JsonIgnore]
         string ConnectionUri { get; }
-
-        [JsonProperty("@type")]
-        string Type { get; }
-
-        [JsonProperty("@version")]
-        string Version { get; }
-
-        [JsonProperty("context",NullValueHandling = NullValueHandling.Ignore)]
-        ConnectionTaskContext Context { get; set; }
     }
 }
