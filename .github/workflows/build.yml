@@ -18,6 +18,8 @@ on:
 
 jobs:
   build:
+    outputs:
+      version: ${{ steps.set_proj_version.outputs.PKG_VERSION }}
     if: github.event_name == 'push' && contains(toJson(github.event.commits), '***NO_CI***') == false && contains(toJson(github.event.commits), '[ci skip]') == false && contains(toJson(github.event.commits), '[skip ci]') == false
     name: Build Package 
     runs-on: ubuntu-latest
@@ -47,6 +49,14 @@ jobs:
       with:
         name: nupkg
         path: finalpackage
+
+    - name: Get version
+      id: set_proj_version
+      shell: pwsh
+      run: |
+        [xml]$nuspec = Get-Content test.csproj
+        $version=$nuspec.project.propertygroup.versionprefix
+        Write-Output "::set-output name=PKG_VERSION::$version"
 
   deploy:
     needs: build
@@ -99,7 +109,7 @@ jobs:
           path: nupkg
           
   announce:
-    needs: deploy
+    needs: [build,deploy]
     environment:
       name: announcement
       url: ${{ steps.send_tweet.outputs.tweeturl }}
@@ -110,7 +120,7 @@ jobs:
         id: send_tweet
         uses: timheuer/send-tweet-action@master
         with:
-          status: "Alexa.NET just released a new version!  https://github.com/timheuer/alexa-skills-dotnet/ Thanks to all the contributors!"
+          status: "Alexa.NET ${{ needs.build.outputs.version }} was just released!  https://github.com/timheuer/alexa-skills-dotnet/ Thanks to all the contributors!"
           consumer-key: ${{ secrets.TWITTER_API_KEY }}
           consumer-secret: ${{ secrets.TWITTER_API_SECRET }}
           access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}

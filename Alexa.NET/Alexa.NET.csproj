@@ -3,13 +3,13 @@
   <PropertyGroup>
     <Description>A simple .NET Core library for handling Alexa Skill request/responses.</Description>
     <AssemblyTitle>Alexa.NET</AssemblyTitle>
-    <VersionPrefix>1.14.0</VersionPrefix>
+    <VersionPrefix>1.15.0</VersionPrefix>
     <Authors>Tim Heuer, Steven Pears</Authors>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Alexa.NET</AssemblyName>
     <PackageId>Alexa.NET</PackageId>
     <PackageTags>amazon;alexa;echo;dot;echo dot;skills</PackageTags>
-    <PackageReleaseNotes>Adding support for Multi-value slots. Thanks @stoiveyp! </PackageReleaseNotes>
+    <PackageReleaseNotes>Added conversational style, completion options, auth confidence levels. Thanks @stoiveyp and @aadupirn! </PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/timheuer/alexa-skills-dotnet</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/timheuer/alexa-skills-dotnet</RepositoryUrl>
