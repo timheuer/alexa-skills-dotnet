@@ -27,6 +27,9 @@
       },
       "person": {
         "personId": "amzn1.ask.account.personid",
+        "authenticationConfidenceLevel": {
+          "level": 300
+        },
         "accessToken": "Atza|BBBBBBB"
       }
     }
