@@ -9,5 +9,8 @@ namespace Alexa.NET.Request
 
         [JsonProperty("accessToken")]
         public string AccessToken { get; set; }
+
+        [JsonProperty("authenticationConfidenceLevel",NullValueHandling = NullValueHandling.Ignore)]
+        public AuthenticationConfidenceLevel AuthenticationConfidenceLevel { get; set; }
     }
 }
