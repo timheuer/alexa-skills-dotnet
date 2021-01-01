@@ -1,6 +1,7 @@
 {
   "type": "Connections.StartConnection",
   "uri": "connection://AMAZON.ScheduleFoodEstablishmentReservation/1",
+  "onComplete": "RESUME_SESSION", 
   "input": {
     "@type": "ScheduleFoodEstablishmentReservationRequest",
     "@version": "1",

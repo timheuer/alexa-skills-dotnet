@@ -1,0 +1,14 @@
+﻿{
+    "type": "LaunchRequest",
+    "requestId": "string",
+    "timestamp": "2019-07-03T00:00:00",
+    "locale": "string",
+    "originIpAddress": "string",
+    "task": {
+        "name": "Custom.ExampleTask",
+        "version": "1",
+        "input": {
+          "randomParameter":  "parameterValue"
+        }
+    }
+}

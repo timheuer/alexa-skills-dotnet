@@ -1,6 +1,7 @@
 ﻿using System;
 using Alexa.NET.ConnectionTasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Alexa.NET.Response.Directive
 {
@@ -17,6 +18,10 @@ namespace Alexa.NET.Response.Directive
 
         [JsonProperty("token",NullValueHandling = NullValueHandling.Ignore)]
         public string Token { get; set; }
+
+        [JsonProperty("onComplete",NullValueHandling = NullValueHandling.Ignore)]
+        [JsonConverter(typeof(StringEnumConverter))]
+        public OnCompleteAction? OnComplete { get; set; }
 
         public StartConnectionDirective(){}
 
