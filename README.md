@@ -31,6 +31,7 @@ Alexa.NET also serves as a base foundation for a set of further Alexa skill deve
 * Timers API [GitHub](https://github.com/stoiveyp/Alexa.NET.Timers) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Timers)
 * Web API for Games [GitHub](https://github.com/stoiveyp/Alexa.NET.WebApiGames) / [NuGet](https://www.nuget.org/packages/Alexa.NET.WebApiGames)
 * Conversations API (Beta) [GitHub](https://github.com/stoiveyp/Alexa.NET.Conversations) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Conversations)
+* Pin Confirmation (Beta) [GitHub](https://github.com/stoiveyp/Alexa.NET.PinConfirmation) / [NuGet](https://www.nuget.org/packages/Alexa.NET.PinConfirmation)
 
 # Setup
 Regardless of your architecture, your function for Alexa will be accepting a SkillRequest and returning a SkillResponse. The deserialization of the incoming request into a SkillRequest object will depend on your framework.
