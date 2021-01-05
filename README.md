@@ -43,6 +43,27 @@ public SkillResponse FunctionHandler(SkillRequest input, ILambdaContext context)
 }
 ```
 
+## Serialization
+Use the `Amazon.Lambda.Serialization.Json` package. The default may be different depending on how you created your project.
+
+In your project file:
+```csproj
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- ... -->
+  <ItemGroup>
+    <PackageReference Include="Alexa.NET" Version="1.15.0" />
+    <PackageReference Include="Amazon.Lambda.Core" Version="1.2.0" />
+    <PackageReference Include="Amazon.Lambda.Serialization.Json" Version="1.8.0" />
+  </ItemGroup>
+</Project>
+```
+
+In any .cs file:
+```csharp
+// Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
+[assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.Json.JsonSerializer))]
+```
+
 # Table of Contents
 - [Contributors](#contributors)
 - [Request Types](#request-types)    
