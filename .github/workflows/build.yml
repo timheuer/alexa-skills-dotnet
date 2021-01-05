@@ -8,6 +8,7 @@ on:
     - '**/*.md'
     - '**/*.gitignore'
     - '**/*.gitattributes'
+    - '**/*.all-contributorsrc'
   workflow_dispatch:
     branches:
     - master
@@ -15,6 +16,7 @@ on:
     - '**/*.md'
     - '**/*.gitignore'
     - '**/*.gitattributes'
+    - '**/*.all-contributorsrc'
 
 jobs:
   build:
