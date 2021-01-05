@@ -161,6 +161,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "bcuff",
+      "name": "Brandon",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/504266?v=4",
+      "profile": "https://github.com/bcuff",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
