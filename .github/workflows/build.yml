@@ -22,7 +22,6 @@ jobs:
   build:
     outputs:
       version: ${{ steps.set_proj_version.outputs.PKG_VERSION }}
-    if: github.event_name == 'push' && contains(toJson(github.event.commits), '***NO_CI***') == false && contains(toJson(github.event.commits), '[ci skip]') == false && contains(toJson(github.event.commits), '[skip ci]') == false
     name: Build and package 
     runs-on: ubuntu-latest
 
