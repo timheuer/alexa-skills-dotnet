@@ -79,7 +79,7 @@ jobs:
           nuget-version: latest
 
       - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v1.8.0
         with:
           dotnet-version: 3.1.x
 
@@ -114,6 +114,7 @@ jobs:
     environment:
       name: announcement
       url: ${{ steps.send_tweet.outputs.tweeturl }}
+    if: ${{ contains(toJson(github.event.commits),'[skip announce]') == false }}
     name: Tweet release
     runs-on: ubuntu-latest
     steps:
