@@ -3,7 +3,7 @@
 
 Read this document in [Español](/docs/README_es.md)
 
-[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/timheuer/alexa-skills-dotnet)
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://github.dev/timheuer/alexa-skills-dotnet)
 
 [![Build Status](https://dev.azure.com/timheuer/Alexa.NET/_apis/build/status/Alexa.NET-master?branchName=master)](https://dev.azure.com/timheuer/Alexa.NET/_build/latest?definitionId=2&branchName=master)
 ![.NET Core Build and Deploy](https://github.com/timheuer/alexa-skills-dotnet/workflows/.NET%20Core%20Build%20and%20Deploy/badge.svg?branch=master)
