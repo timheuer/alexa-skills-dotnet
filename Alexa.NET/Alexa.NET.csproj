@@ -23,19 +23,25 @@
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <DebugType>embedded</DebugType>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
     <!-- <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>alexa-skills-dotnet.snk</AssemblyOriginatorKeyFile> -->
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="nuget-icon.png" Pack="true" Visible="false" PackagePath="" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="readme.md">
+      <Pack>True</Pack>
+    </None>
+  </ItemGroup>
   <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
