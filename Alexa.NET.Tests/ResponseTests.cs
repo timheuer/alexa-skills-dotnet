@@ -235,8 +235,10 @@ namespace Alexa.NET.Tests
             var card = (AskForPermissionsConsentCard)deserialized;
 
             Assert.Equal("AskForPermissionsConsent", card.Type);
-            Assert.Equal(1, card.Permissions.Count);
-            Assert.Equal("read::alexa:household:list", card.Permissions.First());
+            Assert.Equal(2, card.Permissions.Count);
+            Assert.NotEqual("read::alexa:household:list", card.Permissions.First());
+            Assert.Equal("alexa::household:lists:read", card.Permissions.First());
+            Assert.Equal("alexa::household:lists:write", card.Permissions.Last());
         }
 
         [Fact]

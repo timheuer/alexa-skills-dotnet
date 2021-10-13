@@ -1,6 +1,7 @@
 {
   "type": "AskForPermissionsConsent",
   "permissions": [
-    "read::alexa:household:list"
+    "alexa::household:lists:read",
+    "alexa::household:lists:write"
   ]
 }
