@@ -3,13 +3,13 @@
   <PropertyGroup>
     <Description>A simple .NET Core library for handling Alexa Skill request/responses.</Description>
     <AssemblyTitle>Alexa.NET</AssemblyTitle>
-    <VersionPrefix>1.17.0</VersionPrefix>
+    <VersionPrefix>1.18.0</VersionPrefix>
     <Authors>Tim Heuer, Steven Pears</Authors>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Alexa.NET</AssemblyName>
     <PackageId>Alexa.NET</PackageId>
     <PackageTags>amazon;alexa;echo;dot;echo dot;skills</PackageTags>
-    <PackageReleaseNotes>Adding directives to Reprompt object. Thanks @stoiveyp!</PackageReleaseNotes>
+    <PackageReleaseNotes>This release fixes a permission scope format for consent cards. Thanks @peterfoot</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/timheuer/alexa-skills-dotnet</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/timheuer/alexa-skills-dotnet</RepositoryUrl>
@@ -24,8 +24,6 @@
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <DebugType>embedded</DebugType>
     <PackageReadmeFile>readme.md</PackageReadmeFile>
-    <!-- <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>alexa-skills-dotnet.snk</AssemblyOriginatorKeyFile> -->
   </PropertyGroup>
 
   <ItemGroup>
