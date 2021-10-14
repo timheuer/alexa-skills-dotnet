@@ -22,6 +22,7 @@ jobs:
   build:
     outputs:
       version: ${{ steps.set_proj_version.outputs.PKG_VERSION }}
+      relnotes: ${{ steps.set_proj_version.outputs.RELNOTES }}
     name: Build and package 
     runs-on: ubuntu-latest
 
@@ -57,7 +58,9 @@ jobs:
       run: |
         [xml]$nuspec = Get-Content Alexa.NET\Alexa.NET.csproj
         $version=$nuspec.project.propertygroup.versionprefix
+        $relnotes=$nuspec.project.propertygroup.packagereleasenotes
         Write-Output "::set-output name=PKG_VERSION::$version"
+        Write-Output "::set-output name=RELNOTES::$relnotes"
 
   deploy:
     needs: build
@@ -106,6 +109,15 @@ jobs:
       - name: Push to GitHub Packages
         #run: nuget push **/*.nupkg -Source "GPR" -SkipDuplicate
         run: dotnet nuget push **/*.nupkg -s "GPR" --skip-duplicate
+
+      - name: Tag and Release
+        id: tag_release
+        uses: softprops/action-gh-release@v0.1.13
+        with:
+          body: ${{ needs.build.outputs.relnotes }}
+          tag_name: ${{ needs.build.outputs.version }}
+          files: |
+            **/*.nupkg
 
       - name: Publish signed artifact
         uses: actions/upload-artifact@v2
