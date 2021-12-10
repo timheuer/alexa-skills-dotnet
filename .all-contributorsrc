@@ -143,11 +143,57 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "martincostello",
+      "name": "Martin Costello",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1439341?v=4",
+      "profile": "https://martincostello.com/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "shinya-terasaki",
+      "name": "Shinya Terasaki",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/16497603?v=4",
+      "profile": "https://github.com/shinya-terasaki",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "bcuff",
+      "name": "Brandon",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/504266?v=4",
+      "profile": "https://github.com/bcuff",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "aadupirn",
+      "name": "Aadu Pirn",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/16725484?v=4",
+      "profile": "https://github.com/aadupirn",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "peterfoot",
+      "name": "Peter Foot",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3985053?v=4",
+      "profile": "https://peterfoot.net",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
   "projectName": "alexa-skills-dotnet",
   "projectOwner": "timheuer",
   "repoType": "github",
-  "repoHost": "https://github.com"
+  "repoHost": "https://github.com",
+  "skipCi": true
 }

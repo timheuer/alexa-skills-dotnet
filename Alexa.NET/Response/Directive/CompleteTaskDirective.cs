@@ -12,13 +12,13 @@ namespace Alexa.NET.Response.Directive
 
         public CompleteTaskDirective(int statusCode, string statusMessage)
         {
-            Status = new TaskStatus(statusCode,statusMessage);
+            Status = new ConnectionStatus(statusCode,statusMessage);
         }
 
         [JsonProperty("type")]
         public string Type => "Tasks.CompleteTask";
 
         [JsonProperty("status")]
-        public TaskStatus Status { get; set; } 
+        public ConnectionStatus Status { get; set; } 
     }
 }

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Alexa.NET.Response
 {
@@ -23,5 +24,13 @@ namespace Alexa.NET.Response
 
         [JsonProperty("outputSpeech", NullValueHandling=NullValueHandling.Ignore)]
         public IOutputSpeech OutputSpeech { get; set; }
+
+        [JsonProperty("directives", NullValueHandling = NullValueHandling.Ignore)]
+        public IList<IDirective> Directives { get; set; } = new List<IDirective>();
+
+        public bool ShouldSerializeDirectives()
+        {
+            return Directives.Count > 0;
+        }
     }
 }

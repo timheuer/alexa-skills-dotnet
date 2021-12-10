@@ -241,6 +241,44 @@ namespace Alexa.NET.Tests
             CompareXml(expected, speech);
         }
 
+        [Fact]
+        public void Ssml_Alexa_Name_generate_alexa_name()
+        {
+            const string expected = "<speak><alexa:name type=\"first\" personId=\"amzn1.ask.person.ABCDEF\" /></speak>";
+
+            var alexaName = new AlexaName("amzn1.ask.person.ABCDEF");
+
+            var xmlHost = new Speech();
+            xmlHost.Elements.Add(alexaName);
+            var actual = xmlHost.ToXml();
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void Ssml_AmazonDomain_generate_domain()
+        {
+            const string expected = @"<speak><amazon:domain name=""news"">A miniature manuscript</amazon:domain></speak>";
+
+            var xmlHost = new Speech();
+            var actual = new AmazonDomain(DomainName.News);
+            actual.Elements.Add(new PlainText("A miniature manuscript"));
+            xmlHost.Elements.Add(actual);
+            Assert.Equal(expected, xmlHost.ToXml());
+        }
+
+        [Fact]
+        public void Ssml_AmazonEmotion_generate_emotion()
+        {
+            const string expected = @"<speak><amazon:emotion name=""excited"" intensity=""medium"">Christina wins this round!</amazon:emotion></speak>";
+
+            var xmlHost = new Speech();
+            var actual = new AmazonEmotion(EmotionName.Excited, EmotionIntensity.Medium);
+            actual.Elements.Add(new PlainText("Christina wins this round!"));
+            xmlHost.Elements.Add(actual);
+            Assert.Equal(expected,xmlHost.ToXml());
+        }
+
         private void CompareXml(string expected, ISsml ssml)
         {
             var actual = ssml.ToXml().ToString(SaveOptions.DisableFormatting);

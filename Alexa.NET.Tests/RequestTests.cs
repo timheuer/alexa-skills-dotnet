@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Alexa.NET.Request;
@@ -21,6 +22,7 @@ namespace Alexa.NET.Tests
 
             Assert.NotNull(convertedObj);
             Assert.Equal(typeof(IntentRequest), convertedObj.GetRequestType());
+            Assert.True(Utility.CompareJson(convertedObj,IntentRequestFile));
         }
 
         [Fact]
@@ -196,6 +198,8 @@ namespace Alexa.NET.Tests
             var convertedObj = GetObjectFromExample<SkillRequest>("SkillEventPermissionChange.json");
             var request = Assert.IsAssignableFrom<PermissionSkillEventRequest>(convertedObj.Request);
             Assert.Equal(request.Body.AcceptedPermissions.First().Scope, "testScope");
+            Assert.True(request.EventCreationTime.HasValue);
+            Assert.True(request.EventPublishingTime.HasValue);
         }
 
         [Fact]
@@ -312,6 +316,37 @@ namespace Alexa.NET.Tests
 
             Assert.Equal(10.0, locationData.Speed.Speed);
             Assert.Equal(1.1, locationData.Speed.Accuracy);
+        }
+
+        [Fact]
+        public void Can_Read_Person_Information()
+        {
+            var request = GetObjectFromExample<SkillRequest>("BuiltInIntentRequest.json");
+            Assert.NotNull(request.Context.System.Person);
+            Assert.Equal("amzn1.ask.account.personid",request.Context.System.Person.PersonId);
+            Assert.Equal("Atza|BBBBBBB", request.Context.System.Person.AccessToken);
+            Assert.Equal(300,request.Context.System.Person.AuthenticationConfidenceLevel.Level);
+        }
+
+        [Fact]
+        public void HandleConnectionsSendResponseRequest()
+        {
+            var request = GetObjectFromExample<Request.Type.Request>("ConnectionsResponseRequest.json");
+            var askFor = Assert.IsType<AskForPermissionRequest>(request);
+            Assert.Equal("AskFor",askFor.Name);
+            Assert.Equal(PermissionStatus.Denied,askFor.Payload.Status);
+            Assert.Equal("alexa::alerts:reminders:skill:readwrite",askFor.Payload.PermissionScope);
+            Assert.Equal(200,askFor.Status.Code);
+            Assert.Equal("Test Message",askFor.Status.Message);
+            Utility.CompareJson(askFor, "ConnectionsResponseRequest.json");
+        }
+
+        [Fact]
+        public void MultiValueSlot()
+        {
+            var slots = Utility.ExampleFileContent<Dictionary<string, Slot>>("MultiValueSlot.json");
+            Assert.Single(slots);
+            Assert.True(Utility.CompareJson(slots,"MultiValueSlot.json"));
         }
 
         private T GetObjectFromExample<T>(string filename)

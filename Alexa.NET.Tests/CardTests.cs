@@ -32,6 +32,7 @@ namespace Alexa.NET.Tests
         {
             var actual = new AskForPermissionsConsentCard();
             actual.Permissions.Add(RequestedPermission.ReadHouseholdList);
+            actual.Permissions.Add(RequestedPermission.WriteHouseholdList);
 
             Assert.True(Utility.CompareJson(actual, "AskForPermissionsConsent.json"));
         }

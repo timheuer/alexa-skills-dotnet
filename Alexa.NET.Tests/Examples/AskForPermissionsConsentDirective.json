@@ -1,0 +1,10 @@
+﻿{
+  "type": "Connections.SendRequest",
+  "name": "AskFor",
+  "payload": {
+    "@type": "AskForPermissionsConsentRequest",
+    "@version": "1",
+    "permissionScope": "alexa::alerts:reminders:skill:readwrite"
+  },
+  "token": ""
+}

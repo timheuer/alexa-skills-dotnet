@@ -1,0 +1,16 @@
+{
+  "type": "Connections.Response",
+  "requestId": "string",
+  "timestamp": "2015-05-13T12:34:56Z",
+  "locale": "en-US",
+  "name": "AskFor",
+  "status": {
+    "code": "200",
+    "message": "Test Message"
+  },
+  "token": "string",
+  "payload": {
+    "permissionScope": "alexa::alerts:reminders:skill:readwrite",
+    "status": "DENIED"
+  }
+}

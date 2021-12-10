@@ -3,7 +3,7 @@ using System.Xml.Linq;
 
 namespace Alexa.NET.Response.Ssml
 {
-	public class AmazonEffect : ICommonSsml
+    public class AmazonEffect : ICommonSsml
 	{
 		public string Text { get; set; }
 
