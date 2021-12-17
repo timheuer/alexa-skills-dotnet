@@ -19,5 +19,8 @@ namespace Alexa.NET.Request
             var hasInterface = SupportedInterfaces?.ContainsKey(interfaceName);
             return (hasInterface.HasValue ? hasInterface.Value : false); 
         }
+
+        [JsonProperty("persistentEndpointId",NullValueHandling = NullValueHandling.Ignore)]
+        public string PersistentEndpointID { get; set; }
     }
 }
