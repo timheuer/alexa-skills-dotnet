@@ -41,7 +41,13 @@ jobs:
 
     # Run the tests, ideally should stop here if a fail and also publish results as artifacts
     - name: Test
-      run: dotnet test
+      uses: timheuer/dotnet-tests-report@master
+      with:
+        project_path: Alexa.NET.Tests/Alexa.NET.Tests.csproj
+        report_name: alexa_net_tests
+        report_title: Alexa.NET Tests
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        set_check_status_from_test_outcome: true
 
     - name: Pack
       run: dotnet pack --configuration Release -o finalpackage --no-build
