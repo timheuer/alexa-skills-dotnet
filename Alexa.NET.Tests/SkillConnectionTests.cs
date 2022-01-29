@@ -200,7 +200,7 @@ namespace Alexa.NET.Tests
         public void PinConfirmationSerializesCorrectly()
         {
             var task = new PinConfirmation();
-            Utility.CompareJson(task.ToConnectionDirective("none"), "PinConfirmation.json");
+            Assert.True(Utility.CompareJson(task.ToConnectionDirective("example-token"), "PinConfirmation.json"));
         }
 
         [Fact]
