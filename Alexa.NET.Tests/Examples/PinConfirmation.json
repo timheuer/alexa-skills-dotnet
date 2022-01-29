@@ -1,0 +1,13 @@
+﻿{
+    "type": "Connections.StartConnection",
+    "uri": "connection://AMAZON.VerifyPerson/2",
+    "input": {
+        "requestedAuthenticationConfidenceLevel": {
+            "level": 400,
+            "customPolicy": {
+                "policyName": "VOICE_PIN"
+            }
+        }
+    },
+    "token": "example-token"
+}

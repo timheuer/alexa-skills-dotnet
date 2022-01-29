@@ -196,5 +196,22 @@ namespace Alexa.NET.Tests
             Assert.IsType<ScheduleFoodEstablishmentReservation>(Utility.ExampleFileContent<StartConnectionDirective>("ScheduleFoodEstablishmentReservation.json").Input);
         }
 
+        [Fact]
+        public void PinConfirmationSerializesCorrectly()
+        {
+            var task = new PinConfirmation();
+            Utility.CompareJson(task.ToConnectionDirective("none"), "PinConfirmation.json");
+        }
+
+        [Fact]
+        public void ResultDeserializesCorrectly()
+        {
+            var task = new PinConfirmation();
+            var request = Utility.ExampleFileContent<SessionResumedRequest>("PinConfirmationSessionResumed.json");
+            var result = PinConfirmationConverter.ResultFromSessionResumed(request);
+            Assert.Equal(PinConfirmationStatus.NotAchieved,result.Status);
+            Assert.Equal(PinConfirmationReason.VerificationMethodNotSetup,result.Reason);
+        }
+
     }
 }
