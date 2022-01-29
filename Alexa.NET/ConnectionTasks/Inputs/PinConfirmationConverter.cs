@@ -5,43 +5,44 @@ using Alexa.NET.Response.Converters;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Alexa.NET.ConnectionTasks.Inputs;
-
-public class PinConfirmationConverter : IConnectionTaskConverter
+namespace Alexa.NET.ConnectionTasks.Inputs
 {
-    private static readonly JsonSerializer Serializer = JsonSerializer.Create();
-
-    public bool CanConvert(JObject jObject)
+    public class PinConfirmationConverter : IConnectionTaskConverter
     {
-        return jObject.ContainsKey("uri") && jObject.GetValue("uri").Value<string>() == PinConfirmation.AssociatedUri;
-    }
+        private static readonly JsonSerializer Serializer = JsonSerializer.Create();
 
-    public IConnectionTask Convert(JObject jObject)
-    {
-        var task = new PinConfirmation();
-        Serializer.Populate(jObject.CreateReader(), task);
-        return task;
-    }
-
-    public static void AddToConnectionTaskConverters()
-    {
-        if (ConnectionTaskConverter.ConnectionTaskConverters.Where(rc => rc != null)
-            .All(rc => rc.GetType() != typeof(PinConfirmationConverter)))
+        public bool CanConvert(JObject jObject)
         {
-            ConnectionTaskConverter.ConnectionTaskConverters.Add(new PinConfirmationConverter());
+            return jObject.ContainsKey("uri") &&
+                   jObject.GetValue("uri").Value<string>() == PinConfirmation.AssociatedUri;
         }
-    }
 
-    public static PinConfirmationResult ResultFromSessionResumed(SessionResumedRequest request)
-    {
-        if (request.Cause.Result is not JObject jo)
+        public IConnectionTask Convert(JObject jObject)
         {
+            var task = new PinConfirmation();
+            Serializer.Populate(jObject.CreateReader(), task);
+            return task;
+        }
+
+        public static void AddToConnectionTaskConverters()
+        {
+            if (ConnectionTaskConverter.ConnectionTaskConverters.Where(rc => rc != null)
+                .All(rc => rc.GetType() != typeof(PinConfirmationConverter)))
+            {
+                ConnectionTaskConverter.ConnectionTaskConverters.Add(new PinConfirmationConverter());
+            }
+        }
+
+        public static PinConfirmationResult ResultFromSessionResumed(SessionResumedRequest request)
+        {
+            if (request.Cause.Result is JObject jo)
+            {
+                var task = new PinConfirmationResult();
+                Serializer.Populate(jo.CreateReader(), task);
+                return task;
+            }
+
             return null;
         }
-
-        var task = new PinConfirmationResult();
-        Serializer.Populate(jo.CreateReader(), task);
-        return task;
-
     }
 }
