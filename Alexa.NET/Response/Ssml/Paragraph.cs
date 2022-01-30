@@ -7,7 +7,7 @@ namespace Alexa.NET.Response.Ssml
 {
     public class Paragraph : ISsml
     {
-        public List<IParagraphSsml> Elements {get;set;} = new List<IParagraphSsml>();
+        public List<IParagraphSsml> Elements {get;set;} = new();
 
         public Paragraph() { }
 

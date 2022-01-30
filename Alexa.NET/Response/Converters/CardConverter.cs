@@ -12,7 +12,7 @@ namespace Alexa.NET.Response.Converters
 
         public override bool CanRead => true;
 
-        public static Dictionary<string, Func<ICard>> TypeFactories = new Dictionary<string, Func<ICard>>
+        public static Dictionary<string, Func<ICard>> TypeFactories = new()
         {
             { "Simple", () => new SimpleCard() },
             { "Standard", () => new StandardCard() },
@@ -33,7 +33,7 @@ namespace Alexa.NET.Response.Converters
             var hasFactory = TypeFactories.ContainsKey(typeValue);
 
             if (!hasFactory)
-                throw new Exception(
+                throw new(
                     $"unable to deserialize response. " +
                     $"unrecognized card type '{typeValue}'"
                 );

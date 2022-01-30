@@ -71,7 +71,7 @@ namespace Alexa.NET
 
         public static SkillResponse TellWithCard(IOutputSpeech speechResponse, string title, string content)
         {
-            SimpleCard card = new SimpleCard();
+            SimpleCard card = new();
             card.Content = content;
             card.Title = title;
 
@@ -90,7 +90,7 @@ namespace Alexa.NET
 
         public static SkillResponse TellWithCard(IOutputSpeech speechResponse, string title, string content, Session sessionAttributes)
         {
-            SimpleCard card = new SimpleCard
+            SimpleCard card = new()
             {
                 Content = content,
                 Title = title
@@ -111,7 +111,7 @@ namespace Alexa.NET
 
         public static SkillResponse TellWithLinkAccountCard(IOutputSpeech speechResponse)
         {
-            LinkAccountCard card = new LinkAccountCard();
+            LinkAccountCard card = new();
 
             return BuildResponse(speechResponse, true, null, null, card);
         }
@@ -128,7 +128,7 @@ namespace Alexa.NET
 
         public static SkillResponse TellWithLinkAccountCard(IOutputSpeech speechResponse, Session sessionAttributes)
         {
-            LinkAccountCard card = new LinkAccountCard();
+            LinkAccountCard card = new();
 
             return BuildResponse(speechResponse, true, sessionAttributes, null, card);
         }
@@ -145,7 +145,7 @@ namespace Alexa.NET
 
         public static SkillResponse TellWithAskForPermissionsConsentCard(IOutputSpeech speechResponse, IEnumerable<string> permissions)
         {
-            AskForPermissionsConsentCard card = new AskForPermissionsConsentCard {Permissions = permissions.ToList()};
+            AskForPermissionsConsentCard card = new() {Permissions = permissions.ToList()};
             return BuildResponse(speechResponse, true, null, null, card);
         }
 
@@ -161,7 +161,7 @@ namespace Alexa.NET
 
         public static SkillResponse TellWithAskForPermissionsConsentCard(IOutputSpeech speechResponse, IEnumerable<string> permissions, Session sessionAttributes)
         {
-            AskForPermissionsConsentCard card = new AskForPermissionsConsentCard {Permissions = permissions.ToList()};
+            AskForPermissionsConsentCard card = new() {Permissions = permissions.ToList()};
             return BuildResponse(speechResponse, true, sessionAttributes, null, card);
         }
 
@@ -225,7 +225,7 @@ namespace Alexa.NET
 
         public static SkillResponse AskWithCard(IOutputSpeech speechResponse, string title, string content, Reprompt reprompt, Session sessionAttributes)
         {
-            SimpleCard card = new SimpleCard
+            SimpleCard card = new()
             {
                 Content = content,
                 Title = title
@@ -263,9 +263,9 @@ namespace Alexa.NET
             response.Response.Directives.Add(new AudioPlayerPlayDirective()
             {
                 PlayBehavior = playBehavior,
-                AudioItem = new AudioItem()
+                AudioItem = new()
                 {
-                    Stream = new AudioItemStream()
+                    Stream = new()
                     {
                         Url = url,
                         Token = token,
@@ -357,10 +357,10 @@ namespace Alexa.NET
         #region Main Response Builder
         private static SkillResponse BuildResponse(IOutputSpeech outputSpeech, bool shouldEndSession, Session sessionAttributes, Reprompt reprompt, ICard card)
         {
-            SkillResponse response = new SkillResponse {Version = "1.0"};
+            SkillResponse response = new() {Version = "1.0"};
             if (sessionAttributes != null) response.SessionAttributes = sessionAttributes.Attributes;
 
-            ResponseBody body = new ResponseBody
+            ResponseBody body = new()
             {
                 ShouldEndSession = shouldEndSession,
                 OutputSpeech = outputSpeech

@@ -14,7 +14,7 @@ namespace Alexa.NET.Response.Converters
 
         public override bool CanWrite => false;
 
-        public static Dictionary<string, Func<ITemplate>> TypeFactories = new Dictionary<string, Func<ITemplate>>
+        public static Dictionary<string, Func<ITemplate>> TypeFactories = new()
         {
             { "BodyTemplate1", () => new BodyTemplate1() },
             { "BodyTemplate2", () => new BodyTemplate2() },
@@ -38,7 +38,7 @@ namespace Alexa.NET.Response.Converters
             var hasFactory = TypeFactories.ContainsKey(typeValue);
 
             if (!hasFactory)
-                throw new Exception(
+                throw new(
                     $"unable to deserialize response. " +
                     $"unrecognized template type '{typeValue}'"
                 );

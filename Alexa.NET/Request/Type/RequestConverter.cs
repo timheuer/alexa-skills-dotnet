@@ -9,7 +9,7 @@ namespace Alexa.NET.Request.Type
 {
     public class RequestConverter : JsonConverter
     {
-        public static readonly List<IRequestTypeConverter> RequestConverters = new List<IRequestTypeConverter>(new IRequestTypeConverter[]
+        public static readonly List<IRequestTypeConverter> RequestConverters = new(new IRequestTypeConverter[]
         {
             new DefaultRequestTypeConverter(),
             new AudioPlayerRequestTypeConverter(),

@@ -13,9 +13,10 @@ namespace Alexa.NET.ConnectionTasks.Inputs
 
         [JsonProperty("requestedAuthenticationConfidenceLevel")]
         public AuthenticationConfidenceLevel RequestedAuthenticationConfidenceLevel { get; } =
-            new AuthenticationConfidenceLevel { 
+            new()
+            { 
                 Level = 400, 
-                Custom = new AuthenticationConfidenceLevelCustomPolicy("VOICE_PIN")
+                Custom = new("VOICE_PIN")
 
             };
     }

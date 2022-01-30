@@ -15,6 +15,6 @@ namespace Alexa.NET.Response
 
         [JsonProperty("permissions")]
         [JsonRequired]
-        public List<string> Permissions { get; set; } = new List<string>();
+        public List<string> Permissions { get; set; } = new();
     }
 }

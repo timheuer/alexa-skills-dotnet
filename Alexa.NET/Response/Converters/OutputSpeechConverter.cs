@@ -12,7 +12,7 @@ namespace Alexa.NET.Response.Converters
 
         public override bool CanWrite => false;
 
-        public static Dictionary<string, Func<IOutputSpeech>> TypeFactories = new Dictionary<string, Func<IOutputSpeech>>
+        public static Dictionary<string, Func<IOutputSpeech>> TypeFactories = new()
         {
             { "SSML", () => new SsmlOutputSpeech() },
             { "PlainText", () => new PlainTextOutputSpeech() },
@@ -31,7 +31,7 @@ namespace Alexa.NET.Response.Converters
             var hasFactory = TypeFactories.ContainsKey(typeValue);
 
             if (!hasFactory)
-                throw new Exception(
+                throw new(
                     $"unable to deserialize response. " +
                     $"unrecognized output speech type '{typeValue}'"
                 );

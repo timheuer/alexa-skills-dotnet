@@ -16,7 +16,7 @@ namespace Alexa.NET.Response.Ssml
 
         public XNode ToXml()
         {
-            List<XObject> objects = new List<XObject>();
+            List<XObject> objects = new();
 
             if (!string.IsNullOrWhiteSpace(Level))
             {

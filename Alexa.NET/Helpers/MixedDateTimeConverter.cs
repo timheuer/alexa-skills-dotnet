@@ -6,7 +6,7 @@ namespace Alexa.NET.Helpers
 {
 	public class MixedDateTimeConverter : Newtonsoft.Json.Converters.DateTimeConverterBase
     {
-		static readonly DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+		static readonly DateTime UnixEpoch = new(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
 		public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
 		{

@@ -7,7 +7,7 @@ namespace Alexa.NET.Response.Directive
 {
     public static class ConnectionSendRequestFactory
     {
-        public static List<IConnectionSendRequestHandler> Handlers = new List<IConnectionSendRequestHandler>
+        public static List<IConnectionSendRequestHandler> Handlers = new()
         {
             new AskForPermissionDirectiveHandler()
         };

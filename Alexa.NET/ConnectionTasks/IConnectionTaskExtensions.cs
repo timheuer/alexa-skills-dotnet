@@ -10,7 +10,7 @@ namespace Alexa.NET.ConnectionTasks
 
         public static StartConnectionDirective ToConnectionDirective(this IConnectionTask task, string token = null)
         {
-            return new StartConnectionDirective(task, token);
+            return new(task, token);
         }
     }
 }

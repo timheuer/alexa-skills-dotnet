@@ -12,7 +12,7 @@ namespace Alexa.NET.Response.Converters
 
         public override bool CanWrite => false;
 
-        public static Dictionary<string, Func<IDirective>> TypeFactories = new Dictionary<string, Func<IDirective>>
+        public static Dictionary<string, Func<IDirective>> TypeFactories = new()
         {
             { "AudioPlayer.Play", () => new AudioPlayerPlayDirective() },
             { "AudioPlayer.ClearQueue", () => new ClearQueueDirective() },
@@ -30,7 +30,7 @@ namespace Alexa.NET.Response.Converters
         };
 
         public static Dictionary<string, Func<JObject, IDirective>> DataDrivenTypeFactory =
-            new Dictionary<string, Func<JObject, IDirective>>
+            new()
             {
                 {"Connections.SendRequest", ConnectionSendRequestFactory.Create}
             };

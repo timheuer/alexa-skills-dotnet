@@ -11,7 +11,7 @@ namespace Alexa.NET.Response.Directive
 
         public HintDirective(string hintText, string textType = TextType.Plain)
         {
-            Hint = new Hint(hintText, textType);
+            Hint = new(hintText, textType);
         }
 
         [JsonProperty("type")]

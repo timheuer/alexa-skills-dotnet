@@ -10,7 +10,7 @@ namespace Alexa.NET.Response.Ssml
     {
         public string Name { get; set; }
 
-        public List<ISsml> Elements { get; set; } = new List<ISsml>();
+        public List<ISsml> Elements { get; set; } = new();
 
         public Voice(string name)
         {
