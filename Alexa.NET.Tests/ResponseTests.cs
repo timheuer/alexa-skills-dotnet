@@ -854,6 +854,14 @@ namespace Alexa.NET.Tests
             Assert.True(tell.Response.ShouldEndSession);
         }
 
+        [Fact]
+        public void ExperimentationSerializesCorrectly()
+        {
+            var response = ResponseBuilder.Empty();
+            response.Response.Experimentation = new ResponseExperimentation("Experiment Id from request payload");
+            Assert.True(Utility.CompareJson(response, "ExperimentationResponse.json"));
+        }
+
         private class FakeDirective : IEndSessionDirective
         {
             public string Type => "fake";

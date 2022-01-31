@@ -1,0 +1,9 @@
+﻿{
+  "version": "1.0",
+  "response": {
+    "shouldEndSession": true,
+    "experimentation": {
+      "triggeredExperiments": [ "Experiment Id from request payload" ]
+    }
+  }
+}

@@ -16,5 +16,8 @@ namespace Alexa.NET.Request
 
         [JsonProperty("Geolocation")]
         public Geolocation Geolocation { get; set; }
+
+        [JsonProperty("experimentation",NullValueHandling = NullValueHandling.Ignore)]
+        public RequestExperimentation Experimentation { get; set; }
     }
 }
