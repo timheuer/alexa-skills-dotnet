@@ -359,6 +359,16 @@ namespace Alexa.NET.Tests
             Assert.Equal("amzn1.alexa.endpoint.AABBCC010101010101010101",request.Context.System.Device.PersistentEndpointID);
         }
 
+        [Fact]
+        public void HandleExperimentationInformation()
+        {
+            var request = GetObjectFromExample<SkillRequest>("ExperimentationRequest.json");
+            Assert.NotNull(request.Context.Experimentation);
+            var experiment = Assert.Single(request.Context.Experimentation.ActiveExperiments);
+            Assert.Equal("Experiment ID", experiment.ID);
+            Assert.Equal("TREATMENT_1", experiment.AssignedVariant.Name);
+        }
+
         private T GetObjectFromExample<T>(string filename)
         {
             var json = File.ReadAllText(Path.Combine(ExamplesPath, filename));
