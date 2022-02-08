@@ -25,5 +25,8 @@ namespace Alexa.NET.Request
 
         [JsonProperty("device")]
         public Device Device { get; set; }
+
+        [JsonProperty("unit",NullValueHandling = NullValueHandling.Ignore)]
+        public Unit Unit { get; set; }
     }
 }

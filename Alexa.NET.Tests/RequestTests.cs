@@ -349,6 +349,16 @@ namespace Alexa.NET.Tests
             Assert.True(Utility.CompareJson(slots,"MultiValueSlot.json"));
         }
 
+        [Fact]
+        public void HandleAlexaSmartPropertiesSupport()
+        {
+            var request = GetObjectFromExample<SkillRequest>("SmartPropertiesIntentRequest.json");
+            Assert.NotNull(request.Context.System.Unit);
+            Assert.Equal("amzn1.ask.unit.A1B2C3",request.Context.System.Unit.UnitID);
+            Assert.Equal("amzn1.alexa.unit.did.X7Y8Z9", request.Context.System.Unit.PersistentUnitID);
+            Assert.Equal("amzn1.alexa.endpoint.AABBCC010101010101010101",request.Context.System.Device.PersistentEndpointID);
+        }
+
         private T GetObjectFromExample<T>(string filename)
         {
             var json = File.ReadAllText(Path.Combine(ExamplesPath, filename));

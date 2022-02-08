@@ -5,7 +5,6 @@ Read this document in [Español](/docs/README_es.md)
 
 [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://github.dev/timheuer/alexa-skills-dotnet)
 
-[![Build Status](https://dev.azure.com/timheuer/Alexa.NET/_apis/build/status/Alexa.NET-master?branchName=master)](https://dev.azure.com/timheuer/Alexa.NET/_build/latest?definitionId=2&branchName=master)
 ![.NET Core Build and Deploy](https://github.com/timheuer/alexa-skills-dotnet/workflows/.NET%20Core%20Build%20and%20Deploy/badge.svg?branch=master)
 [![All Contributors](https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square)](#contributors)
 [![Sponsor Me](https://img.shields.io/badge/Sponsor%20Me%20and%20My%20Projects!--lightgre?style=social&logo=github)](https://github.com/sponsors/timheuer)
@@ -394,6 +393,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/bcuff"><img src="https://avatars1.githubusercontent.com/u/504266?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Brandon</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=bcuff" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/aadupirn"><img src="https://avatars1.githubusercontent.com/u/16725484?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Aadu Pirn</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=aadupirn" title="Code">💻</a></td>
     <td align="center"><a href="https://peterfoot.net"><img src="https://avatars.githubusercontent.com/u/3985053?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Peter Foot</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=peterfoot" title="Code">💻</a></td>
+    <td align="center"><a href="https://twitter.com/bnachawati"><img src="https://avatars.githubusercontent.com/u/34027178?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Benoit</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=nachawat" title="Tests">⚠️</a> <a href="https://github.com/timheuer/alexa-skills-dotnet/commits?author=nachawat" title="Code">💻</a></td>
   </tr>
 </table>
 

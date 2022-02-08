@@ -188,6 +188,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "nachawat",
+      "name": "Benoit",
+      "avatar_url": "https://avatars.githubusercontent.com/u/34027178?v=4",
+      "profile": "https://twitter.com/bnachawati",
+      "contributions": [
+        "test",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

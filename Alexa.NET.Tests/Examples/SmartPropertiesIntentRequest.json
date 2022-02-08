@@ -1,0 +1,54 @@
+{
+    "version": "1.0",
+    "session": {
+        "new": true,
+        "sessionId": "amzn1.echo-api.session.0000000-0000-0000-0000-00000000000",
+        "application": {
+            "applicationId": "amzn1.ask.skill.000000-d0ed-0000-ad00-000000d00ebe"
+        },
+        "attributes": {},
+        "user": {
+            "userId": "amzn1.ask.account.ABC12300000000000000000000000"
+        }
+    },
+    "context": {
+        "Extensions": {
+            "available": {}
+        },
+        "System": {
+            "application": {
+                "applicationId": "amzn1.ask.skill.000000-d0ed-0000-ad00-000000d00ebe"
+            },
+            "user": {
+                "userId": "amzn1.ask.account.ABC12300000000000000000000000"
+            },
+            "device": {
+                "deviceId": "amzn1.ask.device.XYZ78900000000000000000000000",
+                "supportedInterfaces": {},
+                "persistentEndpointId": "amzn1.alexa.endpoint.AABBCC010101010101010101"
+            },
+            "apiEndpoint": "https://api.eu.amazonalexa.com",
+            "apiAccessToken": "ey01010101010101010101010101",
+            "unit": {
+                "unitId": "amzn1.ask.unit.A1B2C3",
+                "persistentUnitId": "amzn1.alexa.unit.did.X7Y8Z9"
+            }
+        }
+    },
+    "request": {
+        "type": "IntentRequest",
+        "requestId": "amzn1.echo-api.request.0000000-0000-0000-0000-00000000000",
+        "locale": "en-GB",
+        "timestamp": "2021-09-13T07:04:58Z",
+        "intent": {
+            "name": "AmenityRequestIntent",
+            "confirmationStatus": "NONE",
+            "slots": {
+                "toiletries": {
+                    "name": "toiletries",
+                    "value": "towel"
+                }
+            }
+        }
+    }
+}
