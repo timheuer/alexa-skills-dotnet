@@ -1,0 +1,16 @@
+﻿{
+  "type": "Connections.StartConnection",
+  "uri": "connection://AMAZON.LinkApp/2",
+  "input": {
+    "links": {
+      "GOOGLE_PLAY_STORE": {
+        "primary": {
+          "ANDROID_COMMON_INTENT": {
+            "intentName": "OPEN_SETTINGS",
+            "intentSchemeUri": "intent:#Intent;action=android.settings.WIFI_SETTINGS;end"
+          }
+        }
+      }
+    }
+  }
+}

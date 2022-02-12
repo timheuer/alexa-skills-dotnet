@@ -1,0 +1,15 @@
+﻿{
+  "type": "Connections.StartConnection",
+  "uri": "connection://AMAZON.LinkApp/2",
+  "input": {
+    "links": {
+      "GOOGLE_PLAY_STORE": {
+        "primary": {
+          "ANDROID_PACKAGE": {
+            "packageIdentifier": "com.someapp"
+          }
+        }
+      }
+    }
+  }
+}

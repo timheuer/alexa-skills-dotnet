@@ -261,9 +261,52 @@ namespace Alexa.NET.Tests
             SendToPhoneConverter.AddToConnectionTaskConverters();
             var task = Utility.ExampleFileContent<StartConnectionDirective>("SendToPhoneAndroidCustom.json");
             var stp = Assert.IsType<SendToPhone>(task.Input);
-            var googlePrimary = Assert.IsType<STPAndroidCustomIntent>(stp.Links.GooglePlayStore.Primary);
+            var googlePrimary = Assert.IsType<STPAndroidCustomIntentLink>(stp.Links.GooglePlayStore.Primary);
             Assert.Equal("com.someapp", googlePrimary.AppIdentifier);
             Assert.Equal("intent:#Intent;package=com.someapp;action=com.example.myapp.MY_ACTION;i.some_int=100;S.some_str=hello;end", googlePrimary.IntentSchemeUri);
+        }
+
+        [Fact]
+        public void SendToPhoneCustomScheme()
+        {
+            SendToPhoneConverter.AddToConnectionTaskConverters();
+            var task = Utility.ExampleFileContent<StartConnectionDirective>("SendToPhoneCustomScheme.json");
+            var stp = Assert.IsType<SendToPhone>(task.Input);
+            var googlePrimary = Assert.IsType<STPCustomSchemeLink>(stp.Links.GooglePlayStore.Primary);
+            Assert.Equal("id123456789", googlePrimary.AppIdentifier);
+            Assert.Equal("twitter://feeds/", googlePrimary.Uri);
+        }
+
+        [Fact]
+        public void SendToPhoneCommonScheme()
+        {
+            SendToPhoneConverter.AddToConnectionTaskConverters();
+            var task = Utility.ExampleFileContent<StartConnectionDirective>("SendToPhoneCommonScheme.json");
+            var stp = Assert.IsType<SendToPhone>(task.Input);
+            var googlePrimary = Assert.IsType<STPCommonSchemeLink>(stp.Links.GooglePlayStore.Primary);
+            Assert.Equal("TEL", googlePrimary.Scheme);
+            Assert.Equal("tel:8001234567", googlePrimary.Uri);
+        }
+
+        [Fact]
+        public void SendToPhoneAndroidPackage()
+        {
+            SendToPhoneConverter.AddToConnectionTaskConverters();
+            var task = Utility.ExampleFileContent<StartConnectionDirective>("SendToPhoneAndroidPackage.json");
+            var stp = Assert.IsType<SendToPhone>(task.Input);
+            var googlePrimary = Assert.IsType<STPAndroidPackageLink>(stp.Links.GooglePlayStore.Primary);
+            Assert.Equal("com.someapp", googlePrimary.PackageIdentifier);
+        }
+
+        [Fact]
+        public void SendToPhoneAndroidCommonIntent()
+        {
+            SendToPhoneConverter.AddToConnectionTaskConverters();
+            var task = Utility.ExampleFileContent<StartConnectionDirective>("SendToPhoneAndroidCommonIntent.json");
+            var stp = Assert.IsType<SendToPhone>(task.Input);
+            var googlePrimary = Assert.IsType<STPAndroidCommonIntentLink>(stp.Links.GooglePlayStore.Primary);
+            Assert.Equal("OPEN_SETTINGS", googlePrimary.IntentName);
+            Assert.Equal("intent:#Intent;action=android.settings.WIFI_SETTINGS;end", googlePrimary.IntentSchemeUri);
         }
     }
 }

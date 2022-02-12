@@ -2,12 +2,12 @@
 
 namespace Alexa.NET.ConnectionTasks.Inputs
 {
-    public class STPAndroidCustomIntent : ISendToPhoneLink
+    public class STPCustomSchemeLink : ISendToPhoneLink
     {
         [JsonProperty("appIdentifier")]
         public string AppIdentifier { get; set; }
 
-        [JsonProperty("intentSchemeUri")]
-        public string IntentSchemeUri { get; set; }
+        [JsonProperty("uri")]
+        public string Uri { get; set; }
     }
 }
