@@ -3,7 +3,6 @@ using Alexa.NET.ConnectionTasks;
 using Alexa.NET.ConnectionTasks.Inputs;
 using Alexa.NET.Request.Type;
 using Alexa.NET.Response;
-using Alexa.NET.Response.Converters;
 using Alexa.NET.Response.Directive;
 using Alexa.NET.Tests.Examples;
 using Xunit;
@@ -204,6 +203,14 @@ namespace Alexa.NET.Tests
         }
 
         [Fact]
+        public void PinConfirmationDeserializesCorrectly()
+        {
+            PinConfirmationConverter.AddToConnectionTaskConverters();
+            var task = Utility.ExampleFileContent<StartConnectionDirective>("PinConfirmation.json");
+            Assert.IsType<PinConfirmation>(task.Input);
+        }
+
+        [Fact]
         public void ResultDeserializesCorrectly()
         {
             var task = new PinConfirmation();
@@ -211,6 +218,31 @@ namespace Alexa.NET.Tests
             var result = PinConfirmationConverter.ResultFromSessionResumed(request);
             Assert.Equal(PinConfirmationStatus.NotAchieved,result.Status);
             Assert.Equal(PinConfirmationReason.VerificationMethodNotSetup,result.Reason);
+        }
+
+        [Fact]
+        public void SendToPhoneSerialization()
+        {
+            SendToPhoneConverter.AddToConnectionTaskConverters();
+            var task = Utility.ExampleFileContent<StartConnectionDirective>("SendToPhoneUniversal.json");
+            Assert.IsType<SendToPhone>(task.Input);
+            Assert.True(Utility.CompareJson(task,"SendToPhoneUniversal.json"));
+        }
+
+        [Fact]
+        public void SendToPhoneUniversal()
+        {
+            SendToPhoneConverter.AddToConnectionTaskConverters();
+            var task = Utility.ExampleFileContent<StartConnectionDirective>("SendToPhoneUniversal.json");
+            var stp = Assert.IsType<SendToPhone>(task.Input);
+            var links = stp.Links;
+            var iosPrimary = Assert.IsType<STPUniversalLink>(links.IOSAppStore.Primary);
+            var googlePrimary = Assert.IsType<STPUniversalLink>(links.GooglePlayStore.Primary);
+            Assert.Equal("id123456789",iosPrimary.AppIdentifier);
+            Assert.Equal("com.cityguide.app", googlePrimary.AppIdentifier);
+            Assert.Equal("https://www.cityguide.com/search/search_terms=coffee", googlePrimary.Url);
+            Assert.Equal("https://www.cityguide.com/search/search_terms=coffee", iosPrimary.Url);
+            Assert.Equal(STPPromptBehavior.Speak,stp.Prompt.DirectLaunchDefaultPromptBehavior);
         }
 
     }

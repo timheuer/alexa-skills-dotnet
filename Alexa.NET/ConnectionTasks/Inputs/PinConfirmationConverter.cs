@@ -13,8 +13,7 @@ namespace Alexa.NET.ConnectionTasks.Inputs
 
         public bool CanConvert(JObject jObject)
         {
-            return jObject.ContainsKey("uri") &&
-                   jObject.GetValue("uri").Value<string>() == PinConfirmation.AssociatedUri;
+            return jObject.ContainsKey("requestedAuthenticationConfidenceLevel");
         }
 
         public IConnectionTask Convert(JObject jObject)
