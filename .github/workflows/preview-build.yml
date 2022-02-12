@@ -41,12 +41,15 @@ jobs:
 
     # Run the tests, ideally should stop here if a fail and also publish results as artifacts
     - name: Test
+      id: test_run
       uses: timheuer/dotnet-tests-report@master
       with:
         project_path: Alexa.NET.Tests/Alexa.NET.Tests.csproj
         report_name: alexa_net_tests
         report_title: Alexa.NET Tests
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        gist_name: alexa-dotnet-test-results-preview.md
+        gist_token: ${{ secrets.GIST_TOKEN }}
         set_check_status_from_test_outcome: true
 
     - name: Pack
@@ -67,6 +70,9 @@ jobs:
         $relnotes=$nuspec.project.propertygroup.packagereleasenotes
         Write-Output "::set-output name=PKG_VERSION::$version"
         Write-Output "::set-output name=RELNOTES::$relnotes"
+
+    - name: Show Test Results gist url
+      run: echo ${{ steps.test_run.outputs.gist_url }}
 
   deploy:
     needs: build
