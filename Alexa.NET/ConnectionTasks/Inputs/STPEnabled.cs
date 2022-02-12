@@ -2,7 +2,7 @@
 
 namespace Alexa.NET.ConnectionTasks.Inputs
 {
-    public class STPDirectLaunch
+    public class STPEnabled
     {
         [JsonProperty("enabled")]
         public bool Enabled { get; set; }

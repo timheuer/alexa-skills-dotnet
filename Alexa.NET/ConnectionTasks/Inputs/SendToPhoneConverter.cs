@@ -30,5 +30,17 @@ namespace Alexa.NET.ConnectionTasks.Inputs
                 ConnectionTaskConverter.ConnectionTaskConverters.Add(new SendToPhoneConverter());
             }
         }
+
+        public static SendToPhoneResult ResultFromSessionResumed(SessionResumedRequest request)
+        {
+            if (request.Cause.Result is JObject jo)
+            {
+                var task = new SendToPhoneResult();
+                Serializer.Populate(jo.CreateReader(), task);
+                return task;
+            }
+
+            return null;
+        }
     }
 }

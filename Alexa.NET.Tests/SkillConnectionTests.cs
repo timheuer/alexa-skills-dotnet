@@ -211,9 +211,8 @@ namespace Alexa.NET.Tests
         }
 
         [Fact]
-        public void ResultDeserializesCorrectly()
+        public void PinResultDeserializesCorrectly()
         {
-            var task = new PinConfirmation();
             var request = Utility.ExampleFileContent<SessionResumedRequest>("PinConfirmationSessionResumed.json");
             var result = PinConfirmationConverter.ResultFromSessionResumed(request);
             Assert.Equal(PinConfirmationStatus.NotAchieved,result.Status);
@@ -307,6 +306,34 @@ namespace Alexa.NET.Tests
             var googlePrimary = Assert.IsType<STPAndroidCommonIntentLink>(stp.Links.GooglePlayStore.Primary);
             Assert.Equal("OPEN_SETTINGS", googlePrimary.IntentName);
             Assert.Equal("intent:#Intent;action=android.settings.WIFI_SETTINGS;end", googlePrimary.IntentSchemeUri);
+        }
+
+        [Fact]
+        public void SendToPhoneResultDirectLaunchDeserializesCorrectly()
+        {
+            var request = Utility.ExampleFileContent<SessionResumedRequest>("SendToPhoneSessionResumedDirectLaunch.json");
+            var result = SendToPhoneConverter.ResultFromSessionResumed(request);
+            Assert.Equal(STPResultStatus.Success, result.DirectLaunch.Primary.Status);
+            Assert.Equal(STPResultStatus.Failure, result.DirectLaunch.Fallback.Status);
+            Assert.Null(result.DirectLaunch.Primary.ErrorCode);
+            Assert.Equal("INVALID_STATE", result.DirectLaunch.Fallback.ErrorCode);
+        }
+
+        [Fact]
+        public void SendToPhoneResultSendToDeviceDeserializesCorrectly()
+        {
+            var request = Utility.ExampleFileContent<SessionResumedRequest>("SendToPhoneSessionResumedSendToDevice.json");
+            var result = SendToPhoneConverter.ResultFromSessionResumed(request);
+            Assert.Equal(STPResultStatus.Success, result.SendToDevice.Status);
+            Assert.Equal("ALL_ATTEMPTED_CARD_SENT", result.SendToDevice.ErrorCode);
+        }
+
+        [Fact]
+        public void SendToPhoneResultFailsEarly()
+        {
+            var request = Utility.ExampleFileContent<SessionResumedRequest>("SendToPhoneSessionResumedFailsEarly.json");
+            var result = SendToPhoneConverter.ResultFromSessionResumed(request);
+            Assert.Null(result);
         }
     }
 }

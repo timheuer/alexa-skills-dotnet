@@ -1,0 +1,25 @@
+﻿{
+  "type": "SessionResumedRequest",
+  "requestId": "amzn1.echo-api.request.example",
+  "timestamp": "2019-10-15T03:15:43Z",
+  "locale": "en-US",
+  "cause": {
+    "type": "ConnectionCompleted",
+    "token": "Some connection token data",
+    "status": {
+      "code": "200",
+      "message": ""
+    },
+    "result": {
+      "directLaunch": {
+        "primary": {
+          "status": "SUCCESS"
+        },
+        "fallback": {
+          "status": "FAILURE",
+          "errorCode": "INVALID_STATE"
+        }
+      }
+    }
+  }
+}

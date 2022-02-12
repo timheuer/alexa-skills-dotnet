@@ -25,6 +25,9 @@ namespace Alexa.NET.ConnectionTasks.Inputs
         public STPPrompt Prompt { get; set; }
 
         [JsonProperty("directLaunch",NullValueHandling = NullValueHandling.Ignore)]
-        public STPDirectLaunch DirectLaunch { get; set; }
+        public STPEnabled DirectLaunch { get; set; }
+
+        [JsonProperty("sendToDevice",NullValueHandling = NullValueHandling.Ignore)]
+        public STPEnabled SendToDevice { get; set; }
     }
 }
