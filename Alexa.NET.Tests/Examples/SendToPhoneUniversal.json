@@ -1,0 +1,28 @@
+﻿{
+  "type": "Connections.StartConnection",
+  "uri": "connection://AMAZON.LinkApp/2",
+  "input": {
+    "links": {
+      "IOS_APP_STORE": {
+        "primary": {
+          "UNIVERSAL_LINK": {
+            "appIdentifier": "id123456789",
+            "url": "https://www.cityguide.com/search/search_terms=coffee"
+          }
+        }
+      },
+      "GOOGLE_PLAY_STORE": {
+        "primary": {
+          "UNIVERSAL_LINK": {
+            "appIdentifier": "com.cityguide.app",
+            "url": "https://www.cityguide.com/search/search_terms=coffee"
+          }
+        }
+      }
+    },
+    "prompt": {
+      "topic": "see your search results",
+      "directLaunchDefaultPromptBehavior": "SPEAK"
+    }
+  }
+}

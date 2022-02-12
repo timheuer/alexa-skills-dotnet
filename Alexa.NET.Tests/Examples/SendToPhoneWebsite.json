@@ -1,0 +1,15 @@
+﻿{
+  "type": "Connections.StartConnection",
+  "uri": "connection://AMAZON.LinkApp/2",
+  "input": {
+    "links": {
+      "IOS_APP_STORE": {
+        "fallback": {
+          "WEBSITE_LINK": {
+            "url": "https://www.cityguide.com/search/search_terms=coffee"
+          }
+        }
+      }
+    }
+  }
+}

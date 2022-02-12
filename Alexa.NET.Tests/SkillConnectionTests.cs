@@ -3,7 +3,6 @@ using Alexa.NET.ConnectionTasks;
 using Alexa.NET.ConnectionTasks.Inputs;
 using Alexa.NET.Request.Type;
 using Alexa.NET.Response;
-using Alexa.NET.Response.Converters;
 using Alexa.NET.Response.Directive;
 using Alexa.NET.Tests.Examples;
 using Xunit;
@@ -204,14 +203,137 @@ namespace Alexa.NET.Tests
         }
 
         [Fact]
-        public void ResultDeserializesCorrectly()
+        public void PinConfirmationDeserializesCorrectly()
         {
-            var task = new PinConfirmation();
+            PinConfirmationConverter.AddToConnectionTaskConverters();
+            var task = Utility.ExampleFileContent<StartConnectionDirective>("PinConfirmation.json");
+            Assert.IsType<PinConfirmation>(task.Input);
+        }
+
+        [Fact]
+        public void PinResultDeserializesCorrectly()
+        {
             var request = Utility.ExampleFileContent<SessionResumedRequest>("PinConfirmationSessionResumed.json");
             var result = PinConfirmationConverter.ResultFromSessionResumed(request);
             Assert.Equal(PinConfirmationStatus.NotAchieved,result.Status);
             Assert.Equal(PinConfirmationReason.VerificationMethodNotSetup,result.Reason);
         }
 
+        [Fact]
+        public void SendToPhoneSerialization()
+        {
+            SendToPhoneConverter.AddToConnectionTaskConverters();
+            var task = Utility.ExampleFileContent<StartConnectionDirective>("SendToPhoneUniversal.json");
+            Assert.IsType<SendToPhone>(task.Input);
+            Assert.True(Utility.CompareJson(task,"SendToPhoneUniversal.json"));
+        }
+
+        [Fact]
+        public void SendToPhoneUniversal()
+        {
+            SendToPhoneConverter.AddToConnectionTaskConverters();
+            var task = Utility.ExampleFileContent<StartConnectionDirective>("SendToPhoneUniversal.json");
+            var stp = Assert.IsType<SendToPhone>(task.Input);
+            var links = stp.Links;
+            var iosPrimary = Assert.IsType<STPUniversalLink>(links.IOSAppStore.Primary);
+            var googlePrimary = Assert.IsType<STPUniversalLink>(links.GooglePlayStore.Primary);
+            Assert.Equal("id123456789",iosPrimary.AppIdentifier);
+            Assert.Equal("com.cityguide.app", googlePrimary.AppIdentifier);
+            Assert.Equal("https://www.cityguide.com/search/search_terms=coffee", googlePrimary.Url);
+            Assert.Equal("https://www.cityguide.com/search/search_terms=coffee", iosPrimary.Url);
+            Assert.Equal(STPPromptBehavior.Speak,stp.Prompt.DirectLaunchDefaultPromptBehavior);
+        }
+
+        [Fact]
+        public void SendToPhoneWebsiteUrl()
+        {
+            SendToPhoneConverter.AddToConnectionTaskConverters();
+            var task = Utility.ExampleFileContent<StartConnectionDirective>("SendToPhoneWebsite.json");
+            var stp = Assert.IsType<SendToPhone>(task.Input);
+            var iosFallback = Assert.IsType<STPWebsiteLink>(stp.Links.IOSAppStore.Fallback);
+            Assert.Equal("https://www.cityguide.com/search/search_terms=coffee",iosFallback.Url);
+        }
+
+        [Fact]
+        public void SendToPhoneAndroidCustomIntent()
+        {
+            SendToPhoneConverter.AddToConnectionTaskConverters();
+            var task = Utility.ExampleFileContent<StartConnectionDirective>("SendToPhoneAndroidCustom.json");
+            var stp = Assert.IsType<SendToPhone>(task.Input);
+            var googlePrimary = Assert.IsType<STPAndroidCustomIntentLink>(stp.Links.GooglePlayStore.Primary);
+            Assert.Equal("com.someapp", googlePrimary.AppIdentifier);
+            Assert.Equal("intent:#Intent;package=com.someapp;action=com.example.myapp.MY_ACTION;i.some_int=100;S.some_str=hello;end", googlePrimary.IntentSchemeUri);
+        }
+
+        [Fact]
+        public void SendToPhoneCustomScheme()
+        {
+            SendToPhoneConverter.AddToConnectionTaskConverters();
+            var task = Utility.ExampleFileContent<StartConnectionDirective>("SendToPhoneCustomScheme.json");
+            var stp = Assert.IsType<SendToPhone>(task.Input);
+            var googlePrimary = Assert.IsType<STPCustomSchemeLink>(stp.Links.GooglePlayStore.Primary);
+            Assert.Equal("id123456789", googlePrimary.AppIdentifier);
+            Assert.Equal("twitter://feeds/", googlePrimary.Uri);
+        }
+
+        [Fact]
+        public void SendToPhoneCommonScheme()
+        {
+            SendToPhoneConverter.AddToConnectionTaskConverters();
+            var task = Utility.ExampleFileContent<StartConnectionDirective>("SendToPhoneCommonScheme.json");
+            var stp = Assert.IsType<SendToPhone>(task.Input);
+            var googlePrimary = Assert.IsType<STPCommonSchemeLink>(stp.Links.GooglePlayStore.Primary);
+            Assert.Equal("TEL", googlePrimary.Scheme);
+            Assert.Equal("tel:8001234567", googlePrimary.Uri);
+        }
+
+        [Fact]
+        public void SendToPhoneAndroidPackage()
+        {
+            SendToPhoneConverter.AddToConnectionTaskConverters();
+            var task = Utility.ExampleFileContent<StartConnectionDirective>("SendToPhoneAndroidPackage.json");
+            var stp = Assert.IsType<SendToPhone>(task.Input);
+            var googlePrimary = Assert.IsType<STPAndroidPackageLink>(stp.Links.GooglePlayStore.Primary);
+            Assert.Equal("com.someapp", googlePrimary.PackageIdentifier);
+        }
+
+        [Fact]
+        public void SendToPhoneAndroidCommonIntent()
+        {
+            SendToPhoneConverter.AddToConnectionTaskConverters();
+            var task = Utility.ExampleFileContent<StartConnectionDirective>("SendToPhoneAndroidCommonIntent.json");
+            var stp = Assert.IsType<SendToPhone>(task.Input);
+            var googlePrimary = Assert.IsType<STPAndroidCommonIntentLink>(stp.Links.GooglePlayStore.Primary);
+            Assert.Equal("OPEN_SETTINGS", googlePrimary.IntentName);
+            Assert.Equal("intent:#Intent;action=android.settings.WIFI_SETTINGS;end", googlePrimary.IntentSchemeUri);
+        }
+
+        [Fact]
+        public void SendToPhoneResultDirectLaunchDeserializesCorrectly()
+        {
+            var request = Utility.ExampleFileContent<SessionResumedRequest>("SendToPhoneSessionResumedDirectLaunch.json");
+            var result = SendToPhoneConverter.ResultFromSessionResumed(request);
+            Assert.Equal(STPResultStatus.Success, result.DirectLaunch.Primary.Status);
+            Assert.Equal(STPResultStatus.Failure, result.DirectLaunch.Fallback.Status);
+            Assert.Null(result.DirectLaunch.Primary.ErrorCode);
+            Assert.Equal("INVALID_STATE", result.DirectLaunch.Fallback.ErrorCode);
+        }
+
+        [Fact]
+        public void SendToPhoneResultSendToDeviceDeserializesCorrectly()
+        {
+            var request = Utility.ExampleFileContent<SessionResumedRequest>("SendToPhoneSessionResumedSendToDevice.json");
+            var result = SendToPhoneConverter.ResultFromSessionResumed(request);
+            Assert.Equal(STPResultStatus.Success, result.SendToDevice.Status);
+            Assert.Equal("ALL_ATTEMPTED_CARD_SENT", result.SendToDevice.ErrorCode);
+        }
+
+        [Fact]
+        public void SendToPhoneResultFailsEarly()
+        {
+            var request = Utility.ExampleFileContent<SessionResumedRequest>("SendToPhoneSessionResumedFailsEarly.json");
+            var result = SendToPhoneConverter.ResultFromSessionResumed(request);
+            Assert.Null(result);
+        }
     }
 }

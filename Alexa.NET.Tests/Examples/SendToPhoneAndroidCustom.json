@@ -1,0 +1,16 @@
+﻿{
+  "type": "Connections.StartConnection",
+  "uri": "connection://AMAZON.LinkApp/2",
+  "input": {
+    "links": {
+      "GOOGLE_PLAY_STORE": {
+        "primary": {
+          "ANDROID_CUSTOM_INTENT": {
+            "appIdentifier": "com.someapp",
+            "intentSchemeUri": "intent:#Intent;package=com.someapp;action=com.example.myapp.MY_ACTION;i.some_int=100;S.some_str=hello;end"
+          }
+        }
+      }
+    }
+  }
+}

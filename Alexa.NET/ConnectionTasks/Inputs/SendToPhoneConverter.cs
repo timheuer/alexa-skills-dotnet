@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Alexa.NET.Request.Type;
 using Alexa.NET.Response.Converters;
 using Newtonsoft.Json;
@@ -7,36 +6,36 @@ using Newtonsoft.Json.Linq;
 
 namespace Alexa.NET.ConnectionTasks.Inputs
 {
-    public class PinConfirmationConverter : IConnectionTaskConverter
+    public class SendToPhoneConverter : IConnectionTaskConverter
     {
         private static readonly JsonSerializer Serializer = JsonSerializer.Create();
 
         public bool CanConvert(JObject jObject)
         {
-            return jObject.ContainsKey("requestedAuthenticationConfidenceLevel");
+            return jObject.ContainsKey("links");
         }
 
         public IConnectionTask Convert(JObject jObject)
         {
-            var task = new PinConfirmation();
-            Serializer.Populate(jObject.CreateReader(), task);
-            return task;
+            var obj = new SendToPhone();
+            Serializer.Populate(jObject.CreateReader(),obj);
+            return obj;
         }
 
         public static void AddToConnectionTaskConverters()
         {
             if (ConnectionTaskConverter.ConnectionTaskConverters.Where(rc => rc != null)
-                .All(rc => rc.GetType() != typeof(PinConfirmationConverter)))
+                .All(rc => rc.GetType() != typeof(SendToPhoneConverter)))
             {
-                ConnectionTaskConverter.ConnectionTaskConverters.Add(new PinConfirmationConverter());
+                ConnectionTaskConverter.ConnectionTaskConverters.Add(new SendToPhoneConverter());
             }
         }
 
-        public static PinConfirmationResult ResultFromSessionResumed(SessionResumedRequest request)
+        public static SendToPhoneResult ResultFromSessionResumed(SessionResumedRequest request)
         {
             if (request.Cause.Result is JObject jo)
             {
-                var task = new PinConfirmationResult();
+                var task = new SendToPhoneResult();
                 Serializer.Populate(jo.CreateReader(), task);
                 return task;
             }

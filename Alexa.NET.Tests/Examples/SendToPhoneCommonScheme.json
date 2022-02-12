@@ -1,0 +1,16 @@
+﻿{
+  "type": "Connections.StartConnection",
+  "uri": "connection://AMAZON.LinkApp/2",
+  "input": {
+    "links": {
+      "GOOGLE_PLAY_STORE": {
+        "primary": {
+          "COMMON_SCHEME": {
+            "scheme": "TEL",
+            "uri": "tel:8001234567"
+          }
+        }
+      }
+    }
+  }
+}
