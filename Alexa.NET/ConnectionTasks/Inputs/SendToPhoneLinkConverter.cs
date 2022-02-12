@@ -52,6 +52,10 @@ namespace Alexa.NET.ConnectionTasks.Inputs
         {
             switch (value)
             {
+                case STPAndroidCustomIntent _:
+                    return "ANDROID_CUSTOM_INTENT";
+                case STPWebsiteLink _:
+                    return "WEBSITE_LINK";
                 default:
                     return "UNIVERSAL_LINK";
             }
@@ -61,6 +65,8 @@ namespace Alexa.NET.ConnectionTasks.Inputs
         {
             return name switch
             {
+                "ANDROID_CUSTOM_INTENT" => new STPAndroidCustomIntent(),
+                "WEBSITE_LINK" => new STPWebsiteLink(),
                 "UNIVERSAL_LINK" => new STPUniversalLink(),
                 _ => null
             };

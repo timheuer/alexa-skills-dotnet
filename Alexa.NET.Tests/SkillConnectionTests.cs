@@ -245,5 +245,25 @@ namespace Alexa.NET.Tests
             Assert.Equal(STPPromptBehavior.Speak,stp.Prompt.DirectLaunchDefaultPromptBehavior);
         }
 
+        [Fact]
+        public void SendToPhoneWebsiteUrl()
+        {
+            SendToPhoneConverter.AddToConnectionTaskConverters();
+            var task = Utility.ExampleFileContent<StartConnectionDirective>("SendToPhoneWebsite.json");
+            var stp = Assert.IsType<SendToPhone>(task.Input);
+            var iosFallback = Assert.IsType<STPWebsiteLink>(stp.Links.IOSAppStore.Fallback);
+            Assert.Equal("https://www.cityguide.com/search/search_terms=coffee",iosFallback.Url);
+        }
+
+        [Fact]
+        public void SendToPhoneAndroidCustomIntent()
+        {
+            SendToPhoneConverter.AddToConnectionTaskConverters();
+            var task = Utility.ExampleFileContent<StartConnectionDirective>("SendToPhoneAndroidCustom.json");
+            var stp = Assert.IsType<SendToPhone>(task.Input);
+            var googlePrimary = Assert.IsType<STPAndroidCustomIntent>(stp.Links.GooglePlayStore.Primary);
+            Assert.Equal("com.someapp", googlePrimary.AppIdentifier);
+            Assert.Equal("intent:#Intent;package=com.someapp;action=com.example.myapp.MY_ACTION;i.some_int=100;S.some_str=hello;end", googlePrimary.IntentSchemeUri);
+        }
     }
 }
