@@ -1,4 +1,5 @@
-﻿using Alexa.NET.Request;
+﻿using System;
+using Alexa.NET.Request;
 using Alexa.NET.Response;
 using Alexa.NET.Response.Directive;
 using System.Collections.Generic;
@@ -149,12 +150,24 @@ namespace Alexa.NET
             return BuildResponse(speechResponse, true, null, null, card);
         }
 
+        [Obsolete("Use TellWithAskForPermissionsConsentCard instead.")]
         public static SkillResponse TellWithAskForPermissionConsentCard(string speechResponse, IEnumerable<string> permissions)
         {
             return TellWithAskForPermissionsConsentCard(new PlainTextOutputSpeech { Text = speechResponse },permissions);
         }
 
+        [Obsolete("Use TellWithAskForPermissionsConsentCard instead.")]
         public static SkillResponse TellWithAskForPermissionConsentCard(Response.Ssml.Speech speechResponse, IEnumerable<string> permissions)
+        {
+            return TellWithAskForPermissionsConsentCard(new SsmlOutputSpeech { Ssml = speechResponse.ToXml() },permissions);
+        }
+        
+        public static SkillResponse TellWithAskForPermissionsConsentCard(string speechResponse, IEnumerable<string> permissions)
+        {
+            return TellWithAskForPermissionsConsentCard(new PlainTextOutputSpeech { Text = speechResponse },permissions);
+        }
+
+        public static SkillResponse TellWithAskForPermissionsConsentCard(Response.Ssml.Speech speechResponse, IEnumerable<string> permissions)
         {
             return TellWithAskForPermissionsConsentCard(new SsmlOutputSpeech { Ssml = speechResponse.ToXml() },permissions);
         }
