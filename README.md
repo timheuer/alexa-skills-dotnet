@@ -31,7 +31,7 @@ Alexa.NET also serves as a base foundation for a set of further Alexa skill deve
     * Alexa.NET Code Generation Tool [GitHub](https://github.com/stoiveyp/Alexa.NET.SkillFlow.CodeGenerator) / [NuGet](https://www.nuget.org/packages/Alexa.NET.SkillFlow.Tool)
 * Timers API [GitHub](https://github.com/stoiveyp/Alexa.NET.Timers) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Timers)
 * Web API for Games [GitHub](https://github.com/stoiveyp/Alexa.NET.WebApiGames) / [NuGet](https://www.nuget.org/packages/Alexa.NET.WebApiGames)
-* Shopping Skit [GitHub](https://github.com/stoiveyp/Alexa.NET.ShoppingActions) / [NuGet](https://www.nuget.org/packages/Alexa.NET.ShoppingActions)
+* Shopping Kit [GitHub](https://github.com/stoiveyp/Alexa.NET.ShoppingActions) / [NuGet](https://www.nuget.org/packages/Alexa.NET.ShoppingActions)
 * Conversations API (Beta) [GitHub](https://github.com/stoiveyp/Alexa.NET.Conversations) / [NuGet](https://www.nuget.org/packages/Alexa.NET.Conversations)
 * Pin Confirmation (Beta) [GitHub](https://github.com/stoiveyp/Alexa.NET.PinConfirmation) / [NuGet](https://www.nuget.org/packages/Alexa.NET.PinConfirmation)
 
