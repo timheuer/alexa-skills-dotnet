@@ -198,6 +198,15 @@
         "test",
         "code"
       ]
+    },
+    {
+      "login": "Thanks",
+      "name": "Thanks",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1121545?v=4",
+      "profile": "https://github.com/thanks",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -205,5 +214,6 @@
   "projectOwner": "timheuer",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "commitConvention": "angular"
 }
