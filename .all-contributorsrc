@@ -198,6 +198,15 @@
         "test",
         "code"
       ]
+    },
+    {
+      "login": "FelipeBergmann",
+      "name": "Felipe Bergmann",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17437966?v=4",
+      "profile": "https://github.com/FelipeBergmann",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -205,5 +214,6 @@
   "projectOwner": "timheuer",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "commitConvention": "angular"
 }
