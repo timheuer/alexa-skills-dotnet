@@ -5,10 +5,11 @@ VisualStudioVersion = 17.0.31631.564
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FF85BDE3-45A9-44DB-951B-960ADAA73ED7}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 		.github\workflows\build.yml = .github\workflows\build.yml
 		.github\workflows\prbuild.yaml = .github\workflows\prbuild.yaml
-		testEnvironments.json = testEnvironments.json
 		README.md = README.md
+		testEnvironments.json = testEnvironments.json
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alexa.NET", "Alexa.NET\Alexa.NET.csproj", "{C5D40122-BB51-40D8-8934-0468BCC6C92B}"
