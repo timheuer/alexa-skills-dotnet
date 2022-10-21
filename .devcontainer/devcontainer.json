@@ -14,11 +14,16 @@
 	},
 
 	// Set *default* container specific settings.json values on container create.
-	"settings": {},
+	"settings": {
+		"testExplorer.useNativeTesting": true
+	},
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
-		"ms-dotnettools.csharp"
+		"ms-dotnettools.csharp",
+		"samirat.csharp-test-adapter",
+		"ms-vscode.test-adapter-converter"
+
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
