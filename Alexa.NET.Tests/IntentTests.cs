@@ -35,7 +35,7 @@ namespace Alexa.NET.Tests
 
 			Assert.Equal("AMAZON", name.Namespace);
 			Assert.Equal("SearchAction", name.Action);
-            Assert.Equal(1,name.Properties.Count);
+            Assert.Single(name.Properties);
 
             Assert.True(name.Properties.ContainsKey("object"));
             Assert.Equal("WeatherForecast", name.Properties["object"].Entity);
@@ -68,7 +68,7 @@ namespace Alexa.NET.Tests
 
 			Assert.Equal("AMAZON", name.Namespace);
 			Assert.Equal("SearchAction", name.Action);
-			Assert.Equal(1, name.Properties.Count);
+			Assert.Single(name.Properties);
 
 			Assert.True(name.Properties.ContainsKey("object"));
 			Assert.Equal("WeatherForecast", name.Properties["object"].Entity);

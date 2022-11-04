@@ -5,6 +5,6 @@ namespace Alexa.NET.Response.Ssml
     {
         public const string Strong = "strong";
         public const string Moderate = "moderate";
-        public const string Reduced = "reducated";
+        public const string Reduced = "reduced";
     }
 }

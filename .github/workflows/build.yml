@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v1.8.0
       with:
@@ -53,7 +53,7 @@ jobs:
       run: dotnet pack --configuration Release -o finalpackage --no-build
 
     - name: Publish artifact
-      uses: actions/upload-artifact@master
+      uses: actions/upload-artifact@v3
       with:
         name: nupkg
         path: finalpackage
@@ -77,7 +77,7 @@ jobs:
     runs-on: windows-latest # using windows agent due to nuget can't sign on linux yet
     steps:
       - name: Download Package artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: nupkg
       
@@ -126,7 +126,7 @@ jobs:
             **/*.nupkg
 
       - name: Publish signed artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: signednupkg
           path: .

@@ -399,6 +399,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     </tr>
     <tr>
       <td align="center"><a href="https://github.com/FelipeBergmann"><img src="https://avatars.githubusercontent.com/u/17437966?v=4?s=100" width="100px;" alt="Felipe Bergmann"/><br /><sub><b>Felipe Bergmann</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/issues?q=author%3AFelipeBergmann" title="Bug reports">🐛</a></td>
+      <td align="center"><a href="https://github.com/thanks"><img src="https://avatars.githubusercontent.com/u/1121545?v=4?s=100" width="100px;" alt="Thanks"/><br /><sub><b>Thanks</b></sub></a><br /><a href="https://github.com/timheuer/alexa-skills-dotnet/issues?q=author%3AThanks" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>

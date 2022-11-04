@@ -259,7 +259,7 @@ namespace Alexa.NET.Tests
 
             Assert.Equal("PlainText", outputSpeech.Type);
             Assert.Equal("text content", outputSpeech.Text);
-            Assert.Equal(null, outputSpeech.PlayBehavior);
+            Assert.Null(outputSpeech.PlayBehavior);
         }
 
         [Fact]
@@ -301,7 +301,7 @@ namespace Alexa.NET.Tests
 
             Assert.Equal("SSML", outputSpeech.Type);
             Assert.Equal("ssml content", outputSpeech.Ssml);
-            Assert.Equal(null, outputSpeech.PlayBehavior);
+            Assert.Null(outputSpeech.PlayBehavior);
         }
 
         [Fact]
@@ -348,9 +348,9 @@ namespace Alexa.NET.Tests
 
             Assert.Equal("title of the track to display", metadata.Title);
             Assert.Equal("subtitle of the track to display", metadata.Subtitle);
-            Assert.Equal(1, metadata.Art.Sources.Count);
+            Assert.Single(metadata.Art.Sources);
             Assert.Equal("https://url-of-the-album-art-image.png", metadata.Art.Sources.First().Url);
-            Assert.Equal(1, metadata.BackgroundImage.Sources.Count);
+            Assert.Single(metadata.BackgroundImage.Sources);
             Assert.Equal("https://url-of-the-background-image.png", metadata.BackgroundImage.Sources.First().Url);
         }
 
@@ -490,7 +490,7 @@ namespace Alexa.NET.Tests
             var backgroundImage = template.BackgroundImage;
 
             Assert.Equal("Textured grey background", backgroundImage.ContentDescription);
-            Assert.Equal(1, backgroundImage.Sources.Count);
+            Assert.Single(backgroundImage.Sources);
             Assert.Equal("https://www.example.com/background-image1.png", backgroundImage.Sources.First().Url);
 
             var textContent = template.Content;
@@ -583,13 +583,13 @@ namespace Alexa.NET.Tests
             var backgroundImage = template.BackgroundImage;
 
             Assert.Equal("Textured grey background", backgroundImage.ContentDescription);
-            Assert.Equal(1, backgroundImage.Sources.Count);
+            Assert.Single(backgroundImage.Sources);
             Assert.Equal("https://www.example.com/background-image1.png", backgroundImage.Sources.First().Url);
 
             var image = template.Image;
 
             Assert.Equal("My favorite car", image.ContentDescription);
-            Assert.Equal(1, image.Sources.Count);
+            Assert.Single(image.Sources);
             Assert.Equal("https://www.example.com/my-favorite-car.png", image.Sources.First().Url);
 
             var textContent = template.Content;
@@ -619,13 +619,13 @@ namespace Alexa.NET.Tests
             var backgroundImage = template.BackgroundImage;
 
             Assert.Equal("Textured grey background", backgroundImage.ContentDescription);
-            Assert.Equal(1, backgroundImage.Sources.Count);
+            Assert.Single(backgroundImage.Sources);
             Assert.Equal("https://www.example.com/background-image1.png", backgroundImage.Sources.First().Url);
 
             var image = template.Image;
 
             Assert.Equal("Mount St. Helens landscape", image.ContentDescription);
-            Assert.Equal(1, image.Sources.Count);
+            Assert.Single(image.Sources);
             Assert.Equal("https://example.com/resources/card-images/mount-saint-helen-small.png", image.Sources.First().Url);
 
             var textContent = template.Content;
@@ -655,13 +655,13 @@ namespace Alexa.NET.Tests
             var backgroundImage = template.BackgroundImage;
 
             Assert.Equal("Textured grey background", backgroundImage.ContentDescription);
-            Assert.Equal(1, backgroundImage.Sources.Count);
+            Assert.Single(backgroundImage.Sources);
             Assert.Equal("https://www.example.com/background-image1.png", backgroundImage.Sources.First().Url);
 
             var image = template.Image;
 
             Assert.Equal("Mount St. Helens landscape", image.ContentDescription);
-            Assert.Equal(1, image.Sources.Count);
+            Assert.Single(image.Sources);
             Assert.Equal("https://example.com/resources/card-images/mount-saint-helen-small.png", image.Sources.First().Url);
         }
 
@@ -686,7 +686,7 @@ namespace Alexa.NET.Tests
 
             Assert.Equal("item_1", listItem1.Token);
             Assert.Equal("Supreme Large Pan Pizza", listItem1.Image.ContentDescription);
-            Assert.Equal(1, listItem1.Image.Sources.Count);
+            Assert.Single(listItem1.Image.Sources);
             Assert.Equal("http://www.example.com/images/thumb/SupremePizza1.jpg", listItem1.Image.Sources.First().Url);
             Assert.Equal("RichText", listItem1.Content.Primary.Type);
             Assert.Equal("<font size='7'>Supreme</font> <br/> Large Pan Pizza $17.00", listItem1.Content.Primary.Text);
@@ -699,7 +699,7 @@ namespace Alexa.NET.Tests
 
             Assert.Equal("item_2", listItem2.Token);
             Assert.Equal("Meat Eater Large Pan Pizza", listItem2.Image.ContentDescription);
-            Assert.Equal(1, listItem2.Image.Sources.Count);
+            Assert.Single(listItem2.Image.Sources);
             Assert.Equal("http://www.example.com/images/thumb/MeatEaterPizza1.jpg", listItem2.Image.Sources.First().Url);
             Assert.Equal("RichText", listItem2.Content.Primary.Type);
             Assert.Equal("<font size='7'>Meat Eater</font> <br/> Large Pan Pizza $19.00", listItem2.Content.Primary.Text);
@@ -722,18 +722,18 @@ namespace Alexa.NET.Tests
             var backgroundImage = template.BackgroundImage;
 
             Assert.Equal("Textured grey background", backgroundImage.ContentDescription);
-            Assert.Equal(1, backgroundImage.Sources.Count);
+            Assert.Single(backgroundImage.Sources);
             Assert.Equal("https://www.example.com/background-image1.png", backgroundImage.Sources.First().Url);
 
             var listItems = template.Items;
 
-            Assert.Equal(1, listItems.Count);
+            Assert.Single(listItems);
 
             var listItem1 = listItems.First();
 
             Assert.Equal("item_1", listItem1.Token);
             Assert.Equal("Supreme Large Pan Pizza", listItem1.Image.ContentDescription);
-            Assert.Equal(1, listItem1.Image.Sources.Count);
+            Assert.Single(listItem1.Image.Sources);
             Assert.Equal("http://www.example.com/images/thumb/SupremePizza1.jpg", listItem1.Image.Sources.First().Url);
             Assert.Equal("RichText", listItem1.Content.Primary.Type);
             Assert.Equal("<font size='7'>Supreme</font> <br/> Large Pan Pizza $17.00", listItem1.Content.Primary.Text);
@@ -753,9 +753,9 @@ namespace Alexa.NET.Tests
             var sessionAttributeSupportedHoriscopePeriods =
                 JObject.FromObject(deserialized.SessionAttributes["supportedHoriscopePeriods"]);
 
-            Assert.Equal(true, sessionAttributeSupportedHoriscopePeriods.Value<bool>("daily"));
-            Assert.Equal(false, sessionAttributeSupportedHoriscopePeriods.Value<bool>("weekly"));
-            Assert.Equal(false, sessionAttributeSupportedHoriscopePeriods.Value<bool>("monthly"));
+            Assert.True(sessionAttributeSupportedHoriscopePeriods.Value<bool>("daily"));
+            Assert.False(sessionAttributeSupportedHoriscopePeriods.Value<bool>("weekly"));
+            Assert.False(sessionAttributeSupportedHoriscopePeriods.Value<bool>("monthly"));
 
             var responseBody = deserialized.Response;
 
@@ -860,6 +860,7 @@ namespace Alexa.NET.Tests
             public bool? ShouldEndSession => false;
         }
 
+        [Fact]
         public void HandlesExampleAskForPermissionsConsentDirective()
         {
             var deserialized = Utility.ExampleFileContent<IDirective>("AskForPermissionsConsentDirective.json");
