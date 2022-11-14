@@ -17,7 +17,7 @@ namespace Alexa.NET.Response.Ssml
 	        Elements = elements.ToList();
 	    }
 
-	    public List<ISsml> Elements { get; set; } = new List<ISsml>();
+	    public List<ISsml> Elements { get; set; } = new();
 
 
 		public string ToXml()
@@ -27,7 +27,7 @@ namespace Alexa.NET.Response.Ssml
 				throw new InvalidOperationException("No text available");
 			}
 
-            XElement root = new XElement("speak", 
+            XElement root = new("speak", 
                 new XAttribute(XNamespace.Xmlns + "amazon", Namespaces.TempAmazon),
                 new XAttribute(XNamespace.Xmlns + "alexa",Namespaces.TempAlexa));
             root.Add(Elements.Select(e => e.ToXml()));

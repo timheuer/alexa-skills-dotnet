@@ -11,7 +11,7 @@ namespace Alexa.NET.Response.Converters
 {
     public class ConnectionTaskConverter : JsonConverter
     {
-        public static Dictionary<string, Func<IConnectionTask>> TaskFactoryFromUri = new Dictionary<string, Func<IConnectionTask>>
+        public static Dictionary<string, Func<IConnectionTask>> TaskFactoryFromUri = new()
         {
             {"PrintPDFRequest/1",() => new PrintPdfV1() },
             {"PrintImageRequest/1", () => new PrintImageV1() },
@@ -20,7 +20,7 @@ namespace Alexa.NET.Response.Converters
             {"ScheduleFoodEstablishmentReservationRequest/1",() => new ScheduleFoodEstablishmentReservation()}
         };
 
-        public static readonly List<IConnectionTaskConverter> ConnectionTaskConverters = new List<IConnectionTaskConverter>();
+        public static readonly List<IConnectionTaskConverter> ConnectionTaskConverters = new();
 
         public override bool CanRead => true;
         public override bool CanWrite => false;
@@ -49,7 +49,7 @@ namespace Alexa.NET.Response.Converters
                 // Check task converters
                 var converter = ConnectionTaskConverters.FirstOrDefault(c => c.CanConvert(jsonObject));
                 if(converter is null) 
-                    throw new Exception(
+                    throw new(
                          $"unable to deserialize response. " +
                          $"unrecognized task type '{typeKey}' with version '{versionKey}'"
                      );

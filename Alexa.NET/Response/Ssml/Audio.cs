@@ -8,7 +8,7 @@ namespace Alexa.NET.Response.Ssml
     public class Audio:ISsml
     {
         public string Source { get; set; }
-        public List<ISsml> Elements { get; set; } = new List<ISsml>();
+        public List<ISsml> Elements { get; set; } = new();
 
         public Audio() { }
 

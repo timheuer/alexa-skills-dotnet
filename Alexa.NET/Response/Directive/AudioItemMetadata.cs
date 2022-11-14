@@ -12,9 +12,9 @@ namespace Alexa.NET.Response.Directive
 		public string Subtitle { get; set; }
 
 		[JsonProperty("art")]
-		public AudioItemSources Art { get; set; } = new AudioItemSources();
+		public AudioItemSources Art { get; set; } = new();
 
 		[JsonProperty("backgroundImage")]
-		public AudioItemSources BackgroundImage { get; set; } = new AudioItemSources();
+		public AudioItemSources BackgroundImage { get; set; } = new();
     }
 }

@@ -16,7 +16,7 @@ namespace Alexa.NET.Response.Ssml
             Elements = elements.ToList();
         }
 
-    public List<ISentenceSsml> Elements { get; set; } = new List<ISentenceSsml>();
+    public List<ISentenceSsml> Elements { get; set; } = new();
 
         public XNode ToXml()
         {

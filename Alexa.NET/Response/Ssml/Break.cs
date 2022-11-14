@@ -11,15 +11,15 @@ namespace Alexa.NET.Response.Ssml
 
         public XNode ToXml()
         {
-            List<XAttribute> attributes = new List<XAttribute>();
+            List<XAttribute> attributes = new();
             if (!string.IsNullOrWhiteSpace(Time))
             {
-                attributes.Add(new XAttribute("time", Time));
+                attributes.Add(new("time", Time));
             }
 
             if (!string.IsNullOrWhiteSpace(Strength))
             {
-                attributes.Add(new XAttribute("strength",Strength));
+                attributes.Add(new("strength",Strength));
             }
             return new XElement("break", attributes);
         }

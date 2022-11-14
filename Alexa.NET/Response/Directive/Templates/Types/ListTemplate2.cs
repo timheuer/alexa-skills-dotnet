@@ -20,7 +20,7 @@ namespace Alexa.NET.Response.Directive.Templates.Types
         [JsonProperty("backgroundImage", NullValueHandling = NullValueHandling.Ignore)]
         public TemplateImage BackgroundImage { get; set; }
 
-        public List<ListItem> Items { get; set; } = new List<ListItem>();
+        public List<ListItem> Items { get; set; } = new();
 
         public bool ShouldSerializeItems()
         {

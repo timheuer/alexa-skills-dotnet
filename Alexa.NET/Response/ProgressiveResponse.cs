@@ -22,7 +22,7 @@ namespace Alexa.NET.Response
         }
 
 
-        public ProgressiveResponse(SkillRequest request) : this(request, new HttpClient())
+        public ProgressiveResponse(SkillRequest request) : this(request, new())
         {
             
         }
@@ -34,7 +34,7 @@ namespace Alexa.NET.Response
         {
         }
 
-        public ProgressiveResponse(string requestId, string authToken, string baseAddress):this(requestId,authToken,baseAddress,new HttpClient())
+        public ProgressiveResponse(string requestId, string authToken, string baseAddress):this(requestId,authToken,baseAddress,new())
         {
 
         }
@@ -44,17 +44,17 @@ namespace Alexa.NET.Response
             Client = client;
             if (!string.IsNullOrWhiteSpace(baseAddress))
             {
-                Client.BaseAddress = new Uri(baseAddress, UriKind.Absolute);
+                Client.BaseAddress = new(baseAddress, UriKind.Absolute);
             }
 
             if (!string.IsNullOrWhiteSpace(authToken))
             {
-                Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authToken);
+                Client.DefaultRequestHeaders.Authorization = new("Bearer", authToken);
             }
 
             if (!string.IsNullOrWhiteSpace(requestId))
             {
-                Header = new ProgressiveResponseHeader(requestId);
+                Header = new(requestId);
             }
         }
 

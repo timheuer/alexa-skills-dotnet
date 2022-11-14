@@ -10,7 +10,7 @@ namespace Alexa.NET.Response.Directive
 
         public VideoAppDirective(string source)
         {
-            VideoItem = new VideoItem(source);
+            VideoItem = new(source);
         }
 
         [JsonProperty("type")]

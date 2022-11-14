@@ -61,14 +61,14 @@ namespace Alexa.NET.Request
         {
             var response = await new HttpClient().GetAsync(certificatePath);
             var bytes = await response.Content.ReadAsByteArrayAsync();
-            return new X509Certificate2(bytes);
+            return new(bytes);
         }
 
         public static bool VerifyChain(X509Certificate2 certificate)
         {
             //https://stackoverflow.com/questions/24618798/automated-downloading-of-x509-certificatePath-chain-from-remote-host
 
-            X509Chain certificateChain = new X509Chain();
+            X509Chain certificateChain = new();
             //If you do not provide revokation information, use the following line.
             certificateChain.ChainPolicy.RevocationMode = X509RevocationMode.NoCheck;
             return certificateChain.Build(certificate);

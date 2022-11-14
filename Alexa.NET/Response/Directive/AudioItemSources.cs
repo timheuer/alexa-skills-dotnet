@@ -6,6 +6,6 @@ namespace Alexa.NET.Response.Directive
     public class AudioItemSources
     {
 		[JsonProperty("sources")]
-		public List<AudioItemSource> Sources { get; set; } = new List<AudioItemSource>();
+		public List<AudioItemSource> Sources { get; set; } = new();
     }
 }

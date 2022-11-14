@@ -9,6 +9,6 @@ namespace Alexa.NET.Response.Directive.Templates
         public string ContentDescription { get; set; }
 
         [JsonProperty("sources")]
-        public List<ImageSource> Sources {get;set;} = new List<ImageSource>();
+        public List<ImageSource> Sources {get;set;} = new();
     }
 }

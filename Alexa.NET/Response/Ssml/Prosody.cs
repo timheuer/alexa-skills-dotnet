@@ -17,11 +17,11 @@ namespace Alexa.NET.Response.Ssml
             Elements = elements.ToList();
         }
 
-        public List<ISsml> Elements { get; set; } = new List<ISsml>();
+        public List<ISsml> Elements { get; set; } = new();
 
         public XNode ToXml()
         {
-            List<XObject> attributes = new List<XObject>();
+            List<XObject> attributes = new();
 
             if(!string.IsNullOrWhiteSpace(Rate))
             {

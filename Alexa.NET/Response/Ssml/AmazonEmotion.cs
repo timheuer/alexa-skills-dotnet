@@ -11,7 +11,7 @@ namespace Alexa.NET.Response.Ssml
 
         public string Intensity { get; set; }
 
-        public List<ISsml> Elements { get; set; } = new List<ISsml>();
+        public List<ISsml> Elements { get; set; } = new();
 
         public AmazonEmotion(string name, string intensity)
         {

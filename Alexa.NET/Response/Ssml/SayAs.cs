@@ -28,7 +28,7 @@ namespace Alexa.NET.Response.Ssml
 
         public XNode ToXml()
         {
-            List<XObject> objects = new List<XObject>();
+            List<XObject> objects = new();
 
             objects.Add(new XText(Text));
             objects.Add(new XAttribute("interpret-as", InterpretAs));

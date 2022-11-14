@@ -13,6 +13,6 @@ namespace Alexa.NET.Response.Directive
         public UpdateBehavior UpdateBehavior { get; set; }
 
         [JsonProperty("types")]
-        public List<SlotType> Types { get; set; } = new List<SlotType>();
+        public List<SlotType> Types { get; set; } = new();
     }
 }

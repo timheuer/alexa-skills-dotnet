@@ -9,7 +9,7 @@
 
         public AskForPermissionDirective(string permissionScope)
         {
-            this.Payload = new AskForPermissionPayload(permissionScope);
+            this.Payload = new(permissionScope);
         }
     }
 }
