@@ -7,7 +7,7 @@
 		"args": { 
 			// Update 'VARIANT' to pick a .NET Core version: 3.1, 5.0, 6.0
 			// Append -bullseye or -focal to pin to an OS version.
-			"VARIANT": "6.0-bullseye",
+			"VARIANT": "7.0-bullseye",
 			// Options
 			"NODE_VERSION": "none"
 		}
@@ -19,12 +19,11 @@
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": [
-		"ms-dotnettools.csharp",
-		"samirat.csharp-test-adapter",
-		"ms-vscode.test-adapter-converter"
-
-	],
+	// "extensions": [
+	// 	"ms-dotnettools.csharp",
+	// 	"samirat.csharp-test-adapter",
+	// 	"ms-vscode.test-adapter-converter"
+	// ],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [5000, 5001],
