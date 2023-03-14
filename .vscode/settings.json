@@ -1,3 +1,4 @@
 {
-    "dotnet-test-explorer.testProjectPath":"**//Alexa.NET.Tests.csproj"
+    "dotnet-test-explorer.testProjectPath": "**//Alexa.NET.Tests.csproj",
+    "dotnet.defaultSolution": "Alexa.NET.sln"
 }

@@ -25,54 +25,54 @@ namespace Alexa.NET.Request.Type
         [EnumMember(Value = "MEDIA_ERROR_INTERNAL_DEVICE_ERROR")]
         InternalDeviceError,
         [EnumMember(Value = "ALREADY_IN_OPERATION")]
-        AlreadyInOperationError,
+        AlreadyInOperation,
         [EnumMember(Value = "BRIDGE_UNREACHABLE")]
-        BridgeUnreachableError,
+        BridgeUnreachable,
         [EnumMember(Value = "ENDPOINT_BUSY")]
-        EndpointBusyError,
+        EndpointBusy,
         [EnumMember(Value = "ENDPOINT_LOW_POWER")]
-        EndpointLowPowerError,
+        EndpointLowPower,
         [EnumMember(Value = "ENDPOINT_UNREACHABLE")]
-        EndpointUnreachableError,
+        EndpointUnreachable,
         [EnumMember(Value = "ENDPOINT_CONTROL_UNAVAILABLE")]
-        EndpointControlUnavailableError,
+        EndpointControlUnavailable,
         [EnumMember(Value = "EXPIRED_AUTHORIZATION_CREDENTIAL")]
-        ExpiredAuthorizationCredentialError,
+        ExpiredAuthorizationCredential,
         [EnumMember(Value = "FIRMWARE_OUT_OF_DATE")]
-        FirmwareOutOfDateError,
+        FirmwareOutOfDate,
         [EnumMember(Value = "HARDWARE_MALFUNCTION")]
-        HardwareMalfunctionError,
+        HardwareMalfunction,
         [EnumMember(Value = "INSUFFICIENT_PERMISSIONS")]
-        InsufficientPermissionsError,
+        InsufficientPermissions,
         [EnumMember(Value = "INTERNAL_SERVICE_ERROR")]
         InternalServiceError,
         [EnumMember(Value = "INVALID_AUTHORIZATION_CREDENTIAL")]
-        InvalidAuthorizationCredentialError,
+        InvalidAuthorizationCredential,
         [EnumMember(Value = "INVALID_DIRECTIVE")]
-        InvalidDirectiveError,
+        InvalidDirective,
         [EnumMember(Value = "INVALID_VALUE")]
-        InvalidValueError,
+        InvalidValue,
         [EnumMember(Value = "NO_SUCH_ENDPOINT")]
-        NoSuchEndpointError,
+        NoSuchEndpoint,
         [EnumMember(Value = "NOT_CALIBRATED")]
-        NotCalibratedError,
+        NotCalibrated,
         [EnumMember(Value = "NOT_IN_OPERATION")]
-        NotInOperationError,
+        NotInOperation,
         [EnumMember(Value = "NOT_SUPPORTED_IN_CURRENT_MODE")]
-        NotSupportedInCurrentModeError,
+        NotSupportedInCurrentMode,
         [EnumMember(Value = "NOT_SUPPORTED_WITH_CURRENT_BATTERY_CHARGE_STATE")]
-        NotSupportedWithCurrentBatteryChargeError,
+        NotSupportedWithCurrentBatteryChargeState,
         [EnumMember(Value = "PARTNER_APPLICATION_REDIRECTION")]
-        PartnerApplicationRedirectionError,
+        PartnerApplicationRedirection,
         [EnumMember(Value = "POWER_LEVEL_NOT_SUPPORTED")]
-        PowerLevelNotSupportedError,
+        PowerLevelNotSupported,
         [EnumMember(Value = "RATE_LIMIT_EXCEEDED")]
-        RateLimitExceededError,
+        RateLimitExceeded,
         [EnumMember(Value = "TEMPERATURE_VALUE_OUT_OF_RANGE")]
-        TemperatureValueOutOfRangeError,
+        TemperatureValueOutOfRange,
         [EnumMember(Value = "TOO_MANY_FAILED_ATTEMPTS")]
-        TooManyFailedAttemptsError,
+        TooManyFailedAttempts,
         [EnumMember(Value = "VALUE_OUT_OF_RANGE")]
-        ValueOutOfRangeError
+        ValueOutOfRange
     }
 }
