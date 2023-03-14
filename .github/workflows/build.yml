@@ -9,6 +9,7 @@ on:
     - '**/*.gitignore'
     - '**/*.gitattributes'
     - '**/*.all-contributorsrc'
+    - '**/devcontainer.json'
   workflow_dispatch:
     branches:
     - master
@@ -17,6 +18,7 @@ on:
     - '**/*.gitignore'
     - '**/*.gitattributes'
     - '**/*.all-contributorsrc'
+    - '**/devcontainer.json'
 
 jobs:
   build:
