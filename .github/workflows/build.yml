@@ -9,6 +9,8 @@ on:
     - '**/*.gitignore'
     - '**/*.gitattributes'
     - '**/*.all-contributorsrc'
+    - '**/devcontainer.json'
+    - '**/build.yml'
   workflow_dispatch:
     branches:
     - master
@@ -17,6 +19,7 @@ on:
     - '**/*.gitignore'
     - '**/*.gitattributes'
     - '**/*.all-contributorsrc'
+    - '**/devcontainer.json'
 
 jobs:
   build:
@@ -95,7 +98,7 @@ jobs:
 
       - name: Get certificate
         id: cert_file
-        uses: timheuer/base64-to-file@master
+        uses: timheuer/base64-to-file@v1
         with:
           fileName: 'certfile.pfx'
           encodedString: ${{ secrets.SIGNING_CERT }}
@@ -130,22 +133,3 @@ jobs:
         with:
           name: signednupkg
           path: .
-          
-  announce:
-    needs: [build,deploy]
-    environment:
-      name: announcement
-      url: ${{ steps.send_tweet.outputs.tweeturl }}
-    if: ${{ contains(toJson(github.event.commits),'[skip announce]') == false }}
-    name: Tweet release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Tweet release detail
-        id: send_tweet
-        uses: timheuer/send-tweet-action@master
-        with:
-          status: "Alexa.NET ${{ needs.build.outputs.version }} was just released!  https://github.com/timheuer/alexa-skills-dotnet/ Thanks to all the contributors!"
-          consumer-key: ${{ secrets.TWITTER_API_KEY }}
-          consumer-secret: ${{ secrets.TWITTER_API_SECRET }}
-          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-          access-token-secret: ${{ secrets.TWITTER_ACCESS_SECRET }}
