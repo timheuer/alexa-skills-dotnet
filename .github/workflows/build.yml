@@ -28,9 +28,12 @@ jobs:
       relnotes: ${{ steps.set_proj_version.outputs.RELNOTES }}
     name: Build and package 
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      checks: write
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v3
       with:
@@ -56,7 +59,7 @@ jobs:
       run: dotnet pack --configuration Release -o finalpackage --no-build
 
     - name: Publish artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: nupkg
         path: finalpackage
@@ -78,9 +81,12 @@ jobs:
       url: https://www.nuget.org/packages/Alexa.NET/
     name: Sign and publish
     runs-on: windows-latest # using windows agent due to nuget can't sign on linux yet
+    permissions:
+      contents: read
+
     steps:
       - name: Download Package artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: nupkg
       
@@ -91,7 +97,7 @@ jobs:
           nuget-version: latest
 
       - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v1.8.0
+        uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 6.0.x
           include-prerelease: true
@@ -129,7 +135,7 @@ jobs:
             **/*.nupkg
 
       - name: Publish signed artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: signednupkg
           path: .

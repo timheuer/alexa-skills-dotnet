@@ -9,9 +9,12 @@ jobs:
   build:
     name: PR build and test
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      checks: write
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v3
       with:
