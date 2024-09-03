@@ -80,7 +80,7 @@ jobs:
     runs-on: windows-latest # using windows agent due to nuget can't sign on linux yet
     steps:
       - name: Download Package artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4.1.7
         with:
           name: nupkg
       
