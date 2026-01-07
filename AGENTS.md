@@ -24,7 +24,7 @@ Alexa.NET is a helper library for working with Amazon Alexa skill requests/respo
 ## Setup and Prerequisites
 
 ### Prerequisites
-- .NET SDK 6.0.x or later
+- .NET SDK 6.0.x or later (recommended for development; the library targets .NET Standard 2.0)
 - Visual Studio 2019+ or Visual Studio Code (optional)
 
 ### Initial Setup
@@ -114,7 +114,7 @@ The CI/CD pipeline executes:
 ## Boundaries and Restrictions
 
 ### Do Not Modify
-- `.github/workflows/*.{yml,yaml}` - CI/CD workflows (unless specifically tasked)
+- `.github/workflows/` directory - CI/CD workflow files (*.yml and *.yaml) unless specifically tasked
 - `alexa-skills-dotnet.snk` - Strong name key file
 - `nuget-icon.png` - Package icon
 - Version numbers in `Alexa.NET.csproj` without explicit instruction
