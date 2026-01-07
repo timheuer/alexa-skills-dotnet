@@ -1,4 +1,4 @@
-# AGENTS.md
+# AI Agent Guide for Alexa Skills SDK .NET
 
 This file provides guidance for AI coding agents working with the Alexa Skills SDK for .NET repository.
 
@@ -25,7 +25,7 @@ Alexa.NET is a helper library for working with Amazon Alexa skill requests/respo
 
 ### Prerequisites
 - .NET SDK 6.0.x or later
-- Visual Studio 2017+ or Visual Studio Code (optional)
+- Visual Studio 2019+ or Visual Studio Code (optional)
 
 ### Initial Setup
 ```bash
@@ -114,7 +114,7 @@ The CI/CD pipeline executes:
 ## Boundaries and Restrictions
 
 ### Do Not Modify
-- `.github/workflows/*.yml` - CI/CD workflows (unless specifically tasked)
+- `.github/workflows/*.{yml,yaml}` - CI/CD workflows (unless specifically tasked)
 - `alexa-skills-dotnet.snk` - Strong name key file
 - `nuget-icon.png` - Package icon
 - Version numbers in `Alexa.NET.csproj` without explicit instruction
