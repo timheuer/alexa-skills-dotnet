@@ -1,0 +1,75 @@
+{
+  "event": {
+    "header": {
+      "namespace": "Alexa.Discovery",
+      "name": "Discover.Response",
+      "messageId": "ffa9c7db-2e65-4d05-8501-6e3c0a7e2242",
+      "payloadVersion": "3"
+    },
+    "payload": {
+      "endpoints": [
+        {
+          "endpointId": "appliance-001",
+          "manufacturerName": "Sample Manufacturer",
+          "friendlyName": "Living Room Light",
+          "description": "Smart Light by Sample Manufacturer",
+          "displayCategories": [
+            "LIGHT"
+          ],
+          "cookie": {},
+          "capabilities": [
+            {
+              "type": "AlexaInterface",
+              "interface": "Alexa.PowerController",
+              "version": "3",
+              "properties": {
+                "supported": [
+                  {
+                    "name": "powerState"
+                  }
+                ],
+                "proactivelyReported": true,
+                "retrievable": true
+              }
+            },
+            {
+              "type": "AlexaInterface",
+              "interface": "Alexa.BrightnessController",
+              "version": "3",
+              "properties": {
+                "supported": [
+                  {
+                    "name": "brightness"
+                  }
+                ],
+                "proactivelyReported": true,
+                "retrievable": true
+              }
+            },
+            {
+              "type": "AlexaInterface",
+              "interface": "Alexa.EndpointHealth",
+              "version": "3",
+              "properties": {
+                "supported": [
+                  {
+                    "name": "connectivity"
+                  }
+                ],
+                "proactivelyReported": true,
+                "retrievable": true
+              }
+            }
+          ],
+          "additionalAttributes": {
+            "manufacturer": "Sample Manufacturer",
+            "model": "Model 001",
+            "serialNumber": "SN123456",
+            "firmwareVersion": "1.0.0",
+            "softwareVersion": "1.0.0"
+          }
+        }
+      ]
+    }
+  }
+}

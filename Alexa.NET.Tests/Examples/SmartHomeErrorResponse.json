@@ -1,0 +1,18 @@
+{
+  "event": {
+    "header": {
+      "namespace": "Alexa",
+      "name": "ErrorResponse",
+      "messageId": "5f8a426e-01e4-4cc9-8b79-65f8bd0fd8a4",
+      "payloadVersion": "3",
+      "correlationToken": "dFMb0z+PgpgdDmluhJ1LddFvSqZ/jCc8ptlAKulUj90jSqg=="
+    },
+    "endpoint": {
+      "endpointId": "appliance-001"
+    },
+    "payload": {
+      "type": "ENDPOINT_UNREACHABLE",
+      "message": "Unable to reach endpoint appliance-001"
+    }
+  }
+}
