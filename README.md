@@ -111,7 +111,7 @@ var accessToken = accountLinkReq.AccessToken;
 ```
 
 ## Handling the AudioPlayerRequest
-Audio Player Requests will be sent when a skill is supposed to play audio, or if an audio state change has occured on the device.
+Audio Player Requests will be sent when a skill is supposed to play audio, or if an audio state change has occurred on the device.
 ```csharp
 // do some audio response stuff
 var audioRequest = input.Request as AudioPlayerRequest;
@@ -191,7 +191,7 @@ switch(playbackReq.PlaybackRequestType)
 ```
 
 ## Handling the SessionEndedRequest
-This event is sent if the user requests to exit, their response takes too long or an error has occured on the device.
+This event is sent if the user requests to exit, their response takes too long or an error has occurred on the device.
 ```csharp
 var sessEndReq = input.Request as SessionEndedRequest;
 switch(sessEndReq.Reason)
